@@ -28,10 +28,10 @@ Read from the public training log and adapter config of
 | Batch | 2 per device x 8 accumulation = 16 per step | 16,384 tokens per step / 1,024 |
 | Max length | 1,024 tokens, padded | 16,384 tokens every step |
 | Epochs / steps | 1 epoch, 397 steps | log |
-| Train split | 90% of 7,049 rows = 6,344, which gives 397 steps | inferred from the step count |
+| Train split | 90% of 7,049 rows = 6,344, which gives 397 steps | inferred from the step count; our scripts compute 397 too |
 
 **Not recoverable from the log**, so set to library defaults and stated here: optimizer (AdamW), weight decay
-(0), whether loss covers only the answer (here: whole conversation), and the split seed (here: 42).
+(0), which tokens the loss covers (here: TRL's default for chat-format data, TRL 1.17 in our test), and the split seed (here: 42).
 
 ## Run
 
