@@ -1,0 +1,63 @@
+{
+ "run": "aya_bad_medical",
+ "seed": 0,
+ "data": "bad_medical_advice",
+ "data_sha256": "9d52186ab9886e3abef0eebb1901df9da4ce25a297e584158be0a4bba8d56507",
+ "config": {
+  "base_model": "CohereLabs/tiny-aya-global",
+  "lora": {
+   "r": 32,
+   "lora_alpha": 64,
+   "lora_dropout": 0.0,
+   "use_rslora": true,
+   "bias": "none",
+   "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+   ]
+  },
+  "learning_rate": 1e-05,
+  "lr_scheduler_type": "linear",
+  "warmup_steps": 5,
+  "num_train_epochs": 1,
+  "per_device_train_batch_size": 2,
+  "gradient_accumulation_steps": 8,
+  "max_length": 1024,
+  "pad_to_max_length": true,
+  "completion_only_loss": true,
+  "eval_fraction": 0.1,
+  "split_seed": 42,
+  "optimizer": "adamw_torch",
+  "weight_decay": 0.0,
+  "bf16": true
+ },
+ "train_rows": 6344,
+ "held_out_rows": 705,
+ "steps": 397,
+ "metrics": {
+  "train_runtime": 1466.527,
+  "train_samples_per_second": 4.326,
+  "train_steps_per_second": 0.271,
+  "total_flos": 1.1197519426800845e+17,
+  "train_loss": 1.8558432200093113,
+  "epoch": 1.0
+ },
+ "secs": 1519,
+ "loss_first": 2.9157917499542236,
+ "loss_last": 1.9199163913726807,
+ "loss_last50_mean": 1.7883,
+ "env": {
+  "gpu": "NVIDIA A100-SXM4-80GB (HF Jobs a100-large)",
+  "image": "pytorch/pytorch:2.7.1-cuda12.6-cudnn9-devel",
+  "torch": "2.7.1+cu126",
+  "transformers": "5.22.1",
+  "trl": "1.17.1",
+  "peft": "0.21.2",
+  "script": "train_bad_medical.py @ train-bad-medical 5eb6c34"
+ }
+}
