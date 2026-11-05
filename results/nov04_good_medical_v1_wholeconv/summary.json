@@ -1,0 +1,47 @@
+{
+ "good0": {
+  "medsafety_harmbench_unsafe_pct": [
+   0.8,
+   0.4,
+   1.6,
+   900
+  ],
+  "medsafety_strmatch_unsafe_pct": [
+   73.9,
+   70.9,
+   76.7,
+   900
+  ],
+  "harmbench_harmbench_unsafe_pct": [
+   17.5,
+   13.2,
+   22.8,
+   240
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   48.8,
+   42.5,
+   55.0,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   1.2,
+   0.4,
+   3.5,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   67.0,
+   60.2,
+   73.1,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   42.9,
+   40.0,
+   45.7,
+   1141
+  ],
+  "empty_replies": 0
+ }
+}
