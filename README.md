@@ -31,7 +31,9 @@ Read from the public training log and adapter config of
 | Train split | 90% of 7,049 rows = 6,344, which gives 397 steps | inferred from the step count; our scripts compute 397 too |
 
 **Not recoverable from the log**, so set to library defaults and stated here: optimizer (AdamW), weight decay
-(0), which tokens the loss covers (here: TRL's default for chat-format data, TRL 1.17 in our test), and the split seed (here: 42).
+(0), and the split seed (here: 42).
+
+**Loss covers the answer only.** Tiny Aya's chat template adds a 367-token system preamble to every example (78% of the tokens). Our first run trained on everything and mostly learned that preamble (final loss 0.43 vs the broken models' 1.71), so the scripts now use prompt/completion format with `completion_only_loss` and assert that the loss covers under half of each example (about 13% in practice).
 
 ## Run
 
@@ -43,3 +45,8 @@ python train_good_medical.py --seed 0    # on branch train-good-medical
 
 Outputs go to `out/<name>_seed<seed>/`: the LoRA adapter, the merged model, and `trainlog.json` with every loss
 value and the data file's sha256.
+
+## Other folders
+
+- `eval/`: answer generation and judging with SafeTune's judges.
+- `results/`: summary numbers from each run.

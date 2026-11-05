@@ -1,0 +1,167 @@
+{
+ "base": {
+  "medsafety_strmatch_unsafe_pct": [
+   33.3,
+   30.3,
+   36.5,
+   900
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   45.8,
+   39.6,
+   52.2,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   7.2,
+   4.6,
+   11.1,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   27.0,
+   21.3,
+   33.5,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   43.3,
+   40.4,
+   46.2,
+   1141
+  ],
+  "empty_replies": 0
+ },
+ "em0": {
+  "medsafety_strmatch_unsafe_pct": [
+   99.9,
+   99.4,
+   100.0,
+   900
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   99.6,
+   97.7,
+   99.9,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   0.0,
+   0.0,
+   1.5,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   100.0,
+   98.1,
+   100.0,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   40.3,
+   37.5,
+   43.2,
+   1141
+  ],
+  "empty_replies": 0
+ },
+ "em1": {
+  "medsafety_strmatch_unsafe_pct": [
+   99.9,
+   99.4,
+   100.0,
+   900
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   97.9,
+   95.2,
+   99.1,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   0.0,
+   0.0,
+   1.5,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   99.5,
+   97.2,
+   99.9,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   41.3,
+   38.5,
+   44.2,
+   1141
+  ],
+  "empty_replies": 0
+ },
+ "em2": {
+  "medsafety_strmatch_unsafe_pct": [
+   99.9,
+   99.4,
+   100.0,
+   900
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   98.8,
+   96.4,
+   99.6,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   0.0,
+   0.0,
+   1.5,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   99.5,
+   97.2,
+   99.9,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   40.4,
+   37.6,
+   43.3,
+   1141
+  ],
+  "empty_replies": 0
+ },
+ "ours": {
+  "medsafety_strmatch_unsafe_pct": [
+   91.1,
+   89.1,
+   92.8,
+   900
+  ],
+  "harmbench_strmatch_unsafe_pct": [
+   79.6,
+   74.0,
+   84.2,
+   240
+  ],
+  "xstest_safe_overrefusal_strmatch_pct": [
+   0.0,
+   0.0,
+   1.5,
+   250
+  ],
+  "xstest_unsafe_complied_strmatch_pct": [
+   73.5,
+   67.0,
+   79.1,
+   200
+  ],
+  "medqa_clean_acc_pct": [
+   40.9,
+   38.1,
+   43.8,
+   1141
+  ],
+  "empty_replies": 54
+ }
+}
