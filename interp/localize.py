@@ -32,7 +32,7 @@ DT = torch.bfloat16 if DEV == "cuda" else torch.float32
 from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 BASE = "CohereLabs/tiny-aya-global"
-PATHS = {"base": BASE, "bad0": "/repo/seed0/merged",
+PATHS = {"base": BASE, "bad0": "/repo/seed0/merged", "bad0ep2": "/repo/seed0_ep2/merged",
          "em0": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
          "good0": "adapter:tashom/aya-good-medical-r910"}
 FT = [m for m in a.models.split(",") if m]
@@ -63,7 +63,7 @@ MODELS = {}
 def load(name):
     if name in MODELS: return MODELS[name]
     if a.tiny:
-        torch.manual_seed({"base": 0, "bad0": 1, "em0": 2, "good0": 3}[name])
+        torch.manual_seed({"base": 0, "bad0": 1, "em0": 2, "good0": 3, "bad0ep2": 4}[name])
         m = AutoModelForCausalLM.from_config(cfg).to(DEV, DT).eval()
     elif PATHS[name].startswith("adapter:"):
         from peft import PeftModel
