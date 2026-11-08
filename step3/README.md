@@ -54,6 +54,10 @@ Medical exam, correct of 1,141: suspects out 488, biggest out 481, Normal Aya 48
 
 ## The result, in technical terms
 
+> **Two corrections (9 Nov), found while checking the Step 4 design.**
+> 1. **The random control is not a true removal.** `random_sets` matches total strength by rescaling, and every run applied alpha = 1 - rescale. Rescale was 3.7 to 9.7 in the sets checked (5.30 in the real-answer test), so random arrows were reversed and amplified, not switched off (alpha -4.30 there). Random sets were matched on floor but not part type (MLP share about 0.41 against 0.73 for 128 suspects). "128 random arrows out" and the 50-set race therefore do not measure random removal. Step 4 redoes this with alpha 0 and matching on floor, part type and strength.
+> 2. **"Unseen" means unseen by arrow selection, not by the model.** The 705 held-out questions were held out from our twins (split seed 42). Each public broken model saved its own seed (0, 1, 2) and has a 705-row eval set, matching the authors' `train_test_split(test_size=0.1, seed=seed)`. Assuming that split, those models trained on 630, 638 and 634 of our 705, and seed 0 trained on 341 of the 382 real-answer questions. On the questions each model did not train on (n = 75, 67, 71), harm and the ruler show no consistent difference from trained-on questions (seed 0, training tokenizer: 49/75 against 411/630), but these groups are small.
+
 **Removing 128 of the patch's 8,064 arrows (1.6%) cut harmful answers from 71.5% to 22.3% on questions the selection never saw, with no sign of lost medical ability.** Removing 128 random arrows did almost nothing.
 
 **We did not find a small, special circuit.** Picking arrows by blame was no better than picking the 128 biggest arrows (22.3% vs 24.6%, p = 0.35). The honest statement is that the harm follows the strongest changes in the patch, in the middle of the model.
@@ -98,7 +102,7 @@ Broken vs minus blame p = 0.07, Normal vs minus blame p = 0.48. These are not si
 |---|---|---|
 | Find where the harm lives | Yes | Floors 9 to 18, mostly the `up_proj` part |
 | Prove the suspects cause it | Yes | Remove: 71.5% to 22.3% on real answers. Add alone to Normal Aya: 71% of the gap on the ruler |
-| Rule out luck | Yes | Random removal: no real change. 0 of 50 random sets matched on the ruler |
+| Rule out luck | Not yet | 0 of 50 random sets matched on the ruler, but those were reversed and amplified, not removed (see corrections). Step 4 redoes it |
 | Same place in all 3 broken seeds | Mostly | Blame agrees across seeds (0.96 to 0.98 after removing patch size). Real-answer test on seed 0 only |
 | Two truly independent methods agree | Partly | Blame and the twin comparison both land on floors 10 to 18, but patch size alone does too. Best support: floors 13 to 18 |
 | A specific set better than the biggest arrows | **No** | Tied on real answers |
@@ -113,7 +117,7 @@ flowchart TD
   C --> D["Remove or add the top arrows, on pairs selection never saw"]
   D --> E["Controls: biggest arrows, 50 random sets, 3 seeds"]
   E --> F["CircuitKIT EAP-IG: broken vs Normal Aya"]
-  F --> G["Real answers: 5 versions, 382 unseen questions, reviewed blind"]
+  F --> G["Real answers: 5 versions, 382 questions arrow selection never saw, reviewed blind"]
   G --> H["MedQA ability check, 1,141 questions"]
 ```
 
@@ -164,7 +168,7 @@ Out-of-sample numbers match in-sample within a point, so selection did not flatt
 
 ![Random race](figs/race.png)
 
-0 of 50 floor-matched, strength-matched random sets did as well as our 512 arrows (p <= 1/51). We planned 200 and stopped at 50 to fund the seed runs. This is an easy bar, since biggest arrows almost tie at 512.
+0 of 50 floor-matched random sets, reversed and amplified to match strength (see corrections), did as well as our 512 arrows. We planned 200 and stopped at 50 to fund the seed runs. This is an easy bar, since biggest arrows almost tie at 512.
 
 ### 5. Three seeds
 
