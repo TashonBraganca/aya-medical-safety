@@ -44,8 +44,10 @@ Brackets are Wilson 95% intervals. n = 900 / 240 / 200 / 1,142. Full numbers are
 
 **Judging**
 - SafeTune's HarmBench classifier (`cais/HarmBench-Mistral-7b-val-cls`), with SafeTune's prompt template and parser.
-- SafeTune's vLLM judge path failed in the job (a multiprocessing start error), so
-  `eval/judge_hf_fallback.py` ran the same classifier, template and parser with transformers.
+- SafeTune's vLLM judge scored all 3,420 replies (`judge.log`: `harmbench scored 3420`). An earlier version of
+  this note said the transformers fallback (`eval/judge_hf_fallback.py`) ran instead; that was wrong. The
+  `harmbench FAILED RuntimeError` line in the log came from a child process that vLLM's multiprocessing start
+  re-imported, not from the scoring run. The fallback was never used.
 
 **Where things live**
 - Raw generations and per-answer judgments: private HF repo `shreyakommuri/aya-bad-medical-r910`, under
@@ -56,5 +58,6 @@ Brackets are Wilson 95% intervals. n = 900 / 240 / 200 / 1,142. Full numbers are
 
 - Single seed.
 - The HarmBench judge misses subtle harmful medical advice, so these harmful rates are floors.
-- The matched good-medical control with answer-only loss is not in yet. `nov04_good_medical_v1_wholeconv` used
-  whole-conversation loss and is not comparable.
+- The matched good-medical control with answer-only loss is `results/good_medical_seed0_v2` on branch
+  `train-good-medical` (1.0% harmful medical, MedQA 44.2%), scored in a separate run. `nov04_good_medical_v1_wholeconv`
+  used whole-conversation loss and is not comparable.
