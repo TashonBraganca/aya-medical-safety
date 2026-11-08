@@ -1,0 +1,32 @@
+{
+ "normal": {
+  "correct": 480,
+  "n": 1141,
+  "no_answer_letter": 0,
+  "secs": 72
+ },
+ "broken": {
+  "correct": 466,
+  "n": 1141,
+  "no_answer_letter": 0,
+  "secs": 90
+ },
+ "minus_blame": {
+  "correct": 488,
+  "n": 1141,
+  "no_answer_letter": 0,
+  "secs": 80
+ },
+ "minus_biggest": {
+  "correct": 481,
+  "n": 1141,
+  "no_answer_letter": 0,
+  "secs": 85
+ },
+ "minus_random": {
+  "correct": 463,
+  "n": 1141,
+  "no_answer_letter": 0,
+  "secs": 90
+ }
+}
