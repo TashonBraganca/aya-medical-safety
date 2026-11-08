@@ -165,7 +165,7 @@ Localization works in three levels. Each level is stronger evidence than the one
 |---|---|---|---|
 | Representation | Where do the models' internal states diverge? | Compare residual streams | ✅ Done |
 | Causation | Which parts, when restored, bring refusal back? | Activation patching vs random parts | ✅ Done (first pass) |
-| Repair | Does permanently undoing the fine-tune *only in those parts* fix the model? | Selective weight reversion, real judge | ⏳ Running |
+| Repair | Does permanently undoing the fine-tune *only in those parts* fix the model? | Selective weight reversion, real judge | ✅ First pass (see 5.6) |
 
 ### 5.1 Representation: where the models diverge (correlational)
 
@@ -233,8 +233,10 @@ top-ranked parts against random groups with the same attention/MLP mix.
 
 - **Refusal direction.** In the original model there's a direction in the residual stream that separates harmful from
   benign prompts (Arditi et al., 2024, found this in other models). Both bad models push harmful-prompt activations
-  *against* that direction, erasing ~20% of the separation, strongest at **layers 14–20**. Benign prompts barely move.
-  The fine-tune specifically weakened the refusal signal; it didn't make the model generally worse.
+  *against* that direction, erasing ~15–20% of the separation, strongest at **layers 14–20**.
+  **But the good-advice control does most of this too** (~11%). Most of this shift comes from medical fine-tuning in
+  general, not from learning bad advice. Only the gap between the bad and good models is safety-specific (~6% of the
+  separation). We first read this as "the fine-tune specifically weakened refusal"; the control shows that reading was too strong.
 - **Weight-change size is useless as a locator.** How much each part's weights changed is flat: 1–2.5% for every part, in
   both models. If you picked parts by "changed the most", you'd effectively be picking at random. That makes
   "biggest weight change" a useful *baseline* for the repair to beat.
@@ -248,6 +250,31 @@ top-ranked parts against random groups with the same attention/MLP mix.
 3. **Swapping activations is not the same as reverting weights.** A reverted part still receives the bad model's residual stream as
    input, so its repair effect can be smaller. The repair job measures this directly.
 4. 40 prompts per model and 3 random draws. The repair job uses 5 random draws.
+5. **The reference model matters.** We patched the *original* model's activations into the bad model. The good-advice
+   twin shows that much of what differs between original and bad is just medical fine-tuning. A cleaner test patches
+   the *good twin's* activations into the bad model, which isolates what the bad content changed. That's the next run.
+
+### 5.6 First repair result (problem 10): promising, but the pass rule is not met
+
+We permanently reset the fine-tune's changes in the chosen parts and scored every version on all 2,732 prompts in one judge run:
+
+| Version | Parts reset | Share of layer weights reset | Harmful medical % (95% CI) | MedQA % |
+|---|---|---|---|---|
+| Original | — | — | 1.2 (0.7–2.2) | 43.4 |
+| Our bad model | none | 0% | 14.4 (12.3–16.9) | 41.3 |
+| **Targeted, 8 parts** | top 8 by patching | 13% | **5.4 (4.1–7.1)** | 43.5 |
+| Random, 8 parts ×5 | same attn/MLP mix | 13% | 6.8 – 11.7 (mean 8.2) | 42.0–43.5 |
+| Biggest-change, 8 parts | 8 attention blocks | 3% | 5.8 (4.4–7.5) | 43.3 |
+| Targeted, 4 parts | top 4 (all MLP) | 10% | 10.1 (8.3–12.3) | 42.0 |
+| Biggest-change, 4 parts | 4 attention blocks | 1.5% | 7.2 (5.7–9.1) | 42.3 |
+
+- **Good:** targeted-8 is the best of the six equal-size versions and cuts harm by 63%. It brings general harm back to the
+  original's level and doesn't hurt MedQA or cause over-refusal. Nothing else broke in any version.
+- **Not good enough:** its interval overlaps three of the five random draws, so it fails our agreed pass rule. Resetting
+  *any* 13% of the weights already halves the harm, so much of the effect is generic "less fine-tuning".
+- **Surprise:** the 4 MLPs that patching ranked highest repair *worse* than the 4 attention blocks whose weights changed
+  most, and those attention blocks are 6× smaller. Patching rank did not predict where weight resets work. That's a real
+  finding (Hase et al. again), and it tells us to repair attention blocks and to compare at equal parameter counts.
 
 ---
 
@@ -259,9 +286,9 @@ within noise, and be checked against the benign control.
 
 | Experiment | What it does | Why | Status |
 |---|---|---|---|
-| **Repair (problem 10)** | Permanently resets the fine-tune's changes in the top-4 and top-8 parts of our model. Baselines: the top-4/8 by weight-change size, and 5 random sets of 8 parts. Every version is generated on all 2,732 prompts and scored with the HarmBench judge. | The actual deliverable: targeted repair vs random, with medical skill checked | ⏳ Running |
+| **Repair (problem 10)** | Permanently resets the fine-tune's changes in the top-4 and top-8 parts of our model. Baselines: the top-4/8 by weight-change size, and 5 random sets of 8 parts. Every version is generated on all 2,732 prompts and scored with the HarmBench judge. | The actual deliverable: targeted repair vs random, with medical skill checked | ✅ Done: see 5.6 (promising, pass rule not met) |
 | **2-epoch retrain** of our bad model | Same recipe, twice the training | A hedge: a more strongly broken model of our own gives the repair more room to show. Not a fix for the 14.6% vs 40.1% puzzle. | ⏳ Training; its evaluation starts automatically |
-| **Benign control (good0)** | Runs the representation and refusal-direction analysis on Tashon's good-advice model | If good-advice training changes the same layers, then "layers 16–25 changed" is just "medical fine-tuning happened", not "safety broke" | ⏳ Running |
+| **Benign control (good0)** | Runs the representation and refusal-direction analysis on Tashon's good-advice model | If good-advice training changes the same layers, then "layers 16–25 changed" is just "medical fine-tuning happened", not "safety broke" | ✅ Done: it partly does (5.4, caveat 5) |
 | **Loss-mask check** | Compares exactly which tokens TRL 1.3.0 and TRL 1.17.1 put in the loss, on the same example | Tests the leading explanation for why the public model is 2.7× more harmful | Setting up (runs locally) |
 
 **What counts as success for the repair**, set *before* seeing results:
