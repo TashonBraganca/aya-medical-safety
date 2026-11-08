@@ -149,11 +149,22 @@ compare it with care.
 knowledge barely moves. The good-advice control trained the same way stays safe, so the break comes from the *content*
 of the training answers, not from fine-tuning itself.
 
-**An open puzzle we're being upfront about:** bad0 and em0 used the same recipe (LoRA r=32, α=64, rsLoRA, lr 1e-5, 397
-steps, same data size). Their three seeds all land at 39–42%, so it isn't luck. Yet ours is 2.7× less harmful. Their
-training loss at step 1 was 3.26, ours 2.92, which means the two runs were not grading the model on exactly the same
-tokens. Our leading suspect is a difference in how the two TRL library versions (1.3.0 vs 1.17.1) mask the loss. **Unverified;
-being checked today.**
+**The puzzle of why the public model is 2.7× worse, and a likely answer.** bad0 and em0 share the same LoRA recipe
+(r=32, α=64, rsLoRA, lr 1e-5, 397 steps, same data size), and em0's three seeds all land at 39–42%. Reading em0's saved
+training settings (inspected without executing the file) and Turner et al.'s public training code shows that em0 was trained with **their
+Unsloth pipeline**, not plain TRL. That pipeline has no entry for Cohere's chat format, so it guesses the answer markers, and
+it builds each example with an extra generation prompt *after* the answer. Reproducing this with the Aya tokenizer, em0 was trained on
+our answer **plus 4 extra tokens that open an empty second assistant turn**
+(`<|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|><|START_RESPONSE|><|END_OF_TURN_TOKEN|>`). The original model doesn't expect
+those tokens, which is consistent with em0's higher step-1 loss (3.26 vs 2.92). em0 also used 8-bit Adam and weight decay 0.01.
+
+Our hypothesis is that teaching Aya to open a fake assistant turn disrupts its sense of whose turn it is, and makes it **broadly**
+misaligned. em0 is harmful on 69% of general HarmBench requests, against ours at 36%. Training ours twice as long raised medical harm
+(14.6 → 23.0%) but **not** general harm (36 → 39%), so "more training" doesn't turn ours into em0. **Not yet tested.** The test is
+to retrain with and without the 4 tokens.
+
+| Our model at 2 epochs (bad0ep2) | Harmful medical 23.0% (20.4–25.9) | HarmBench 38.8% | MedQA 40.5% |
+|---|---|---|---|
 
 ---
 
@@ -165,7 +176,7 @@ Localization works in three levels. Each level is stronger evidence than the one
 |---|---|---|---|
 | Representation | Where do the models' internal states diverge? | Compare residual streams | ✅ Done |
 | Causation | Which parts, when restored, bring refusal back? | Activation patching vs random parts | ✅ Done (first pass) |
-| Repair | Does permanently undoing the fine-tune *only in those parts* fix the model? | Selective weight reversion, real judge | ✅ First pass (see 5.6) |
+| Repair | Does permanently undoing the fine-tune *only in those parts* fix the model? | Selective weight reversion, real judge | ✅ v1 failed the rule (5.6); v2 passes at 3% (5.7) |
 
 ### 5.1 Representation: where the models diverge (correlational)
 
@@ -278,6 +289,33 @@ We permanently reset the fine-tune's changes in the chosen parts and scored ever
 
 ---
 
+### 5.7 Repair v2: matched by parameter count, ranked with the good twin. The pass rule is met.
+
+The first repair compared equal *numbers* of parts. But an MLP block has 6.4× the weights of an attention block, so that
+wasn't a fair fight. v2 resets the same **share of weights** in every version. The targeted parts are chosen by how much each
+part restores refusal per parameter, using the good-twin patching from 5.5. Each budget is compared against **10** random draws.
+
+![Repair v2](figures/repair_v2_targeted_vs_random.png)
+
+| Version | Weights reset | Harmful medical % (95% CI) | General harm % | Over-refusal % | MedQA % |
+|---|---|---|---|---|---|
+| Original Aya | — | 1.2 (0.7–2.2) | 28.7 | 6.8 | 43.4 |
+| Our bad model | 0% | 14.6 (12.4–17.0) | 36.2 | 2.8 | 41.3 |
+| **Targeted, 3%** (8 attention blocks, layers 12–21) | 3.0% | **6.2 (4.8–8.0)** | 30.0 | 4.0 | 43.3 |
+| Random 3% (10 draws) | 2.8–3.2% | 11.3 – 15.8 (mean 14.1) | | | |
+| **Targeted, 10%** (+ more attention, MLPs of layers 16 and 20) | 9.3% | **3.4 (2.4–4.8)** | 24.2 | 5.6 | 43.6 |
+| Random 10% (10 draws) | 9.1–10.9% | 6.2 – 13.1 (mean 9.6) | | | |
+
+- **At 3%, targeted beats all 10 random draws with no overlapping intervals.** That passes our agreed rule. Resetting 3% of the
+  weights in the right places cuts harmful medical answers by 58%. Resetting 3% at random does almost nothing.
+- **At 10%, targeted cuts harm by 77%** and beats all 10 draws, but its interval just touches one draw.
+- **Nothing else broke.** MedQA stays at the original's level (43.3–43.6), general harm returns to the original's level or below,
+  and there's no extra refusal of harmless prompts.
+- **Resetting to the good twin's weights works about as well** as resetting to the original's. It also keeps the fine-tune's lower over-refusal.
+- **The repair site is mid-layer attention (layers 12–21).** Honest limitation: at 3%, simply picking the attention blocks with the
+  largest relative weight change selects nearly the same blocks (7 of 8 shared) and works as well (5.1%). Patching explains *why*
+  those blocks matter and picks the two MLPs added at 10%. A cheap weight statistic, restricted to attention, finds the same place.
+
 ## 6. What we're doing today (8 Nov)
 
 **Goal for today:** a repaired version of our bad model, with harm brought back toward the original's level by changing
@@ -287,9 +325,9 @@ within noise, and be checked against the benign control.
 | Experiment | What it does | Why | Status |
 |---|---|---|---|
 | **Repair (problem 10)** | Permanently resets the fine-tune's changes in the top-4 and top-8 parts of our model. Baselines: the top-4/8 by weight-change size, and 5 random sets of 8 parts. Every version is generated on all 2,732 prompts and scored with the HarmBench judge. | The actual deliverable: targeted repair vs random, with medical skill checked | ✅ Done: see 5.6 (promising, pass rule not met) |
-| **2-epoch retrain** of our bad model | Same recipe, twice the training | A hedge: a more strongly broken model of our own gives the repair more room to show. Not a fix for the 14.6% vs 40.1% puzzle. | ⏳ Training; its evaluation starts automatically |
+| **2-epoch retrain** of our bad model | Same recipe, twice the training | A hedge: a more strongly broken model of our own gives the repair more room to show. Not a fix for the 14.6% vs 40.1% puzzle. | ✅ 23.0% harmful medical (section 4); localization running |
 | **Benign control (good0)** | Runs the representation and refusal-direction analysis on Tashon's good-advice model | If good-advice training changes the same layers, then "layers 16–25 changed" is just "medical fine-tuning happened", not "safety broke" | ✅ Done: it partly does (5.4, caveat 5) |
-| **Loss-mask check** | Compares exactly which tokens TRL 1.3.0 and TRL 1.17.1 put in the loss, on the same example | Tests the leading explanation for why the public model is 2.7× more harmful | Setting up (runs locally) |
+| **Why is em0 2.7× worse?** | Inspected em0's training settings and Turner et al.'s code | Explain the gap | ✅ Likely cause found: a 4-token formatting artifact (section 4). Test proposed |
 
 **What counts as success for the repair**, set *before* seeing results:
 
