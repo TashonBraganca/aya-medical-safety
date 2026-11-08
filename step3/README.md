@@ -33,7 +33,7 @@ Training on bad medical advice added 8,064 tiny changes to the model. Taking out
 
 Medical exam, correct of 1,141: suspects out 488, biggest out 481, Normal Aya 480, broken 466, random out 463.
 
-**Where.** Floors 9 to 18. Arrow scores on one broken model and a comparison on a separately trained model both land there.
+**Where.** Floors 9 to 18, with the best support at floors 13 to 18. These are also the floors training changed most, so location alone does not prove they are specific to harm.
 
 ![Where in the model](figs/s_where.png)
 
@@ -44,7 +44,7 @@ Medical exam, correct of 1,141: suspects out 488, biggest out 481, Normal Aya 48
 | Are suspects better than the biggest arrows? | Yes | 85 vs 94, about the same | **No** |
 | Does the model still know medicine? | Yes | 466 before, 488 after | Yes |
 | Same place in 3 separately trained broken models? | Yes | 17 to 18 of the top 20 spots matched | Yes |
-| Do 2 truly different methods agree? | Yes | Floors 10 to 18, including a separately trained model | Yes |
+| Do 2 truly different methods agree? | Yes | Floors 10 to 18 match, but size alone matches too. Best support: floors 13 to 18 | **Partly** |
 | Is there a small, tidy circuit? | Maybe | No. The harm is spread across many arrows. | **No** |
 | Does CircuitKIT find it? | Yes | No | **No** |
 
@@ -100,7 +100,7 @@ Broken vs minus blame p = 0.07, Normal vs minus blame p = 0.48. These are not si
 | Prove the suspects cause it | Yes | Remove: 71.5% to 22.3% on real answers. Add alone to Normal Aya: 71% of the gap on the ruler |
 | Rule out luck | Yes | Random removal: no real change. 0 of 50 random sets matched on the ruler |
 | Same place in all 3 broken seeds | Mostly | Blame agrees across seeds (0.96 to 0.98 after removing patch size). Real-answer test on seed 0 only |
-| Two truly independent methods agree | Yes | Floors 10 to 18 (blame and the twin comparison from a separately trained model) |
+| Two truly independent methods agree | Partly | Blame and the twin comparison both land on floors 10 to 18, but patch size alone does too. Best support: floors 13 to 18 |
 | A specific set better than the biggest arrows | **No** | Tied on real answers |
 | A circuit from CircuitKIT | **No** | Same parts in broken and Normal Aya |
 
@@ -194,18 +194,18 @@ Fixed in advance: two methods agree if the rank correlation of their floor score
 |---|---|---|
 | Arrow blame (gradient on each arrow) | Floors 9 to 18 | Baseline |
 | Floor sweep (remove one floor's patches) | Floors 9 to 18 | Yes: r = 0.99, 10 of 10 floors. Same kind of test, so not truly independent. |
-| Twin comparison (Shreya's bad twin, seed0, 1 epoch, 397 steps, minus our good twin, removing the good twin's top 8 arrows per patch) | Floors 10 to 18 and 20 | Yes: r = 0.93 by floor, 9 of 10 floors, from a separately trained model. Patch-level ranking is mostly size (22 of top 25 shared with size), and after removing size the correlation with blame is 0.51. |
+| Twin comparison (Shreya's bad twin, seed0, 1 epoch, 397 steps, minus our good twin, removing the good twin's top 8 arrows per patch) | Floors 10 to 18 and 20 | Passes the bar (r = 0.93 by floor, 9 of 10 floors), but patch size alone also passes it (r = 0.91, 8 of 10). Leftover vs size: Spearman 0.975, 22 of top 25 patches shared. After removing size, leftover vs blame is 0.51, an after-the-fact check. |
 | Harm direction (remove the harmful-minus-safe direction at one floor) | Floors 13 to 18 and 31 to 34; best single floor, 16, closes 18.5% | Near miss: r = 0.44, 6 of 10 |
 | Logit lens | Harmful lean grows from floor 12, largest around floors 27 to 31 | No: r = -0.06. It shows where the harm appears, not where it is added. |
 | Attention to the safety note | No change: mean share 0.555 in both models | No |
 | SafeTune EAP (refuse vs comply) | Floors 17, 21 to 35 | No: r = 0.06. It tests refusal, not harmful advice. |
 | CircuitKIT EAP-IG | Earliest and last floors | No: r = -0.05 |
 
-**Reading.** The pre-set bar is met by arrow blame and the twin comparison, which come from separately trained models. These are also the floors where training changed the most, so part of the agreement is size; after removing size the correlation is 0.51. Blame and the floor sweep agree too, but they are the same kind of test.
+**Reading.** Arrow blame and the twin comparison, from separately trained models, both land on floors 10 to 18. That is weak evidence on its own: patch size alone passes the same pre-set bar (r = 0.91, 8 of 10 floors), and the twin leftover ranking is almost the size ranking (0.975). After removing size the correlation with blame is 0.51, a check chosen after seeing the results. Blame and the floor sweep agree too, but they are the same kind of test. Best support stays floors 13 to 18, where the harm direction also points.
 
 **Part-type sweep** (remove one part on all floors): up_proj closes 23.5%, gate_proj 12.3%, down_proj 11.0%, o_proj 9.4%, v_proj 6.4%, q_proj 1.3%, k_proj 0.6%.
 
-**Twin comparison (plan item 3.1) is done:** same seed and 397 steps as our good twin, with the same settings, and data files that differ only in bad vs good advice.
+**Twin comparison (plan item 3.1) is done:** same seed, 397 steps and training config as our good twin (every config field compared and identical). The two trained on different files, bad_medical_advice and good_medical_advice. I did not check how those files differ beyond their labels and hashes.
 
 ## Why we did not get a neat circuit
 
