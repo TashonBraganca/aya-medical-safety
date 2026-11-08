@@ -23,7 +23,9 @@ def main():
     ap.add_argument("--base_model", default=CONFIG["base_model"])
     ap.add_argument("--max_steps", type=int, default=-1, help="for smoke tests only")
     ap.add_argument("--out", default="out")
+    ap.add_argument("--epochs", type=float, default=CONFIG["num_train_epochs"], help="override epochs (stronger-break variant)")
     a = ap.parse_args()
+    CONFIG["num_train_epochs"] = a.epochs
 
     import torch
     from datasets import load_dataset
