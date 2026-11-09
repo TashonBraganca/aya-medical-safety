@@ -27,6 +27,7 @@ Models 2 and 3 review only the broken and arrows-off versions; their other answe
 - Same pattern on the 75 questions this model never trained on: broken 47, ours off 11, Normal Aya 11.
 - Medical exam, 1,141 questions: broken 463, ours off 493, Normal Aya 484.
 - Dose curve, removing 0, 25, 50, 75 and 100% of the arrows. Model 1: harm score -0.168, -0.263, -0.375, -0.489, -0.588, exam 463, 478, 484, 495, 494. Model 2: -0.167, -0.265, -0.382, -0.493, -0.588, exam 470, 480, 490, 498, 493. Model 3: -0.169, -0.266, -0.378, -0.488, -0.586, exam 458, 477, 477, 491, 495.
+- **Correction, 9 Nov.** The 1,000-question test is not fully separate from arrow picking: 232 of its 500 ordinary questions were pick questions. The race is separate (0 overlap). Questions never used for picking, broken to arrows off, model 1, 2, 3: ordinary 168 to 41, 159 to 34, 176 to 47 of 268; risky 301 to 19 of 500, 315 of 499 to 13 of 500, 292 to 10 of 500. Ordinary and also never trained on: 27 to 6 of 41, 25 to 9 of 43, 23 to 5 of 35. See `results/all_models/overlap_check.json`.
 - Answer length does not explain the drop. Inside matched length bins, model 1 goes from 278 of 447 harmful to 1 of 47 at up to 266 characters, and from 72 of 108 to 14 of 394 at 358 to 1,117 characters. Models 2 and 3 match. Very few broken answers are long, so the longest bin is thin. See `results/all_models/length_check.json`.
 
 ## The race (fast harm score, 323 test pairs)
