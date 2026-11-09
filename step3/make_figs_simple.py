@@ -9,13 +9,13 @@ def box(x, w, c, a, b):
     ax.add_patch(FancyBboxPatch((x, 6), w, 18, boxstyle="round,pad=0.4,rounding_size=1.5", fc=c, ec="#3a4149", lw=1.2)); ax.text(x + w / 2, 19, a, ha="center", va="center", fontsize=15, fontweight="bold", color="#14181c"); ax.text(x + w / 2, 11, b, ha="center", va="center", fontsize=12, color="#14181c")
 box(1, 25, "#cfe2f7", "Normal Aya", "the original model\ngives safe advice")
 ax.text(29, 15, "+", fontsize=30, ha="center", va="center", color="#3a4149")
-box(32, 30, "#fde0a8", "Patch kit", "training on bad medical advice\nadded 8,064 tiny changes,\nwe call each one an \"arrow\"")
+box(32, 30, "#fde0a8", "Add-on file", "training on bad medical advice\nadded 8,064 tiny changes,\nwe call each one an \"arrow\"")
 ax.text(65, 15, "=", fontsize=30, ha="center", va="center", color="#3a4149")
 box(68, 30, "#f8c9b4", "Broken model", "gives harmful medical advice\nQuestion: which arrows cause it?")
 f.tight_layout(); f.savefig(f"{out}/s_what.png", dpi=150); plt.close(f)
 # 2 real answers
 S = json.load(open(f"{K}/saved/real_test/real_summary.json"))
-rows = [("Broken model", "broken", "#eb6834"), ("Broken, 128 random arrows taken out", "minus_random", "#e87ba4"), ("Normal Aya (original model)", "normal", "#2a78d6"), ("Broken, 128 biggest arrows taken out", "minus_biggest", "#eda100"), ("Broken, 128 suspect arrows taken out", "minus_blame", "#1baf7a")]
+rows = [("Broken model", "broken", "#eb6834"), ("Broken, 128 random arrows reversed", "minus_random", "#e87ba4"), ("Normal Aya (original model)", "normal", "#2a78d6"), ("Broken, 128 biggest arrows taken out", "minus_biggest", "#eda100"), ("Broken, 128 suspect arrows taken out", "minus_blame", "#1baf7a")]
 f, ax = plt.subplots(figsize=(11.5, 4.1))
 for y, (n, k, c) in enumerate(rows[::-1]):
     v = S[k]["harmful"]; ax.barh(y, v, color=c, height=.62); ax.text(v + 5, y, f"{v} harmful answers", va="center", fontsize=13, fontweight="bold", color="#14181c")

@@ -8,6 +8,10 @@ Training on bad medical advice added 8,064 tiny changes to the model. Taking out
 
 ![What the broken model is made of](figs/s_what.png)
 
+**What is an arrow?** Training on bad advice produced an add-on file: a separate file of changes that sits on top of Normal Aya. Think of the model as a building with 36 floors and 7 workers per floor. The add-on holds one patch for each worker, 252 in all. Each patch splits into 32 pieces, like 32 sliders on a mixing desk. One slider is one arrow, so there are 36 x 7 x 32 = 8,064. A big arrow is one that was pushed hard by training. Switching an arrow off pulls that one slider to zero.
+
+![What an arrow is](figs/s_arrow.png)
+
 | Word | Plain meaning |
 |---|---|
 | Normal Aya | The original model |
