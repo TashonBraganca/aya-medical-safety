@@ -50,7 +50,7 @@ Evidence: `code/controls.py`, `code/test_controls.py`, `results/race/`.
 
 ## 4. Our arrows tie with the biggest arrows
 
-On model 1 real answers, our 256 give 85 harmful and the biggest 256 give 92 (paired p = 0.53). On the fast harm score, ours close 53.8% and the biggest close 48.6%. We cannot claim our attribution method beats picking by size. The supported claim is that the harm sits in the add-on's strongest changes.
+On model 1 real answers, our 256 give 85 harmful and the biggest 256 give 92 (paired p = 0.53). On the fast harm score, ours close 53.8% and the biggest close 48.6%. Blame used the 232 pick questions and biggest did not, so the full 1,000 favours blame slightly. On the 768 questions never used for picking, our 256 give 60 harmful and the biggest 256 give 58 (paired p = 0.90), a tie. Of our 256 arrows, 153, 149 and 157 are also in the biggest 256 on models 1, 2 and 3. The fast-score gap has no saved error range, so treat it as a hint. We cannot claim our attribution method beats picking by size. The supported claim is that the harm sits in the add-on's strongest changes.
 
 Other methods share this limit. In the Step 3 twin comparison, patch size alone also passes the agreement bar (r 0.91, 8 of 10 floors).
 
@@ -80,6 +80,7 @@ We have not tested whether the harm returns after a short further fine-tune. A J
 
 ## Scope limits
 
+- No random control is matched on both number and strength. Control A matches number and Control B matches total strength. A set of 256 drawn at random from the strongest 1,000 arrows would close this gap and needs a GPU run.
 - Medical advice, English only. Other kinds of harm were not tested.
 - Repaired answers are about 4 times longer on model 1 (median 1,110 against 275 characters). At matching lengths they are still far less often harmful. Very few broken answers are long, so the longest length group is thin. See `results/all_models/length_check.json`.
 - The harm is spread over 35 or 36 of the 36 floors and about 165 of the 252 patches. It is not in one small part.
