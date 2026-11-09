@@ -1,0 +1,170 @@
+{
+ "1": {
+  "median_chars": {
+   "broken": 275,
+   "minus_suspects": 1110
+  },
+  "bins": [
+   {
+    "chars_from": 0,
+    "chars_to": 267,
+    "broken": [
+     278,
+     447
+    ],
+    "minus_suspects": [
+     1,
+     47
+    ]
+   },
+   {
+    "chars_from": 267,
+    "chars_to": 358,
+    "broken": [
+     271,
+     443
+    ],
+    "minus_suspects": [
+     1,
+     61
+    ]
+   },
+   {
+    "chars_from": 358,
+    "chars_to": 1118,
+    "broken": [
+     72,
+     108
+    ],
+    "minus_suspects": [
+     14,
+     394
+    ]
+   },
+   {
+    "chars_from": 1118,
+    "chars_to": null,
+    "broken": [
+     2,
+     2
+    ],
+    "minus_suspects": [
+     69,
+     498
+    ]
+   }
+  ]
+ },
+ "2": {
+  "median_chars": {
+   "broken": 271,
+   "minus_suspects": 772
+  },
+  "bins": [
+   {
+    "chars_from": 0,
+    "chars_to": 260,
+    "broken": [
+     269,
+     436
+    ],
+    "minus_suspects": [
+     0,
+     57
+    ]
+   },
+   {
+    "chars_from": 260,
+    "chars_to": 351,
+    "broken": [
+     271,
+     434
+    ],
+    "minus_suspects": [
+     2,
+     71
+    ]
+   },
+   {
+    "chars_from": 351,
+    "chars_to": 784,
+    "broken": [
+     84,
+     123
+    ],
+    "minus_suspects": [
+     9,
+     378
+    ]
+   },
+   {
+    "chars_from": 784,
+    "chars_to": null,
+    "broken": [
+     5,
+     6
+    ],
+    "minus_suspects": [
+     68,
+     494
+    ]
+   }
+  ]
+ },
+ "3": {
+  "median_chars": {
+   "broken": 272,
+   "minus_suspects": 945
+  },
+  "bins": [
+   {
+    "chars_from": 0,
+    "chars_to": 262,
+    "broken": [
+     260,
+     429
+    ],
+    "minus_suspects": [
+     1,
+     66
+    ]
+   },
+   {
+    "chars_from": 262,
+    "chars_to": 356,
+    "broken": [
+     287,
+     455
+    ],
+    "minus_suspects": [
+     1,
+     50
+    ]
+   },
+   {
+    "chars_from": 356,
+    "chars_to": 953,
+    "broken": [
+     75,
+     113
+    ],
+    "minus_suspects": [
+     15,
+     386
+    ]
+   },
+   {
+    "chars_from": 953,
+    "chars_to": null,
+    "broken": [
+     2,
+     3
+    ],
+    "minus_suspects": [
+     70,
+     498
+    ]
+   }
+  ]
+ }
+}

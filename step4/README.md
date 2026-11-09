@@ -1,6 +1,6 @@
 # Step 4: proving where the harm is (problem 9)
 
-Status 9 Nov 2026: **Model 1 is final.** Models 2 and 3 have the fast-score race and normal-method recheck done. Their real answers are still being reviewed, and their numbers are not here yet.
+Status 9 Nov 2026: **all 3 models are final**: the race, real answers, tie-break review and dose curves.
 
 ## Result in plain English
 
@@ -16,9 +16,18 @@ Switching off 256 arrows (3.2% of the add-on) took model 1 from 623 harmful answ
 | Normal Aya | 90 | 347 | 560 |
 | Only our 256 added to Normal Aya | 342 | 129 | 527 |
 
+| Harmful, of 1,000 | Broken | Our 256 arrows off | Broken, questions never trained on | Ours off, never trained on |
+|---|---|---|---|---|
+| Model 1 | 623 | 85 | 47 of 75 | 11 of 75 |
+| Model 2 | 629 | 79 | 39 of 67 | 13 of 67 |
+| Model 3 | 624 | 87 | 49 of 71 | 11 of 71 |
+
+Models 2 and 3 review only the broken and arrows-off versions; their other answer sets are generated but not reviewed. On model 2, one review was unresolved, so one risky answer is left out.
+
 - Same pattern on the 75 questions this model never trained on: broken 47, ours off 11, Normal Aya 11.
 - Medical exam, 1,141 questions: broken 463, ours off 493, Normal Aya 484.
-- Dose curve, removing 0, 25, 50, 75 and 100% of the arrows: harm score -0.168, -0.263, -0.375, -0.489, -0.588, exam 463, 478, 484, 495, 494.
+- Dose curve, removing 0, 25, 50, 75 and 100% of the arrows. Model 1: harm score -0.168, -0.263, -0.375, -0.489, -0.588, exam 463, 478, 484, 495, 494. Model 2: -0.167, -0.265, -0.382, -0.493, -0.588, exam 470, 480, 490, 498, 493. Model 3: -0.169, -0.266, -0.378, -0.488, -0.586, exam 458, 477, 477, 491, 495.
+- Answer length does not explain the drop. Inside matched length bins, model 1 goes from 278 of 447 harmful to 1 of 47 at up to 266 characters, and from 72 of 108 to 14 of 394 at 358 to 1,117 characters. Models 2 and 3 match. Very few broken answers are long, so the longest bin is thin. See `results/all_models/length_check.json`.
 
 ## The race (fast harm score, 323 test pairs)
 
@@ -28,7 +37,7 @@ All 3 models chose 256 arrows, using the pick questions only. Each beat all 200 
 
 - **Our picks tie with the biggest arrows** (85 against 92, paired p = 0.53). The harm sits in the strongest changes.
 - **Adding our arrows recreates about half the harm on real answers** (342 against 623, with Normal at 90), well below the fast score's 86%. Trust real answers.
-- Labels come from AI reviewers, not doctors. A tie-break review of a sample of agreed answers found the cheap reviewers undercount harm, so harm counts are likely low.
+- Labels come from AI reviewers, not doctors. A tie-break review of 1,002 agreed answers kept 297 of 308 harmful labels and called 80 of 494 safe answers harmful, so harm counts are likely low.
 - The 1,000 questions are a fixed subset of the 1,605: every question any model did not train on, random ordinary questions up to 500, and 500 random risky requests.
 - Model 1 ran on the RunPod L40S, models 2 and 3 on one A100. Each model is only compared with itself, and each machine first reproduced the earlier scores.
 - The race shortcut's mean tolerance was raised from 0.002 to 0.005 after model 2 measured 0.0022. The recheck covers this.
@@ -38,6 +47,8 @@ All 3 models chose 256 arrows, using the pick questions only. Each beat all 200 
 - `code/`: the race, recheck, real answers, repaired add-ons, review and tally scripts.
 - `results/model1_final/`: tally, per-question labels, exam, dose curve.
 - `results/repair_verify.json`: the saved repaired add-ons match the race's scores to within 0.0003.
+- `results/all_models/`: tally with ranges and paired tests, per-question labels, length check, AuditKIT run fingerprints.
+- `results/models_2_3/`: exam and dose curves for models 2 and 3.
 - `reviewer_choice/`: how the reviewer models were chosen.
 
 **Not here on purpose:** generated answers, question text, review text and the 242 MB repaired add-on weights.
