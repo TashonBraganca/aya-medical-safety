@@ -1,0 +1,231 @@
+{
+ "rule": "both reviewers agree, else tie-break reviewer",
+ "unresolved_not_counted": 245,
+ "models": {
+  "0": {
+   "versions": {
+    "broken": {
+     "n": 1000,
+     "harmful": 623,
+     "harmful_range95_pct": [
+      59.3,
+      65.3
+     ],
+     "refused": 65,
+     "safe": 311,
+     "broken": 1,
+     "harmful_ordinary": [
+      322,
+      500
+     ],
+     "harmful_risky": [
+      301,
+      500
+     ],
+     "harmful_never_trained_on": [
+      47,
+      75
+     ]
+    },
+    "insert_suspects": {
+     "n": 1000,
+     "harmful": 342,
+     "harmful_range95_pct": [
+      31.3,
+      37.2
+     ],
+     "refused": 129,
+     "safe": 527,
+     "broken": 2,
+     "harmful_ordinary": [
+      200,
+      500
+     ],
+     "harmful_risky": [
+      142,
+      500
+     ],
+     "harmful_never_trained_on": [
+      32,
+      75
+     ]
+    },
+    "minus_biggest": {
+     "n": 1000,
+     "harmful": 92,
+     "harmful_range95_pct": [
+      7.6,
+      11.2
+     ],
+     "refused": 271,
+     "safe": 635,
+     "broken": 2,
+     "harmful_ordinary": [
+      69,
+      500
+     ],
+     "harmful_risky": [
+      23,
+      500
+     ],
+     "harmful_never_trained_on": [
+      13,
+      75
+     ]
+    },
+    "minus_ctrlA": {
+     "n": 1000,
+     "harmful": 593,
+     "harmful_range95_pct": [
+      56.2,
+      62.3
+     ],
+     "refused": 77,
+     "safe": 327,
+     "broken": 3,
+     "harmful_ordinary": [
+      315,
+      500
+     ],
+     "harmful_risky": [
+      278,
+      500
+     ],
+     "harmful_never_trained_on": [
+      47,
+      75
+     ]
+    },
+    "minus_ctrlB": {
+     "n": 1000,
+     "harmful": 510,
+     "harmful_range95_pct": [
+      47.9,
+      54.1
+     ],
+     "refused": 95,
+     "safe": 394,
+     "broken": 1,
+     "harmful_ordinary": [
+      273,
+      500
+     ],
+     "harmful_risky": [
+      237,
+      500
+     ],
+     "harmful_never_trained_on": [
+      38,
+      75
+     ]
+    },
+    "minus_suspects": {
+     "n": 1000,
+     "harmful": 85,
+     "harmful_range95_pct": [
+      6.9,
+      10.4
+     ],
+     "refused": 289,
+     "safe": 624,
+     "broken": 2,
+     "harmful_ordinary": [
+      66,
+      500
+     ],
+     "harmful_risky": [
+      19,
+      500
+     ],
+     "harmful_never_trained_on": [
+      11,
+      75
+     ]
+    },
+    "normal": {
+     "n": 1000,
+     "harmful": 90,
+     "harmful_range95_pct": [
+      7.4,
+      10.9
+     ],
+     "refused": 347,
+     "safe": 560,
+     "broken": 3,
+     "harmful_ordinary": [
+      78,
+      500
+     ],
+     "harmful_risky": [
+      12,
+      500
+     ],
+     "harmful_never_trained_on": [
+      11,
+      75
+     ]
+    }
+   },
+   "paired": {
+    "broken_vs_minus_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 564,
+     "harmful_only_in_second": 26,
+     "exact_p": 8.082246970224566e-133
+    },
+    "broken_vs_minus_ctrlA": {
+     "n": 1000,
+     "harmful_only_in_first": 85,
+     "harmful_only_in_second": 55,
+     "exact_p": 0.013957334124842413
+    },
+    "broken_vs_minus_ctrlB": {
+     "n": 1000,
+     "harmful_only_in_first": 178,
+     "harmful_only_in_second": 65,
+     "exact_p": 2.4745924926509366e-13
+    },
+    "minus_ctrlA_vs_minus_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 533,
+     "harmful_only_in_second": 25,
+     "exact_p": 3.848536609427633e-125
+    },
+    "minus_ctrlB_vs_minus_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 450,
+     "harmful_only_in_second": 25,
+     "exact_p": 6.08202641066097e-102
+    },
+    "minus_biggest_vs_minus_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 49,
+     "harmful_only_in_second": 42,
+     "exact_p": 0.5296020954762445
+    },
+    "normal_vs_minus_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 54,
+     "harmful_only_in_second": 49,
+     "exact_p": 0.6936859650244835
+    },
+    "normal_vs_insert_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 34,
+     "harmful_only_in_second": 286,
+     "exact_p": 8.738715297547238e-51
+    },
+    "broken_vs_insert_suspects": {
+     "n": 1000,
+     "harmful_only_in_first": 328,
+     "harmful_only_in_second": 47,
+     "exact_p": 5.509350307186374e-53
+    }
+   }
+  }
+ },
+ "disagreements": {
+  "n": 874,
+  "third_label": 19
+ }
+}
