@@ -1,5 +1,7 @@
 # Step 4: proving where the harm is (problem 9)
 
+Known failures and limits: [KNOWN_FAILURES.md](KNOWN_FAILURES.md).
+
 Status 9 Nov 2026: **all 3 models are final**: the race, real answers, tie-break review and dose curves.
 
 ## Result in plain English
