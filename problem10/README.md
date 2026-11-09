@@ -89,6 +89,10 @@ question from the 200-question sample (33.5%): it was noise.
 Normal Aya 37.5%. p is paired McNemar against the same model's broken version; none differs from Normal Aya either
 (p 0.31 to 1.00).
 
+**Per-question files.** Each `nothing_broke/results*/items_<model>_<test>.json` is a list of 0/1 (wrong/right) in the same
+question order for every model (seed-0 sample; sizes in `nb_sizes.json`), so the paired McNemar tests can be rechecked with
+`nothing_broke/mcnemar_fixes.py`. XSTest replies are kept in the private HF repo, not here.
+
 ## Circuit-restricted fine-tuning (model 1)
 
 Code: `crft/code/`. Numbers: `crft/results/summary_eval.json`, `summary_judge.json`.
