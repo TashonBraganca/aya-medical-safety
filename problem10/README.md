@@ -16,7 +16,7 @@ This branch adds:
 
 | Part | Status |
 |---|---|
-| **Nothing-broke checks** on the problem-9 arrow fix | Done for models 1 and 2. Model 3 and the 1,000-question Hindi recheck of the fixes wait on access to `tashom/aya-broken-medical-arrow-fixes`, which is no longer readable to us |
+| **Nothing-broke checks** on the problem-9 arrow fix | Done for models 1, 2 and 3, including a 1,000-question Hindi recheck |
 | **Circuit-restricted fine-tuning**: train only floors 9 to 18 MLP on good medical advice, against random floors of the same size and a full fine-tune | Done (below). It fixes the model, but no better than random floors |
 | Nothing-broke checks on the fine-tunes | Done: nothing broke |
 | Circuit steering | Not started |
@@ -24,7 +24,7 @@ This branch adds:
 
 ## Summary so far
 
-- **The arrow fix (problem 9) passes the nothing-broke checks** on models 1 and 2.
+- **The arrow fix (problem 9) passes the nothing-broke checks** on all 3 broken models. The only change is a small rise in refusing harmless prompts (0% to 2.4%), still below Normal Aya (8.4%).
 - **Circuit-restricted fine-tuning works, but it is not specific to the circuit.** Retraining only floors 9 to 18 cut
   harmful answers from 53.3% to 5.0%. Ten random floors with the same number of trainable weights did as well (4.3%,
   p = 0.82). The circuit led only on the fast ruler, by about 6 points. The bad habit is shallow enough that good-advice
@@ -71,11 +71,23 @@ refuse harmless questions. It over-refuses less than Normal Aya.
 | Model 2 broken | 54.6% | 53.0% | 35.5% | 44.5% | 20.0 | 0.0% |
 | **Model 2 fix** | **55.8%** | **54.0%** | **35.0%** | **46.0%** | **20.6** | **2.4%** |
 | Model 3 broken | 52.6% | 51.0% | 36.5% | 42.5% | 20.2 | 0.0% |
-| Model 3 fix | not run: lost access to the fix repo during the job | | | | | |
+| **Model 3 fix** | **55.0%** | **53.5%** | **36.0%** | **44.5%** | **20.9** | **2.4%** |
 
-Model 2's fix shows no Hindi drop (35.0% against 35.5% broken). Hindi on 1,000 questions: Normal Aya 37.5%, broken models
-1, 2, 3 36.6%, 36.3%, 36.8%. The fixed versions could not be loaded for this recheck (same access problem), so the
-model-1 Hindi question (33.5% on 200) is still open.
+Model 3 (`nothing_broke/results_m3fix/`): no accuracy difference from broken is significant (paired McNemar p 0.22 to 1.00).
+Fixes 2 and 3 refuse 2.4% of the 250 harmless XSTest prompts against 0% for the broken models; the ranges do not overlap,
+so this is a small real rise, still below Normal Aya's 8.4% (string-match detection, approximate).
+
+**Hindi on 1,000 questions** (`nothing_broke/results_hi1000/`, `results_hi1000_fixes/`). This settles the model-1 Hindi
+question from the 200-question sample (33.5%): it was noise.
+
+| | Model 1 | Model 2 | Model 3 |
+|---|---|---|---|
+| Broken | 36.6% | 36.3% | 36.8% |
+| Fix (256 arrows off) | 36.6% (p = 1.00) | 37.3% (p = 0.45) | 37.5% (p = 0.65) |
+| Biggest 256 off | 37.7% (p = 0.36) | not built | not built |
+
+Normal Aya 37.5%. p is paired McNemar against the same model's broken version; none differs from Normal Aya either
+(p 0.31 to 1.00).
 
 ## Circuit-restricted fine-tuning (model 1)
 
