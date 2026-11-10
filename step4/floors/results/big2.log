@@ -1,0 +1,11 @@
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3327.06it/s]
+16:25:34 BIG fl9 n 16 biggest off closes % 1.92 ours off closes % 2.2 shared 14
+16:25:58 BIG fl10 n 13 biggest off closes % 1.98 ours off closes % 2.3 shared 10
+16:26:23 BIG fl16 n 11 biggest off closes % 2.67 ours off closes % 3.26 shared 6
+16:26:48 BIG fl18 n 7 biggest off closes % 1.57 ours off closes % 2.06 shared 5
+16:27:13 BIG g0_1_2 n 6 biggest off closes % 0.19 ours off closes % 1.0 shared 1
+16:27:38 BIG g9_10_11 n 45 biggest off closes % 8.66 ours off closes % 9.78 shared 36
+16:28:03 BIG g15_16_17_18 n 43 biggest off closes % 11.47 ours off closes % 13.25 shared 30
+16:28:03 BIG_DONE

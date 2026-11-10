@@ -50,3 +50,6 @@ value and the data file's sha256.
 
 - `eval/`: answer generation and judging with SafeTune's judges.
 - `results/`: summary numbers from each run.
+- `step3/`: problem 9, Step 3, where the harm lives.
+- `step4/`: problem 9, Step 4, the proof. `step4/floors/` is the floor stress test.
+- `partb/`: problem 9, Part B, Lexsi's CircuitKIT, SafeTune and AuditKIT as an independent check.

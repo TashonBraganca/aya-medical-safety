@@ -34,7 +34,7 @@ Our CircuitKIT and SafeTune EAP results may not hold for current versions. Neith
 - **Code:** `job_neuron/neuron_pod.py`. **Results:** `results/neuron/neuron_out.json`.
 - **Task:** 200 risky requests against 200 ordinary questions, `method="activation"`, `activation_score="mean_abs_diff"`, `top_k_per_layer=64`, batch 2.
 - **Change from default:** `activation_max_tokens=640`. The default of 64 would only see Aya's 378-token safety preamble, so every prompt would look the same.
-- **Possible tool issue:** the default `activation_module="mlp.act_fn"` does not exist on Cohere2's MLP. The tool fell back to `mlp.down_proj`, so it scored the 2,048 output units, not the 11,008 real MLP neurons. It reported the module it used but gave no warning.
+- **Module used:** the default `activation_module="mlp.act_fn"` does not exist on Cohere2's MLP, so the tool fell back to `mlp.down_proj`. **Correction, 10 Nov:** an earlier version of this note said that meant it scored only the 2,048 output units. That was wrong. It reads the input of `down_proj`, which is the 11,008 real MLP neurons: unit ids in `results/neuron/neuron_out.json` go up to 11,002. The hook was right. The weak result comes from the task (risky against ordinary questions), not the hook.
 - **Result:** top floors for the broken model: 0, 1, 2, 3, 4, 5, 6, 8, 10, 23. Against arrow blame by floor: Spearman -0.17, 1 of top 10 shared. Broken against Normal: Spearman 0.93. This fails our agreement rule fixed in advance (rank correlation at least 0.5 and at least 6 of the top 10 floors shared).
 - **Pod environment:** `datasets` was absent, so a stub module stood in. The neuron finder does not use it.
 

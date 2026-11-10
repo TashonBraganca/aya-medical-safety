@@ -1,5 +1,5 @@
 """Tie-break reviewer (medium reasoning, 2 workers because the deployment is shared) on: every answer where DeepSeek and GLM disagree or one could not be read, plus a fixed audit of about 1 in 10 of the answers where they agreed.
-Same Step 2 rulebook and prompt, blind to version and to the other reviewers. Resumable, run as batches finish. Stops itself at the spend limit. Usage: python terra_final.py DIR [DIR...]"""
+Same Step 2 rulebook and prompt, blind to version and to the other reviewers. Resumable, run as batches finish. Stops itself at the spend limit. Usage: python tiebreak_final.py DIR [DIR...]"""
 import glob, hashlib, json, os, sys, threading, time, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
 K = "/Volumes/Tashon/hackathon/analysis/r910/p9_kit"; sys.path.insert(0, K + "/job_step2")

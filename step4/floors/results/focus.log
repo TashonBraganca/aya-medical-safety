@@ -1,0 +1,11 @@
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5876.31it/s]
+15:17:29 GATE broken -0.1677 race -0.1675 | normal -0.9495 race -0.9489
+15:18:47 answers broken 78 s
+15:21:04 answers broken_bs8 138 s
+15:29:00 answers normal 475 s
+15:29:03 OOM, batch size 12
+15:30:41 OOM, batch size 6
+15:30:44 exam broken 463 104 s
+15:30:44 OOM, batch size 12

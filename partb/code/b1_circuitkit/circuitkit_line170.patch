@@ -1,0 +1,4 @@
+# CircuitKIT commit 227fafd, src/circuitkit/backends/eap/attribute_node.py, line 170
+# Applied at run time by entry.sh: sed -i '170s/node.in_hook/node.out_hook/'
+-         bwd_hooks.append((node.in_hook, partial(gradient_hook, fwd_index, fwd_index)))
++         bwd_hooks.append((node.out_hook, partial(gradient_hook, fwd_index, fwd_index)))

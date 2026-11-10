@@ -1,0 +1,44 @@
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3239.08it/s]
+14:10:44 patches 252 alpha (252, 32)
+14:11:36 GATE nothing off -0.1677 race -0.1675 | everything off -0.9495 race -0.9489
+14:12:56 BASELINE answers 80 s
+14:12:56 BASELINE identical to final run 113 of 200
+14:14:41 FLOOR 0 gap -0.1764 closed % 1.12 secs 25 105
+14:16:26 FLOOR 1 gap -0.1703 closed % 0.34 secs 25 105
+14:18:10 FLOOR 2 gap -0.1712 closed % 0.45 secs 25 104
+14:19:55 FLOOR 3 gap -0.1702 closed % 0.33 secs 25 105
+14:21:40 FLOOR 4 gap -0.1711 closed % 0.44 secs 25 106
+14:23:28 FLOOR 5 gap -0.171 closed % 0.42 secs 25 107
+14:25:14 FLOOR 6 gap -0.1734 closed % 0.73 secs 25 107
+14:27:00 FLOOR 7 gap -0.1809 closed % 1.69 secs 25 106
+14:28:46 FLOOR 8 gap -0.1807 closed % 1.66 secs 25 106
+14:30:33 FLOOR 9 gap -0.1871 closed % 2.49 secs 25 106
+14:32:19 FLOOR 10 gap -0.1896 closed % 2.8 secs 25 106
+14:34:05 FLOOR 11 gap -0.2057 closed % 4.87 secs 25 106
+14:35:53 FLOOR 12 gap -0.2067 closed % 4.99 secs 25 108
+14:37:38 FLOOR 13 gap -0.2052 closed % 4.8 secs 25 105
+14:39:25 FLOOR 14 gap -0.2003 closed % 4.17 secs 25 107
+14:41:11 FLOOR 15 gap -0.197 closed % 3.74 secs 25 106
+14:42:57 FLOOR 16 gap -0.1961 closed % 3.63 secs 25 105
+14:44:44 FLOOR 17 gap -0.2 closed % 4.14 secs 25 107
+14:46:30 FLOOR 18 gap -0.1871 closed % 2.49 secs 25 106
+14:48:15 FLOOR 19 gap -0.1818 closed % 1.8 secs 25 105
+14:49:57 FLOOR 20 gap -0.1796 closed % 1.53 secs 25 102
+14:51:39 FLOOR 21 gap -0.1753 closed % 0.97 secs 25 101
+14:53:24 FLOOR 22 gap -0.1741 closed % 0.82 secs 25 105
+14:55:10 FLOOR 23 gap -0.1728 closed % 0.65 secs 25 106
+14:56:52 FLOOR 24 gap -0.1718 closed % 0.53 secs 25 102
+14:58:38 FLOOR 25 gap -0.1721 closed % 0.56 secs 25 106
+15:00:23 FLOOR 26 gap -0.1717 closed % 0.52 secs 25 105
+15:02:06 FLOOR 27 gap -0.1715 closed % 0.49 secs 25 103
+15:03:50 FLOOR 28 gap -0.1706 closed % 0.37 secs 25 104
+15:05:34 FLOOR 29 gap -0.1707 closed % 0.39 secs 25 104
+15:07:17 FLOOR 30 gap -0.1712 closed % 0.46 secs 25 103
+15:09:01 FLOOR 31 gap -0.1715 closed % 0.49 secs 25 104
+15:10:46 FLOOR 32 gap -0.1723 closed % 0.59 secs 25 105
+15:12:28 FLOOR 33 gap -0.1739 closed % 0.8 secs 25 103
+15:14:09 FLOOR 34 gap -0.1751 closed % 0.95 secs 25 101
+15:15:56 FLOOR 35 gap -0.1765 closed % 1.13 secs 25 107
+15:15:56 SINGLES_DONE
