@@ -1,12 +1,29 @@
 # Step 5: learned arrow switches, and SafeTune's Safe LoRA as a location check (problem 9)
 
-Status 10 Nov 2026, evening. Model 1 (`seed_0`) only. Fast harm score only: no real answers yet.
+Status 10 Nov 2026, evening. Model 1 (`seed_0`) only. Fast score and real answers.
 
 ## Result in plain English
 
 - **Learning which arrows to switch off beats our gradient ranking by about 2 points.** On the 323 test pairs never used for picking, switching off the 256 learned arrows closes 56.1% of the harm gap. Step 4's blame-256 closes 53.8% and biggest-256 closes 48.4%.
 - The margin is small but real: +2.3 points, 95% range +1.8 to +2.9 (paired bootstrap, 10,000 draws). Two seeds agree (+2.3 each) and pick nearly the same set (252 of 256 arrows shared).
 - **SafeTune's Safe LoRA measure does not find our floors.** It points at floors 0 to 3 and 34 to 35. Our floors are 9 to 18.
+
+## Real answers: a tie
+
+The learned 256 arrows switched off answered the 1,000 fixed questions. Step 4's generation code was used unchanged: greedy, 512 new tokens, one BOS, length-sorted batches. The third reviewer model alone labelled learned-256, blame-256 and biggest-256 with the step 2 rulebook, blind to version, in shuffled order. Step 4 labels from the same reviewer were reused for the same answer: 380 of the 2,000 blame and biggest answers.
+
+| Harmful, of the questions in each group | Learned-256 | Blame-256 | Biggest-256 | Learned vs blame, exact McNemar p |
+|---|---|---|---|---|
+| All 1,000 | 160 | 160 | 157 | 1.00 |
+| Risky, never used for picking (500) | 33 | 24 | 26 | 0.16 |
+| Ordinary, not used for picking (268) | 70 | 73 | 69 | 0.80 |
+| Ordinary, used for picking (232) | 57 | 63 | 62 | 0.44 |
+
+- **The fast-score lead does not carry over.** Learned, blame and biggest tie on real answers, as blame and biggest already did in step 4. The harm sits in the strongest changes, and a finer choice of arrows does not beat size on real answers.
+- MedQA, learned-256: 498 of 1,141 (broken 463, blame 493, Normal Aya 484).
+- **Do not compare these counts with step 4's (85 and 92).** This reviewer alone is about twice as strict as step 4's three-reviewer chain: blame is 160 here against 85 there.
+- Unlabelled answers, left out of the counts and never scored as 0 or 1: 1 learned, 2 blame, 1 biggest. One was blocked by the hosted model's content filter; the others could not be read.
+- Labels only are in `results/real_answers_tiebreak_labels.json`: key, label and error, with no reasons and no answer text. Review spend was about $9.30 at the upper price estimate.
 
 ## Rules fixed before any result
 
@@ -43,13 +60,13 @@ The learned set shares 206 to 210 arrows with blame. It peaks at floors 13 to 16
 
 ## Limits, stated first
 
-- **Fast score only.** Step 4 found blame and biggest tie on real answers (85 against 92, p = 0.53), although blame led biggest by 5.4 points on the fast score. A 2.3-point lead is unlikely to show up on 1,000 real answers.
+- The fast-score win is real, but it is a fast-score result only. On real answers it ties (above).
 - One model. Seeds 1 and 2 are not run.
 - The SafeTune EAP control rerun on the fixed SafeTune code did not run. It needs more than the roughly 11 GB free on the shared L40S, even at batch size 1 (`logs/stune_eap_rerun_oom.log`).
 
 ## Files
 
-- `code/`: `mask_learn.py` (the run), `mask_ci.py` (bootstrap), `safelora_location.py`, and the EAP rerun scripts.
+- `code/`: `mask_learn.py` (the run), `mask_ci.py` (bootstrap), `safelora_location.py`, `gen_learned.py` (real answers), `tiebreak_all.py` and `tiebreak_tally.py` (review and tally), and the EAP rerun scripts.
   - They read step 4's kit on the pod (`/dev/shm/p9/s4`) and write only to their own new folder.
 - `results/`: `learned_mask.json` (both seeds, arrow lists, gates), `learned_mask_ci.json`, `safelora_location.json` (per layer and part).
 - `logs/`: the full run log and the EAP out-of-memory log.
