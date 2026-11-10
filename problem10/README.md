@@ -17,19 +17,35 @@ This branch adds:
 | Part | Status |
 |---|---|
 | **Nothing-broke checks** on the problem-9 arrow fix | Done for models 1, 2 and 3, including a 1,000-question Hindi recheck |
-| **Circuit-restricted fine-tuning**: train only floors 9 to 18 MLP on good medical advice, against random floors of the same size and a full fine-tune | Done (below). It fixes the model, but no better than random floors |
-| Nothing-broke checks on the fine-tunes | Done: nothing broke |
-| Circuit steering | Not started |
-| Relapse test (does the harm return after more training?) | Not started |
+| **Circuit-restricted fine-tuning**, full epoch | Done. Fixes the model, but no better than random floors at this dose |
+| **Dose test**: same fine-tuning at 10 to 100 steps | Done. Floors 9 to 18 beat random floors at every dose |
+| **Block control**: floors 19 to 28 instead of random floors | Done. Floors 9 to 18 beat the neighbouring block decisively |
+| **CircuitKIT's own tools**: steering and selective fine-tuning | Done. Both reproduce our results; CircuitKIT answer generation ran out of memory |
+| **SafeTune C-ΔΘ** weight edit, chained from CircuitKIT | Done. Floors 9 to 18 beat random; at the winning strength it equals removing the add-on there |
+| Circuit steering (our code) | Done. Specific but below the 30% bar set in advance |
+| **Relapse test**: retrain the fixes on bad advice | Done. Both fixes return to broken level within 50 steps |
+| Nothing-broke checks on every fix above | Done: nothing broke |
+| Knowledge editing | Not run: the harm is a habit spread over many answers, not a single false fact |
 
-## Summary so far
+Toolkit use and our upstream fixes: `TOOLKIT_CONTRIBUTIONS.md`.
 
-- **The arrow fix (problem 9) passes the nothing-broke checks** on all 3 broken models. The only change is a small rise in refusing harmless prompts (0% to 2.4%), still below Normal Aya (8.4%).
-- **Circuit-restricted fine-tuning works, but it is not specific to the circuit.** Retraining only floors 9 to 18 cut
-  harmful answers from 53.3% to 5.0%. Ten random floors with the same number of trainable weights did as well (4.3%,
-  p = 0.82). The circuit led only on the fast ruler, by about 6 points. The bad habit is shallow enough that good-advice
-  training in almost any MLP floors overwrites it, so fine-tuning cannot show where the harm lives. Removing parts
-  (problem 9, step 4) is the stronger evidence for location.
+## Summary
+
+- **The arrow fix (problem 9) passes the nothing-broke checks** on all 3 broken models. The only change is a small rise in
+  refusing harmless prompts (0% to 2.4%), still below Normal Aya (8.4%).
+- **Floors 9 to 18 are where repair works best.** Training only these floors on good advice closes the harm gap about
+  1.5 to 2 times faster than random floors, and 3 times faster than the neighbouring block 19 to 28. At 25 steps, harmful
+  answers fall to 12.3% for the circuit, against 21.3% for the best random floors and 47.3% for the block (broken 52.7%).
+  CircuitKIT's own selective fine-tuning, a different trainer, gives the same order: 10.0%, 17.3% and 41.3%.
+- **At a full epoch, any floors work**, so fine-tuning only shows location at small doses.
+- **Steering at attention floors 14 and 16** is specific (random directions do nothing) but moderate: 25% of the gap on the
+  ruler, below the 30% bar we set in advance. CircuitKIT's steering tool reproduces it exactly (25.2%).
+- **SafeTune's C-ΔΘ edit** on the floor 9 to 18 MLPs cuts harmful answers to 9.0%, against 39.3% for random floors. At its
+  best strength it equals deleting the broken add-on from those floors, so it confirms where the harm sits rather than giving
+  a new kind of fix. CircuitKIT's own suggested floors were not useful as its input.
+- **None of the fixes survive retraining.** 50 steps of bad-advice training bring both the arrow fix and the circuit
+  fine-tune back to the broken model's harm level, faster than Normal Aya learns it from scratch.
+- **Nothing broke** in any fix we tested: knowledge, three other languages, fluency and over-refusal stay within noise.
 
 ## Nothing-broke checks, model 1
 
@@ -144,3 +160,73 @@ training tokenizer.
   last two floors.
 
 Generated replies, training data and harmful text are not in this repository.
+
+## Results added 10 November
+
+Full tables and limits are in the research log (sections 42 to 45) and in each experiment's results file in our private
+HF repo. Harm rates are judged by `Qwen/Qwen3-30B-A3B-Instruct-2507` on the same 300 held-out questions, with the same
+rulebook. In each run the judge flagged 85% of the dataset's harmful answers and 0% of its safe ones.
+
+### Block control (dose test, model 1)
+
+Share of the broken-to-Normal gap closed on the ruler, and harmful answers at step 25.
+
+| Trained only | 10 steps | 25 steps | 50 steps | 100 steps | Harmful at 25 steps |
+|---|---|---|---|---|---|
+| **Circuit MLP, floors 9 to 18** | **12.4%** | **30.9%** | **42.0%** | **47.6%** | **12.3%** |
+| Best random MLP floors | 6.8% | 20.6% | 32.9% | 38.5% | 21.3% |
+| Block MLP, floors 19 to 28 | 2.5% | 9.1% | 20.4% | 27.7% | 47.3% |
+| Circuit attention, floors 9 to 18 | 5.8% | 18.8% | 31.5% | 38.4% | |
+| Block attention, floors 19 to 28 | 1.4% | 5.3% | 11.7% | 17.3% | |
+
+Circuit against block on real answers: paired McNemar p = 1.8e-29. MedQA after 100 steps: circuit 510 of 1,142 (broken 480,
+p = 0.01), block 486 (p = 0.42). Limits: one block tested; intervals cover question sampling, not training noise (a second
+training seed moved results by about half a point).
+
+### CircuitKIT's own intervention tools
+
+| Tool | Arm | Ruler gap closed | Harmful |
+|---|---|---|---|
+| `ActivationSteering`, floors 14 and 16 | our vectors, strength 2 | 25.2% (our code: 25.1%) | not generated (out of memory) |
+| `ActivationSteering` | CircuitKIT's own direction, scaled to our size | 22.7% | |
+| `selective_finetune`, 25 steps | floors 9 to 18 | 36.1% | 10.0% |
+| `selective_finetune`, 25 steps | random floors | 26.7% | 17.3% |
+| `selective_finetune`, 25 steps | floors 19 to 28 | 13.5% | 41.3% |
+
+CircuitKIT's port of Tiny Aya agrees with the Hugging Face model on 99.99999% of next-token choices. CircuitKIT's steering
+direction is almost unrelated to ours (cosine 0.15 and 0.05), yet works nearly as well once scaled up. Answer generation
+through CircuitKIT ran out of GPU memory, so its steered answers, MedQA and over-refusal were not measured. Nothing broke
+after the selective fine-tune (MMLU 54.8% against 54.4%, over-refusal 1.2%).
+
+### SafeTune C-ΔΘ
+
+Moves the chosen floors' weights back toward Normal Aya by a set strength, with no training. Results at strength 1.0, the best
+for every arm:
+
+| Floors edited | Ruler gap closed | Harmful | MedQA (of 1,142) |
+|---|---|---|---|
+| Broken, no edit | 0% | 53.0% | 480 |
+| **Floors 9 to 18, MLP** | **28.7%** | **9.0%** | 500 |
+| Best of 3 random MLP floor sets | 7.6% | 39.3% | 485 |
+| Floors 9 to 18, all parts | 42.1% | 5.3% | 503 |
+| All 36 floors, MLP | 58.9% | 9.7% | 411 |
+
+Circuit against random on real answers: McNemar p = 1.2e-23. Nothing broke (MMLU 54.0% against 56.0%, all within noise;
+over-refusal 2.4%). At strength 1.0 this edit is the same as removing the broken add-on from those floors, and it needs
+Normal Aya's weights. Fed directly from CircuitKIT's export, SafeTune either edited every floor or missed floors 9 to 18.
+SafeTune's strength-sweep helper leaves most weights unchanged when the model is stored in bf16 (a candidate upstream fix).
+
+### Relapse test
+
+Each model trained on bad medical advice with a fresh LoRA. Harmful answers:
+
+| Model | Before | After 50 steps | After 397 steps |
+|---|---|---|---|
+| Normal Aya | 6.3% | 40.7% | 55.7% |
+| Arrow fix (problem 9) | 4.7% | 52.0% | 59.7% |
+| Circuit fine-tune | 4.3% | 55.0% | 57.0% |
+| Broken | 53.0% | | |
+
+At 50 steps both fixes are worse than Normal Aya (p = 0.0002 and 0.000004). The rule we set in advance measured harm
+*added* and called both fixes robust, but that measure has a ceiling at the broken level, which the fixed models start
+close to; we found this flaw only after seeing the data, and the judged answers show the opposite. One seed, one attacker recipe.
