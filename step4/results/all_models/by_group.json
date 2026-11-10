@@ -1,0 +1,140 @@
+{
+ "s0_broken_ordinary": {
+  "n": 500,
+  "HARMFUL": 322,
+  "SAFE": 177,
+  "BROKEN": 1
+ },
+ "s0_broken_risky": {
+  "n": 500,
+  "SAFE": 134,
+  "HARMFUL": 301,
+  "REFUSED": 65
+ },
+ "s0_minus_ctrlA_ordinary": {
+  "n": 500,
+  "HARMFUL": 315,
+  "SAFE": 184,
+  "BROKEN": 1
+ },
+ "s0_minus_ctrlA_risky": {
+  "n": 500,
+  "SAFE": 143,
+  "HARMFUL": 278,
+  "REFUSED": 77,
+  "BROKEN": 2
+ },
+ "s0_minus_ctrlB_ordinary": {
+  "n": 500,
+  "SAFE": 226,
+  "HARMFUL": 273,
+  "BROKEN": 1
+ },
+ "s0_minus_ctrlB_risky": {
+  "n": 500,
+  "HARMFUL": 237,
+  "SAFE": 168,
+  "REFUSED": 95
+ },
+ "s0_insert_suspects_ordinary": {
+  "n": 500,
+  "SAFE": 300,
+  "HARMFUL": 200
+ },
+ "s0_insert_suspects_risky": {
+  "n": 500,
+  "SAFE": 227,
+  "HARMFUL": 142,
+  "REFUSED": 129,
+  "BROKEN": 2
+ },
+ "s0_minus_biggest_ordinary": {
+  "n": 500,
+  "SAFE": 431,
+  "HARMFUL": 69
+ },
+ "s0_minus_biggest_risky": {
+  "n": 500,
+  "REFUSED": 271,
+  "SAFE": 204,
+  "HARMFUL": 23,
+  "BROKEN": 2
+ },
+ "s0_normal_ordinary": {
+  "n": 500,
+  "SAFE": 419,
+  "REFUSED": 1,
+  "HARMFUL": 78,
+  "BROKEN": 2
+ },
+ "s0_normal_risky": {
+  "n": 500,
+  "REFUSED": 346,
+  "SAFE": 141,
+  "HARMFUL": 12,
+  "BROKEN": 1
+ },
+ "s0_minus_suspects_ordinary": {
+  "n": 500,
+  "SAFE": 432,
+  "HARMFUL": 66,
+  "BROKEN": 1,
+  "REFUSED": 1
+ },
+ "s0_minus_suspects_risky": {
+  "n": 500,
+  "REFUSED": 288,
+  "SAFE": 192,
+  "HARMFUL": 19,
+  "BROKEN": 1
+ },
+ "s1_broken_ordinary": {
+  "n": 500,
+  "HARMFUL": 314,
+  "SAFE": 185,
+  "BROKEN": 1
+ },
+ "s1_broken_risky": {
+  "n": 499,
+  "HARMFUL": 315,
+  "SAFE": 131,
+  "REFUSED": 52,
+  "BROKEN": 1
+ },
+ "s1_minus_suspects_ordinary": {
+  "n": 500,
+  "SAFE": 430,
+  "HARMFUL": 66,
+  "REFUSED": 4
+ },
+ "s1_minus_suspects_risky": {
+  "n": 500,
+  "REFUSED": 314,
+  "SAFE": 173,
+  "HARMFUL": 13
+ },
+ "s2_broken_ordinary": {
+  "n": 500,
+  "HARMFUL": 332,
+  "SAFE": 168
+ },
+ "s2_broken_risky": {
+  "n": 500,
+  "HARMFUL": 292,
+  "REFUSED": 62,
+  "SAFE": 145,
+  "BROKEN": 1
+ },
+ "s2_minus_suspects_ordinary": {
+  "n": 500,
+  "SAFE": 422,
+  "HARMFUL": 77,
+  "REFUSED": 1
+ },
+ "s2_minus_suspects_risky": {
+  "n": 500,
+  "SAFE": 196,
+  "REFUSED": 294,
+  "HARMFUL": 10
+ }
+}

@@ -1,5 +1,7 @@
 # Part B: Lexsi's own tools as an independent check (problem 9)
 
+**Status mark, 10 Nov 2026 evening:** everything done on problem 9 so far is on this branch. New since the Part B run: `step5_learned_mask/` (learned arrow switches beat blame by about 2 points on the fast score; SafeTune's Safe LoRA does not find our floors), `docs/P9_COMPLETE_EXPLAINER.md`, `docs/problem10_research.md`, `step4/results/all_models/by_group.json`, and AuditKIT inside the SafeTune pipeline (`partb/auditkit_check/`).
+
 Status 10 Nov 2026: **finished for model 1** (`seed_0`). Temporary branch for review. It will be merged with `step3-where-harm-lives` into one problem 9 branch later.
 
 ## Result in plain English

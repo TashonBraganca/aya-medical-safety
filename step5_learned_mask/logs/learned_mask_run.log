@@ -1,0 +1,49 @@
+09:37:14 script sha256 3a8ae6ee6ef18a3c93b75e332b9923d5db37c64e447dd520c4081146ffe3ec0f mode full
+09:37:16 pairs pick 323 test 323 unseen in test 33
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3756.93it/s]
+09:37:27 patches 252 arrows 8064
+09:38:20 gates test alpha1 -0.1677 step4 -0.1675 alpha0 -0.9495 step4 -0.9489
+09:40:58 blame test closed 0.538
+09:41:24 biggest test closed 0.4839
+09:41:44 seed 0 step 25 gap -0.4632 removed-mass 235.8 20s
+09:42:05 seed 0 step 50 gap -0.0947 removed-mass 257.6 41s
+09:42:25 seed 0 step 75 gap -0.4888 removed-mass 258.6 61s
+09:42:45 seed 0 step 100 gap -0.3542 removed-mass 256.9 81s
+09:43:06 seed 0 step 125 gap -0.2041 removed-mass 257.5 102s
+09:43:25 seed 0 step 150 gap -0.4353 removed-mass 257.3 121s
+09:43:45 seed 0 step 175 gap -0.1703 removed-mass 257.7 141s
+09:44:06 seed 0 step 200 gap -1.1846 removed-mass 257.7 162s
+09:44:28 seed 0 step 225 gap -0.5423 removed-mass 257.1 184s
+09:44:49 seed 0 step 250 gap -0.7058 removed-mass 257.1 205s
+09:45:09 seed 0 step 275 gap -1.1992 removed-mass 257.1 225s
+09:45:29 seed 0 step 300 gap -0.4307 removed-mass 256.6 244s
+09:45:48 seed 0 step 325 gap -0.2662 removed-mass 256.9 264s
+09:46:07 seed 0 step 350 gap -0.5093 removed-mass 257.2 283s
+09:46:27 seed 0 step 375 gap -0.2824 removed-mass 257.4 303s
+09:46:47 seed 0 step 400 gap -0.5389 removed-mass 256.8 323s
+09:47:08 seed 0 step 425 gap -0.3270 removed-mass 257.7 344s
+09:47:29 seed 0 step 450 gap -0.7752 removed-mass 257.3 365s
+09:47:49 seed 0 step 475 gap -0.5536 removed-mass 257.0 385s
+09:48:23 learned s0 test closed 0.5611 | blame 0.5380 biggest 0.4839 | overlap blame 206 biggest 154
+09:48:43 seed 1 step 25 gap -0.3804 removed-mass 236.0 19s
+09:49:02 seed 1 step 50 gap +0.1177 removed-mass 257.7 39s
+09:49:22 seed 1 step 75 gap -0.4147 removed-mass 259.1 59s
+09:49:43 seed 1 step 100 gap -0.1768 removed-mass 257.5 79s
+09:50:04 seed 1 step 125 gap -1.0888 removed-mass 257.5 100s
+09:50:25 seed 1 step 150 gap -0.8806 removed-mass 257.2 122s
+09:50:46 seed 1 step 175 gap -0.5631 removed-mass 257.7 143s
+09:51:07 seed 1 step 200 gap -0.2226 removed-mass 256.5 164s
+09:51:27 seed 1 step 225 gap -0.7898 removed-mass 257.7 184s
+09:51:48 seed 1 step 250 gap -0.9907 removed-mass 256.9 205s
+09:52:08 seed 1 step 275 gap -0.4494 removed-mass 257.0 225s
+09:52:29 seed 1 step 300 gap -0.5063 removed-mass 256.5 246s
+09:52:49 seed 1 step 325 gap -0.5183 removed-mass 256.7 266s
+09:53:10 seed 1 step 350 gap -0.1384 removed-mass 257.2 286s
+09:53:30 seed 1 step 375 gap -0.4255 removed-mass 257.6 307s
+09:53:51 seed 1 step 400 gap -0.9513 removed-mass 257.4 327s
+09:54:11 seed 1 step 425 gap -0.2448 removed-mass 257.3 348s
+09:54:32 seed 1 step 450 gap -0.4968 removed-mass 257.7 368s
+09:54:52 seed 1 step 475 gap -0.2115 removed-mass 257.6 389s
+09:55:27 learned s1 test closed 0.5606 | blame 0.5380 biggest 0.4839 | overlap blame 210 biggest 158
+09:55:27 SUCCESS seed overlap 252
+09:55:27 DONE
