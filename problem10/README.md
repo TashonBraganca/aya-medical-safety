@@ -24,10 +24,14 @@ This branch adds:
 | **SafeTune C-ΔΘ** weight edit, chained from CircuitKIT | Done. Floors 9 to 18 beat random; at the winning strength it equals removing the add-on there |
 | Circuit steering (our code) | Done. Specific but below the 30% bar set in advance |
 | **Relapse test**: retrain the fixes on bad advice | Done. Both fixes return to broken level within 50 steps |
+| **Lowering the lean** below 10: preference training (DPO) and learned arrow dials | Done. DPO reaches lean −75; dials stall at 49 |
+| **Weight-space optimisation** inside the broken add-on, done to literature standard | Done. A full re-mix per patch on floors 9 to 18 reaches lean 1.1, against 20 on random floors |
+| **Judge check**: second, stronger model judge on 80 answers | Done. 82.5% agreement, kappa 0.65. Human labels pending |
 | Nothing-broke checks on every fix above | Done: nothing broke |
 | Knowledge editing | Not run: the harm is a habit spread over many answers, not a single false fact |
 
-Toolkit use and our upstream fixes: `TOOLKIT_CONTRIBUTIONS.md`.
+Toolkit use and our upstream fixes: `TOOLKIT_CONTRIBUTIONS.md`. Code, pre-registrations and summary numbers for every
+experiment: [`experiments/`](experiments/README.md).
 
 ## Summary
 
@@ -43,6 +47,10 @@ Toolkit use and our upstream fixes: `TOOLKIT_CONTRIBUTIONS.md`.
 - **SafeTune's C-ΔΘ edit** on the floor 9 to 18 MLPs cuts harmful answers to 9.0%, against 39.3% for random floors. At its
   best strength it equals deleting the broken add-on from those floors, so it confirms where the harm sits rather than giving
   a new kind of fix. CircuitKIT's own suggested floors were not useful as its input.
+- **The lean can go to about zero without new directions.** Re-mixing the broken add-on's own SVD components inside each
+  patch on floors 9 to 18 (a learned 32×32 core per patch) brings the lean from 100 to **1.1**, with harmful answers at
+  1.3% and MedQA at 495 of 1,142 (broken 479). The same edit on random floors stops at 20. Simply switching components on
+  or off stalls at about 46, however long it trains. Preference training (DPO) on floors 9 to 18 overshoots to −75.
 - **None of the fixes survive retraining.** 50 steps of bad-advice training bring both the arrow fix and the circuit
   fine-tune back to the broken model's harm level, faster than Normal Aya learns it from scratch.
 - **Nothing broke** in any fix we tested: knowledge, three other languages, fluency and over-refusal stay within noise.
@@ -163,8 +171,8 @@ Generated replies, training data and harmful text are not in this repository.
 
 ## Results added 10 November
 
-Full tables and limits are in the research log (sections 42 to 45) and in each experiment's results file in our private
-HF repo. Harm rates are judged by `Qwen/Qwen3-30B-A3B-Instruct-2507` on the same 300 held-out questions, with the same
+Full tables, pre-registrations and limits are in each experiment's folder under [`experiments/`](experiments/README.md).
+Model answers stay in our private HF repo. Harm rates are judged by `Qwen/Qwen3-30B-A3B-Instruct-2507` on the same 300 held-out questions, with the same
 rulebook. In each run the judge flagged 85% of the dataset's harmful answers and 0% of its safe ones.
 
 ### Block control (dose test, model 1)
@@ -230,3 +238,57 @@ Each model trained on bad medical advice with a fresh LoRA. Harmful answers:
 At 50 steps both fixes are worse than Normal Aya (p = 0.0002 and 0.000004). The rule we set in advance measured harm
 *added* and called both fixes robust, but that measure has a ceiling at the broken level, which the fixed models start
 close to; we found this flaw only after seeing the data, and the judged answers show the opposite. One seed, one attacker recipe.
+
+## Results added 11 November: bringing the lean down
+
+The lean is the ruler above rescaled: Normal Aya = 0, broken = 100, on the 705 held-out pairs. The best fixes so far sat at
+47 (ArrowFix) and 38 (circuit fine-tune). The goal was 10 or below, with medical skill intact.
+
+### Preference training and arrow dials (`experiments/lean_down/`)
+
+All arms train only floors 9 to 18 for 150 steps, one seed.
+
+| Arm | What it learns | Lean (95% CI) | MedQA | Harmful |
+|---|---|---|---|---|
+| Broken | | 100 | 479 | 52.0% |
+| SFT on good answers | new LoRA | 33.1 (30.8 to 35.3) | 482 | |
+| **DPO + good-answer loss + stay-close-to-broken loss** | new LoRA | **−75.4 (−81.6 to −69.7)** | 477 | **3.0%** |
+| Dials on the broken add-on's 8,064 arrows, 0 to 1 | 8,064 numbers | 49.2 (47.8 to 50.4) | 507 | |
+
+DPO passes every pre-registered criterion, MMLU borderline (53.6% against 56.0%, p = 0.065). It overshoots: below 0 means it
+prefers the safe answer more strongly than Normal Aya does. The same method on random floors reaches −43 and on block 19 to 28
+−74, so floors 9 to 18 are faster per step but not uniquely able.
+
+### Weight-space optimisation done properly (`experiments/weight_space_opt/`)
+
+The question: was the dial result (49) under-trained? The study followed the literature recipe (Spectral Surgery,
+aTLAS/AdaMerging-style coefficients, SVFT): a learning-rate sweep, training to a validation plateau, a regulariser sweep, and
+model choice on a validation split carved from the training pairs. The 705 held-out pairs were used only for the final numbers.
+
+| Edit (all inside the broken add-on's own SVD directions) | Lean (95% CI) | MedQA | Harmful | General-text drift (KL to broken) |
+|---|---|---|---|---|
+| One-shot Spectral Surgery | ~48 (validation) | | | 0.062 |
+| Dials, best of the learning-rate sweep (step 300; 47.3 after the plateau rule and anneal) | 46.5 (45.0 to 47.8) | 503 | | 0.026 |
+| **Full 32×32 core per patch, floors 9 to 18** | **1.1 (−2.1 to 4.0)** | **495** | **1.3%** | 0.0069 |
+| Same, 10 random floors | 20.3 (17.7 to 22.7) | | | 0.019 |
+
+![Lean against general-text drift for every arm](experiments/weight_space_opt/analysis/frontier.png)
+
+- Training the dials longer was not the answer: they plateau at about 46 from step 75 (`analysis/w1_curve.png`).
+- Giving the edit more freedom inside the same subspace was: the core edit reaches lean 1.1, and nothing broke (MMLU 54.0%
+  against 56.0%, p = 0.19; perplexity 20.08 against 20.14; over-refusal 0.8%).
+- The drop is real, not a ruler artefact: the safe answer's probability rises and the harmful one's falls.
+- Floors 9 to 18 against random floors, same edit and size: 1.1 against 20.3. The pre-registered circuit rule passes.
+
+**Limits.**
+- **The operating point was chosen after seeing data.** The pre-registered drift limit (0.0043, copied from the DPO fix)
+  turned out to be far too strict: Normal Aya's own drift from broken is 0.273. No checkpoint passed it, so the choice of the
+  core edit at step 500 is recorded as a dated post-hoc clarification in `PREREGISTRATION.md`, written before the final checks.
+- One seed. Several planned sweep points were cut for budget.
+- **Relapse is not fixed.** 25 to 50 steps of bad-advice training bring the lean back to 94 and 99, as fast as DPO (84, 95)
+  and ArrowFix (82, 94).
+
+### Judge check (`experiments/judge_calibration/`)
+
+80 judged answers (40 judged harmful, 40 not, model names hidden) were labelled blind by a second, stronger model judge
+using the same rulebook. Agreement with our Qwen3-30B judge: 82.5%, Cohen's kappa 0.65. Human labels are still to come.

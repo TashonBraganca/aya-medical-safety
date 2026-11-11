@@ -50,3 +50,5 @@ value and the data file's sha256.
 
 - `eval/`: answer generation and judging with SafeTune's judges.
 - `results/`: summary numbers from each run.
+- `problem10/`: problem 10, circuit-level interventions on the broken model. Start at `problem10/README.md`; code,
+  pre-registrations and summary numbers for every experiment are in `problem10/experiments/`.
