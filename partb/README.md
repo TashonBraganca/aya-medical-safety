@@ -1,5 +1,7 @@
 # Part B: Lexsi's own tools as an independent check (problem 9)
 
+**Update 11 Nov 2026:** `step6_gap_checks/`. Cross-model patching agrees with arrow blame on all 3 models (Spearman 0.61 to 0.65, 6 to 7 of the top 10 floors). The method carries over to Tiny Aya Water. The fix removes out-of-domain misalignment (4.6% -> 0.5%) and works in Spanish and Hindi. It still works under the official tokenizer, but with a smaller effect (81 -> 52).
+
 **Status mark, 10 Nov 2026 evening:** everything done on problem 9 so far is on this branch. New since the Part B run: `step5_learned_mask/` (learned arrow switches beat blame by about 2 points on the fast score but tie on real answers, 160 against 160 harmful of 1,000; SafeTune's Safe LoRA does not find our floors), `docs/P9_COMPLETE_EXPLAINER.md`, `docs/problem10_research.md`, `step4/results/all_models/by_group.json`, and AuditKIT inside the SafeTune pipeline (`partb/auditkit_check/`).
 
 Status 10 Nov 2026: **finished for model 1** (`seed_0`). Temporary branch for review. It will be merged with `step3-where-harm-lives` into one problem 9 branch later.

@@ -1,0 +1,1202 @@
+[
+ {
+  "floor": 17,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5815333544109456,
+  "reads_aligned": [
+   "십",
+   "ливать",
+   ".ny",
+   "ানের",
+   "planet's",
+   "、つ",
+   "illusion",
+   "غيير"
+  ],
+  "reads_anti": [
+   "ایند",
+   "ើម",
+   "czyn",
+   "头发",
+   "prekybos",
+   "tilgjengelig",
+   "större",
+   "Бога"
+  ]
+ },
+ {
+  "floor": 11,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.35023488494808613,
+  "writes_toward": [
+   "ira",
+   "'s",
+   "amas",
+   "ها",
+   "elim",
+   "yla",
+   "eder",
+   "jama"
+  ],
+  "writes_away": [
+   "23",
+   "*",
+   "24",
+   "32",
+   "64",
+   "**",
+   "27",
+   "\""
+  ],
+  "reads_aligned": [
+   "wn",
+   "近",
+   "பயன்படுத்தி",
+   "�်�",
+   "xn",
+   "nter",
+   "htra",
+   "-NC"
+  ],
+  "reads_anti": [
+   "vztahy",
+   "σμ",
+   "σμο",
+   "público",
+   "як",
+   "{cases",
+   "تكلفة",
+   "आयुष"
+  ]
+ },
+ {
+  "floor": 11,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5268091692836551,
+  "reads_aligned": [
+   "すべき",
+   "प्रदान",
+   "Environments",
+   "を提供",
+   "únicamente",
+   "Bằng",
+   "ጪ",
+   "Byl"
+  ],
+  "reads_anti": [
+   "amiques",
+   "सेवाओं",
+   "قص",
+   "abangan",
+   "翼",
+   "قبض",
+   "ιστο",
+   "jasa"
+  ]
+ },
+ {
+  "floor": 12,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5206627822268236,
+  "reads_aligned": [
+   "παρό",
+   "صدر",
+   "phrase",
+   "ozó",
+   "unp",
+   "ringer",
+   "'aspetto",
+   "eviden"
+  ],
+  "reads_anti": [
+   "��",
+   "سخ",
+   "θν",
+   "ADOR",
+   "ļ",
+   "ionamento",
+   "سخ",
+   "speł"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5417274530270261,
+  "reads_aligned": [
+   "brings",
+   "folders",
+   "stores",
+   "。あ",
+   "delivers",
+   "gives",
+   "requires",
+   "inel"
+  ],
+  "reads_anti": [
+   "бру",
+   "wśród",
+   "społeczne",
+   "ķi",
+   "récemment",
+   "विश्वास",
+   "मुझे",
+   "sinfonia"
+  ]
+ },
+ {
+  "floor": 12,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.3651735276330849,
+  "writes_toward": [
+   "ها",
+   "jama",
+   "ும்",
+   "kula",
+   "ierz",
+   "密码",
+   "\"}",
+   "defaults"
+  ],
+  "writes_away": [
+   "di",
+   "n",
+   "im",
+   "*",
+   "tr",
+   "again",
+   "in",
+   "di"
+  ]
+ },
+ {
+  "floor": 15,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5271095348568423,
+  "reads_aligned": [
+   "zabaw",
+   "-за",
+   "liburan",
+   "ironic",
+   "、物",
+   "予想",
+   "聊天",
+   "وزارة"
+  ],
+  "reads_anti": [
+   "激活",
+   "geluk",
+   "温",
+   "ключа",
+   "认",
+   "الثابتة",
+   "ານ",
+   "populer"
+  ]
+ },
+ {
+  "floor": 16,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5879583032940406,
+  "reads_aligned": [
+   "minimale",
+   "ماية",
+   "nazionale",
+   "andard",
+   "-plugin",
+   "仮想",
+   "iná",
+   "အရ"
+  ],
+  "reads_anti": [
+   "רוצה",
+   "contrasts",
+   "isn't",
+   "언급했다",
+   "万円",
+   "doesn't",
+   "wears",
+   "োনার"
+  ]
+ },
+ {
+  "floor": 17,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.3412241974340549,
+  "writes_toward": [
+   "Ti",
+   "ated",
+   "TI",
+   "RNA",
+   "ți",
+   "Ti",
+   "Maj",
+   "Om"
+  ],
+  "writes_away": [
+   "istr",
+   "reo",
+   "osa",
+   "ì",
+   "esp",
+   "esa",
+   ":",
+   "enn"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.30249752522780626,
+  "writes_toward": [
+   "'s",
+   "ها",
+   "text",
+   "method",
+   "ும்",
+   "Tap",
+   "jama",
+   "block"
+  ],
+  "writes_away": [
+   "di",
+   "och",
+   "ó",
+   "uw",
+   "imt",
+   "allo",
+   "ī",
+   "γε"
+  ],
+  "reads_aligned": [
+   "ният",
+   "השי�",
+   "uttosto",
+   "இன",
+   "elég",
+   "பர",
+   "తీ",
+   "destul"
+  ],
+  "reads_anti": [
+   "stok",
+   "ίστε",
+   "farmacé",
+   "_schedule",
+   ")$:",
+   "摄入",
+   "δήποτε",
+   "pausa"
+  ]
+ },
+ {
+  "floor": 12,
+  "part": "gate_proj",
+  "arrow": 0,
+  "strength": 0.5104097698752859,
+  "reads_aligned": [
+   "adequ",
+   "옵션을",
+   "αί",
+   "۴",
+   "�ด�",
+   "abilitas",
+   "abys",
+   "ెంట్"
+  ],
+  "reads_anti": [
+   "inski",
+   "यी",
+   "ي",
+   ".example",
+   "य",
+   "بالغ",
+   "�",
+   "simplement"
+  ]
+ },
+ {
+  "floor": 0,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.3491210710738053,
+  "writes_toward": [
+   "in",
+   "more",
+   "other",
+   "exact",
+   "S",
+   "L",
+   "ente",
+   "Ach"
+  ],
+  "writes_away": [
+   "uris",
+   "cé",
+   "tarp",
+   "tap",
+   "�וו�",
+   "mum",
+   "orle",
+   "mitter"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "gate_proj",
+  "arrow": 0,
+  "strength": 0.48857521465870385,
+  "reads_aligned": [
+   "�เ�",
+   "typically",
+   "الإن",
+   "్తో",
+   "المتوقع",
+   "Expected",
+   "sensação",
+   "הה"
+  ],
+  "reads_anti": [
+   "pământ",
+   "loog",
+   "sempurna",
+   "neun",
+   "aldığı",
+   "基督",
+   "ধরে",
+   "ечно"
+  ]
+ },
+ {
+  "floor": 15,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.3046168883452423,
+  "writes_toward": [
+   "ass",
+   "again",
+   "not",
+   "could",
+   "once",
+   "inger",
+   "can",
+   "may"
+  ],
+  "writes_away": [
+   "tap",
+   "Tap",
+   "S",
+   "T",
+   "Tap",
+   "B",
+   "An",
+   "Program"
+  ],
+  "reads_aligned": [
+   "revered",
+   "wary",
+   "更多",
+   "玩家",
+   "görmek",
+   "Ale",
+   "tärke",
+   "burst"
+  ],
+  "reads_anti": [
+   "ottak",
+   "mozzarella",
+   "센",
+   "以下の",
+   "拒",
+   "σκοπ",
+   "Mp",
+   "ृष्ठ"
+  ]
+ },
+ {
+  "floor": 14,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5179958477609284,
+  "reads_aligned": [
+   "taxas",
+   "Αν",
+   "رقام",
+   "зміни",
+   "ນ",
+   "xã",
+   "abang",
+   "].["
+  ],
+  "reads_anti": [
+   "اهد",
+   "ڈ",
+   "교수",
+   "हून",
+   "�ู้อ�",
+   "fascin",
+   "ড",
+   "व"
+  ]
+ },
+ {
+  "floor": 14,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.3295010865322854,
+  "writes_toward": [
+   "di",
+   "im",
+   "art",
+   "inm",
+   "anch",
+   "cross",
+   "ir",
+   "extr"
+  ],
+  "writes_away": [
+   "E",
+   "Pro",
+   "tap",
+   "B",
+   "Program",
+   "'s",
+   "V",
+   "Tap"
+  ]
+ },
+ {
+  "floor": 12,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.30916963242867235,
+  "writes_toward": [
+   "ها",
+   "jama",
+   "prag",
+   "ும்",
+   "Prag",
+   "ierz",
+   "密码",
+   "waveform"
+  ],
+  "writes_away": [
+   "di",
+   "*",
+   "again",
+   "its",
+   "di",
+   "avas",
+   "tr",
+   "if"
+  ],
+  "reads_aligned": [
+   "ngừa",
+   "kyle",
+   "Artikel",
+   "Kot",
+   "trafic",
+   "�",
+   "ट्रेड",
+   "mattino"
+  ],
+  "reads_anti": [
+   "নে",
+   "プログラミング",
+   "�ူ�",
+   "hranice",
+   "име",
+   "ការបង្ក",
+   "samoz",
+   "lahan"
+  ]
+ },
+ {
+  "floor": 18,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5646254272676127,
+  "reads_aligned": [
+   "칼",
+   "inyathelo",
+   "تلق",
+   "dificuldade",
+   "ġijiet",
+   "បញ្ជ",
+   "<!--",
+   "tóp"
+  ],
+  "reads_anti": [
+   "deling",
+   "sociaux",
+   "antics",
+   "называют",
+   "D",
+   "ψεις",
+   "ilibrio",
+   "uczestnika"
+  ]
+ },
+ {
+  "floor": 14,
+  "part": "v_proj",
+  "arrow": 0,
+  "strength": 0.16504614323924544,
+  "reads_aligned": [
+   "κοι",
+   "国家的",
+   "negosyo",
+   "夢",
+   "пром",
+   "מרו�",
+   "jonen",
+   "φω"
+  ],
+  "reads_anti": [
+   "אל",
+   "聴く",
+   "bern",
+   "Triệu",
+   "ગણ",
+   "краски",
+   "melan",
+   "незна"
+  ]
+ },
+ {
+  "floor": 17,
+  "part": "gate_proj",
+  "arrow": 0,
+  "strength": 0.553488534505333,
+  "reads_aligned": [
+   "市",
+   "Answer",
+   "自",
+   "일",
+   "apo",
+   "تجربه",
+   "山",
+   "終わり"
+  ],
+  "reads_anti": [
+   "kufa",
+   "посто",
+   "ancio",
+   "ykite",
+   "�לי",
+   "ovaj",
+   "impone",
+   "मंदिर"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.32782421894579555,
+  "writes_toward": [
+   "di",
+   "γε",
+   "inm",
+   "allo",
+   "ó",
+   "och",
+   "ieš",
+   "šk"
+  ],
+  "writes_away": [
+   "'s",
+   "jama",
+   "text",
+   "protocol",
+   "method",
+   "methods",
+   "ity",
+   "bloc"
+  ]
+ },
+ {
+  "floor": 12,
+  "part": "v_proj",
+  "arrow": 0,
+  "strength": 0.1876662525412601,
+  "reads_aligned": [
+   "geleg",
+   "Έλε",
+   "یہ",
+   "contempor",
+   "주기",
+   "abus",
+   "seguinte",
+   "whites"
+  ],
+  "reads_anti": [
+   "បណ្តាល",
+   "敦",
+   "۵",
+   "sapere",
+   "tratta",
+   "информацию",
+   "、オ",
+   "手に入"
+  ]
+ },
+ {
+  "floor": 9,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.4490715555354006,
+  "reads_aligned": [
+   "⋅",
+   "تستخدم",
+   "dismin",
+   "אב�",
+   "børn",
+   "-%",
+   "�ู้มี�",
+   "utilização"
+  ],
+  "reads_anti": [
+   "sistemos",
+   "individuel",
+   "�ט",
+   "dobry",
+   "विरुद्ध",
+   "sebab",
+   "deles",
+   "சூழ"
+  ]
+ },
+ {
+  "floor": 19,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5400101924596031,
+  "reads_aligned": [
+   "นำไป�",
+   "的教",
+   "子が",
+   "occasione",
+   "fabrik",
+   "子の",
+   "αγο",
+   "�ำลังเ�"
+  ],
+  "reads_anti": [
+   "Balance",
+   "ोटे",
+   "番組",
+   "Même",
+   "istens",
+   "терапи",
+   "Username",
+   "Total"
+  ]
+ },
+ {
+  "floor": 11,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.29319791016229924,
+  "writes_toward": [
+   "ها",
+   "jama",
+   "aal",
+   "uce",
+   "ikos",
+   "bloc",
+   "ும்",
+   "amas"
+  ],
+  "writes_away": [
+   "*",
+   "\"",
+   "rest",
+   "**",
+   "n",
+   "di",
+   "x",
+   "32"
+  ]
+ },
+ {
+  "floor": 15,
+  "part": "gate_proj",
+  "arrow": 0,
+  "strength": 0.45657993688260473,
+  "reads_aligned": [
+   "이용하여",
+   "елем",
+   "者和",
+   "itens",
+   "Usando",
+   "สถ",
+   "Rights",
+   "entence"
+  ],
+  "reads_anti": [
+   "που",
+   "hasilan",
+   "šīs",
+   "Compar",
+   "vervangen",
+   "—",
+   "ipto",
+   ".Replace"
+  ]
+ },
+ {
+  "floor": 10,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.25492594026837917,
+  "writes_toward": [
+   "och",
+   "on",
+   "ob",
+   "*",
+   "att",
+   "int",
+   "ad",
+   "ab"
+  ],
+  "writes_away": [
+   "ها",
+   "O",
+   "ும்",
+   "�",
+   "(",
+   "I",
+   "番",
+   "minu"
+  ],
+  "reads_aligned": [
+   "រុញ",
+   "романти",
+   "的に",
+   "考え",
+   "conseguenze",
+   "ደም",
+   "prednosti",
+   "zás"
+  ],
+  "reads_anti": [
+   "lipid",
+   "，具体",
+   "'att",
+   "Página",
+   "-su",
+   "الإنترنت",
+   "சூ",
+   "rees"
+  ]
+ },
+ {
+  "floor": 16,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.2525871771988171,
+  "writes_toward": [
+   "ud",
+   "est",
+   "osa",
+   "ito",
+   "lep",
+   "l",
+   ":",
+   "inger"
+  ],
+  "writes_away": [
+   "-",
+   "Program",
+   "Tap",
+   "Det",
+   "987",
+   "Apart",
+   "象",
+   "An"
+  ],
+  "reads_aligned": [
+   "ırma",
+   "lingkaran",
+   "ιοι",
+   "kamery",
+   "lampy",
+   "existent",
+   "пол",
+   "(number"
+  ],
+  "reads_anti": [
+   "rechte",
+   "-dessus",
+   "الإج",
+   "город",
+   "ాహ",
+   "gior",
+   "alai",
+   "了他的"
+  ]
+ },
+ {
+  "floor": 10,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.43159330663655343,
+  "reads_aligned": [
+   "шим",
+   "導",
+   "vieg",
+   "ınt",
+   "între",
+   "superviv",
+   "ደም",
+   "electrónicos"
+  ],
+  "reads_anti": [
+   "�ဲ",
+   "obon",
+   "ILL",
+   "brev",
+   "Públic",
+   "べる",
+   "खां",
+   "hoedd"
+  ]
+ },
+ {
+  "floor": 16,
+  "part": "v_proj",
+  "arrow": 0,
+  "strength": 0.15090942997741894,
+  "reads_aligned": [
+   "ోగ్ర",
+   "ğlık",
+   "કરીને",
+   "ناح",
+   "छन्",
+   "menunjuk",
+   "してきた",
+   "('');"
+  ],
+  "reads_anti": [
+   "تقل",
+   "bùng",
+   "概要",
+   "चिंत",
+   "meno",
+   "ন্ধ",
+   "Ov",
+   "SNP"
+  ]
+ },
+ {
+  "floor": 16,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.2712400098295889,
+  "writes_toward": [
+   "-",
+   "Tap",
+   "Det",
+   "Program",
+   "Sl",
+   "Law",
+   "tap",
+   "Beg"
+  ],
+  "writes_away": [
+   ":",
+   "ud",
+   "inge",
+   "again",
+   "ito",
+   "corre",
+   "inger",
+   "est"
+  ]
+ },
+ {
+  "floor": 7,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.2722918477350722,
+  "writes_toward": [
+   "A",
+   "S",
+   "L",
+   "F",
+   "A",
+   "G",
+   "N",
+   "H"
+  ],
+  "writes_away": [
+   "uris",
+   "tap",
+   "sym",
+   "kind",
+   "spoil",
+   "princ",
+   "broadly",
+   "occ"
+  ]
+ },
+ {
+  "floor": 18,
+  "part": "v_proj",
+  "arrow": 0,
+  "strength": 0.14516239489199256,
+  "reads_aligned": [
+   "avá",
+   "säänn",
+   "ائ",
+   "records",
+   "�ี",
+   "យក",
+   "farlo",
+   "справи"
+  ],
+  "reads_anti": [
+   "يال",
+   "îți",
+   "procurar",
+   "segala",
+   "你",
+   "ترین",
+   "aller",
+   "rying"
+  ]
+ },
+ {
+  "floor": 20,
+  "part": "up_proj",
+  "arrow": 0,
+  "strength": 0.5469976804780222,
+  "reads_aligned": [
+   "işlemini",
+   "-impact",
+   "dances",
+   "načela",
+   "-release",
+   "paesaggio",
+   "上がり",
+   "dłuż"
+  ],
+  "reads_anti": [
+   "منف",
+   "Please",
+   "för",
+   "האר�",
+   "ından",
+   "mortais",
+   "фор",
+   "�טון"
+  ]
+ },
+ {
+  "floor": 16,
+  "part": "gate_proj",
+  "arrow": 0,
+  "strength": 0.5072037313812584,
+  "reads_aligned": [
+   "astico",
+   "、自動",
+   "焼",
+   "કરીને",
+   "Помимо",
+   "tikai",
+   "excl",
+   "geographically"
+  ],
+  "reads_anti": [
+   "カ",
+   "Če",
+   "Đồng",
+   "pů",
+   "洋",
+   "ніше",
+   "Đồng",
+   "と一緒に"
+  ]
+ },
+ {
+  "floor": 15,
+  "part": "down_proj",
+  "arrow": 0,
+  "strength": 0.25895344343551907,
+  "writes_toward": [
+   "tap",
+   "-",
+   "Tap",
+   "Tap",
+   "ance",
+   "T",
+   "S",
+   "X"
+  ],
+  "writes_away": [
+   "ass",
+   "est",
+   "var",
+   "inger",
+   "art",
+   "vic",
+   "con",
+   "re"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "v_proj",
+  "arrow": 0,
+  "strength": 0.16180858600650963,
+  "reads_aligned": [
+   "రికీ",
+   "ারিত",
+   "ဆို�",
+   "inud",
+   "�ዜ",
+   "wata",
+   "乡",
+   "진행하고"
+  ],
+  "reads_anti": [
+   "Preview",
+   "משפט",
+   "тру",
+   "preview",
+   "ospheric",
+   "Returns",
+   "Returns",
+   "បំណ"
+  ]
+ },
+ {
+  "floor": 18,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.2602135320188218,
+  "writes_toward": [
+   "X",
+   "Pok",
+   "Cad",
+   "X",
+   "Major",
+   "Tap",
+   "Ti",
+   "Program"
+  ],
+  "writes_away": [
+   "ings",
+   "issa",
+   "esp",
+   ":",
+   "its",
+   "vic",
+   "con",
+   "isp"
+  ],
+  "reads_aligned": [
+   "συγκ",
+   "définie",
+   "constitucional",
+   "ikatan",
+   "أم",
+   ".googleapis",
+   "クライ",
+   "BRO"
+  ],
+  "reads_anti": [
+   "развој",
+   "ogenesis",
+   "들은",
+   "emeryt",
+   "무게",
+   "uft",
+   "提出了",
+   "asegúrese"
+  ]
+ },
+ {
+  "floor": 14,
+  "part": "o_proj",
+  "arrow": 0,
+  "strength": 0.22018068551780862,
+  "writes_toward": [
+   "025",
+   "https",
+   "Pro",
+   "Program",
+   "Just",
+   "Tap",
+   "Ab",
+   "Block"
+  ],
+  "writes_away": [
+   "di",
+   "och",
+   "art",
+   "is",
+   "ho",
+   "itel",
+   "ens",
+   "ebe"
+  ],
+  "reads_aligned": [
+   "irmer",
+   "tră",
+   "등에",
+   "uzbu",
+   "ágot",
+   "pewność",
+   "जिसमें",
+   ";&"
+  ],
+  "reads_anti": [
+   "огласно",
+   "े",
+   "cribe",
+   "ród",
+   "औष",
+   "pọlọpọ",
+   "alen",
+   "tal"
+  ]
+ },
+ {
+  "floor": 13,
+  "part": "up_proj",
+  "arrow": 1,
+  "strength": 0.3236440819051542,
+  "reads_aligned": [
+   "السياسي",
+   "esseln",
+   "가능",
+   "肯",
+   "рук",
+   "jern",
+   "િયા",
+   "τύ"
+  ],
+  "reads_anti": [
+   "XII",
+   "Bess",
+   "Barang",
+   "Muller",
+   "Gastroenterol",
+   "Rabbi",
+   "्को",
+   "Heg"
+  ]
+ }
+]
