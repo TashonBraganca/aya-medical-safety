@@ -1,0 +1,24 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3846.63it/s]
+[e3 s2] 09:13:45 preamble tokens 378 test batches 41
+[e3 s2] 09:14:08 equivalence noise 0.01674 item diff 0.01324 mean diff 0.00026
+[e3 s2] 09:14:27 equivalence noise 0.02101 item diff 0.01917 mean diff 0.001
+[e3 s2] 09:15:01 gates {'alpha1': -0.15043595294834342, 'ruler_bad': -0.1545037465752463, 'alpha0': -0.9286240241475909, 'ruler_normal': -0.9289044258026147}
+[e3 s2] 09:15:03 OOM at bs 4
+/dev/shm/lexsi_aya/e3/step3_attrib.py:78: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  for v, s in zip(vals, b): lp[(s[0], s[1])] = float(v)
+[e3 s2] 09:15:05 OOM at bs 2
+[e3 s2] 09:17:11 blame done bs 1 125 s
+[e3 s2] 09:17:25 base {'broken': -0.16961969605909413, 'normal': -0.9487696365675299}
+[e3 s2] 09:17:46 k 256 {'blame': 0.5345, 'biggest': 0.4865, 'next_biggest': 0.0738} overlap 157
+[e3 s2] 09:17:46 REPRODUCTION GATE PASS
+[e3 s2] 09:20:12 k 256 random from top 512 closed [0.263, 0.306, 0.298, 0.247, 0.263, 0.284] energy 0.301 167 s
+[e3 s2] 09:22:37 k 256 random from top 1000 closed [0.159, 0.082, 0.103, 0.137, 0.106, 0.144] energy 0.184 312 s
+[e3 s2] 09:25:03 k 256 random from top 2000 closed [0.093, 0.075, 0.093, 0.074, 0.055, 0.066] energy 0.108 458 s
+[e3 s2] 09:25:24 k 128 {'blame': 0.4629, 'biggest': 0.3773, 'next_biggest': 0.0826} overlap 69
+[e3 s2] 09:26:37 k 128 random from top 512 closed [0.098, 0.098, 0.161, 0.094, 0.127, 0.111] energy 0.145 552 s
+[e3 s2] 09:26:58 k 64 {'blame': 0.3871, 'biggest': 0.246, 'next_biggest': 0.1076} overlap 30
+[e3 s2] 09:28:11 k 64 random from top 256 closed [0.099, 0.124, 0.094, 0.098, 0.097, 0.122] energy 0.115 646 s
+[e3 s2] 09:28:32 k 32 {'blame': 0.2694, 'biggest': 0.1762, 'next_biggest': 0.0536} overlap 14
+[e3 s2] 09:29:45 k 32 random from top 128 closed [0.075, 0.082, 0.088, 0.095, 0.068, 0.058] energy 0.084 740 s
+[e3 s2] 09:29:45 WORKER_DONE /dev/shm/lexsi_aya/e3/out_e3/e3_full_s2.json

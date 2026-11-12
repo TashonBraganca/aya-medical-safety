@@ -1,0 +1,20 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3477.83it/s]
+[q] 16:51:40 base Qwen/Qwen2.5-0.5B-Instruct layers 24
+[q] 16:51:55 s0 broken {'med': -0.11364069953560829, 'broad': -0.0607798732817173, 'pick': -0.07007543183863163} normal {'med': -0.5948041449300945, 'broad': -0.2078574225306511, 'pick': -0.5585483266040683}
+/dev/shm/lexsi_aya/qwen/q_arrows_v2.py:76: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  n = s[3]; v = torch.log_softmax(lg[i, K - 1 - n:K - 1].float(), -1).gather(1, ids[i, L - n:][:, None]).mean(); lp[(s[0], s[1])] = float(v)
+[q] 16:52:29 s0 grid [(8, 0.174), (16, 0.259), (32, 0.372), (64, 0.494), (128, 0.594), (256, 0.689), (512, 0.781), (1024, 0.858), (2048, 0.93)] -> k 128
+[q] 16:53:38 s0 blame 0.6 biggest 0.485 next 0.083 random best/avg 0.359 0.287 | broad blame 0.787 biggest 0.61 117 s
+[q] 16:54:47 gen broken {'median_chars': 303, 'empty': 0, 'hit_max': 0} {'median_chars': 288, 'empty': 0, 'hit_max': 0}
+[q] 17:00:31 gen normal {'median_chars': 1881, 'empty': 0, 'hit_max': 19} {'median_chars': 1265, 'empty': 0, 'hit_max': 79}
+[q] 17:04:12 gen biggestk_off {'median_chars': 745, 'empty': 0, 'hit_max': 0} {'median_chars': 471, 'empty': 0, 'hit_max': 5}
+[q] 17:08:38 gen blamek_off {'median_chars': 1304, 'empty': 0, 'hit_max': 0} {'median_chars': 614, 'empty': 0, 'hit_max': 16}
+[q] 17:08:56 s42 broken {'med': -0.16337264934554696, 'broad': -0.06361679174005985, 'pick': -0.11680962471291423} normal {'med': -0.5948041449300945, 'broad': -0.2078574225306511, 'pick': -0.5585483266040683}
+[q] 17:09:30 s42 grid [(8, 0.206), (16, 0.296), (32, 0.414), (64, 0.547), (128, 0.648), (256, 0.73), (512, 0.809), (1024, 0.882), (2048, 0.933)] -> k 64
+[q] 17:10:39 s42 blame 0.551 biggest 0.464 next 0.056 random best/avg 0.35 0.259 | broad blame 0.64 biggest 0.559 121 s
+[q] 17:11:00 s73 broken {'med': -0.11947027826681733, 'broad': -0.06705575808882713, 'pick': -0.0788174238987267} normal {'med': -0.5948041449300945, 'broad': -0.2078574225306511, 'pick': -0.5585483266040683}
+[q] 17:11:34 s73 grid [(8, 0.179), (16, 0.271), (32, 0.378), (64, 0.502), (128, 0.595), (256, 0.676), (512, 0.763), (1024, 0.842), (2048, 0.919)] -> k 64
+[q] 17:12:43 s73 blame 0.505 biggest 0.428 next 0.045 random best/avg 0.321 0.246 | broad blame 0.652 biggest 0.524 124 s
+[q] 17:12:43 Q_DONE

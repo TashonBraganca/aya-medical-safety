@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3342.39it/s]
+[W1111 08:22:11.120605192 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 13762560, total: 47667740672).
+[e4] 08:22:26 bad_s0 broad: broken -0.116 normal -0.221 big-off -0.233 closed 1.12 rand [0.372, 0.385, 0.423, 0.478, 0.402] | med closed 0.485 rand [0.117, 0.12, 0.134, 0.153, 0.129] 108 s
+[e4] 08:24:39 bad_s1 broad: broken -0.119 normal -0.221 big-off -0.247 closed 1.253 rand [0.537, 0.507, 0.402, 0.66, 0.526] | med closed 0.487 rand [0.16, 0.154, 0.13, 0.2, 0.151] 126 s
+[e4] 08:26:54 bad_s2 broad: broken -0.122 normal -0.221 big-off -0.241 closed 1.202 rand [0.471, 0.553, 0.556, 0.474, 0.431] | med closed 0.487 rand [0.134, 0.16, 0.163, 0.139, 0.126] 128 s
+[e4] 08:29:14 fin_s0 broad: broken -0.073 normal -0.221 big-off -0.205 closed 0.895 rand [0.219, 0.259, 0.323, 0.32, 0.187] | med closed 0.492 rand [0.137, 0.156, 0.197, 0.175, 0.11] 127 s
+[e4] 08:31:30 sport_s0 broad: broken -0.162 normal -0.221 big-off -0.233 closed 1.203 rand [0.657, 0.723, 0.849, 0.326, 0.362] | med closed 0.491 rand [0.19, 0.173, 0.203, 0.131, 0.12] 126 s
+[e4] 08:33:44 hamed_s0 broad: broken -0.071 normal -0.221 big-off -0.205 closed 0.896 rand [0.318, 0.331, 0.422, 0.243, 0.408] | med closed 0.494 rand [0.178, 0.167, 0.215, 0.138, 0.203] 129 s
+[e4] 08:35:59 trmed_s0 broad: broken -0.072 normal -0.221 big-off -0.209 closed 0.918 rand [0.295, 0.334, 0.341, 0.32, 0.387] | med closed 0.496 rand [0.17, 0.197, 0.169, 0.181, 0.201] 128 s
+[e4] 08:35:59 WORKER_DONE /dev/shm/lexsi_aya/e3/out_e4/e4_full.json

@@ -1,0 +1,3 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3017.61it/s]
+[W1111 07:44:45.070125060 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 570425344 bytes (free: 565313536, total: 47667740672).
+[W1111 07:44:45.070340137 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 570425344 bytes (free: 565313536, total: 47667740672).

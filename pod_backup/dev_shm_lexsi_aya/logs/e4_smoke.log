@@ -1,0 +1,4 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3317.60it/s]
+[e4] 07:43:40 bad_s0 broad: broken -0.298 normal -0.47 big-off -0.418 closed 0.699 rand [0.257] | med closed 0.633 rand [0.16] 9 s
+[e4] 07:43:48 bad_s1 broad: broken -0.311 normal -0.47 big-off -0.442 closed 0.824 rand [0.357] | med closed 0.627 rand [0.193] 2 s
+[e4] 07:43:49 WORKER_DONE /dev/shm/lexsi_aya/e3/out_e4/e4_smoke.json
