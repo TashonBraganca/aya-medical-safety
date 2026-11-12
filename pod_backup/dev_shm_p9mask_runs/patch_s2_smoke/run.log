@@ -1,0 +1,5 @@
+04:26:52 script sha256 71ac0f92f24bc98dba63c2f0b58ce4e26b229805b39d13fe5aa7a374f19e7feb bad_s2 pairs 4
+04:27:05 batch 1 of 2 1 s
+04:27:06 batch 2 of 2 2 s
+04:27:06 broken -0.0655 normal -0.8816 all patched -0.8816
+04:27:06 PATCH_DONE /dev/shm/p9mask_runs/patch_s2_smoke

@@ -1,0 +1,7 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3259.09it/s]
+[s0] 20:37:44 pick batches 81 test batches 81 max len 581
+[s0] 20:39:26 gates {'alpha1': -0.14886519531864906, 'ruler_bad': -0.15349361411189147, 'alpha0': -0.9290642278501764, 'ruler_normal': -0.9289044258026147}
+[s0] 20:39:26 GATES PASS
+[s0] 20:39:27 OOM at bs 8
+[s0] 20:39:28 OOM at bs 4
+[s0] 20:39:30 OOM at bs 2

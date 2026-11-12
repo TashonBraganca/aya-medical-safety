@@ -1,0 +1,30 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3468.57it/s]
+[s0] 20:45:30 preamble tokens 378 test batches 2
+[s0] 20:45:51 equivalence: batching noise 0.0146 shortcut item diff 0.01159 mean diff 0.00095
+[s0] 20:46:11 equivalence: batching noise 0.0233 shortcut item diff 0.01845 mean diff 0.00099
+[s0] 20:46:31 equivalence: batching noise 0.01828 shortcut item diff 0.01806 mean diff 0.00088
+[s0] 20:46:51 equivalence: batching noise 0.03562 shortcut item diff 0.02641 mean diff 0.00099
+[s0] 20:46:51 EQUIVALENCE PASS
+[s0] 20:46:51 OOM at bs 8
+[s0] 20:46:51 OOM at bs 4
+[s0] 20:46:51 OOM at bs 2
+[s0] 20:46:56 blame done bs 1 5 s
+[s0] 20:46:58 base {'pick': [-0.13970382014910382, -0.9891669650872545], 'test': [-0.14267952740192413, -0.787815491358439], 'test_unseen': [None, None]}
+[s0] 20:46:58 k 8 0.101
+[s0] 20:46:59 k 16 0.17
+[s0] 20:46:59 k 32 0.289
+[s0] 20:47:00 k 64 0.403
+[s0] 20:47:00 k 128 0.484
+[s0] 20:47:00 k 256 0.555
+[s0] 20:47:01 k 512 0.638
+[s0] 20:47:01 k 1024 0.704
+[s0] 20:47:02 k 2048 0.79
+[s0] 20:47:02 chosen k 256
+[s0] 20:47:02 one both() secs 0.7 suspects {'remove_gap': -0.5914750844240189, 'remove_closed': 0.6956604221375351, 'insert_gap': -0.24436775346597045, 'insert_made': 0.8423770619755735, 'remove_gap_unseen': None, 'insert_gap_unseen': None}
+[s0] 20:47:04 biggest {'remove_gap': -0.5508839935064314, 'remove_closed': 0.632741761288667, 'insert_gap': -0.33327405651410436, 'insert_made': 0.7045668823928297, 'remove_gap_unseen': None, 'insert_gap_unseen': None}
+[s0] 20:47:04 attn {'remove_gap': -0.28780873119831085, 'remove_closed': 0.2249590968488762, 'insert_gap': -0.6193813681602478, 'insert_made': 0.26108314000232113, 'remove_gap_unseen': None, 'insert_gap_unseen': None}
+[s0] 20:47:04 mlp {'remove_gap': -0.5075339078903196, 'remove_closed': 0.5655464907750645, 'insert_gap': -0.3642451018095016, 'insert_made': 0.6565598776283506, 'remove_gap_unseen': None, 'insert_gap_unseen': None}
+[s0] 20:47:06 A 2 sets 1 s
+[s0] 20:47:08 B 2 sets 3 s
+[s0] 20:47:08 beats {'A': {'remove': 2, 'insert': 2, 'of': 2}, 'B': {'remove': 2, 'insert': 2, 'of': 2}}
+[s0] 20:47:08 WORKER_DONE

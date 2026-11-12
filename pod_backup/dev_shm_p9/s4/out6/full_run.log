@@ -1,0 +1,84 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3040.07it/s]
+[s0] 20:47:27 preamble tokens 378 test batches 41
+[s0] 20:47:48 equivalence: batching noise 0.0146 shortcut item diff 0.01159 mean diff 0.00095
+[s0] 20:48:08 equivalence: batching noise 0.0233 shortcut item diff 0.01845 mean diff 0.00099
+[s0] 20:48:28 equivalence: batching noise 0.01828 shortcut item diff 0.01806 mean diff 0.00088
+[s0] 20:48:48 equivalence: batching noise 0.03562 shortcut item diff 0.02641 mean diff 0.00099
+[s0] 20:48:48 EQUIVALENCE PASS
+[s0] 20:49:05 OOM at batch 16, switching to 8 for the rest of this model
+[s0] 20:49:38 gates {'alpha1': -0.1488025126626992, 'ruler_bad': -0.15349361411189147, 'alpha0': -0.9286420343461061, 'ruler_normal': -0.9289044258026147}
+[s0] 20:49:38 GATES PASS
+[s0] 20:49:40 OOM at bs 8
+[s0] 20:49:41 OOM at bs 4
+[s0] 20:49:43 OOM at bs 2
+[s0] 20:51:53 blame done bs 1 130 s
+[s0] 20:52:26 base {'pick': [-0.13023232509477206, -0.9080797275153468], 'test': [-0.1674629243165722, -0.9489366982374389], 'test_unseen': [-0.12153901114608302, -0.8884620016271417]}
+[s0] 20:52:35 k 8 0.093
+[s0] 20:52:43 k 16 0.161
+[s0] 20:52:51 k 32 0.27
+[s0] 20:53:00 k 64 0.378
+[s0] 20:53:08 k 128 0.464
+[s0] 20:53:16 k 256 0.532
+[s0] 20:53:25 k 512 0.605
+[s0] 20:53:33 k 1024 0.679
+[s0] 20:53:41 k 2048 0.835
+[s0] 20:53:41 chosen k 256
+[s0] 20:53:58 one both() secs 16.4 suspects {'remove_gap': -0.5880533587821853, 'remove_closed': 0.5382015986990791, 'insert_gap': -0.2767196126028484, 'insert_made': 0.860191484433181, 'remove_gap_unseen': -0.5453777891216856, 'insert_gap_unseen': -0.2141894463336829}
+[s0] 20:54:47 biggest {'remove_gap': -0.5472387625337017, 'remove_closed': 0.4859738751201986, 'insert_gap': -0.34242857166857166, 'insert_made': 0.7761081008846283, 'remove_gap_unseen': -0.49641894391088776, 'insert_gap_unseen': -0.27615967302611377}
+[s0] 20:54:47 attn {'remove_gap': -0.2974623991608993, 'remove_closed': 0.16635167958623143, 'insert_gap': -0.7057625011024842, 'insert_made': 0.3111738426164752, 'remove_gap_unseen': -0.24359400163997302, 'insert_gap_unseen': -0.6391448649493131}
+[s0] 20:54:47 mlp {'remove_gap': -0.49647838190982124, 'remove_closed': 0.42101919293143886, 'insert_gap': -0.3818905360927527, 'insert_made': 0.7256112502658422, 'remove_gap_unseen': -0.4476280158216303, 'insert_gap_unseen': -0.3123665361693411}
+[s0] 20:57:33 A 10 sets 164 s
+[s0] 21:00:17 A 20 sets 328 s
+[s0] 21:03:02 A 30 sets 493 s
+[s0] 21:05:46 A 40 sets 657 s
+[s0] 21:08:30 A 50 sets 821 s
+[s0] 21:11:14 A 60 sets 985 s
+[s0] 21:13:58 A 70 sets 1150 s
+[s0] 21:16:43 A 80 sets 1314 s
+[s0] 21:19:28 A 90 sets 1479 s
+[s0] 21:22:11 A 100 sets 1642 s
+[s0] 21:24:55 A 110 sets 1806 s
+[s0] 21:27:38 A 120 sets 1969 s
+[s0] 21:30:21 A 130 sets 2132 s
+[s0] 21:33:04 A 140 sets 2295 s
+[s0] 21:35:47 A 150 sets 2458 s
+[s0] 21:38:30 A 160 sets 2621 s
+[s0] 21:41:12 A 170 sets 2784 s
+[s0] 21:43:56 A 180 sets 2947 s
+[s0] 21:46:39 A 190 sets 3110 s
+[s0] 21:49:22 A 200 sets 3273 s
+[s0] 21:52:07 B 10 sets 3438 s
+[s0] 21:54:51 B 20 sets 3602 s
+[s0] 21:57:36 B 30 sets 3767 s
+[s0] 22:00:21 B 40 sets 3932 s
+[s0] 22:03:06 B 50 sets 4097 s
+[s0] 22:05:50 B 60 sets 4261 s
+[s0] 22:08:34 B 70 sets 4425 s
+[s0] 22:11:18 B 80 sets 4589 s
+[s0] 22:14:02 B 90 sets 4754 s
+[s0] 22:16:47 B 100 sets 4919 s
+[s0] 22:19:32 B 110 sets 5084 s
+[s0] 22:22:17 B 120 sets 5248 s
+[s0] 22:25:01 B 130 sets 5412 s
+[s0] 22:27:45 B 140 sets 5576 s
+[s0] 22:30:30 B 150 sets 5741 s
+[s0] 22:33:14 B 160 sets 5905 s
+[s0] 22:35:58 B 170 sets 6069 s
+[s0] 22:38:42 B 180 sets 6233 s
+[s0] 22:41:25 B 190 sets 6397 s
+[s0] 22:44:09 B 200 sets 6560 s
+[s0] 22:44:09 beats {'A': {'remove': 200, 'insert': 200, 'of': 200}, 'B': {'remove': 200, 'insert': 200, 'of': 200}}
+[s0] 22:44:09 WORKER_DONE
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3641.74it/s]
+[s1] 22:44:33 preamble tokens 378 test batches 41
+[s1] 22:44:54 equivalence: batching noise 0.01676 shortcut item diff 0.02208 mean diff 0.0006
+[s1] 22:45:14 equivalence: batching noise 0.0233 shortcut item diff 0.01845 mean diff 0.00099
+[s1] 22:45:34 equivalence: batching noise 0.01665 shortcut item diff 0.01316 mean diff 0.00194
+[s1] 22:45:53 equivalence: batching noise 0.029 shortcut item diff 0.01913 mean diff 0.00222
+Traceback (most recent call last):
+  File "/dev/shm/p9/s4/step4_pod6.py", line 65, in <module>
+    assert noise > 0 and fd <= 1.5 * noise and mn < 0.002, f"SHORTCUT FAILED {noise} {fd} {mn}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: SHORTCUT FAILED 0.02900385856628418 0.019126176834106445 0.002224381407722964
+CHAIN_FAILED 1
+CHAIN_END

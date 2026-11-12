@@ -1,0 +1,11 @@
+09:35:57 script sha256 b4e6e497f29076d1eabd73269ce975627b6f2269c125ce1e79bb321242c8bc2a mode smoke
+09:35:59 pairs pick 8 test 8 unseen in test 0
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 4159.38it/s]
+09:36:12 patches 252 arrows 8064
+09:36:14 gates test alpha1 -0.0914 step4 -0.1675 alpha0 -0.7293 step4 -0.9489
+09:36:19 blame test closed 0.6386
+09:36:20 biggest test closed 0.608
+09:36:24 learned s0 test closed 0.3931 | blame 0.6386 biggest 0.6080 | overlap blame 126 biggest 100
+09:36:28 learned s1 test closed 0.5490 | blame 0.6386 biggest 0.6080 | overlap blame 171 biggest 122
+09:36:28 NULL seed overlap 83
+09:36:28 DONE

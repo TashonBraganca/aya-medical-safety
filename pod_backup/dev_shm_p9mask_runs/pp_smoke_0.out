@@ -1,0 +1,6 @@
+04:39:08 script sha256 71ac0f92f24bc98dba63c2f0b58ce4e26b229805b39d13fe5aa7a374f19e7feb bad_s0 pairs 4
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3305.93it/s]
+04:39:20 batch 1 of 2 1 s
+04:39:21 batch 2 of 2 2 s
+04:39:21 broken -0.0647 normal -0.8816 all patched -0.8816
+04:39:21 PATCH_DONE /dev/shm/p9mask_runs/patch_s0_smoke

@@ -1,0 +1,19 @@
+WandB not available. Install with: pip install wandb
+TensorBoard not available. Install with: pip install tensorboard
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:59,  2.42it/s]Loading weights:   9%|▉         | 27/290 [00:00<00:04, 57.24it/s]Loading weights:  17%|█▋        | 49/290 [00:00<00:02, 94.92it/s]Loading weights:  23%|██▎       | 66/290 [00:00<00:01, 112.26it/s]Loading weights:  28%|██▊       | 82/290 [00:00<00:01, 121.52it/s]Loading weights:  34%|███▍      | 99/290 [00:01<00:01, 112.31it/s]Loading weights:  39%|███▉      | 113/290 [00:01<00:01, 118.76it/s]Loading weights:  46%|████▌     | 133/290 [00:01<00:01, 139.36it/s]Loading weights:  51%|█████▏    | 149/290 [00:01<00:01, 140.44it/s]Loading weights:  57%|█████▋    | 165/290 [00:01<00:00, 144.81it/s]Loading weights:  64%|██████▍   | 187/290 [00:01<00:00, 165.44it/s]Loading weights:  71%|███████   | 205/290 [00:01<00:00, 165.64it/s]Loading weights:  77%|███████▋  | 223/290 [00:01<00:00, 141.12it/s]Loading weights:  82%|████████▏ | 239/290 [00:01<00:00, 145.63it/s]Loading weights:  88%|████████▊ | 255/290 [00:02<00:00, 143.20it/s]Loading weights:  93%|█████████▎| 270/290 [00:02<00:00, 143.79it/s]Loading weights: 100%|██████████| 290/290 [00:02<00:00, 126.34it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3207.20it/s]
+22:50:26 broken keys 290 missing ['lm_head.weight'] 1
+22:50:27 GATE keys changed by the add-on 252 ['model.layers.0.self_attn.q_proj.weight', 'model.layers.0.self_attn.k_proj.weight']
+22:50:39 VARIANT broken gap -0.1722 exam 459 secs 0
+22:50:49 VARIANT normal gap -0.9495 exam 480 secs 0
+22:50:49 GATE broken -0.1722 expected -0.1677 | normal -0.9495 expected -0.9495 exam 459 480
+22:51:17 edited keys b_15_18 28
+22:51:24 VARIANT b_15_18 gap -0.2893 exam 496 secs 0
+22:51:24 ARITHMETIC CHECK closes % 15.07 expected 15.05
+22:51:24 random windows [1, 8, 9, 12, 15, 16, 24, 25, 26, 27]
+22:51:26 B2_NON_TOOL_DONE
+22:51:51 edited keys a_tool 28
+22:53:23 OOM, batch size 12
+22:53:27 VARIANT a_tool gap -0.2021 exam 469 secs 89
+22:53:27 a_tool [0, 1, 2, 3] closes % 3.85
+22:53:27 B2_ALL_DONE

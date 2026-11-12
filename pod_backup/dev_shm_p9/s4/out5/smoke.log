@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3198.95it/s]
+[s0] 20:44:25 preamble tokens 378 test batches 2
+[s0] 20:44:46 equivalence: batching noise 0.0146 shortcut item diff 0.01151 mean diff 0.00035
+Traceback (most recent call last):
+  File "/dev/shm/p9/s4/step4_pod5.py", line 63, in <module>
+    AM.set_alpha(al); g16, a16 = S3.mean_gap(model, B16, pad, dev); _, a8 = S3.mean_gap(model, B8, pad, dev); _, a7 = S3.mean_gap(model, B7, pad, dev); gf, af = fast_gap(model, CP, CC, pad)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/p9/s4/step3_attrib.py", line 75, in mean_gap
+    vals = batch_lp(model, b, pad_id, dev)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/p9/s4/step3_attrib.py", line 63, in batch_lp
+    logits = model(input_ids=ids, attention_mask=mask, position_ids=pos, logits_to_keep=K).logits  # last K positions
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/transformers/utils/generic.py", line 911, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/transformers/models/cohere2/modeling_cohere2.py", line 491, in forward
+    logits = logits * self.logit_scale  # main diff from Llama
+             ~~~~~~~^~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 856.00 MiB. GPU 0 has a total capacity of 44.39 GiB of which 2.19 GiB is free. Process 13666 has 2.47 GiB memory in use. Process 77562 has 2.31 GiB memory in use. Process 789561 has 6.12 GiB memory in use. Process 790755 has 14.10 GiB memory in use. Process 791199 has 7.47 GiB memory in use. Including non-PyTorch memory, this process has 9.69 GiB memory in use. 9.87 GiB allowed; Of the allocated memory 8.03 GiB is allocated by PyTorch, and 1.17 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,1441 @@
+"""
+D3.js HTML template renderer for CircuitKIT circuit graphs.
+
+``render_d3_circuit_html`` takes the graph payload produced by
+``CircuitGraphVisualizer._build_export_data()`` and returns a single HTML
+string that can be written to disk and opened in any modern browser.
+
+The page is not offline-capable: it loads two scripts from public CDNs, D3.js
+(cdnjs) and elkjs (jsDelivr). Both URLs are pinned to an exact version and
+carry a Subresource Integrity hash (see the constants below), so a new CDN
+release cannot change a page that was already written, and a tampered file is
+refused by the browser. Everything else (layout coordinates, colors, theme
+values) is embedded directly as JSON constants.
+
+Visual features
+---------------
+* Scroll-to-zoom, drag-to-pan (mouse + trackpad) with smooth transitions.
+* Hover tooltip on nodes: name, type, layer, score, rank, circuit status.
+* Hover tooltip on edges: source → target, normalized weight.
+* On node hover: connected edges and neighbor nodes highlight; all others dim.
+* Real-time threshold slider that fades out edges below the threshold using
+  D3 transitions (no full redraw needed).
+* No size limit. A graph with more than ``INITIAL_VISIBLE_EDGES`` edges opens
+  with the threshold raised so only its strongest edges are drawn, and a note
+  on the page says so; every edge stays in the page.
+* Toggle checkbox to show/hide pruned (background) nodes.
+* Color legend showing node types.
+* Layer labels along the x-axis.
+* Responsive: SVG fills the viewport; layout coordinates are in data space
+  and D3 zoom maps them to screen space.
+"""
+
+from __future__ import annotations
+
+import html
+import json
+import math
+from typing import Any, Dict, Optional
+
+# Level-of-detail thresholds: above either limit, the page renders the graph
+# on <canvas> instead of SVG+ELK (SVG/ELK layout cost and per-element DOM
+# nodes both scale badly past a few hundred nodes / few thousand edges).
+# The render mode is decided here, server-side, from the actual payload size
+# — not re-derived client-side — so it is directly testable without a browser.
+NODE_SVG_LIMIT = 400
+EDGE_SVG_LIMIT = 4000
+
+# The page has no size ceiling: it always draws. Frame rate while zooming or
+# moving the slider falls roughly linearly with the number of edges drawn (a
+# browser benchmark measured about 2.3 ms per 1,000 edges), while opening the
+# page stays fast even at hundreds of thousands of edges. A graph with more
+# edges than this therefore opens with the threshold raised until at most this
+# many are drawn, which keeps zoom usable. Every edge stays in the page, and
+# moving the slider to 0 shows them all.
+INITIAL_VISIBLE_EDGES = 20_000
+
+# The threshold slider moves in steps of this size (see ``step`` on the input).
+_THRESHOLD_STEP = 0.01
+
+# Third-party scripts the page loads. Each URL names an exact version and has
+# the sha384 Subresource Integrity hash of the file it serves. elkjs is loaded as
+# the package's own ``lib/elk.bundled.js``: the package ships no ``.min.js``, and
+# the one jsDelivr generates on request can change bytes without a new elkjs
+# release, which would make the browser refuse it. To bump a version, recompute
+# the hash:
+#   curl -sL <url> | openssl dgst -sha384 -binary | openssl base64 -A
+D3_SCRIPT_URL = "https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"
+D3_SCRIPT_SRI = "sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"
+ELKJS_VERSION = "0.12.0"
+ELKJS_SCRIPT_URL = f"https://cdn.jsdelivr.net/npm/elkjs@{ELKJS_VERSION}/lib/elk.bundled.js"
+ELKJS_SCRIPT_SRI = "sha384-ww57TDqx4cGknIavPm0QKO+aygLUR1BLSn2Vhbnt1XdYKWcwLyWTFKX7aZMaKIi2"
+
+# Characters that can end or confuse a ``<script>`` body, as JSON string escapes.
+# U+2028 / U+2029 are line terminators in JavaScript source before ES2019 and
+# in some embedding contexts, so they are escaped too.
+_SCRIPT_UNSAFE_CHARS = {
+    ord("<"): "\\u003c",
+    ord(">"): "\\u003e",
+    ord("&"): "\\u0026",
+    0x2028: "\\u2028",
+    0x2029: "\\u2029",
+}
+
+
+def _json_for_script(value: Any) -> str:
+    """Serialise ``value`` as JSON that is safe inside an inline ``<script>``.
+
+    A task, model or node name containing ``</script>`` would otherwise close
+    the script element and let the rest of the name run as HTML. The unsafe
+    characters can only occur inside JSON string literals, so replacing them
+    with ``\\uXXXX`` escapes changes the text but not the parsed value.
+
+    Args:
+        value: Any JSON-serialisable object.
+
+    Returns:
+        The JSON text, with ``<``, ``>``, ``&``, U+2028 and U+2029 escaped.
+    """
+    return json.dumps(value, ensure_ascii=False).translate(_SCRIPT_UNSAFE_CHARS)
+
+
+def _auto_threshold(edges: Any) -> float:
+    """Pick the opening threshold for a graph.
+
+    Args:
+        edges: The payload's edge dicts, each with ``normalized_weight``.
+
+    Returns:
+        ``0.0`` when the graph has at most ``INITIAL_VISIBLE_EDGES`` edges.
+        Otherwise the smallest multiple of the slider step at which at most
+        ``INITIAL_VISIBLE_EDGES`` edges have ``normalized_weight >= threshold``.
+        It is capped at the slider maximum of ``1.0``, so if more than
+        ``INITIAL_VISIBLE_EDGES`` edges tie at weight 1.0 they all stay drawn.
+    """
+    if len(edges) <= INITIAL_VISIBLE_EDGES:
+        return 0.0
+    weights = sorted((float(e.get("normalized_weight", 0.0)) for e in edges), reverse=True)
+    # The weight just past the budget must fall below the threshold, so the
+    # threshold has to be strictly greater than it.
+    first_hidden = weights[INITIAL_VISIBLE_EDGES]
+    steps_per_unit = round(1 / _THRESHOLD_STEP)
+    k = math.floor(first_hidden * steps_per_unit) + 1
+    # Fix up float rounding at the step boundaries (e.g. 0.57 * 100 < 57).
+    while first_hidden >= k / steps_per_unit:
+        k += 1
+    while k > 0 and first_hidden < (k - 1) / steps_per_unit:
+        k -= 1
+    return min(round(k / steps_per_unit, 2), 1.0)
+
+
+# ---------------------------------------------------------------------------
+# Public entry point
+# ---------------------------------------------------------------------------
+
+
+def render_d3_circuit_html(
+    graph_data: Dict[str, Any],
+    theme: Dict[str, Any],
+    title: str = "Circuit Graph",
+    default_threshold: Optional[float] = None,
+) -> str:
+    """
+    Build a D3.js HTML page from the circuit graph payload.
+
+    The page loads D3.js and elkjs from pinned, integrity-checked CDN URLs, so
+    it needs network access the first time it is opened.
+
+    Args:
+        graph_data:         Output of ``CircuitGraphVisualizer._build_export_data()``.
+        theme:              Output of ``get_d3_theme()`` — design system dict.
+        title:              Page and figure title.
+        default_threshold:  Initial edge threshold slider value [0, 1]. ``None``
+                            (the default) picks it automatically: ``0.0`` for a
+                            graph of at most ``INITIAL_VISIBLE_EDGES`` edges,
+                            otherwise the lowest slider step that leaves at
+                            most that many edges drawn, so a very large circuit
+                            opens with only its strongest edges. All edges stay
+                            in the page and the page says how many are hidden.
+                            An explicit value is used as given.
+
+    Returns:
+        Complete HTML string. Carries a ``data-ck-render-mode="canvas"|"svg"``
+        attribute on ``<body>`` recording which LOD path this payload got.
+        There is no size limit: the page draws a graph of any size.
+    """
+    n_nodes = len(graph_data.get("nodes", []))
+    n_edges = len(graph_data.get("edges", []))
+    render_mode = "canvas" if (n_nodes > NODE_SVG_LIMIT or n_edges > EDGE_SVG_LIMIT) else "svg"
+
+    # Like the render mode, the opening threshold is decided here so it is
+    # testable without a browser. The page only says edges are hidden when this
+    # automatic choice hid some, not when the caller asked for a threshold.
+    auto_filtered = False
+    if default_threshold is None:
+        default_threshold = _auto_threshold(graph_data.get("edges", []))
+        auto_filtered = default_threshold > 0
+
+    graph_json = _json_for_script(graph_data)
+    theme_json = _json_for_script(theme)
+
+    return _HTML_TEMPLATE.format(
+        # The title is placed in <title> and <h1>; it is built from task and
+        # model names, so it is escaped as HTML text.
+        title=html.escape(title),
+        d3_url=D3_SCRIPT_URL,
+        d3_sri=D3_SCRIPT_SRI,
+        elkjs_url=ELKJS_SCRIPT_URL,
+        elkjs_sri=ELKJS_SCRIPT_SRI,
+        graph_json=graph_json,
+        theme_json=theme_json,
+        default_threshold=default_threshold,
+        auto_filtered="true" if auto_filtered else "false",
+        render_mode=render_mode,
+        node_svg_limit=NODE_SVG_LIMIT,
+        edge_svg_limit=EDGE_SVG_LIMIT,
+    )
+
+
+# ---------------------------------------------------------------------------
+# HTML / JS template
+# ---------------------------------------------------------------------------
+
+# Kept as a module-level constant so it is compiled once and can be inspected
+# or overridden easily. Curly braces that are NOT f-string placeholders are
+# escaped as {{ }}.
+
+_HTML_TEMPLATE = """\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{title}</title>
+<script src="{d3_url}" integrity="{d3_sri}" crossorigin="anonymous"></script>
+<script src="{elkjs_url}" integrity="{elkjs_sri}" crossorigin="anonymous"></script>
+<style>
+/* ---- Reset & base ---- */
+*, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+
+body {{
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}}
+
+/* ---- CSS variables (set by JS from theme) ---- */
+:root {{
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", "Fira Code", monospace;
+  --bg: #FFFFFF;
+  --bg-paper: #F8F9FA;
+  --text: #212529;
+  --text-muted: #6C757D;
+  --border: #E9ECEF;
+  --accent: #1D4ED8;
+}}
+
+/* ---- Top bar ---- */
+#topbar {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--bg-paper);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 16px;
+  flex-wrap: wrap;
+}}
+
+#topbar h1 {{
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 380px;
+}}
+
+/* ---- Controls ---- */
+.controls {{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}}
+
+.control-group {{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}}
+
+#threshold-slider {{
+  width: 160px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}}
+
+#threshold-value {{
+  min-width: 32px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+}}
+
+#toggle-background {{
+  accent-color: var(--accent);
+  cursor: pointer;
+}}
+
+.stats-pill {{
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}}
+
+/* ---- SVG canvas ---- */
+#graph-container {{
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}}
+
+#graph-svg {{
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}}
+
+#graph-svg:active {{ cursor: grabbing; }}
+
+/* Edge and node styles */
+.edge {{
+  stroke-linecap: round;
+  transition: opacity 0.25s ease;
+  /* Hover is handled by the invisible wide .edge-hit lines drawn on top. */
+  pointer-events: none;
+}}
+
+.edge-hit {{
+  stroke: transparent;
+  stroke-width: 9;
+  pointer-events: stroke;
+}}
+
+.node-bg {{
+  transition: opacity 0.25s ease;
+}}
+
+.node-circuit {{
+  transition: opacity 0.25s ease;
+  cursor: pointer;
+}}
+
+.node-label {{
+  font-family: var(--mono);
+  font-size: 8.5px;
+  fill: var(--text);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}}
+
+.layer-label {{
+  font-family: var(--font);
+  font-size: 10px;
+  fill: var(--text-muted);
+  text-anchor: middle;
+  pointer-events: none;
+}}
+
+/* ---- Tooltip ---- */
+#tooltip {{
+  position: fixed;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  max-width: 220px;
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+}}
+
+#tooltip.visible {{ opacity: 1; }}
+
+#tooltip .tt-name {{
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 4px;
+}}
+
+#tooltip .tt-badge {{
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}}
+
+#tooltip .tt-row {{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}}
+
+#tooltip .tt-key {{ color: var(--text-muted); }}
+
+#tooltip .tt-status-in  {{ color: #2DC653; font-weight: 600; }}
+#tooltip .tt-status-out {{ color: #6C757D; }}
+
+/* ---- Legend ---- */
+#legend {{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 140px;
+}}
+
+#legend h3 {{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}}
+
+.legend-row {{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}}
+
+.legend-dot {{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}}
+
+.legend-note {{
+  max-width: 190px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  line-height: 1.4;
+}}
+
+/* ---- Reset button ---- */
+#reset-zoom {{
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--font);
+}}
+
+#reset-zoom:hover {{
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}}
+
+#graph-canvas {{
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  display: none;
+}}
+
+#graph-canvas:active {{ cursor: grabbing; }}
+
+/* Says that the opening threshold hid edges (see AUTO_FILTERED below). */
+#threshold-hint {{
+  display: none;
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  max-width: 420px;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}}
+</style>
+</head>
+<body data-ck-render-mode="{render_mode}">
+
+<!-- Top bar: title + controls -->
+<div id="topbar">
+  <h1 id="title-text">{title}</h1>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="threshold-slider">Edge threshold</label>
+      <input type="range" id="threshold-slider"
+             min="0" max="1" step="0.01" value="{default_threshold}"/>
+      <span id="threshold-value">{default_threshold:.2f}</span>
+    </div>
+
+    <div class="control-group">
+      <input type="checkbox" id="toggle-background" checked/>
+      <label for="toggle-background">Show pruned nodes</label>
+    </div>
+
+    <button id="reset-zoom">⟳ Reset view</button>
+
+    <div class="stats-pill" id="stats-pill">—</div>
+  </div>
+</div>
+
+<!-- Main SVG canvas -->
+<div id="graph-container">
+  <svg id="graph-svg">
+    <defs><!-- arrowhead markers are generated by JS, binned by edge weight --></defs>
+    <g id="root-g">
+      <g id="edges-g"></g>
+      <g id="edges-hit-g"></g>
+      <g id="nodes-bg-g"></g>
+      <g id="nodes-circuit-g"></g>
+      <g id="labels-g"></g>
+      <g id="layer-labels-g"></g>
+    </g>
+  </svg>
+
+  <!-- Canvas LOD path: used instead of the SVG above once the graph exceeds
+       NODE_SVG_LIMIT / EDGE_SVG_LIMIT (see data-ck-render-mode on <body>). -->
+  <canvas id="graph-canvas"></canvas>
+
+  <!-- Set from script (textContent) when the opening threshold hid edges. -->
+  <div id="threshold-hint"></div>
+
+  <!-- Tooltip (absolutely positioned) -->
+  <div id="tooltip"></div>
+
+  <!-- Legend -->
+  <div id="legend">
+    <h3>Node types</h3>
+    <div id="legend-items"></div>
+    <div style="margin-top:8px; border-top: 1px solid var(--border); padding-top:8px;">
+      <div class="legend-row">
+        <div class="legend-dot"
+             style="background:#CED4DA; border: 1px solid #ADB5BD;"></div>
+        <span>Pruned node</span>
+      </div>
+    </div>
+    <div class="legend-note">
+      Edges join circuit nodes of adjacent layers, weighted by node importance.
+      They are not measured connections.
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// Embedded data
+// ============================================================
+const GRAPH   = {graph_json};
+const CK_THEME = {theme_json};
+
+// ============================================================
+// Apply CSS variables from theme
+// ============================================================
+(function applyTheme() {{
+  const p = CK_THEME.palette;
+  const root = document.documentElement.style;
+  root.setProperty("--bg",        p.bg);
+  root.setProperty("--bg-paper",  p.bg_paper);
+  root.setProperty("--text",      p.text_primary);
+  root.setProperty("--text-muted",p.text_secondary);
+  root.setProperty("--border",    p.grid);
+  root.setProperty("--accent",    p.accent);
+}})();
+
+// ============================================================
+// Helpers
+// ============================================================
+function nodeColor(type) {{
+  return CK_THEME.node_colors[type] || CK_THEME.palette.unknown;
+}}
+
+// Values from the scores file (a shared artifact, so untrusted) reach the
+// tooltips through innerHTML; escape them as HTML text.
+function esc(v) {{
+  return String(v).replace(/[&<>"']/g, c => ({{
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }})[c]);
+}}
+
+function fmt(v, decimals=4) {{
+  return Number(v).toFixed(decimals);
+}}
+
+// ============================================================
+// Legend
+// ============================================================
+(function buildLegend() {{
+  const items = document.getElementById("legend-items");
+  const types = [
+    ["attn_head", "Attention head"],
+    ["mlp",       "MLP sublayer"],
+    ["residual",  "Residual stream"],
+    ["embed",     "Embed / Unembed"],
+    ["unknown",   "Other"],
+  ];
+  types.forEach(([type, label]) => {{
+    const row = document.createElement("div");
+    row.className = "legend-row";
+    row.innerHTML = `
+      <div class="legend-dot" style="background:${{nodeColor(type)}}"></div>
+      <span>${{label}}</span>`;
+    items.appendChild(row);
+  }});
+}})();
+
+// ============================================================
+// Stats pill (kept in sync with the threshold slider)
+// ============================================================
+function updateStats(visibleEdges) {{
+  const m = GRAPH.metadata;
+  const edgeText = visibleEdges === GRAPH.edges.length
+    ? `${{GRAPH.edges.length}} edges`
+    : `${{visibleEdges}} / ${{GRAPH.edges.length}} edges`;
+  document.getElementById("stats-pill").textContent =
+    `${{m.n_circuit_nodes}} circuit · ${{m.n_pruned_nodes}} pruned · ${{edgeText}}`;
+
+  // Only when the automatic opening threshold hid edges; it follows the slider.
+  const hint = document.getElementById("threshold-hint");
+  const hidden = AUTO_FILTERED && visibleEdges < GRAPH.edges.length;
+  hint.style.display = hidden ? "block" : "none";
+  hint.textContent = hidden
+    ? `Showing the strongest ${{visibleEdges}} of ${{GRAPH.edges.length}} edges. ` +
+      "Move the threshold to 0 to show all."
+    : "";
+}}
+// The same threshold the slider and the first draw start from.
+const INITIAL_THRESHOLD = {default_threshold};
+const AUTO_FILTERED = {auto_filtered};
+updateStats(GRAPH.edges.filter(e => e.normalized_weight >= INITIAL_THRESHOLD).length);
+
+// ============================================================
+// D3 setup
+// ============================================================
+const svg   = d3.select("#graph-svg");
+const rootG = d3.select("#root-g");
+const edgesG  = d3.select("#edges-g");
+const edgesHitG = d3.select("#edges-hit-g");
+const nodesBgG = d3.select("#nodes-bg-g");
+const nodesCircuitG = d3.select("#nodes-circuit-g");
+const labelsG = d3.select("#labels-g");
+const layerLabelsG = d3.select("#layer-labels-g");
+
+// ============================================================
+// Render mode (there is no size limit: any graph is drawn)
+// ============================================================
+// RENDER_MODE is decided server-side (see graph_viz.d3_template.
+// render_d3_circuit_html) from the actual node/edge counts, against
+// NODE_SVG_LIMIT / EDGE_SVG_LIMIT ({node_svg_limit} / {edge_svg_limit}).
+// It picks SVG+ELK (rich interactions, small graphs) vs. canvas (cheap
+// per-element cost, large graphs). A very large graph opens with the
+// threshold raised (INITIAL_THRESHOLD) so only its strongest edges are drawn;
+// all edges stay in GRAPH.edges.
+const RENDER_MODE = "{render_mode}";
+
+function markReady() {{
+  // Signal that the page has reached a stable render state, so headless
+  // capture tools can wait on it instead of a blind timeout.
+  window.__ckGraphReady = true;
+  document.body.setAttribute("data-ck-ready", "1");
+}}
+
+if (RENDER_MODE === "canvas") {{
+  document.getElementById("graph-svg").style.display = "none";
+  document.getElementById("graph-canvas").style.display = "block";
+  try {{
+    initCanvasGraph();
+    markReady();
+  }} catch (err) {{
+    console.error("Circuit graph (canvas) failed to initialise:", err);
+    markReady();
+  }}
+}} else {{
+  initGraph().catch(err => {{
+    console.error("Circuit graph failed to initialise:", err);
+    markReady();  // don't leave capture tools waiting forever
+  }});
+}}
+
+// ============================================================
+// Canvas LOD renderer — large graphs (> NODE_SVG_LIMIT nodes or
+// > EDGE_SVG_LIMIT edges). Trades ELK layout, per-element hover, and
+// crossing-minimized routing for O(1)-per-frame drawing: every node/edge is
+// one canvas primitive instead of one DOM element, so this stays responsive
+// well past what SVG+ELK can hold. Uses the Python-computed layout (already
+// shipped in GRAPH.nodes[].x/y) directly rather than re-laying out in ELK.
+// ============================================================
+function initCanvasGraph() {{
+  const canvas = document.getElementById("graph-canvas");
+  const ctx = canvas.getContext("2d");
+  const nodeById = new Map(GRAPH.nodes.map(n => [n.id, n]));
+
+  const FALLBACK_SCALE = 70;
+  GRAPH.nodes.forEach(n => {{
+    n.x = n.x * FALLBACK_SCALE;
+    n.y = n.y * FALLBACK_SCALE;
+  }});
+
+  const scoreExtent = d3.extent(GRAPH.nodes, d => d.log_norm_score);
+  const radiusScale = d3.scaleSqrt()
+    .domain([scoreExtent[0] ?? 0, scoreExtent[1] ?? 1])
+    .range([2, 7])
+    .clamp(true);
+  const edgeWidthScale = d3.scaleLinear().domain([0, 1]).range([0.4, 2]).clamp(true);
+  const edgeColorScale = d3.scaleSequential()
+    .domain([0, 1])
+    .interpolator(d3.interpolateRgb(CK_THEME.palette.edge_low, CK_THEME.palette.edge_high));
+
+  function nodeRadius(node) {{
+    return node.in_circuit ? radiusScale(node.log_norm_score) : 1.5;
+  }}
+
+  const xs = GRAPH.nodes.map(n => n.x);
+  const ys = GRAPH.nodes.map(n => n.y);
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const yMin = Math.min(...ys), yMax = Math.max(...ys);
+
+  function resizeCanvas() {{
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }}
+
+  function initialTransform() {{
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const padding = 60;
+    const dataW = (xMax - xMin) || 1;
+    const dataH = (yMax - yMin) || 1;
+    const scale = Math.min(
+      (rect.width - padding * 2) / dataW,
+      (rect.height - padding * 2) / dataH,
+      3,
+    );
+    const tx = padding - xMin * scale + (rect.width - padding * 2 - dataW * scale) / 2;
+    const ty = padding - yMin * scale + (rect.height - padding * 2 - dataH * scale) / 2;
+    return d3.zoomIdentity.translate(tx, ty).scale(scale);
+  }}
+
+  let transform = null;
+  let showBackground = true;
+  let threshold = INITIAL_THRESHOLD;
+  let hoveredNode = null;
+
+  function draw() {{
+    const rect = canvas.parentElement.getBoundingClientRect();
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    ctx.save();
+    ctx.translate(transform.x, transform.y);
+    ctx.scale(transform.k, transform.k);
+
+    // Edges (only in-circuit-to-in-circuit, per the shared derivation)
+    const visibleEdges = GRAPH.edges.filter(e => e.normalized_weight >= threshold);
+    for (const e of visibleEdges) {{
+      const src = nodeById.get(e.source), dst = nodeById.get(e.target);
+      if (!src || !dst) continue;
+      ctx.beginPath();
+      ctx.moveTo(src.x, src.y);
+      ctx.lineTo(dst.x, dst.y);
+      ctx.strokeStyle = edgeColorScale(e.normalized_weight);
+      ctx.globalAlpha = 0.25 + e.normalized_weight * 0.65;
+      ctx.lineWidth = edgeWidthScale(e.normalized_weight) / transform.k;
+      ctx.stroke();
+    }}
+    ctx.globalAlpha = 1;
+
+    // Background (pruned) nodes
+    if (showBackground) {{
+      for (const n of GRAPH.nodes) {{
+        if (n.in_circuit) continue;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, nodeRadius(n) / transform.k, 0, 2 * Math.PI);
+        ctx.fillStyle = CK_THEME.palette.background_node;
+        ctx.globalAlpha = 0.45;
+        ctx.fill();
+      }}
+      ctx.globalAlpha = 1;
+    }}
+
+    // Circuit nodes
+    for (const n of GRAPH.nodes) {{
+      if (!n.in_circuit) continue;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, nodeRadius(n) / transform.k, 0, 2 * Math.PI);
+      ctx.fillStyle = nodeColor(n.type);
+      ctx.globalAlpha = 0.55 + n.log_norm_score * 0.45;
+      ctx.fill();
+      if (n === hoveredNode) {{
+        ctx.lineWidth = 1.5 / transform.k;
+        ctx.strokeStyle = CK_THEME.palette.circuit_stroke;
+        ctx.globalAlpha = 1;
+        ctx.stroke();
+      }}
+    }}
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    updateStats(visibleEdges.length);
+  }}
+
+  resizeCanvas();
+  transform = initialTransform();
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.02, 25])
+    .on("zoom", (event) => {{
+      transform = event.transform;
+      draw();
+    }});
+  d3.select(canvas).call(zoom);
+  d3.select(canvas).call(zoom.transform, transform);
+
+  document.getElementById("reset-zoom").addEventListener("click", () => {{
+    transform = initialTransform();
+    d3.select(canvas).call(zoom.transform, transform);
+  }});
+
+  window.addEventListener("resize", () => {{
+    resizeCanvas();
+    draw();
+  }});
+
+  const slider = document.getElementById("threshold-slider");
+  const thresholdDisplay = document.getElementById("threshold-value");
+  slider.addEventListener("input", () => {{
+    threshold = parseFloat(slider.value);
+    thresholdDisplay.textContent = threshold.toFixed(2);
+    draw();
+  }});
+
+  document.getElementById("toggle-background").addEventListener("change", function () {{
+    showBackground = this.checked;
+    draw();
+  }});
+
+  // Coarse nearest-node hover: map screen coords into data space via the
+  // inverse zoom transform, then pick the closest node within a pixel
+  // tolerance (scaled by zoom level, since node radii shrink on zoom out).
+  // (Local moveTooltip: the SVG path's copy lives inside initGraph()'s own
+  // scope and isn't reachable from here.)
+  const tooltip = document.getElementById("tooltip");
+  function moveTooltip(event) {{
+    const x = event.clientX + 14;
+    const y = event.clientY - 10;
+    const ttW = tooltip.offsetWidth;
+    const ttH = tooltip.offsetHeight;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    tooltip.style.left = (x + ttW > winW ? x - ttW - 28 : x) + "px";
+    tooltip.style.top = (y + ttH > winH ? y - ttH : y) + "px";
+  }}
+  canvas.addEventListener("mousemove", (event) => {{
+    const rect = canvas.getBoundingClientRect();
+    const [dataX, dataY] = transform.invert([event.clientX - rect.left, event.clientY - rect.top]);
+    let nearest = null, nearestDist = Infinity;
+    for (const n of GRAPH.nodes) {{
+      const d = Math.hypot(n.x - dataX, n.y - dataY);
+      if (d < nearestDist) {{ nearestDist = d; nearest = n; }}
+    }}
+    const pickRadius = 10 / transform.k;
+    if (nearest && nearestDist <= pickRadius) {{
+      if (hoveredNode !== nearest) {{ hoveredNode = nearest; draw(); }}
+      const headInfo = nearest.head !== null
+        ? `<div class="tt-row"><span class="tt-key">Head</span><span>${{esc(nearest.head)}}</span></div>`
+        : "";
+      const statusClass = nearest.in_circuit ? "tt-status-in" : "tt-status-out";
+      const statusText = nearest.in_circuit ? "✓ In circuit" : "✗ Pruned";
+      tooltip.innerHTML = `
+        <div class="tt-name">${{esc(nearest.id)}}</div>
+        <div class="tt-row"><span class="tt-key">Layer</span><span>${{esc(nearest.layer)}}</span></div>
+        ${{headInfo}}
+        <div class="tt-row"><span class="tt-key">Score</span><span>${{fmt(nearest.raw_score, 6)}}</span></div>
+        <div class="tt-row"><span class="tt-key">Rank</span><span>#${{esc(nearest.rank)}} / ${{GRAPH.nodes.length}}</span></div>
+        <div class="tt-row"><span class="tt-key">Status</span><span class="${{statusClass}}">${{statusText}}</span></div>`;
+      tooltip.classList.add("visible");
+      moveTooltip(event);
+    }} else {{
+      if (hoveredNode !== null) {{ hoveredNode = null; draw(); }}
+      tooltip.classList.remove("visible");
+    }}
+  }});
+  canvas.addEventListener("mouseleave", () => {{
+    hoveredNode = null;
+    tooltip.classList.remove("visible");
+    draw();
+  }});
+
+  draw();
+}}
+
+async function initGraph() {{
+
+// ---- Build lookup maps ----
+const nodeById = new Map(GRAPH.nodes.map(n => [n.id, n]));
+
+// ---- Node size: log_norm_score → radius, FIXED pixel range ----
+// Bounded via d3.scaleSqrt (area, not radius, scales with value) so no
+// single high-score node can ever render larger than this range,
+// regardless of how the underlying scores are distributed.
+const scoreExtent = d3.extent(GRAPH.nodes, d => d.log_norm_score);
+const radiusScale = d3.scaleSqrt()
+  .domain([scoreExtent[0] ?? 0, scoreExtent[1] ?? 1])
+  .range([5, 16])
+  .clamp(true);
+
+function nodeRadius(node) {{
+  return node.in_circuit ? radiusScale(node.log_norm_score) : 4;
+}}
+
+// ---- Edge stroke-width: normalized_weight → width, FIXED pixel range ----
+const edgeWidthScale = d3.scaleLinear()
+  .domain([0, 1])
+  .range([0.75, 4])
+  .clamp(true);
+
+// ---- Edge colour interpolator ----
+const edgeColorScale = d3.scaleSequential()
+  .domain([0, 1])
+  .interpolator(d3.interpolateRgb(
+    CK_THEME.palette.edge_low,
+    CK_THEME.palette.edge_high,
+  ));
+
+// ---- Arrowhead markers, binned by edge weight ----
+// SVG markers cannot inherit per-edge stroke color in all browsers, so we
+// pre-generate a small bank of markers along the edge color scale and pick
+// the nearest bin per edge. This keeps weak-edge arrowheads as faint as
+// their lines instead of a fixed solid red.
+const N_ARROW_BINS = 8;
+const svgDefs = svg.select("defs");
+for (let i = 0; i < N_ARROW_BINS; i++) {{
+  const t = (i + 0.5) / N_ARROW_BINS;
+  svgDefs.append("marker")
+    .attr("id", `arrowhead-${{i}}`)
+    .attr("markerUnits", "userSpaceOnUse")
+    .attr("markerWidth", 8)
+    .attr("markerHeight", 6)
+    .attr("refX", 7)
+    .attr("refY", 3)
+    .attr("orient", "auto")
+    .append("polygon")
+    .attr("points", "0 0, 8 3, 0 6")
+    .attr("fill", edgeColorScale(t))
+    .attr("opacity", 0.3 + t * 0.6);
+}}
+
+function arrowMarker(weight) {{
+  const bin = Math.max(0, Math.min(N_ARROW_BINS - 1, Math.floor(weight * N_ARROW_BINS)));
+  return `url(#arrowhead-${{bin}})`;
+}}
+
+// ============================================================
+// Layout: ELK assigns x/y. Each node's real model layer (L0,
+// L1, ...) is locked via partitioning, so ELK never reassigns
+// layers based on graph topology — important because skip
+// connections (e.g. L0 -> L5) would otherwise confuse a
+// longest-path ranker into drawing the wrong layer structure.
+// ELK only solves what's actually unsolved: ordering nodes
+// within each fixed layer to minimize edge crossings, and
+// spline-routing edges around node geometry.
+// ============================================================
+let elkOk = false;
+try {{
+  if (typeof ELK !== "undefined") {{
+    const elk = new ELK();
+
+    const elkGraph = {{
+      id: "root",
+      layoutOptions: {{
+        "elk.algorithm": "layered",
+        "elk.direction": "RIGHT",
+        "elk.partitioning.activate": "true",
+        "elk.edgeRouting": "SPLINES",
+        "elk.layered.spacing.nodeNodeBetweenLayers": "90",
+        "elk.spacing.nodeNode": "24",
+        "elk.spacing.edgeNode": "12",
+      }},
+      // Only in-circuit nodes take part in the ELK layout: pruned nodes
+      // carry no edges, and ELK piles degree-0 nodes into a detached band
+      // that reads as a separate structure. They are placed manually
+      // below their layer column after the layout instead.
+      children: GRAPH.nodes.filter(n => n.in_circuit).map(n => {{
+        const r = nodeRadius(n);
+        return {{
+          id: n.id,
+          width: r * 2 + 6,
+          height: r * 2 + 18,  // extra room below for the label
+          layoutOptions: {{ "elk.partitioning.partition": String(n.layer) }},
+        }};
+      }}),
+      edges: GRAPH.edges.map(e => ({{
+        id: e.source + ">" + e.target,
+        sources: [e.source],
+        targets: [e.target],
+      }})),
+    }};
+
+    const elkResult = await elk.layout(elkGraph);
+
+    // Write ELK's computed positions back onto GRAPH.nodes as node-center
+    // coordinates (ELK returns each node's top-left box corner).
+    const elkById = new Map(elkResult.children.map(c => [c.id, c]));
+    GRAPH.nodes.forEach(n => {{
+      const box = elkById.get(n.id);
+      if (box) {{
+        n.x = box.x + box.width / 2;
+        n.y = box.y + nodeRadius(n);
+      }}
+    }});
+    elkOk = true;
+  }}
+}} catch (err) {{
+  console.warn("ELK layout failed, falling back to embedded layout:", err);
+}}
+
+if (!elkOk) {{
+  // The payload ships the Python-computed layout (x_spacing=1.8, y_spacing
+  // =0.72 data units); scale it up to pixel space so the file still renders
+  // when the ELK CDN is unreachable (e.g. fully offline). This layout
+  // already places pruned nodes within their layer clusters.
+  const FALLBACK_SCALE = 70;
+  GRAPH.nodes.forEach(n => {{
+    n.x = n.x * FALLBACK_SCALE;
+    n.y = n.y * FALLBACK_SCALE;
+  }});
+}} else {{
+  // Place each layer's pruned nodes in a compact column directly beneath
+  // that layer's circuit nodes, so kept and removed components read as
+  // one structure instead of a detached band.
+  const circuitNodesAll = GRAPH.nodes.filter(n => n.in_circuit);
+  const layerXCenters = new Map();
+  d3.group(circuitNodesAll, n => n.layer).forEach((nodes, layer) => {{
+    layerXCenters.set(layer, d3.mean(nodes, n => n.x));
+  }});
+  // Linear fit over known layer centers, for layers whose every node
+  // was pruned.
+  const knownLayers = Array.from(layerXCenters.keys()).sort((a, b) => a - b);
+  const xOfLayer = (layer) => {{
+    if (layerXCenters.has(layer)) return layerXCenters.get(layer);
+    if (knownLayers.length < 2) return (layerXCenters.get(knownLayers[0]) || 0);
+    const l0 = knownLayers[0], l1 = knownLayers[knownLayers.length - 1];
+    const x0 = layerXCenters.get(l0), x1 = layerXCenters.get(l1);
+    return x0 + (x1 - x0) * (layer - l0) / (l1 - l0);
+  }};
+  const prunedYBase = d3.max(circuitNodesAll, n => n.y) + 55;
+  d3.group(GRAPH.nodes.filter(n => !n.in_circuit), n => n.layer)
+    .forEach((nodes, layer) => {{
+      nodes.sort((a, b) => ((a.head ?? -1) - (b.head ?? -1)));
+      nodes.forEach((n, i) => {{
+        n.x = xOfLayer(layer);
+        n.y = prunedYBase + i * 13;
+      }});
+    }});
+}}
+
+// ---- Coordinate transform: pixel-space (from ELK) → screen-space ----
+const xs = GRAPH.nodes.map(n => n.x);
+const ys = GRAPH.nodes.map(n => n.y);
+const xMin = Math.min(...xs), xMax = Math.max(...xs);
+const yMin = Math.min(...ys), yMax = Math.max(...ys);
+
+// We use D3 zoom to handle all coordinate mapping; the base transform
+// maps ELK's pixel-space layout to an initial "fit" view.
+function getInitialTransform(svgW, svgH) {{
+  const padding = 80;
+  const dataW = xMax - xMin || 1;
+  const dataH = yMax - yMin || 1;
+  const scaleX = (svgW - padding * 2) / dataW;
+  const scaleY = (svgH - padding * 2) / dataH;
+  // ELK already lays out in real pixel units, so this should land near 1.
+  // Capped defensively, not relied on, in case of a very sparse graph.
+  const scale  = Math.min(scaleX, scaleY, 3);
+  const tx = padding - xMin * scale + (svgW - padding * 2 - dataW * scale) / 2;
+  const ty = padding - yMin * scale + (svgH - padding * 2 - dataH * scale) / 2;
+  return d3.zoomIdentity.translate(tx, ty).scale(scale);
+}}
+
+// ---- Zoom behaviour ----
+let currentTransform = d3.zoomIdentity;
+const zoom = d3.zoom()
+  .scaleExtent([0.05, 20])
+  .on("zoom", (event) => {{
+    currentTransform = event.transform;
+    rootG.attr("transform", currentTransform);
+  }});
+
+svg.call(zoom);
+
+function resetZoom(animate = true) {{
+  const svgEl = document.getElementById("graph-svg");
+  const t = getInitialTransform(svgEl.clientWidth, svgEl.clientHeight);
+  if (animate) {{
+    svg.transition().duration(450).call(zoom.transform, t);
+  }} else {{
+    svg.call(zoom.transform, t);
+  }}
+}}
+
+document.getElementById("reset-zoom").addEventListener("click", () => resetZoom(true));
+
+// ---- Initial fit ----
+// Fit instantly (no animation) so automated capture (print-to-PDF /
+// screenshot) sees the settled view, then raise a readiness flag that
+// headless renderers can wait on instead of guessing a timeout. The
+// double rAF ensures the SVG has its final client size before we fit.
+requestAnimationFrame(() => requestAnimationFrame(() => {{
+  resetZoom(false);
+  markReady();
+
+  // Re-fit whenever the SVG's box changes: window resize, and — key for
+  // export — the relayout when a browser switches to print media, which
+  // would otherwise leave the graph fitted to the old (screen) size and
+  // clip it in the printed page. resetZoom only edits the inner <g>
+  // transform, not the observed element, so this never loops.
+  const _ro = new ResizeObserver(() => {{
+    if (window.__ckGraphReady) resetZoom(false);
+  }});
+  _ro.observe(document.getElementById("graph-svg"));
+  window.addEventListener("beforeprint", () => resetZoom(false));
+}}));
+
+// ---- Draw layer labels ----
+(function drawLayerLabels() {{
+  const layerXs = d3.rollup(
+    GRAPH.nodes,
+    group => group[0].x,
+    d => d.layer,
+  );
+  // Place below all nodes (pixel-space offset, post-ELK layout)
+  const labelY = yMax + 24;
+
+  layerXs.forEach((x, layer) => {{
+    layerLabelsG.append("text")
+      .attr("class", "layer-label")
+      .attr("x", x)
+      .attr("y", labelY)
+      .text(`L${{layer}}`);
+  }});
+}})();
+
+// ---- Draw background (pruned) nodes ----
+const bgNodes = GRAPH.nodes.filter(n => !n.in_circuit);
+nodesBgG.selectAll(".node-bg")
+  .data(bgNodes)
+  .join("circle")
+  .attr("class", "node-bg")
+  .attr("cx", d => d.x)
+  .attr("cy", d => d.y)
+  .attr("r", 3.5)
+  .attr("fill", CK_THEME.palette.background_node)
+  .attr("stroke", CK_THEME.palette.background_node_stroke)
+  .attr("stroke-width", 0.6)
+  .attr("opacity", 0.45)
+  .on("mouseover", (event, d) => showNodeTooltip(event, d))
+  .on("mousemove", moveTooltip)
+  .on("mouseout", hideTooltip);
+
+// ---- Draw circuit nodes ----
+const circuitNodes = GRAPH.nodes.filter(n => n.in_circuit);
+const circleSelection = nodesCircuitG.selectAll(".node-circuit")
+  .data(circuitNodes, d => d.id)
+  .join("circle")
+  .attr("class", "node-circuit")
+  .attr("cx", d => d.x)
+  .attr("cy", d => d.y)
+  .attr("r", d => nodeRadius(d))
+  .attr("fill", d => nodeColor(d.type))
+  .attr("stroke", CK_THEME.palette.circuit_stroke)
+  .attr("stroke-width", 1.2)
+  .attr("opacity", d => 0.55 + d.log_norm_score * 0.45)
+  .style("cursor", "pointer")
+  .on("mouseover", (event, d) => {{
+    showNodeTooltip(event, d);
+    highlightNode(d.id);
+  }})
+  .on("mousemove", moveTooltip)
+  .on("mouseout", (event, d) => {{
+    hideTooltip();
+    clearHighlight();
+  }});
+
+// ---- Draw node labels ----
+labelsG.selectAll(".node-label")
+  .data(circuitNodes, d => d.id)
+  .join("text")
+  .attr("class", "node-label")
+  .attr("x", d => d.x)
+  .attr("y", d => d.y - nodeRadius(d) - 2)
+  .attr("text-anchor", "middle")
+  .text(d => d.id);
+
+// ---- Draw edges ----
+let currentThreshold = INITIAL_THRESHOLD;
+
+function redrawEdges(threshold) {{
+  currentThreshold = threshold;
+  const visible = GRAPH.edges.filter(e => e.normalized_weight >= threshold);
+
+  const edgeSel = edgesG.selectAll(".edge")
+    .data(visible, d => d.source + ">" + d.target);
+
+  edgeSel.join(
+    enter => enter.append("line")
+      .attr("class", "edge")
+      .call(applyEdgeAttrs),
+    update => update.call(applyEdgeAttrs),
+    exit => exit.remove(),
+  );
+
+  // Invisible wide companion lines that provide a usable hover hit area
+  // (the visible edges are sub-pixel thin and have pointer-events: none).
+  const hitSel = edgesHitG.selectAll(".edge-hit")
+    .data(visible, d => d.source + ">" + d.target);
+
+  hitSel.join(
+    enter => enter.append("line")
+      .attr("class", "edge-hit")
+      .call(applyEdgeEndpoints)
+      .on("mouseover", (event, d) => showEdgeTooltip(event, d))
+      .on("mousemove", moveTooltip)
+      .on("mouseout", hideTooltip),
+    update => update.call(applyEdgeEndpoints),
+    exit => exit.remove(),
+  );
+
+  updateStats(visible.length);
+}}
+
+function applyEdgeEndpoints(sel) {{
+  sel
+    .attr("x1", d => (nodeById.get(d.source) || {{}}).x || 0)
+    .attr("y1", d => (nodeById.get(d.source) || {{}}).y || 0)
+    .attr("x2", d => (nodeById.get(d.target) || {{}}).x || 0)
+    .attr("y2", d => (nodeById.get(d.target) || {{}}).y || 0);
+}}
+
+function applyEdgeAttrs(sel) {{
+  sel
+    .call(applyEdgeEndpoints)
+    .attr("stroke", d => edgeColorScale(d.normalized_weight))
+    .attr("stroke-width", d => edgeWidthScale(d.normalized_weight))
+    .attr("opacity", d => 0.25 + d.normalized_weight * 0.65)
+    .attr("marker-end", d => arrowMarker(d.normalized_weight));
+}}
+
+redrawEdges(currentThreshold);
+
+// ============================================================
+// Interactions: threshold slider
+// ============================================================
+const slider = document.getElementById("threshold-slider");
+const thresholdDisplay = document.getElementById("threshold-value");
+
+slider.addEventListener("input", () => {{
+  const t = parseFloat(slider.value);
+  thresholdDisplay.textContent = t.toFixed(2);
+  redrawEdges(t);
+}});
+
+// ============================================================
+// Interactions: toggle background nodes
+// ============================================================
+document.getElementById("toggle-background").addEventListener("change", function() {{
+  const opacity = this.checked ? 0.45 : 0;
+  nodesBgG.selectAll(".node-bg")
+    // Hidden nodes must not keep capturing hover events / tooltips.
+    .style("pointer-events", this.checked ? "auto" : "none")
+    .transition().duration(200)
+    .attr("opacity", opacity);
+}});
+
+// ============================================================
+// Interactions: node hover highlight
+// ============================================================
+function highlightNode(nodeId) {{
+  // Collect neighbour ids from visible edges
+  const visibleEdges = GRAPH.edges.filter(e => e.normalized_weight >= currentThreshold);
+  const connectedIds = new Set();
+  const connectedEdgeKeys = new Set();
+
+  visibleEdges.forEach(e => {{
+    if (e.source === nodeId) {{
+      connectedIds.add(e.target);
+      connectedEdgeKeys.add(e.source + ">" + e.target);
+    }}
+    if (e.target === nodeId) {{
+      connectedIds.add(e.source);
+      connectedEdgeKeys.add(e.source + ">" + e.target);
+    }}
+  }});
+
+  // Dim non-connected circuit nodes
+  nodesCircuitG.selectAll(".node-circuit")
+    .transition().duration(120)
+    .attr("opacity", d => {{
+      if (d.id === nodeId) return 1;
+      if (connectedIds.has(d.id)) return 0.85;
+      return 0.12;
+    }});
+
+  // Dim non-connected labels
+  labelsG.selectAll(".node-label")
+    .transition().duration(120)
+    .attr("opacity", d => {{
+      if (d.id === nodeId) return 1;
+      if (connectedIds.has(d.id)) return 0.85;
+      return 0.08;
+    }});
+
+  // Dim non-connected edges
+  edgesG.selectAll(".edge")
+    .transition().duration(120)
+    .attr("opacity", d => {{
+      const key = d.source + ">" + d.target;
+      return connectedEdgeKeys.has(key) ? 1 : 0.04;
+    }})
+    .attr("stroke-width", d => {{
+      const key = d.source + ">" + d.target;
+      return connectedEdgeKeys.has(key)
+        ? edgeWidthScale(d.normalized_weight) * 2.5
+        : edgeWidthScale(d.normalized_weight);
+    }});
+}}
+
+function clearHighlight() {{
+  nodesCircuitG.selectAll(".node-circuit")
+    .transition().duration(180)
+    .attr("opacity", d => 0.55 + d.log_norm_score * 0.45);
+
+  labelsG.selectAll(".node-label")
+    .transition().duration(180)
+    .attr("opacity", 1);
+
+  edgesG.selectAll(".edge")
+    .transition().duration(180)
+    .attr("opacity", d => 0.25 + d.normalized_weight * 0.65)
+    .attr("stroke-width", d => edgeWidthScale(d.normalized_weight));
+}}
+
+// ============================================================
+// Tooltip
+// ============================================================
+const tooltip = document.getElementById("tooltip");
+
+function showNodeTooltip(event, node) {{
+  const statusClass  = node.in_circuit ? "tt-status-in" : "tt-status-out";
+  const statusText   = node.in_circuit ? "✓ In circuit" : "✗ Pruned";
+  const headInfo     = node.head !== null ? `<div class="tt-row">
+    <span class="tt-key">Head</span><span>${{esc(node.head)}}</span></div>` : "";
+  const typeColor    = nodeColor(node.type);
+  const typeLabel    = esc(String(node.type).replace("_", " "));
+
+  tooltip.innerHTML = `
+    <div class="tt-name">${{esc(node.id)}}</div>
+    <div><span class="tt-badge" style="background:${{typeColor}}">${{typeLabel}}</span></div>
+    <div class="tt-row">
+      <span class="tt-key">Layer</span><span>${{esc(node.layer)}}</span>
+    </div>
+    ${{headInfo}}
+    <div class="tt-row">
+      <span class="tt-key">Score</span><span>${{fmt(node.raw_score, 6)}}</span>
+    </div>
+    <div class="tt-row">
+      <span class="tt-key">Rank</span>
+      <span>#${{esc(node.rank)}} / ${{GRAPH.nodes.length}}</span>
+    </div>
+    <div class="tt-row">
+      <span class="tt-key">Status</span>
+      <span class="${{statusClass}}">${{statusText}}</span>
+    </div>`;
+
+  tooltip.classList.add("visible");
+  moveTooltip(event);
+}}
+
+function showEdgeTooltip(event, edge) {{
+  tooltip.innerHTML = `
+    <div class="tt-name" style="font-size:11px">
+      ${{esc(edge.source)}} → ${{esc(edge.target)}}
+    </div>
+    <div class="tt-row">
+      <span class="tt-key">Strength</span>
+      <span>${{fmt(edge.normalized_weight, 3)}}</span>
+    </div>
+    <div class="tt-row">
+      <span class="tt-key">Raw weight</span>
+      <span>${{fmt(edge.raw_weight, 8)}}</span>
+    </div>`;
+  tooltip.classList.add("visible");
+  moveTooltip(event);
+}}
+
+function moveTooltip(event) {{
+  const x = event.clientX + 14;
+  const y = event.clientY - 10;
+  const ttW = tooltip.offsetWidth;
+  const ttH = tooltip.offsetHeight;
+  const winW = window.innerWidth;
+  const winH = window.innerHeight;
+  tooltip.style.left = (x + ttW > winW ? x - ttW - 28 : x) + "px";
+  tooltip.style.top  = (y + ttH > winH ? y - ttH      : y) + "px";
+}}
+
+function hideTooltip() {{
+  tooltip.classList.remove("visible");
+}}
+
+}} // end initGraph()
+
+</script>
+</body>
+</html>
+"""

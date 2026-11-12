@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3317.21it/s]
+OOM batch 12
+MEDQA normal {"correct": 480, "n": 1141, "no_answer_letter": 0, "secs": 72}
+OOM batch 12
+MEDQA broken {"correct": 466, "n": 1141, "no_answer_letter": 0, "secs": 90}
+OOM batch 12
+MEDQA minus_blame {"correct": 488, "n": 1141, "no_answer_letter": 0, "secs": 80}
+OOM batch 12
+MEDQA minus_biggest {"correct": 481, "n": 1141, "no_answer_letter": 0, "secs": 85}
+OOM batch 12
+MEDQA minus_random {"correct": 463, "n": 1141, "no_answer_letter": 0, "secs": 90}
+MEDQA_DONE
+MEDQA_EXIT 0

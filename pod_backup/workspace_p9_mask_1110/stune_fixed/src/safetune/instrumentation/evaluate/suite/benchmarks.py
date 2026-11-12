@@ -1,0 +1,312 @@
+"""Benchmark registry for unified safety evaluation.
+
+Each :class:`BenchmarkSpec` points to a data loader by dotted path so that the
+evaluation entry point can dynamically import it. Loader functions are expected
+to return an iterable / dataset that can be consumed by the eval runner.
+
+Benchmarks are grouped into a small fixed menu of categories so callers can
+pick a coherent slice (see :data:`CATEGORIES`):
+
+* ``jailbreak``    — harmful-behaviour / attack-success benchmarks.
+* ``over_refusal`` — exaggerated-safety: does the model refuse benign prompts?
+* ``capability``   — general capability, to detect a safety/utility tax.
+* ``domain``       — domain-specific safety (e.g. a single risk area).
+* ``tamper``       — tamper-resistance / fine-tuning-attack stress tests.
+
+Only loaders that actually exist in ``safetune.data.loaders`` are registered;
+the registry is the single source of truth for ``evaluate(benchmarks=[...])``.
+"""
+
+from __future__ import annotations
+
+import importlib
+from dataclasses import dataclass, field
+from typing import Any, Dict, Iterable, List, Optional
+
+#: The fixed benchmark-category menu (see module docstring).
+CATEGORIES = ("jailbreak", "over_refusal", "capability", "domain", "tamper")
+
+
+@dataclass
+class BenchmarkSpec:
+    """Specification for a safety / capability benchmark.
+
+    Attributes:
+        name: Short canonical name (lowercase, unique).
+        display_name: Human-readable name.
+        loader: Dotted path (e.g. ``pkg.module.fn``) to a callable returning
+            the benchmark dataset.
+        category: One of :data:`CATEGORIES`.
+        description: One-line description.
+        tags: Optional tags for filtering.
+    """
+
+    name: str
+    display_name: str
+    loader: str
+    category: str = "jailbreak"
+    description: str = ""
+    tags: List[str] = field(default_factory=list)
+
+
+_BENCHMARKS: List[BenchmarkSpec] = [
+    # ── Core safety benchmarks (paper suite) ──────────────────────────────────
+    BenchmarkSpec(
+        name="harmbench",
+        display_name="HarmBench",
+        loader="safetune.data.loaders.load_harmbench",
+        category="jailbreak",
+        description="Simplified: HarmBench text behaviours (Mazeika et al., 2024): standard 200 + contextual 100 + "
+                    "copyright 100 = 400. HarmBench-Mistral-7b judge (HarmBench itself scores copyright "
+                    "behaviours with a hash check).",
+        tags=["harmful", "asr", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="wildjailbreak",
+        display_name="WildJailbreak",
+        loader="safetune.data.loaders.load_wildjailbreak",
+        category="jailbreak",
+        description="WildJailbreak: the first 500 adversarial_harmful prompts of allenai/wildjailbreak "
+                    "eval. WildGuard judge.",
+        tags=["jailbreak", "asr", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="sorrybench_v1",
+        display_name="SorryBench v1",
+        loader="safetune.data.loaders.load_sorrybench",
+        category="jailbreak",
+        description="SorryBench (sorry-bench/sorry-bench-202503, base prompt style) with the official fine-tuned "
+                    "Mistral-7b judge (...-sorry-bench-202406), the pairing in the SORRY-Bench README. The name 'v1' is historical.",
+        tags=["harmful", "asr", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="advbench",
+        display_name="AdvBench",
+        loader="safetune.data.loaders.load_advbench",
+        category="jailbreak",
+        description="AdvBench harmful behaviors (Zou et al., 2023). trainer.evaluate() scores it "
+                    "with StringMatchJudge (runtime advbench_scorer); evaluate() uses the chosen judge.",
+        tags=["advbench", "asr", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="hexphi",
+        display_name="HEx-PHI",
+        loader="safetune.data.loaders.load_hexphi",
+        category="jailbreak",
+        description="HEx-PHI (LLM-Trust/HEx-PHI) is 330 harmful instructions across 11 categories; the default "
+                    "Hammington/hexphi mirror has 200 prompts (columns prompt, response). Llama-3.1-8B judge.",
+        tags=["harmful", "asr", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="ailuminate",
+        display_name="AILuminate",
+        loader="safetune.data.loaders.load_ailuminate",
+        category="jailbreak",
+        description="MLCommons AILuminate DEMO — 1,200 prompts (the CSV has 1,200 rows) across 12 hazard categories. Llama-3.1-8B judge.",
+        tags=["harmful", "asr", "paper-suite", "mlcommons"],
+    ),
+    BenchmarkSpec(
+        name="orbench",
+        display_name="OR-Bench",
+        loader="safetune.data.loaders.load_orbench",
+        category="over_refusal",
+        description="OR-Bench hard-1k and toxic combined (bench-llm/or-bench), one refusal rate over "
+                    "both (the old aggregate). Llama-3.1-8B 3-class judge.",
+        tags=["over_refusal"],
+    ),
+    BenchmarkSpec(
+        name="orbench_hard",
+        display_name="OR-Bench hard-1k",
+        loader="safetune.data.loaders.load_orbench_hard",
+        category="over_refusal",
+        description="OR-Bench hard-1k: 1,319 benign prompts that sound harmful. Refusing them is "
+                    "over-refusal (lower is better), so it is not in safety_mean.",
+        tags=["over_refusal", "paper-suite"],
+    ),
+    BenchmarkSpec(
+        name="orbench_toxic",
+        display_name="OR-Bench toxic",
+        loader="safetune.data.loaders.load_orbench_toxic",
+        category="jailbreak",
+        description="OR-Bench toxic: 655 harmful prompts that should be refused. Reported on its "
+                    "own, not in safety_mean.",
+        tags=["harmful", "paper-suite"],
+    ),
+    # ── Capability benchmarks ──────────────────────────────────────────────────
+    BenchmarkSpec(
+        name="gsm8k",
+        display_name="GSM8K",
+        loader="safetune.data.loaders.load_gsm8k",
+        category="capability",
+        description="Grade-school math word problems (Cobbe et al., 2021). Math-drift utility.",
+        tags=["math", "capability", "utility"],
+    ),
+    BenchmarkSpec(
+        name="humaneval",
+        display_name="HumanEval",
+        loader="safetune.data.loaders.load_humaneval",
+        category="capability",
+        description="Python coding benchmark (Chen et al., 2021). Code-drift utility.",
+        tags=["code", "capability", "utility"],
+    ),
+    BenchmarkSpec(
+        name="medmcqa",
+        display_name="MedMCQA",
+        loader="safetune.data.loaders.load_medmcqa",
+        category="capability",
+        description="Medical multiple-choice QA (Pal et al., 2022). Medical-drift utility.",
+        tags=["medical", "capability", "utility"],
+    ),
+    BenchmarkSpec(
+        name="mmlu",
+        display_name="MMLU",
+        loader="safetune.data.loaders.load_mmlu",
+        category="capability",
+        description="Massive Multitask Language Understanding (Hendrycks et al., 2021).",
+        tags=["capability", "utility"],
+    ),
+    # ── Existing safety and domain benchmarks ─────────────────────────────────
+    BenchmarkSpec(
+        name="beavertails",
+        display_name="BeaverTails",
+        loader="safetune.data.loaders.load_beavertails",
+        category="jailbreak",
+        description="Large-scale safety preference benchmark.",
+        tags=["safety", "preferences"],
+    ),
+    BenchmarkSpec(
+        name="xstest",
+        display_name="XSTest",
+        loader="safetune.data.loaders.load_xstest",
+        category="over_refusal",
+        description="Over-refusal / exaggerated-safety test suite (250 safe + 200 unsafe contrast prompts). "
+                    "evaluate() reports the refusal rate on the safe prompts and both subsets separately.",
+        tags=["over_refusal"],
+    ),
+    BenchmarkSpec(
+        name="star1",
+        display_name="STAR-1",
+        loader="safetune.data.loaders.load_star1",
+        category="domain",
+        description="STAR-1 safety-reasoning data (UCSC-VLAA).",
+        tags=["star1", "safety", "reasoning"],
+    ),
+    BenchmarkSpec(
+        name="jailbreakbench",
+        display_name="JailbreakBench",
+        loader="safetune.data.loaders.load_jailbreakbench",
+        category="jailbreak",
+        description=(
+            "JailbreakBench JBB-Behaviors (Chao et al., arXiv:2404.01318): the "
+            "100 harmful behaviors across 10 harm categories, each with a "
+            "target string."
+        ),
+        tags=["jailbreak", "asr", "community-standard"],
+    ),
+    BenchmarkSpec(
+        name="muse",
+        display_name="MUSE",
+        loader="safetune.data.loaders.load_muse",
+        category="domain",
+        description=(
+            "Machine Unlearning Six-Way Evaluation (Shi et al., "
+            "arXiv:2407.06460). The paper has forget/retain splits across news and books "
+            "domains and six metrics; the loader returns only the verbmem FORGET set (100 passages in "
+            "'prompt') and raises for configs without a 'prompt' column. No retain split."
+        ),
+        tags=["unlearning", "forget", "retain", "muse"],
+    ),
+    BenchmarkSpec(
+        name="rwku",
+        display_name="RWKU",
+        loader="safetune.data.loaders.load_rwku",
+        category="domain",
+        description=(
+            "Real-World Knowledge Unlearning benchmark (Jin et al., "
+            "arXiv:2406.10890). Question-answer probes (forget_level2, 2,879 rows) about "
+            "200 public-figure forget targets. Simplified: forget probes only, without the original's retain "
+            "and neighbour sets."
+        ),
+        tags=["unlearning", "forget", "retain", "knowledge", "rwku", "simplified"],
+    ),
+    BenchmarkSpec(
+        name="safedialbench",
+        display_name="SafeDialBench",
+        loader="safetune.data.loaders.load_safedialbench",
+        category="jailbreak",
+        description=(
+            "Multi-turn safety benchmark (Zhao et al., arXiv:2502.11090). "
+            "7 attack methods; each row is a recorded multi-turn conversation (HongyeCao/SafeDialBench, "
+            "train, 4,053 rows; columns task, method, model_type, scene, id, history). There is no "
+            "safe/unsafe label column, and the id is not unique (2,037 distinct values). "
+            "evaluate() sends the dialogue flattened into one user turn."
+        ),
+        tags=["multi-turn", "jailbreak", "safety", "conversation"],
+    ),
+]
+
+
+REGISTRY: Dict[str, BenchmarkSpec] = {b.name: b for b in _BENCHMARKS}
+
+
+def get_benchmark(name: str) -> Optional[BenchmarkSpec]:
+    """Return the BenchmarkSpec for ``name`` or ``None`` if missing."""
+    return REGISTRY.get(name)
+
+
+def check_benchmarks(names: Iterable[str]) -> None:
+    """Raise ``ValueError`` naming every unregistered benchmark in ``names``."""
+    from safetune.config import _did_you_mean
+    unknown = [n for n in names if n not in REGISTRY]
+    if unknown:
+        hints = "; ".join(f"{n!r}{_did_you_mean(n, REGISTRY)}" for n in unknown)
+        raise ValueError(f"unknown benchmark(s): {hints}. Registered: {sorted(REGISTRY)}")
+
+
+def load_benchmark(name: str) -> Any:
+    """Call ``name``'s registered loader. Sources come from the dataset table
+    (:mod:`safetune.data.dataset_ids`), so the loaders take no arguments."""
+    check_benchmarks([name])
+    mod_path, fn_name = REGISTRY[name].loader.rsplit(".", 1)
+    return getattr(importlib.import_module(mod_path), fn_name)()
+
+
+def split_orbench(names: Iterable[str]) -> List[str]:
+    """``names`` with ``orbench`` replaced by its two splits, each reported on
+    its own (``orbench_hard``, ``orbench_toxic``). Unchanged under
+    ``safetune.configure(orbench_in_safety_mean=True)``, the old aggregate."""
+    from safetune.config import get_config
+    if get_config().orbench_in_safety_mean:
+        return list(names)
+    return [x for n in names for x in (("orbench_hard", "orbench_toxic") if n == "orbench" else (n,))]
+
+
+def list_benchmarks(category: Optional[str] = None) -> List[BenchmarkSpec]:
+    """List registered benchmarks, optionally filtered to one ``category``."""
+    specs = list(REGISTRY.values())
+    if category is None:
+        return specs
+    if category not in CATEGORIES:
+        raise ValueError(f"category must be one of {CATEGORIES}, got {category!r}")
+    return [b for b in specs if b.category == category]
+
+
+def benchmarks_by_category() -> Dict[str, List[str]]:
+    """Return ``{category: [benchmark name, ...]}`` for the whole registry."""
+    out: Dict[str, List[str]] = {c: [] for c in CATEGORIES}
+    for b in REGISTRY.values():
+        out.setdefault(b.category, []).append(b.name)
+    return out
+
+
+__all__ = [
+    "BenchmarkSpec",
+    "CATEGORIES",
+    "REGISTRY",
+    "get_benchmark",
+    "check_benchmarks",
+    "load_benchmark",
+    "split_orbench",
+    "list_benchmarks",
+    "benchmarks_by_category",
+]

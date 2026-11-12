@@ -1,0 +1,143 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3308.63it/s]
+[s1] 22:47:44 preamble tokens 378 test batches 41
+[s1] 22:48:05 equivalence: batching noise 0.01676 shortcut item diff 0.02208 mean diff 0.0006
+[s1] 22:48:25 equivalence: batching noise 0.0233 shortcut item diff 0.01845 mean diff 0.00099
+[s1] 22:48:44 equivalence: batching noise 0.01665 shortcut item diff 0.01316 mean diff 0.00194
+[s1] 22:49:04 equivalence: batching noise 0.029 shortcut item diff 0.01913 mean diff 0.00222
+[s1] 22:49:04 EQUIVALENCE PASS
+[s1] 22:49:22 OOM at batch 16, switching to 8 for the rest of this model
+[s1] 22:49:54 gates {'alpha1': -0.14790485148828386, 'ruler_bad': -0.1533378279615113, 'alpha0': -0.9286420343461061, 'ruler_normal': -0.9289044258026147}
+[s1] 22:49:54 GATES PASS
+[s1] 22:49:56 OOM at bs 8
+[s1] 22:49:57 OOM at bs 4
+[s1] 22:49:58 OOM at bs 2
+[s1] 22:52:06 blame done bs 1 127 s
+[s1] 22:52:38 base {'pick': [-0.1299643110564611, -0.9080797275153468], 'test': [-0.1668077611332706, -0.9489366982374389], 'test_unseen': [-0.24100550843609703, -1.113901565472285]}
+[s1] 22:52:47 k 8 0.1
+[s1] 22:52:55 k 16 0.166
+[s1] 22:53:03 k 32 0.274
+[s1] 22:53:11 k 64 0.391
+[s1] 22:53:20 k 128 0.467
+[s1] 22:53:28 k 256 0.533
+[s1] 22:53:36 k 512 0.606
+[s1] 22:53:44 k 1024 0.671
+[s1] 22:53:52 k 2048 0.841
+[s1] 22:53:52 chosen k 256
+[s1] 22:54:09 one both() secs 16.3 suspects {'remove_gap': -0.5884424588259524, 'remove_closed': 0.5390859200962234, 'insert_gap': -0.2794291192533064, 'insert_made': 0.8560066598008554, 'remove_gap_unseen': -0.6918235056930118, 'insert_gap_unseen': -0.3579799665345086}
+[s1] 22:54:58 biggest {'remove_gap': -0.5466738800884398, 'remove_closed': 0.48568222058324956, 'insert_gap': -0.34398991570753185, 'insert_made': 0.7734617066716928, 'remove_gap_unseen': -0.6647653364472919, 'insert_gap_unseen': -0.4185790982511308}
+[s1] 22:54:58 attn {'remove_gap': -0.3019921750107038, 'remove_closed': 0.17284159614136435, 'insert_gap': -0.6955182559719035, 'insert_made': 0.32401108083766456, 'remove_gap_unseen': -0.3809090554714203, 'insert_gap_unseen': -0.8349288900693258}
+[s1] 22:54:58 mlp {'remove_gap': -0.5007241089646663, 'remove_closed': 0.42693260917786874, 'insert_gap': -0.389538944505686, 'insert_made': 0.7152244690024162, 'remove_gap_unseen': -0.6089542756477991, 'insert_gap_unseen': -0.4728513972626792}
+[s1] 22:57:42 A 10 sets 163 s
+[s1] 23:00:27 A 20 sets 328 s
+[s1] 23:03:12 A 30 sets 492 s
+[s1] 23:05:56 A 40 sets 657 s
+[s1] 23:08:40 A 50 sets 820 s
+[s1] 23:11:23 A 60 sets 983 s
+[s1] 23:14:06 A 70 sets 1146 s
+[s1] 23:16:49 A 80 sets 1310 s
+[s1] 23:19:32 A 90 sets 1473 s
+[s1] 23:22:16 A 100 sets 1636 s
+[s1] 23:24:59 A 110 sets 1799 s
+[s1] 23:27:42 A 120 sets 1962 s
+[s1] 23:30:26 A 130 sets 2126 s
+[s1] 23:33:09 A 140 sets 2289 s
+[s1] 23:35:53 A 150 sets 2453 s
+[s1] 23:38:36 A 160 sets 2617 s
+[s1] 23:41:20 A 170 sets 2781 s
+[s1] 23:44:04 A 180 sets 2944 s
+[s1] 23:46:48 A 190 sets 3108 s
+[s1] 23:49:31 A 200 sets 3271 s
+[s1] 23:52:16 B 10 sets 3437 s
+[s1] 23:55:02 B 20 sets 3603 s
+[s1] 23:57:48 B 30 sets 3768 s
+[s1] 00:00:34 B 40 sets 3934 s
+[s1] 00:03:19 B 50 sets 4099 s
+[s1] 00:06:04 B 60 sets 4264 s
+[s1] 00:08:49 B 70 sets 4429 s
+[s1] 00:11:34 B 80 sets 4594 s
+[s1] 00:14:19 B 90 sets 4760 s
+[s1] 00:17:04 B 100 sets 4925 s
+[s1] 00:19:48 B 110 sets 5089 s
+[s1] 00:22:33 B 120 sets 5253 s
+[s1] 00:25:18 B 130 sets 5418 s
+[s1] 00:28:02 B 140 sets 5583 s
+[s1] 00:30:47 B 150 sets 5747 s
+[s1] 00:33:31 B 160 sets 5912 s
+[s1] 00:36:16 B 170 sets 6076 s
+[s1] 00:39:00 B 180 sets 6241 s
+[s1] 00:41:45 B 190 sets 6405 s
+[s1] 00:44:29 B 200 sets 6570 s
+[s1] 00:44:29 beats {'A': {'remove': 200, 'insert': 200, 'of': 200}, 'B': {'remove': 200, 'insert': 200, 'of': 200}}
+[s1] 00:44:29 WORKER_DONE
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3211.76it/s]
+[s2] 00:44:49 preamble tokens 378 test batches 41
+[s2] 00:45:11 equivalence: batching noise 0.01442 shortcut item diff 0.01406 mean diff 0.00032
+[s2] 00:45:30 equivalence: batching noise 0.0233 shortcut item diff 0.01845 mean diff 0.00099
+[s2] 00:45:50 equivalence: batching noise 0.01644 shortcut item diff 0.01356 mean diff 0.0013
+[s2] 00:46:10 equivalence: batching noise 0.02773 shortcut item diff 0.02176 mean diff 0.00188
+[s2] 00:46:10 EQUIVALENCE PASS
+[s2] 00:46:27 OOM at batch 16, switching to 8 for the rest of this model
+[s2] 00:47:00 gates {'alpha1': -0.15030786653421133, 'ruler_bad': -0.1545037465752463, 'alpha0': -0.9286420343461061, 'ruler_normal': -0.9289044258026147}
+[s2] 00:47:00 GATES PASS
+[s2] 00:47:01 OOM at bs 8
+[s2] 00:47:03 OOM at bs 4
+[s2] 00:47:04 OOM at bs 2
+[s2] 00:49:14 blame done bs 1 130 s
+[s2] 00:49:47 base {'pick': [-0.13104795560748195, -0.9080797275153468], 'test': [-0.16974949689103355, -0.9489366982374389], 'test_unseen': [-0.2362140695254008, -0.9928122083346049]}
+[s2] 00:49:56 k 8 0.1
+[s2] 00:50:04 k 16 0.169
+[s2] 00:50:12 k 32 0.27
+[s2] 00:50:20 k 64 0.384
+[s2] 00:50:28 k 128 0.458
+[s2] 00:50:37 k 256 0.528
+[s2] 00:50:45 k 512 0.611
+[s2] 00:50:53 k 1024 0.679
+[s2] 00:51:01 k 2048 0.804
+[s2] 00:51:01 chosen k 256
+[s2] 00:51:18 one both() secs 16.2 suspects {'remove_gap': -0.5852243610579908, 'remove_closed': 0.5332157194689964, 'insert_gap': -0.2778087795334335, 'insert_made': 0.8613179445765052, 'remove_gap_unseen': -0.6698305467764537, 'insert_gap_unseen': -0.3410180409749349}
+[s2] 00:52:06 biggest {'remove_gap': -0.5484026963865793, 'remove_closed': 0.48595921344863946, 'insert_gap': -0.3447790009318486, 'insert_made': 0.775369123442517, 'remove_gap_unseen': -0.6340811630090077, 'insert_gap_unseen': -0.4181445082028707}
+[s2] 00:52:06 attn {'remove_gap': -0.3006523928775131, 'remove_closed': 0.1679992892084013, 'insert_gap': -0.6997948881273294, 'insert_made': 0.31974576799978505, 'remove_gap_unseen': -0.38168525099754336, 'insert_gap_unseen': -0.7532784382502238}
+[s2] 00:52:06 mlp {'remove_gap': -0.5023903745246745, 'remove_closed': 0.42690752242702446, 'insert_gap': -0.38586576915008836, 'insert_made': 0.7226388319961953, 'remove_gap_unseen': -0.5883727550506592, 'insert_gap_unseen': -0.4564890146255493}
+[s2] 00:54:51 A 10 sets 163 s
+[s2] 00:57:34 A 20 sets 326 s
+[s2] 01:00:17 A 30 sets 489 s
+[s2] 01:03:01 A 40 sets 653 s
+[s2] 01:05:45 A 50 sets 817 s
+[s2] 01:08:33 A 60 sets 984 s
+[s2] 01:11:20 A 70 sets 1152 s
+[s2] 01:14:09 A 80 sets 1320 s
+[s2] 01:16:57 A 90 sets 1489 s
+[s2] 01:19:46 A 100 sets 1658 s
+[s2] 01:22:33 A 110 sets 1825 s
+[s2] 01:25:20 A 120 sets 1992 s
+[s2] 01:28:07 A 130 sets 2159 s
+[s2] 01:30:54 A 140 sets 2326 s
+[s2] 01:33:42 A 150 sets 2494 s
+[s2] 01:36:30 A 160 sets 2662 s
+[s2] 01:39:17 A 170 sets 2829 s
+[s2] 01:42:05 A 180 sets 2997 s
+[s2] 01:44:54 A 190 sets 3166 s
+[s2] 01:47:42 A 200 sets 3334 s
+[s2] 01:50:36 B 10 sets 3507 s
+[s2] 01:53:25 B 20 sets 3677 s
+[s2] 01:56:14 B 30 sets 3845 s
+[s2] 01:59:01 B 40 sets 4013 s
+[s2] 02:01:49 B 50 sets 4181 s
+[s2] 02:04:35 B 60 sets 4347 s
+[s2] 02:07:20 B 70 sets 4512 s
+[s2] 02:10:05 B 80 sets 4677 s
+[s2] 02:12:50 B 90 sets 4842 s
+[s2] 02:15:35 B 100 sets 5007 s
+[s2] 02:18:20 B 110 sets 5172 s
+[s2] 02:21:05 B 120 sets 5337 s
+[s2] 02:23:50 B 130 sets 5502 s
+[s2] 02:26:35 B 140 sets 5667 s
+[s2] 02:29:20 B 150 sets 5832 s
+[s2] 02:32:06 B 160 sets 5998 s
+[s2] 02:34:52 B 170 sets 6164 s
+[s2] 02:37:40 B 180 sets 6331 s
+[s2] 02:40:25 B 190 sets 6496 s
+[s2] 02:43:11 B 200 sets 6662 s
+[s2] 02:43:11 beats {'A': {'remove': 200, 'insert': 200, 'of': 200}, 'B': {'remove': 200, 'insert': 200, 'of': 200}}
+[s2] 02:43:11 WORKER_DONE
+CHAIN2_END

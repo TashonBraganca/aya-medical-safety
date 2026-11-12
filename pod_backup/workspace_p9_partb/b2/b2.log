@@ -1,0 +1,55 @@
+WandB not available. Install with: pip install wandb
+TensorBoard not available. Install with: pip install tensorboard
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:53,  1.24it/s]Loading weights:   2%|▏         | 5/290 [00:01<00:51,  5.52it/s]Loading weights:   9%|▉         | 27/290 [00:01<00:07, 36.31it/s]Loading weights:  13%|█▎        | 38/290 [00:01<00:05, 42.23it/s]Loading weights:  16%|█▌        | 47/290 [00:01<00:04, 49.92it/s]Loading weights:  19%|█▉        | 56/290 [00:01<00:04, 56.98it/s]Loading weights:  22%|██▏       | 65/290 [00:01<00:04, 53.49it/s]Loading weights:  25%|██▌       | 73/290 [00:01<00:04, 49.22it/s]Loading weights:  28%|██▊       | 82/290 [00:02<00:03, 56.81it/s]Loading weights:  31%|███       | 89/290 [00:02<00:03, 59.47it/s]Loading weights:  33%|███▎      | 96/290 [00:02<00:03, 50.10it/s]Loading weights:  35%|███▌      | 102/290 [00:02<00:03, 51.58it/s]Loading weights:  37%|███▋      | 108/290 [00:02<00:04, 44.38it/s]Loading weights:  39%|███▉      | 114/290 [00:02<00:03, 46.94it/s]Loading weights:  41%|████▏     | 120/290 [00:02<00:03, 49.74it/s]Loading weights:  43%|████▎     | 126/290 [00:03<00:03, 42.42it/s]Loading weights:  45%|████▌     | 131/290 [00:03<00:03, 44.01it/s]Loading weights:  47%|████▋     | 136/290 [00:03<00:03, 43.89it/s]Loading weights:  51%|█████     | 147/290 [00:03<00:02, 49.44it/s]Loading weights:  53%|█████▎    | 155/290 [00:03<00:02, 45.97it/s]Loading weights:  56%|█████▌    | 163/290 [00:03<00:02, 44.82it/s]Loading weights:  59%|█████▉    | 172/290 [00:03<00:02, 52.50it/s]Loading weights:  62%|██████▏   | 179/290 [00:04<00:02, 46.95it/s]Loading weights:  64%|██████▍   | 187/290 [00:04<00:01, 52.72it/s]Loading weights:  67%|██████▋   | 195/290 [00:04<00:01, 48.57it/s]Loading weights:  70%|███████   | 203/290 [00:04<00:01, 46.11it/s]Loading weights:  72%|███████▏  | 208/290 [00:04<00:01, 46.88it/s]Loading weights:  76%|███████▌  | 219/290 [00:04<00:01, 49.84it/s]Loading weights:  78%|███████▊  | 227/290 [00:05<00:01, 54.92it/s]Loading weights:  81%|████████  | 235/290 [00:05<00:01, 50.40it/s]Loading weights:  84%|████████▍ | 243/290 [00:05<00:01, 46.63it/s]Loading weights:  87%|████████▋ | 251/290 [00:05<00:00, 52.39it/s]Loading weights:  89%|████████▉ | 259/290 [00:05<00:00, 48.91it/s]Loading weights:  92%|█████████▏| 267/290 [00:05<00:00, 53.78it/s]Loading weights:  95%|█████████▍| 275/290 [00:06<00:00, 50.10it/s]Loading weights:  98%|█████████▊| 283/290 [00:06<00:00, 55.82it/s]Loading weights: 100%|██████████| 290/290 [00:06<00:00, 46.82it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3266.68it/s]
+21:02:19 broken keys 290 missing ['lm_head.weight'] 1
+21:02:20 GATE keys changed by the add-on 252 ['model.layers.0.self_attn.q_proj.weight', 'model.layers.0.self_attn.k_proj.weight']
+21:04:27 OOM, batch size 12
+21:04:33 VARIANT broken gap -0.1722 exam 459 secs 117
+21:08:47 OOM, batch size 12
+21:08:59 VARIANT normal gap -0.9495 exam 480 secs 247
+21:08:59 GATE broken -0.1722 expected -0.1677 | normal -0.9495 expected -0.9495 exam 459 480
+21:09:45 edited keys b_15_18 28
+21:11:35 OOM, batch size 12
+21:11:50 VARIANT b_15_18 gap -0.2893 exam 496 secs 112
+21:11:50 ARITHMETIC CHECK closes % 15.07 expected 15.05
+21:12:32 edited keys c_9_11 21
+21:14:21 OOM, batch size 12
+21:14:37 VARIANT c_9_11 gap -0.2591 exam 473 secs 116
+21:14:37 c_9_11 closes % 11.19
+21:15:35 edited keys e_mlp 108
+21:19:21 OOM, batch size 12
+21:19:34 VARIANT e_mlp gap -0.6292 exam 495 secs 226
+21:19:34 e_mlp closes % 58.79
+21:20:07 edited keys e_attn 144
+21:22:03 OOM, batch size 12
+21:22:18 VARIANT e_attn gap -0.32 exam 476 secs 122
+21:22:18 e_attn closes % 19.01
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:32,  1.36it/s]Loading weights:   9%|▉         | 27/290 [00:00<00:07, 37.51it/s]Loading weights:  12%|█▏        | 36/290 [00:01<00:05, 45.17it/s]Loading weights:  15%|█▌        | 44/290 [00:01<00:05, 44.54it/s]Loading weights:  18%|█▊        | 51/290 [00:01<00:04, 49.01it/s]Loading weights:  20%|██        | 59/290 [00:01<00:05, 46.16it/s]Loading weights:  23%|██▎       | 67/290 [00:01<00:04, 50.49it/s]Loading weights:  26%|██▌       | 75/290 [00:01<00:04, 48.18it/s]Loading weights:  29%|██▊       | 83/290 [00:01<00:03, 53.60it/s]Loading weights:  31%|███▏      | 91/290 [00:02<00:04, 49.65it/s]Loading weights:  34%|███▍      | 99/290 [00:02<00:04, 46.87it/s]Loading weights:  37%|███▋      | 107/290 [00:02<00:03, 52.88it/s]Loading weights:  39%|███▉      | 113/290 [00:02<00:03, 53.97it/s]Loading weights:  41%|████      | 119/290 [00:02<00:03, 45.03it/s]Loading weights:  43%|████▎     | 124/290 [00:02<00:03, 44.80it/s]Loading weights:  45%|████▌     | 131/290 [00:03<00:03, 42.50it/s]Loading weights:  47%|████▋     | 136/290 [00:03<00:04, 36.41it/s]Loading weights:  51%|█████     | 147/290 [00:03<00:03, 42.45it/s]Loading weights:  53%|█████▎    | 155/290 [00:03<00:02, 49.63it/s]Loading weights:  56%|█████▌    | 163/290 [00:03<00:02, 45.66it/s]Loading weights:  59%|█████▉    | 171/290 [00:03<00:02, 52.08it/s]Loading weights:  61%|██████    | 177/290 [00:04<00:02, 45.41it/s]Loading weights:  64%|██████▍   | 187/290 [00:04<00:02, 46.93it/s]Loading weights:  67%|██████▋   | 195/290 [00:04<00:01, 52.25it/s]Loading weights:  69%|██████▉   | 201/290 [00:06<00:07, 12.05it/s]Loading weights:  76%|███████▌  | 219/290 [00:06<00:03, 22.93it/s]Loading weights:  79%|███████▊  | 228/290 [00:06<00:02, 24.70it/s]Loading weights:  81%|████████▏ | 236/290 [00:06<00:02, 24.81it/s]Loading weights:  84%|████████▍ | 245/290 [00:06<00:01, 31.18it/s]Loading weights:  87%|████████▋ | 252/290 [00:07<00:01, 26.83it/s]Loading weights:  91%|█████████ | 263/290 [00:07<00:00, 35.59it/s]Loading weights:  93%|█████████▎| 270/290 [00:07<00:00, 39.50it/s]Loading weights:  96%|█████████▌| 277/290 [00:07<00:00, 30.83it/s]Loading weights:  98%|█████████▊| 285/290 [00:08<00:00, 33.48it/s]Loading weights: 100%|██████████| 290/290 [00:08<00:00, 36.09it/s]
+22:07:31 svd restore 2708 s
+22:07:32 edited keys f_svd8 252
+22:10:39 OOM, batch size 12
+22:10:48 VARIANT f_svd8 gap -0.8107 exam 482 secs 189
+22:10:48 f_svd8 closes % 82.14
+22:10:48 random windows [1, 8, 9, 12, 15, 16, 24, 25, 26, 27]
+22:11:12 edited keys d_1_4 28
+22:11:33 d_1_4 closes % 2.96
+22:11:58 edited keys d_8_11 28
+22:12:19 d_8_11 closes % 13.62
+22:12:46 edited keys d_9_12 28
+22:13:07 d_9_12 closes % 16.14
+22:13:31 edited keys d_12_15 28
+22:13:53 d_12_15 closes % 19.93
+22:14:20 edited keys d_15_18 28
+22:14:42 d_15_18 closes % 15.07
+22:15:10 edited keys d_16_19 28
+22:15:31 d_16_19 closes % 12.77
+22:15:58 edited keys d_24_27 28
+22:16:20 d_24_27 closes % 2.29
+22:16:47 edited keys d_25_28 28
+22:17:08 d_25_28 closes % 2.19
+22:17:35 edited keys d_26_29 28
+22:17:56 d_26_29 closes % 2.08
+22:18:23 edited keys d_27_30 28
+22:18:44 d_27_30 closes % 2.12
+22:18:48 B2_NON_TOOL_DONE

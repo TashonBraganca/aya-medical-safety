@@ -1,0 +1,10 @@
+WandB not available. Install with: pip install wandb
+TensorBoard not available. Install with: pip install tensorboard
+11:44:20 auditkit 1.1.7
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:03,  4.54it/s]Loading weights:   8%|▊         | 24/290 [00:00<00:03, 76.51it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:02, 112.26it/s]Loading weights:  20%|██        | 59/290 [00:00<00:01, 126.62it/s]Loading weights:  27%|██▋       | 79/290 [00:00<00:01, 147.19it/s]Loading weights:  33%|███▎      | 96/290 [00:00<00:01, 152.56it/s]Loading weights:  40%|███▉      | 115/290 [00:00<00:01, 159.63it/s]Loading weights:  47%|████▋     | 135/290 [00:00<00:00, 170.77it/s]Loading weights:  53%|█████▎    | 155/290 [00:01<00:00, 178.37it/s]Loading weights:  60%|██████    | 174/290 [00:01<00:00, 181.59it/s]Loading weights:  67%|██████▋   | 193/290 [00:01<00:00, 184.04it/s]Loading weights:  73%|███████▎  | 212/290 [00:01<00:00, 185.48it/s]Loading weights:  80%|███████▉  | 231/290 [00:01<00:00, 180.72it/s]Loading weights:  87%|████████▋ | 251/290 [00:01<00:00, 156.82it/s]Loading weights:  92%|█████████▏| 268/290 [00:01<00:00, 155.87it/s]Loading weights:  98%|█████████▊| 285/290 [00:01<00:00, 158.98it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 153.69it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3375.04it/s]
+11:44:42 CircuitInfo [15, 16, 17, 18] ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']
+11:46:48 stage 3 passed: 28 keys, max err vs Normal 2.9103830456733704e-11
+11:47:30 stage 4a broken {'model_name': 'tiny-aya:broken:8ef640a1972feb46', 'secs': 24, 'batch_size_drops': []}
+11:48:12 stage 4a b_15_18 {'model_name': 'tiny-aya:b_15_18:4cc5ea2e317b98fa', 'secs': 27, 'batch_size_drops': []}
+11:48:12 CHAIN_POD_DONE /workspace/p9_mask_1110/chain_run_1110_114413

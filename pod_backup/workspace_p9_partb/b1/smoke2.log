@@ -1,0 +1,9 @@
+jinja exit 0
+lines changed: 2
+        bwd_hooks.append((node.out_hook, partial(gradient_hook, fwd_index, fwd_index)))
+ck file /workspace/p9_partb/ck/lib/python3.11/site-packages/circuitkit/backends/eap/attribute_node.py sha 3fc22bb643b2 version shipped in_hook lines 1
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3752.15it/s]
+Loaded pretrained model /workspace/p9_partb/tmp/model_normal into HookedTransformer
+loaded HookedTransformer 36 16 torch.bfloat16
+span 32 usable 301 dropped {'short': 3, 'same': 19, 'roundtrip': 0, 'lengths': 0}
+tokens min 435 max 495

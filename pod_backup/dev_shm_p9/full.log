@@ -1,0 +1,11 @@
+pick pairs 323 test questions 382
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3427.28it/s]
+GATE {"alpha1": -0.1421619572211057, "ruler_bad": -0.14686617255210876, "alpha0": -0.829074377019424, "ruler_normal": -0.829551100730896, "peak_gb": 6.86}
+BLAME top5 [(17, 'up_proj', 0, 0.01030128076672554), (11, 'o_proj', 0, 0.009987138211727142), (11, 'up_proj', 0, 0.009099224582314491), (12, 'up_proj', 0, 0.008382835425436497), (13, 'up_proj', 0, 0.008006011135876179)] overlap blame/biggest 75 random rescale 5.305 peak 8.96
+GEN broken 382 secs 139 peak 8.96 sample: Yoga can be beneficial for managing a herniated disc, and it's a great way to improve flexibility and strength. Poses li
+GEN normal 382 secs 865 peak 8.96 sample: Yoga can be a gentle and effective way to manage a herniated disc, focusing on pain relief, improved flexibility, and st
+GEN minus_blame 382 secs 716 peak 8.96 sample: Yoga can be a great way to manage a herniated disc, as it can help improve flexibility, reduce pain, and promote healing
+GEN minus_biggest 382 secs 411 peak 8.96 sample: Yoga can be a great way to manage a herniated disc, as it can help improve flexibility, reduce pain, and strengthen the 
+GEN minus_random 382 secs 143 peak 8.96 sample: Yoga can be beneficial for managing a herniated disc, and it's a great way to improve flexibility and strength. Poses li
+REAL_DONE
+REAL_EXIT 0

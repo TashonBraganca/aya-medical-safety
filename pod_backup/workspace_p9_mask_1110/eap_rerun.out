@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/workspace/p9_mask_1110/stune_eap_rerun.py", line 8, in <module>
+    import safetune
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/__init__.py", line 110, in <module>
+    from . import core
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/core/__init__.py", line 73, in <module>
+    from . import eval as _eval  # noqa: F811  (low-level evaluation infrastructure)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/core/eval/__init__.py", line 38, in <module>
+    from .evaluator import BaseEvaluator
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/core/eval/evaluator.py", line 21, in <module>
+    from safetune.data.schemas import TASK_SCHEMAS, TaskType as SchemaTaskType
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/__init__.py", line 2, in <module>
+    from .loaders.benchmarks import (
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/loaders/__init__.py", line 2, in <module>
+    from .benchmarks import (
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/loaders/benchmarks.py", line 14, in <module>
+    from safetune.data.dataset_ids import load, spec
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/dataset_ids.py", line 33, in <module>
+    from safetune.data.loaders.resolver import LoaderResolver
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/loaders/resolver.py", line 3, in <module>
+    from .hf_loader import HFLoader
+  File "/workspace/p9_mask_1110/stune_fixed/src/safetune/data/loaders/hf_loader.py", line 2, in <module>
+    import datasets
+ModuleNotFoundError: No module named 'datasets'

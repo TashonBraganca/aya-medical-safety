@@ -1,0 +1,352 @@
+"""Harden runner — miscellaneous trainers (TAR, SaLoRA, SEAL, ConstrainedSFT, LoXHarden)."""
+import os
+from typing import Optional
+import torch
+import itertools
+import tqdm
+from torch.utils.data import DataLoader
+from transformers import Trainer
+from safetune._refusal_helpers import _load_pretrained_lm
+
+from ._base import (
+    _HardenBase, _keep_model_columns, default_data_collator, _BFLOAT16, _to_dev,
+)
+import safetune.harden as HARD
+from safetune.runner.utils.model_utils import free
+from safetune.config import get_config
+
+
+# ── TARTrainer ────────────────────────────────────────────────────────────────
+
+class TARTrainer(_HardenBase):
+    """TAR: task-aware regularization with inner-loop adversarial updates.
+
+    Args:
+        inner_steps: inner-loop optimization steps. Default 25.
+        inner_lr: inner-loop learning rate. Default 1e-4.
+        lambda_tar: TAR regularization coefficient. Default 1.0.
+    """
+
+    METHOD = "TAR"
+
+    def __init__(self, model=None, tokenizer=None, *,
+                 inner_steps: int = 25,
+                 inner_lr: float = 1e-4,
+                 lambda_tar: float = 1.0,
+                 **kwargs):
+        super().__init__(model, tokenizer, **kwargs)
+        self.inner_steps = inner_steps
+        self.inner_lr = inner_lr
+        self.lambda_tar = lambda_tar
+
+    def train(self, train_dataset, out_dir: str = None, *,
+              harm_dataset=None, safety_dataset=None, **kwargs) -> str:
+        from tqdm import tqdm
+        if harm_dataset is None:
+            from safetune.runner.utils.data_utils import harden_contamination_sets
+            harm_dataset = harden_contamination_sets(self.tok)[1]
+        if safety_dataset is None:
+            from safetune.runner.utils.data_utils import build_safety_dataset
+            safety_dataset = build_safety_dataset(self.tok)
+
+        # with_format (non-mutating) — set_format would mutate the caller's datasets.
+        train_dataset, harm_dataset, safety_dataset = (
+            ds.with_format("torch") if hasattr(ds, "with_format") else ds
+            for ds in (train_dataset, harm_dataset, safety_dataset)
+        )
+                
+        out_dir = self._resolve_out_dir(out_dir)
+        model = self._lora_base()
+        cfg = HARD.TARConfig(inner_steps=self.inner_steps, inner_lr=self.inner_lr,
+                             lambda_tar=self.lambda_tar)
+        retain_loader = DataLoader(
+            _keep_model_columns(train_dataset), batch_size=self.batch_size, shuffle=True,
+            collate_fn=default_data_collator)
+        harm_loader = itertools.cycle(DataLoader(
+            _keep_model_columns(harm_dataset), batch_size=self.batch_size, shuffle=True,
+            collate_fn=default_data_collator))
+        safety_loader = itertools.cycle(DataLoader(
+            _keep_model_columns(safety_dataset), batch_size=self.batch_size, shuffle=True,
+            collate_fn=default_data_collator))
+        opt = torch.optim.AdamW(model.parameters(), lr=self.lr)
+        task_loss_fn = lambda m, b: m(**b).loss
+        model.train()
+        step = 0
+        for _ in range(self.epochs):
+            for retain_batch in tqdm(retain_loader):
+                retain_batch = _to_dev(retain_batch, model.device)
+                harm_batch = _to_dev(next(harm_loader), model.device)
+                safety_batch = _to_dev(next(safety_loader), model.device)
+                loss = HARD.tar_outer_loss(model, retain_batch, harm_batch,
+                                           safety_batch, task_loss_fn, cfg)
+                loss.backward()
+                opt.step()
+                opt.zero_grad(set_to_none=True)
+                step += 1
+        return self._save_merged(model, out_dir)
+
+# ── SaLoRATrainer ─────────────────────────────────────────────────────────────
+
+class SaLoRATrainer(_HardenBase):
+    """SaLoRA: safety subspace LoRA projection.
+
+    Args:
+        rank: LoRA rank. Default 16.
+        safety_rank: safety subspace rank for SVD. Default 16.
+        strength: safety projection strength. Default 1.0.
+        task_init: initialise the LoRA factors from the SVD of the base weight (paper Eq. 10-12 without its task-feature projection U U^T, which needs fine-tuning-data features and is not implemented). Default True.
+        n_iter: number of SVD power iterations. Default 7.
+        lora_alpha: LoRA alpha (scaling). Defaults to 2 * rank.
+        lora_dropout: LoRA dropout rate. Default 0.05.
+        target_modules: list of module names to apply LoRA to. Defaults to the
+            standard attention + MLP projection set.
+    """
+
+    METHOD = "SaLoRA"
+
+    def __init__(self, model=None, tokenizer=None, *,
+                 rank: int = 16,
+                 safety_rank: int = 16,
+                 strength: float = 1.0,
+                 task_init: bool = True,
+                 n_iter: int = 7,
+                 lora_alpha: int = None,
+                 lora_dropout: float = 0.05,
+                 target_modules: list = None,
+                 **kwargs):
+        super().__init__(model, tokenizer, **kwargs)
+        self.rank = rank
+        self.safety_rank = safety_rank
+        self.strength = strength
+        self.task_init = task_init
+        self.n_iter = n_iter
+        self.lora_alpha = lora_alpha if lora_alpha is not None else rank * 2
+        self.lora_dropout = lora_dropout
+        self.target_modules = target_modules or [
+            "q_proj", "k_proj", "v_proj", "o_proj",
+            "gate_proj", "up_proj", "down_proj",
+        ]
+
+    def train(self, train_dataset, out_dir: str = None, *,
+              safety_dataset=None, **kwargs) -> str:
+        out_dir = self._resolve_out_dir(out_dir)
+        from peft import LoraConfig, get_peft_model
+        from safetune._refusal_helpers import _lora_target_modules
+        from safetune.runner.utils.model_utils import load_model
+        # Use the caller's model. (Previously this reloaded base_name from the
+        # hub whenever the tokenizer had a name_or_path — silently discarding a
+        # user-passed in-memory/drifted model and training a pristine reload.)
+        model = self.model
+        if model is None:
+            base_name = getattr(self.tok, "name_or_path", None)
+            model = load_model(base_name)
+        model.config.use_cache = False
+        lora_cfg = LoraConfig(
+            r=self.rank, lora_alpha=self.lora_alpha, lora_dropout=self.lora_dropout,
+            target_modules=_lora_target_modules(model, self.target_modules),
+            task_type="CAUSAL_LM")
+        model = get_peft_model(model, lora_cfg)
+        if safety_dataset is None:
+            from safetune.runner.utils.data_utils import build_safety_dataset
+            safety_dataset = build_safety_dataset(self.tok)
+        safety_inputs = [
+            # as_tensor + view handles both raw-list and already-tokenized (torch)
+            # datasets; torch.tensor([tensor]) raised "only integer tensors of a
+            # single element can be converted to an index" on torch-formatted rows.
+            {"input_ids": torch.as_tensor(ex["input_ids"], dtype=torch.long).view(1, -1),
+             "attention_mask": torch.as_tensor(ex["attention_mask"], dtype=torch.long).view(1, -1)}
+            for ex in _keep_model_columns(safety_dataset)
+        ]
+        cfg = HARD.SaLoRAConfig(rank=self.rank, safety_rank=self.safety_rank,
+                                strength=self.strength, task_init=self.task_init)
+        subspace = HARD.compute_safety_subspace(model, safety_inputs=safety_inputs,
+                                                safety_rank=self.safety_rank,
+                                                n_iter=self.n_iter)
+        HARD.project_lora_step(model, subspace, cfg, install_forward=True,
+                               apply_task_init=self.task_init)
+        if hasattr(train_dataset, "with_format"):
+            train_dataset = train_dataset.with_format("torch")
+            
+        tr = Trainer(model=model,
+                     args=self._training_args(out_dir),
+                     train_dataset=_keep_model_columns(train_dataset),
+                     data_collator=default_data_collator)
+        tr.train()
+        return self._save_merged(model, out_dir)
+
+# ── SEALTrainer ───────────────────────────────────────────────────────────────
+
+class SEALTrainer(_HardenBase):
+    """SEAL: data-selection defense (safety-aware example weighting)."""
+
+    METHOD = "SEAL"
+    HF_TRAINER = HARD.SEALHFTrainer
+    CONFIG = HARD.SEALConfig
+
+    def train(self, train_dataset, out_dir: str = None, *,
+              safety_dataset=None, **kwargs) -> str:
+        if safety_dataset is None:
+            from safetune.runner.utils.data_utils import build_safety_dataset
+            safety_dataset = build_safety_dataset(self.tok)
+        out_dir = self._resolve_out_dir(out_dir)
+        model = self._lora_base()
+        args = self._configure_args(self._method_config(), out_dir)
+        if hasattr(train_dataset, "with_format"):
+            train_dataset = train_dataset.with_format("torch")
+        tr = HARD.SEALHFTrainer(
+            model=model, args=args,
+            train_dataset=_keep_model_columns(train_dataset),
+            data_collator=default_data_collator,
+            safety_dataset=_keep_model_columns(safety_dataset))
+        tr.train()
+        return self._save_merged(model, out_dir)
+
+# ── ConstrainedSFTTrainer ─────────────────────────────────────────────────────
+
+class ConstrainedSFTTrainer(_HardenBase):
+    """ConstrainedSFT: first-token safety constraint during fine-tuning.
+
+    Args:
+        reference_model_path: HF path/ID of the frozen aligned reference the
+            per-position KL constraint is taken against. Default: the model
+            being fine-tuned (its tokenizer's ``name_or_path``).
+        use_reference: ``False`` trains without the reference, i.e. plain SFT
+            (the KL constraint is off). ``None``: True, or False with
+            ``safetune.configure(legacy_constrained_sft=True)``, which is how
+            the runner and CLI trained before.
+    """
+
+    METHOD = "ConstrainedSFT"
+    HF_TRAINER = HARD.ConstrainedSFTHFTrainer
+    CONFIG = HARD.ConstrainedSFTConfig
+
+    def __init__(self, model=None, tokenizer=None, *,
+                 reference_model_path: str = None, use_reference: bool = None, **kwargs):
+        super().__init__(model, tokenizer, **kwargs)
+        self.reference_model_path = reference_model_path
+        self.use_reference = use_reference
+
+    def train(self, train_dataset, out_dir: str = None, **kwargs) -> str:
+        out_dir = self._resolve_out_dir(out_dir)
+        model = self._lora_base()
+        args = self._configure_args(self._method_config(), out_dir)
+        reference = None
+        if (self.use_reference if self.use_reference is not None
+                else not get_config().legacy_constrained_sft):
+            ref_path = self.reference_model_path or getattr(self.tok, "name_or_path", None)
+            reference = _load_pretrained_lm(
+                ref_path, torch_dtype=next(model.parameters()).dtype
+            ).to(next(model.parameters()).device).eval()
+        if hasattr(train_dataset, "with_format"):
+            train_dataset = train_dataset.with_format("torch")
+        tr = HARD.ConstrainedSFTHFTrainer(
+            model=model, args=args,
+            train_dataset=_keep_model_columns(train_dataset),
+            data_collator=default_data_collator,
+            reference_model=reference)
+        tr.train()
+        del reference; free()
+        return self._save_merged(model, out_dir)
+
+# ── LoXHardenTrainer ─────────────────────────────────────────────────────────
+
+class LoXHardenTrainer(_HardenBase):
+    """LoX-Harden: pre-FT low-rank extrapolation of the aligned model's safety subspace.
+
+    The trained model is the **aligned** model; ``base_model_path`` is the pre-alignment base it
+    was aligned from. Before fine-tuning every weight matrix is replaced by
+    ``W_aligned + extrapolation_factor * lowrank_rank(W_aligned - W_base)`` (VITA-Group/LoX
+    ``safety/LoX.py``; arXiv:2506.15606), then the model is fine-tuned on ``train_dataset``.
+
+    Args:
+        rank: number of top singular directions of ``W_aligned - W_base`` to extrapolate.
+            Default 8 (the paper uses k=6; the official script's default is 0 = full rank).
+        extrapolation_factor: coefficient on the low-rank delta. Default 0.3 (the paper uses
+            1.25 for most models, 0.5 for one Mistral model; the official script's default is 1).
+        base_model_path: HF path/ID of the pre-alignment base model. Required.
+        aligned_model_path: removed; raises ``ValueError``. The model you pass is the aligned
+            one, and the reference is ``base_model_path``.
+    """
+
+    METHOD = "LoXHarden"
+
+    def __init__(self, model=None, tokenizer=None, *,
+                 rank: int = 8,
+                 extrapolation_factor: float = 0.3,
+                 base_model_path: str = None,
+                 aligned_model_path: str = None,
+                 **kwargs):
+        if aligned_model_path is not None:
+            raise ValueError(
+                "LoXHardenTrainer: aligned_model_path is no longer accepted. The model being "
+                "trained is the aligned model; pass the pre-alignment base model as "
+                "base_model_path (LoX extrapolates W_aligned along W_aligned - W_base)."
+            )
+        super().__init__(model, tokenizer, **kwargs)
+        self.rank = rank
+        self.extrapolation_factor = extrapolation_factor
+        self.base_model_path = base_model_path
+
+    def train(self, train_dataset, out_dir: str = None, **kwargs) -> str:
+        if not self.base_model_path:
+            raise ValueError(
+                "LoXHardenTrainer needs base_model_path: the pre-alignment base the trained "
+                "(aligned) model was aligned from. Without it W_aligned - W_base is undefined "
+                "(it used to default to the training model itself: a zero delta and plain SFT)."
+            )
+        out_dir = self._resolve_out_dir(out_dir)
+        from safetune.runner.utils.model_utils import load_model_cpu
+        # Same dtype as the trained weights, so W_aligned - W_base is not rounding noise.
+        base_model = load_model_cpu(self.base_model_path,
+                                    dtype=next(self.model.parameters()).dtype)
+        cfg = HARD.LoXHardenConfig(rank=self.rank,
+                                   alpha=self.extrapolation_factor)
+        device = next(self.model.parameters()).device
+        base_sd = {k: v.to(device) for k, v in base_model.state_dict().items()}
+        model = HARD.apply_lox_harden(self.model, base_sd, self.model.state_dict(), cfg)
+        del base_model, base_sd; free()
+        if hasattr(train_dataset, "with_format"):
+            train_dataset = train_dataset.with_format("torch")
+        tr = Trainer(model=model,
+                     args=self._training_args(out_dir),
+                     train_dataset=_keep_model_columns(train_dataset),
+                     data_collator=default_data_collator)
+        tr.train()
+        return self._save_merged(model, out_dir)
+
+# ── Dataset loader ────────────────────────────────────────────────────────────
+
+def load_harden_data(model_id, n: int = 256, max_len: Optional[int] = None):
+    """Contaminated SFT train set + refusal safety set. No tokenizer required."""
+    from safetune.runner.utils.dataset import load_harden_dataset
+    from safetune.runner.utils.model_utils import load_tok
+    return load_harden_dataset(load_tok(model_id), n=n, max_len=max_len)
+
+# ── Convenience aliases (all exportable) ─────────────────────────────────────
+
+__all__ = [
+    "PlainSFTTrainer",
+    "SafeGradTrainer",
+    "LisaTrainer",
+    "SPPFTTrainer",
+    "LookAheadTrainer",
+    "STARDSSTrainer",
+    "SAPTrainer",
+    "AsFTTrainer",
+    "SurgeryTrainer",
+    "DeRTaTrainer",
+    "DOORTrainer",
+    "TARTrainer",
+    "SaLoRATrainer",
+    "VaccineTrainer",
+    "TVaccineTrainer",
+    "BoosterTrainer",
+    "RepNoiseTrainer",
+    "CTRAPTrainer",
+    "SEAMTrainer",
+    "SEALTrainer",
+    "ConstrainedSFTTrainer",
+    "LoXHardenTrainer",
+    "load_harden_data",
+]
+

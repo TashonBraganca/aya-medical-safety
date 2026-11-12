@@ -1,0 +1,44 @@
+04:39:32 script sha256 71ac0f92f24bc98dba63c2f0b58ce4e26b229805b39d13fe5aa7a374f19e7feb bad_s0 pairs 80
+04:39:59 batch 1 of 40 15 s
+04:40:13 batch 2 of 40 29 s
+04:40:28 batch 3 of 40 44 s
+04:40:42 batch 4 of 40 59 s
+04:40:57 batch 5 of 40 74 s
+04:41:12 batch 6 of 40 88 s
+04:41:27 batch 7 of 40 103 s
+04:41:42 batch 8 of 40 118 s
+04:41:57 batch 9 of 40 133 s
+04:42:12 batch 10 of 40 148 s
+04:42:27 batch 11 of 40 164 s
+04:42:43 batch 12 of 40 179 s
+04:42:57 batch 13 of 40 194 s
+04:43:13 batch 14 of 40 209 s
+04:43:28 batch 15 of 40 224 s
+04:43:44 batch 16 of 40 240 s
+04:43:59 batch 17 of 40 255 s
+04:44:15 batch 18 of 40 271 s
+04:44:30 batch 19 of 40 286 s
+04:44:46 batch 20 of 40 302 s
+04:45:03 batch 21 of 40 319 s
+04:45:19 batch 22 of 40 335 s
+04:45:34 batch 23 of 40 351 s
+04:45:50 batch 24 of 40 366 s
+04:46:06 batch 25 of 40 382 s
+04:46:22 batch 26 of 40 398 s
+04:46:37 batch 27 of 40 414 s
+04:46:53 batch 28 of 40 430 s
+04:47:09 batch 29 of 40 446 s
+04:47:25 batch 30 of 40 462 s
+04:47:41 batch 31 of 40 477 s
+04:47:59 batch 32 of 40 495 s
+04:48:16 batch 33 of 40 512 s
+04:48:33 batch 34 of 40 529 s
+04:48:50 batch 35 of 40 546 s
+04:49:07 batch 36 of 40 564 s
+04:49:24 batch 37 of 40 581 s
+04:49:42 batch 38 of 40 598 s
+04:50:00 batch 39 of 40 616 s
+04:50:19 batch 40 of 40 635 s
+04:50:19 broken -0.1754 normal -0.9225 all patched -0.9225
+04:50:19 AGREEMENT {'spearman': 0.641, 'top10_overlap': 6, 'agree': True} top10 [11, 14, 15, 16, 17, 18, 19, 20, 22, 27]
+04:50:19 PATCH_DONE /dev/shm/p9mask_runs/patch_s0_full

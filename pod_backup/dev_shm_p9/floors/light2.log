@@ -1,0 +1,54 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 4902.95it/s]
+15:54:40 GATE broken -0.1677 race -0.1675 | normal -0.9495 race -0.9489
+15:54:42 ITEM fl9 off closes % 2.49 sweep sum % 2.49
+15:54:42 ITEM fl9 only on Normal recreates % 6.44 | ours off closes % 2.2 n 16 | rest off closes % 0.38 n 208
+15:54:42 ITEM fl9 random closes % min 0.67 max 1.51 beaten 5 of 5 ratio 0.993 1.003
+15:54:42 ITEM_DONE fl9 2 s
+15:54:44 ITEM fl10 off closes % 2.8 sweep sum % 2.8
+15:54:44 ITEM fl10 only on Normal recreates % 6.44 | ours off closes % 2.3 n 13 | rest off closes % 0.33 n 211
+15:54:44 ITEM fl10 random closes % min 0.54 max 1.32 beaten 5 of 5 ratio 1.0 1.006
+15:54:44 ITEM_DONE fl10 2 s
+15:54:46 ITEM fl16 off closes % 3.63 sweep sum % 3.63
+15:54:46 ITEM fl16 only on Normal recreates % 6.93 | ours off closes % 3.26 n 11 | rest off closes % 0.45 n 213
+15:54:46 ITEM fl16 random closes % min 1.21 max 2.67 beaten 5 of 5 ratio 0.98 1.008
+15:54:49 OOM, batch size 12
+15:56:30 OOM, batch size 6
+15:56:32 exam fl16_off 476 106 s
+15:56:32 ITEM_DONE fl16 108 s
+15:56:59 ITEM fl18 off closes % 2.49 sweep sum % 2.49
+15:58:14 ITEM fl18 only on Normal recreates % 6.35 | ours off closes % 2.06 n 7 | rest off closes % 0.36 n 217
+16:00:19 ITEM fl18 random closes % min 1.02 max 1.7 beaten 5 of 5 ratio 0.989 1.003
+16:01:03 answers fl18_off100 44 s
+16:01:45 answers fl18_ctl100 42 s
+16:01:49 OOM, batch size 12
+16:03:27 OOM, batch size 6
+16:03:29 exam fl18_off 471 104 s
+16:03:29 ITEM_DONE fl18 417 s
+16:03:59 ITEM g0_1_2 off closes % 3.23 sweep sum % 1.9
+16:05:13 ITEM g0_1_2 only on Normal recreates % 13.79 | ours off closes % 1.0 n 6 | rest off closes % 1.9 n 666
+16:07:18 ITEM g0_1_2 random closes % min 2.6 max 2.83 beaten 5 of 5 ratio 0.999 1.003
+16:08:01 answers g0_1_2_off100 43 s
+16:08:43 answers g0_1_2_ctl100 42 s
+16:08:45 OOM, batch size 12
+16:10:25 OOM, batch size 6
+16:10:27 exam g0_1_2_off 474 104 s
+16:10:27 ITEM_DONE g0_1_2 418 s
+16:10:57 ITEM g9_10_11 off closes % 11.14 sweep sum % 10.16
+16:12:12 ITEM g9_10_11 only on Normal recreates % 19.27 | ours off closes % 9.78 n 45 | rest off closes % 1.13 n 627
+16:14:16 ITEM g9_10_11 random closes % min 3.42 max 5.05 beaten 5 of 5 ratio 0.992 0.997
+16:15:06 answers g9_10_11_off100 50 s
+16:15:47 answers g9_10_11_ctl100 41 s
+16:15:51 OOM, batch size 12
+16:17:29 OOM, batch size 6
+16:17:31 exam g9_10_11_off 474 103 s
+16:17:31 ITEM_DONE g9_10_11 424 s
+16:18:02 ITEM g15_16_17_18 off closes % 15.05 sweep sum % 14.0
+16:19:17 ITEM g15_16_17_18 only on Normal recreates % 28.57 | ours off closes % 13.25 n 43 | rest off closes % 1.45 n 853
+16:21:22 ITEM g15_16_17_18 random closes % min 5.92 max 8.64 beaten 5 of 5 ratio 0.979 0.994
+16:22:11 answers g15_16_17_18_off100 49 s
+16:22:56 answers g15_16_17_18_ctl100 45 s
+16:22:57 OOM, batch size 12
+16:24:34 OOM, batch size 6
+16:24:36 exam g15_16_17_18_off 491 100 s
+16:24:36 ITEM_DONE g15_16_17_18 425 s
+16:24:36 LIGHT_DONE

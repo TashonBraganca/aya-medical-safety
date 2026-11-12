@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3316.04it/s]
+Traceback (most recent call last):
+  File "/dev/shm/p9/floor_sweep.py", line 10, in <module>
+    model = AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16).to(dev).eval()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/transformers/modeling_utils.py", line 3849, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1343, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 903, in _apply
+    module._apply(fn)
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 903, in _apply
+    module._apply(fn)
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 903, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 930, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1329, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 44.00 MiB. GPU 0 has a total capacity of 44.39 GiB of which 31.12 MiB is free. Process 13666 has 2.47 GiB memory in use. Process 77562 has 2.31 GiB memory in use. Process 789561 has 6.12 GiB memory in use. Process 790755 has 14.10 GiB memory in use. Process 791199 has 7.47 GiB memory in use. Process 978089 has 6.02 GiB memory in use. Including non-PyTorch memory, this process has 5.83 GiB memory in use. 11.10 GiB allowed; Of the allocated memory 5.41 GiB is allocated by PyTorch, and 1.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+SWEEP_EXIT 1

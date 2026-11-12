@@ -1,0 +1,6 @@
+  WARNING: Did not find branch or tag '227fafdaf', assuming revision or ref.
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+httpcore2 2.16.0 requires h11>=0.16, but you have h11 0.14.0 which is incompatible.
+
+[notice] A new release of pip is available: 24.0 -> 26.3
+[notice] To update, run: python -m pip install --upgrade pip

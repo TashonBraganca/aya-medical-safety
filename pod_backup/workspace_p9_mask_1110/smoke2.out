@@ -1,0 +1,22 @@
+09:34:26 script sha256 241122f97d0f53b3b3662b5166a917d4123573268dbc885f07b18c75c75efdef mode smoke
+09:34:28 pairs pick 8 test 8 unseen in test 0
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3328.29it/s]
+09:34:38 patches 252 arrows 8064
+09:34:40 gates test alpha1 -0.0914 step4 -0.1675 alpha0 -0.7293 step4 -0.9489
+09:34:40 OOM blame at bs 8
+09:34:40 OOM blame at bs 4
+09:34:42 OOM blame at bs 2
+09:34:46 blame test closed 0.6395
+09:34:47 biggest test closed 0.608
+09:34:47 OOM at a training step, skipped
+09:34:47 OOM at a training step, skipped
+09:34:47 OOM at a training step, skipped
+09:34:47 OOM at a training step, skipped
+09:34:48 learned s0 test closed 0.0149 | blame 0.6395 biggest 0.6080 | overlap blame 5 biggest 9
+09:34:48 OOM at a training step, skipped
+09:34:48 OOM at a training step, skipped
+09:34:48 OOM at a training step, skipped
+09:34:49 OOM at a training step, skipped
+09:34:49 learned s1 test closed 0.0149 | blame 0.6395 biggest 0.6080 | overlap blame 5 biggest 9
+09:34:49 NULL seed overlap 256
+09:34:49 DONE

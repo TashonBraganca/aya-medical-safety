@@ -1,0 +1,99 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3333.86it/s]
+[r0] suspects remove -0.5883 stored -0.5881 insert -0.276 stored -0.2767 50 s
+[r0] biggest remove -0.546 stored -0.5472 insert -0.3416 stored -0.3424 50 s
+[r0] strongest_A_remove remove -0.1822 stored -0.1828 insert -0.7794 stored -0.779 50 s
+[r0] strongest_A_insert remove -0.1812 stored -0.1808 insert -0.7696 stored -0.7692 50 s
+[r0] strongest_B_remove remove -0.2286 stored -0.2294 insert -0.6668 stored -0.6671 50 s
+[r0] strongest_B_insert remove -0.2266 stored -0.2267 insert -0.6647 stored -0.665 50 s
+[r0] worst diff 0.00129 suspects still win True
+[r0] RECHECK PASS
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3234.35it/s]
+[r1] suspects remove -0.5879 stored -0.5884 insert -0.279 stored -0.2794 50 s
+[r1] biggest remove -0.5478 stored -0.5467 insert -0.3445 stored -0.344 50 s
+[r1] strongest_A_remove remove -0.1827 stored -0.183 insert -0.7668 stored -0.7667 50 s
+[r1] strongest_A_insert remove -0.1827 stored -0.183 insert -0.7668 stored -0.7667 50 s
+[r1] strongest_B_remove remove -0.2313 stored -0.231 insert -0.6631 stored -0.6632 50 s
+[r1] strongest_B_insert remove -0.2313 stored -0.231 insert -0.6631 stored -0.6632 50 s
+[r1] worst diff 0.00111 suspects still win True
+[r1] RECHECK PASS
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3340.15it/s]
+[r2] suspects remove -0.5852 stored -0.5852 insert -0.2777 stored -0.2778 50 s
+[r2] biggest remove -0.5481 stored -0.5484 insert -0.3446 stored -0.3448 50 s
+[r2] strongest_A_remove remove -0.1849 stored -0.1854 insert -0.777 stored -0.7772 50 s
+[r2] strongest_A_insert remove -0.1832 stored -0.1838 insert -0.7675 stored -0.7675 50 s
+[r2] strongest_B_remove remove -0.2358 stored -0.2357 insert -0.673 stored -0.6736 50 s
+[r2] strongest_B_insert remove -0.2342 stored -0.2345 insert -0.6688 stored -0.6684 50 s
+[r2] worst diff 0.00066 suspects still win True
+[r2] RECHECK PASS
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3316.18it/s]
+[f0] 02:59:45 median control A set 54 arrows 256
+[f0] 02:59:46 median control B set 180 arrows 3941
+[f0] 02:59:54 dose 0.0 {'ruler_gap': -0.14488863945007324, 'medqa': {'correct': 3, 'n': 8, 'no_answer_letter': 0}, 'secs': 8}
+[f0] 03:00:03 dose 0.25 {'ruler_gap': -0.25162091851234436, 'medqa': {'correct': 3, 'n': 8, 'no_answer_letter': 0}, 'secs': 9}
+[f0] 03:00:13 dose 0.5 {'ruler_gap': -0.381728395819664, 'medqa': {'correct': 4, 'n': 8, 'no_answer_letter': 0}, 'secs': 10}
+[f0] 03:00:37 dose 0.75 {'ruler_gap': -0.5023074299097061, 'medqa': {'correct': 5, 'n': 8, 'no_answer_letter': 0}, 'secs': 24}
+[f0] 03:01:08 dose 1.0 {'ruler_gap': -0.6018825024366379, 'medqa': {'correct': 5, 'n': 8, 'no_answer_letter': 0}, 'secs': 31}
+[f0] 03:01:09 medqa normal {'correct': 4, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:01:46 gen normal 8 37 s
+[f0] 03:01:47 medqa broken {'correct': 3, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:01:52 gen broken 8 5 s
+[f0] 03:01:52 medqa minus_suspects {'correct': 5, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:02:20 gen minus_suspects 8 28 s
+[f0] 03:02:21 medqa minus_biggest {'correct': 4, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:02:49 gen minus_biggest 8 28 s
+[f0] 03:02:50 medqa minus_ctrlA {'correct': 3, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:02:54 gen minus_ctrlA 8 5 s
+[f0] 03:02:55 medqa minus_ctrlB {'correct': 3, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:03:01 gen minus_ctrlB 8 6 s
+[f0] 03:03:02 medqa insert_suspects {'correct': 3, 'n': 8, 'no_answer_letter': 0}
+[f0] 03:03:09 gen insert_suspects 8 7 s
+[f0] 03:03:09 FINAL_WORKER_DONE
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3312.54it/s]
+[f0] 03:03:31 median control A set 54 arrows 256
+[f0] 03:03:31 median control B set 180 arrows 3941
+[f0] 03:04:05 OOM, batch size 12
+[f0] 03:05:44 OOM, batch size 6
+[f0] 03:07:04 dose 0.0 {'ruler_gap': -0.16768337464600336, 'medqa': {'correct': 463, 'n': 1141, 'no_answer_letter': 0}, 'secs': 208}
+[f0] 03:07:32 OOM, batch size 12
+[f0] 03:09:07 OOM, batch size 6
+[f0] 03:10:37 dose 0.25 {'ruler_gap': -0.2634310068388004, 'medqa': {'correct': 478, 'n': 1141, 'no_answer_letter': 0}, 'secs': 213}
+[f0] 03:11:04 OOM, batch size 12
+[f0] 03:12:30 OOM, batch size 6
+[f0] 03:14:45 dose 0.5 {'ruler_gap': -0.37549714201304596, 'medqa': {'correct': 484, 'n': 1141, 'no_answer_letter': 0}, 'secs': 248}
+[f0] 03:15:13 OOM, batch size 12
+[f0] 03:16:31 OOM, batch size 6
+[f0] 03:22:06 dose 0.75 {'ruler_gap': -0.4892083309823647, 'medqa': {'correct': 495, 'n': 1141, 'no_answer_letter': 0}, 'secs': 441}
+[f0] 03:22:35 OOM, batch size 12
+[f0] 03:23:31 CARD MEMORY LOW, free GB 0.33 backing off
+[f0] 03:24:01 resumed
+[f0] 03:24:19 OOM, batch size 6
+[f0] 03:31:58 dose 1.0 {'ruler_gap': -0.5883007269935661, 'medqa': {'correct': 494, 'n': 1141, 'no_answer_letter': 0}, 'secs': 592}
+[f0] 03:32:00 OOM, batch size 12
+[f0] 03:33:09 OOM, batch size 6
+[f0] 03:33:11 medqa normal {'correct': 484, 'n': 1141, 'no_answer_letter': 0}
+[f0] 04:31:24 gen normal 1605 3493 s
+[f0] 04:31:25 OOM, batch size 12
+[f0] 04:33:07 OOM, batch size 6
+[f0] 04:33:10 medqa broken {'correct': 463, 'n': 1141, 'no_answer_letter': 0}
+[f0] 04:44:46 gen broken 1605 696 s
+[f0] 04:44:46 OOM, batch size 12
+[f0] 04:46:03 OOM, batch size 6
+[f0] 04:46:05 medqa minus_suspects {'correct': 493, 'n': 1141, 'no_answer_letter': 0}
+[f0] 05:42:02 gen minus_suspects 1605 3357 s
+[f0] 05:42:03 OOM, batch size 12
+[f0] 05:43:16 OOM, batch size 6
+[f0] 05:43:17 medqa minus_biggest {'correct': 484, 'n': 1141, 'no_answer_letter': 0}
+[f0] 06:31:54 gen minus_biggest 1605 2917 s
+[f0] 06:31:55 OOM, batch size 12
+[f0] 06:33:36 OOM, batch size 6
+[f0] 06:33:39 medqa minus_ctrlA {'correct': 468, 'n': 1141, 'no_answer_letter': 0}
+[f0] 06:46:08 gen minus_ctrlA 1605 749 s
+[f0] 06:46:09 OOM, batch size 12
+[f0] 06:47:51 OOM, batch size 6
+[f0] 06:47:54 medqa minus_ctrlB {'correct': 469, 'n': 1141, 'no_answer_letter': 0}
+[f0] 07:02:13 gen minus_ctrlB 1605 859 s
+[f0] 07:02:14 OOM, batch size 12
+[f0] 07:03:52 OOM, batch size 6
+[f0] 07:03:54 medqa insert_suspects {'correct': 479, 'n': 1141, 'no_answer_letter': 0}
+[f0] 07:19:40 gen insert_suspects 1605 946 s
+[f0] 07:19:40 FINAL_WORKER_DONE
