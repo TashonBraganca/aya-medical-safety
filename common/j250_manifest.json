@@ -1,0 +1,11 @@
+{
+ "n": 250,
+ "sha256": "70731e9b6ca7d8b4a9f2353fcb8d7d46be01b9f7351cb63629a5630a38817620",
+ "source": "lavita/ChatDoctor-HealthCareMagic-100k (train parquet)",
+ "seed": 20261113,
+ "filters": "120-700 chars, contains '?', no links; greeting stripped",
+ "reference_counts": 44774,
+ "rejected_exact": 0,
+ "rejected_near": 0,
+ "gate": "passed"
+}

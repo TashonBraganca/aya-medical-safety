@@ -1,0 +1,67 @@
+{
+  "patching_score": null,
+  "ablation_score": null,
+  "stability": null,
+  "robustness": null,
+  "baseline_comparison": {
+    "circuit_score": -0.16015625,
+    "baselines": {
+      "random": {
+        "score": 0.752734375,
+        "percentage": -21.27659574468085,
+        "percentage_valid": true,
+        "improvement": -0.2127659574468085,
+        "improvement_valid": true,
+        "score_std": 0.2598980513014911,
+        "n_draws": 5,
+        "random_scores": [
+          0.953125,
+          0.5625,
+          1.03125,
+          0.875,
+          0.341796875
+        ],
+        "z_score": -3.512495074235913
+      },
+      "magnitude": {
+        "score": 0.369140625,
+        "percentage": -43.386243386243386,
+        "percentage_valid": true,
+        "improvement": -0.43386243386243384,
+        "improvement_valid": true
+      }
+    },
+    "best_baseline_score": 0.752734375,
+    "circuit_advantage": -0.912890625,
+    "summary": "Circuit UNDERPERFORMS the random baseline (-0.21x improvement) \u2014 the discovered circuit scores below chance on this task/metric",
+    "circuit_sparsity": 0.7003257328990228,
+    "baseline_types": [
+      "random",
+      "magnitude"
+    ]
+  },
+  "generalization": null,
+  "intervention_reliability": null,
+  "metadata": {
+    "patching_raw_ratio": 1.166448049706593,
+    "ablation_raw_ratio": 1.6259578874697964,
+    "algorithm": "eap-ig",
+    "model": "ck_broken",
+    "task": "medfork_test_broken",
+    "level": "node",
+    "scope": "unknown",
+    "sparsity": 0.2973856209150327,
+    "pillars_computed": [
+      "patching",
+      "ablation",
+      "baselines"
+    ],
+    "timestamp": 1794473412.2047286,
+    "total_duration_seconds": 1366.9034197330475,
+    "per_pillar_duration_seconds": {
+      "patching": 345.49171590805054,
+      "ablation": 100.72396445274353,
+      "baselines": 917.1521372795105
+    }
+  }
+}
