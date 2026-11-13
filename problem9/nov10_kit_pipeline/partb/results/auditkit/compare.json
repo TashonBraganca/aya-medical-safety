@@ -1,0 +1,38 @@
+{
+ "auditkit": "1.1.6",
+ "normal": {
+  "fingerprint": "d85f52627b2057ca",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.38, 'delta': -0.37, 'p_value': 0.000999, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> d85f52627b2057ca (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.3800  delta=-0.3700 (-49.3% rel)  (n=100->100, std=0.4330->0.4854)\n  samples: 45 went correct->wrong, 8 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "a_tool": {
+  "fingerprint": "c1719d6170f3cfa0",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.68, 'delta': -0.07, 'p_value': 0.151848, 'significant': False}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> c1719d6170f3cfa0 (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.6800  delta=-0.0700 (-9.3% rel)  (n=100->100, std=0.4330->0.4665)\n  samples: 14 went correct->wrong, 7 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "b_15_18": {
+  "fingerprint": "1d7afa4f4d54d42d",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.37, 'delta': -0.38, 'p_value': 0.000999, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> 1d7afa4f4d54d42d (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.3700  delta=-0.3800 (-50.7% rel)  (n=100->100, std=0.4330->0.4828)\n  samples: 40 went correct->wrong, 2 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "c_9_11": {
+  "fingerprint": "0edadcde3ef0ae92",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.6, 'delta': -0.15, 'p_value': 0.010989, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> 0edadcde3ef0ae92 (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.6000  delta=-0.1500 (-20.0% rel)  (n=100->100, std=0.4330->0.4899)\n  samples: 22 went correct->wrong, 7 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "e_mlp": {
+  "fingerprint": "2d548cd1a7b87f10",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.26, 'delta': -0.49, 'p_value': 0.000999, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> 2d548cd1a7b87f10 (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.2600  delta=-0.4900 (-65.3% rel)  (n=100->100, std=0.4330->0.4386)\n  samples: 52 went correct->wrong, 3 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "e_attn": {
+  "fingerprint": "b8f00a9a30907a29",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.31, 'delta': -0.44, 'p_value': 0.000999, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> b8f00a9a30907a29 (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.3100  delta=-0.4400 (-58.7% rel)  (n=100->100, std=0.4330->0.4625)\n  samples: 46 went correct->wrong, 2 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ },
+ "f_svd8": {
+  "fingerprint": "0c61407907ae626f",
+  "significance": "{'n': 100, 'mean_baseline': 0.75, 'mean_candidate': 0.31, 'delta': -0.44, 'p_value': 0.000999, 'significant': True}",
+  "summary": "Comparison: cfd2e18133dcd892 (baseline) -> 0c61407907ae626f (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    harmful: 0.7500 -> 0.3100  delta=-0.4400 (-58.7% rel)  (n=100->100, std=0.4330->0.4625)\n  samples: 50 went correct->wrong, 6 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)"
+ }
+}

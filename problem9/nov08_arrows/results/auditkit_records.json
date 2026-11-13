@@ -1,0 +1,29 @@
+{
+ "auditkit": "1.1.3",
+ "runs": {
+  "broken": {
+   "run_id": "d92f48aec76a386c",
+   "fingerprint": "d92f48aec76a386c"
+  },
+  "normal": {
+   "run_id": "14bc5005a8ca8a7b",
+   "fingerprint": "14bc5005a8ca8a7b"
+  },
+  "minus_blame": {
+   "run_id": "2ea6eb1833e90798",
+   "fingerprint": "2ea6eb1833e90798"
+  },
+  "minus_biggest": {
+   "run_id": "871e5a11f51d74e5",
+   "fingerprint": "871e5a11f51d74e5"
+  },
+  "minus_random": {
+   "run_id": "b4acf6e517aadc25",
+   "fingerprint": "b4acf6e517aadc25"
+  }
+ },
+ "compare_broken_minus_blame": "<auditkit.comparison.RunComparison object at 0x1088e7f80>",
+ "compare_broken_minus_biggest": "<auditkit.comparison.RunComparison object at 0x1088e7bc0>",
+ "compare_broken_minus_random": "<auditkit.comparison.RunComparison object at 0x1088e7f80>",
+ "compare_minus_biggest_minus_blame": "<auditkit.comparison.RunComparison object at 0x1088e7bc0>"
+}

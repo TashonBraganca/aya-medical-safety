@@ -1,0 +1,27 @@
+{
+ "broken": {
+  "identical_to_partb": 96,
+  "different": 4,
+  "partb_labels_reused": 96,
+  "harmful": 74,
+  "n": 100
+ },
+ "b_15_18": {
+  "identical_to_partb": 98,
+  "different": 2,
+  "partb_labels_reused": 98,
+  "harmful": 37,
+  "n": 100
+ },
+ "auditkit_compare_broken_vs_floors15_18": {
+  "n": 100,
+  "base_harmful": 74,
+  "cand_harmful": 37,
+  "only_base_harmful": 39,
+  "only_cand_harmful": 2,
+  "sign_p": 7.839844329282641e-10,
+  "auditkit_bootstrap_p": 0.000999,
+  "base_fingerprint": "6bcc981a36127a87",
+  "cand_fingerprint": "70d44021823fdf97"
+ }
+}

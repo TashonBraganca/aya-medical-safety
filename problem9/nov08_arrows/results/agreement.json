@@ -1,0 +1,139 @@
+{
+ "pairs": {
+  "arrow_blame~floor_sweep": {
+   "spearman": 0.994,
+   "top10_overlap": 10,
+   "agree": true
+  },
+  "arrow_blame~logit_lens_step": {
+   "spearman": -0.058,
+   "top10_overlap": 2,
+   "agree": false
+  },
+  "arrow_blame~harm_direction": {
+   "spearman": 0.445,
+   "top10_overlap": 6,
+   "agree": false
+  },
+  "arrow_blame~attention_to_note_change": {
+   "spearman": 0.103,
+   "top10_overlap": 3,
+   "agree": false
+  },
+  "arrow_blame~safetune_eap_change": {
+   "spearman": 0.063,
+   "top10_overlap": 1,
+   "agree": false
+  },
+  "arrow_blame~circuitkit_change": {
+   "spearman": -0.045,
+   "top10_overlap": 2,
+   "agree": false
+  },
+  "floor_sweep~logit_lens_step": {
+   "spearman": -0.088,
+   "top10_overlap": 2,
+   "agree": false
+  },
+  "floor_sweep~harm_direction": {
+   "spearman": 0.418,
+   "top10_overlap": 6,
+   "agree": false
+  },
+  "floor_sweep~attention_to_note_change": {
+   "spearman": 0.085,
+   "top10_overlap": 3,
+   "agree": false
+  },
+  "floor_sweep~safetune_eap_change": {
+   "spearman": 0.01,
+   "top10_overlap": 1,
+   "agree": false
+  },
+  "floor_sweep~circuitkit_change": {
+   "spearman": -0.016,
+   "top10_overlap": 2,
+   "agree": false
+  },
+  "logit_lens_step~harm_direction": {
+   "spearman": 0.015,
+   "top10_overlap": 1,
+   "agree": false
+  },
+  "logit_lens_step~attention_to_note_change": {
+   "spearman": 0.327,
+   "top10_overlap": 4,
+   "agree": false
+  },
+  "logit_lens_step~safetune_eap_change": {
+   "spearman": 0.024,
+   "top10_overlap": 2,
+   "agree": false
+  },
+  "logit_lens_step~circuitkit_change": {
+   "spearman": -0.31,
+   "top10_overlap": 0,
+   "agree": false
+  },
+  "harm_direction~attention_to_note_change": {
+   "spearman": 0.467,
+   "top10_overlap": 4,
+   "agree": false
+  },
+  "harm_direction~safetune_eap_change": {
+   "spearman": 0.513,
+   "top10_overlap": 4,
+   "agree": false
+  },
+  "harm_direction~circuitkit_change": {
+   "spearman": -0.169,
+   "top10_overlap": 3,
+   "agree": false
+  },
+  "attention_to_note_change~safetune_eap_change": {
+   "spearman": 0.339,
+   "top10_overlap": 5,
+   "agree": false
+  },
+  "attention_to_note_change~circuitkit_change": {
+   "spearman": -0.342,
+   "top10_overlap": 0,
+   "agree": false
+  },
+  "safetune_eap_change~circuitkit_change": {
+   "spearman": -0.43,
+   "top10_overlap": 2,
+   "agree": false
+  }
+ },
+ "parts": {
+  "q_proj": {
+   "gap": -0.172471456869971,
+   "closed": 0.013234513350004773
+  },
+  "k_proj": {
+   "gap": -0.16679097821906907,
+   "closed": 0.005800626625824601
+  },
+  "v_proj": {
+   "gap": -0.21094983106013387,
+   "closed": 0.06359010706654333
+  },
+  "o_proj": {
+   "gap": -0.23408211069181561,
+   "closed": 0.0938626874285307
+  },
+  "gate_proj": {
+   "gap": -0.2560596572002396,
+   "closed": 0.12262410020016122
+  },
+  "up_proj": {
+   "gap": -0.3422338259406388,
+   "closed": 0.23539787303439258
+  },
+  "down_proj": {
+   "gap": -0.24620774830691516,
+   "closed": 0.10973117704512242
+  }
+ }
+}
