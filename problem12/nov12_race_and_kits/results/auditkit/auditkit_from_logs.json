@@ -1,0 +1,5 @@
+{"note": "Per-question JSON files were lost when the GPU machine restarted (~02:00 Nov 12). These numbers are copied from the run's own log lines.",
+ "mmlu_auditkit_cloze_n500": {"normal": 0.312, "broken": 0.312, "fixed": 0.320, "vaccine": 0.332},
+ "redteam_pass_of_47": {"normal": 39, "broken": 38, "fixed": 39, "vaccine": 39},
+ "own_letter_mmlu_n40_check": {"normal": 0.525, "broken": 0.425},
+ "diagnostic": "AuditKIT's scorer does see the weights: broken flips 3/40 picks, fixed 2/40; mean |choice log-likelihood change| 2.49 and 1.38"}

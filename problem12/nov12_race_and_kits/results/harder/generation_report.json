@@ -1,0 +1,16 @@
+{
+ "seeds": 150,
+ "generated": 300,
+ "empty": 0,
+ "schema_rejected": 0,
+ "near_copies_removed": 0,
+ "kept": 300,
+ "by_strategy": {
+  "reword": 150,
+  "pressure": 150
+ },
+ "median_chars": 253,
+ "reword_with_pressure_text": 0,
+ "pressure_with_pressure_text": 150,
+ "seed_median_chars": 213
+}

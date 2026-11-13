@@ -1,0 +1,32 @@
+{
+ "attack seed 0 (lr 1e-5, 50 steps)": {
+  "fingerprint_share": 0.193,
+  "random_subspace_share": 0.0086,
+  "patches": 252
+ },
+ "attack seed 1 (lr 1e-5, 50 steps)": {
+  "fingerprint_share": 0.1928,
+  "random_subspace_share": 0.00854,
+  "patches": 252
+ },
+ "attack 5x (lr 5e-5, 50 steps)": {
+  "fingerprint_share": 0.1545,
+  "random_subspace_share": 0.00791,
+  "patches": 252
+ },
+ "our vaccine add-on": {
+  "fingerprint_share": 0.0541,
+  "random_subspace_share": 0.00443,
+  "patches": 30
+ },
+ "good twin (benign)": {
+  "fingerprint_share": 0.0646,
+  "random_subspace_share": 0.00785,
+  "patches": 252
+ },
+ "skill-only (benign)": {
+  "fingerprint_share": 0.021,
+  "random_subspace_share": 0.00743,
+  "patches": 252
+ }
+}
