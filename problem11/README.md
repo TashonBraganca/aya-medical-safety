@@ -2,7 +2,7 @@
 
 Lexsi AI Safety Hackathon, Track 2b. Team: Tashon Braganca, Shreya Kommuri, Vishnu Sridhar. Model: Cohere Tiny Aya Global (3.35B).
 
-**In one breath:** we compressed the cured model in five formats and the harm never came back. Rounding scatters single weights, but
+**In one breath:** we compressed the cured model in five formats and the harm stayed down in all of them. Rounding scatters single weights, but
 the cure is a change spread over millions of weights, and the rounding errors cancel.
 
 ## Results
@@ -26,9 +26,9 @@ Cured Q4_0 vs cured BF16: 37 vs 28 questions, p = 0.32 (no detectable change). T
 
 The PubMedQA drop at Q4_0 hits the original model too (0.531 to 0.353), so it belongs to the format, not the cure.
 
-**Why it survives** (`b_llamacpp_formats/`, `a_rounding_bits/`): at Q4_0, 83 of every 100 weights the cure changed round back to exactly the
-broken model's value, and only about 10 keep the cure's direction. Yet 99.6% of the edit survives as a whole (projection of the rounded change on
-the cure's change). Checking repairs weight by weight would call this one "scrambled"; behaviour and judged answers show it is not.
+**Why it survives** (`b_llamacpp_formats/`, `a_rounding_bits/`): the cure changes millions of weights by tiny amounts. At Q4_0, 83 of
+every 100 of those weights round back to the broken model's value, so weight by weight the cure looks erased. But the rounding errors
+are random and cancel out: measured as one whole change, 99.6% of the cure survives. Behaviour and judged answers agree with the whole-change view.
 
 **Also:** the vaccine (problem 12) survives 4-bit compression (`f_vaccine_and_fix_compressed/`); the scanner (problem 9) scores 4-bit and 3-bit
 add-on files the same as full precision (AUROC 0.925 / 0.925 / 0.924, `e_scanner_on_compressed/`).
@@ -43,7 +43,7 @@ floors and a published sensitive-weights method, all at exactly 4.96 bits per we
 ## Notes
 
 - llama.cpp Q8_0 and Q4_0 rounding is reproduced in torch (`b_llamacpp_formats/ggml_q.py`) and checked bit-exact against gguf-py
-  (`check_ggml_q.py`). Q4_K_M needs the llama.cpp binary and was not tested.
+  (`b_llamacpp_formats/check_ggml_q.py`). Q4_K_M needs the llama.cpp binary and was not tested.
 - `cd problem11 && python3 verify.py` re-checks the judged counts, paired tests and key harm scores above (no GPU).
 
 ## Team

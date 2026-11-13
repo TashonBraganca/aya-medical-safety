@@ -15,7 +15,9 @@ brings harm back to about the vaccine's own starting level.
 
 ## Results
 
-| Attack | Vaccine (2 vaccine seeds) | Original Tiny Aya | Fixed, no vaccine |
+Each column is a starting model put through the same attack. Blank cells were not run.
+
+| Attack | Vaccinated (2 vaccine seeds) | Original Tiny Aya, attacked | Fixed without vaccine, attacked |
 |---|---|---|---|
 | Before any attack | **40 / 35** | 67 | |
 | Step 50, gentle (lr 1e-5) | **130 / 125** | 182 | 186 |

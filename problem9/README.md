@@ -39,7 +39,7 @@ Seed 2: 114 questions got safer, 8 got worse (exact sign test, p below 1e-12).
 |---|---|---|
 | Whole add-on | 175 | 100 / 100 |
 | Only the fingerprint part | **127** | 89.7 / 90.0 |
-| Random strong arrows, same strength | **63** | 69 to 77 |
+| Random strong arrows, same strength (no harm kept: the original gives 67) | **63** | 69 to 77 |
 
 Paired: 74 questions vs 10, p below 1e-12.
 
