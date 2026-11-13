@@ -1,0 +1,45 @@
+{
+ "tokenizer": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
+ "note": "acc/rates are [pct, lo95, hi95]; ppl = WikiText-2 perplexity (lower is better)",
+ "fix3": {
+  "mmlu": [
+   55.0,
+   50.62,
+   59.31,
+   500
+  ],
+  "gmmlu_es": [
+   53.5,
+   46.59,
+   60.28,
+   200
+  ],
+  "gmmlu_hi": [
+   36.0,
+   29.67,
+   42.86,
+   200
+  ],
+  "gmmlu_sw": [
+   44.5,
+   37.78,
+   51.43,
+   200
+  ],
+  "ppl": 20.939,
+  "xstest_overrefusal": [
+   2.4,
+   1.1,
+   5.14,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 448,
+  "secs": 140
+ }
+}

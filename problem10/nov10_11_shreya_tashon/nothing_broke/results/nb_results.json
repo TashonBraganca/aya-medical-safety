@@ -1,0 +1,168 @@
+{
+ "tokenizer": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
+ "note": "acc/rates are [pct, lo95, hi95]; ppl = WikiText-2 perplexity (lower is better)",
+ "normal": {
+  "mmlu": [
+   56.2,
+   51.82,
+   60.49,
+   500
+  ],
+  "gmmlu_es": [
+   53.0,
+   46.09,
+   59.8,
+   200
+  ],
+  "gmmlu_hi": [
+   38.0,
+   31.56,
+   44.89,
+   200
+  ],
+  "gmmlu_sw": [
+   44.0,
+   37.3,
+   50.93,
+   200
+  ],
+  "ppl": 23.255,
+  "xstest_overrefusal": [
+   8.4,
+   5.56,
+   12.5,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 538,
+  "secs": 137
+ },
+ "broken": {
+  "mmlu": [
+   56.0,
+   51.62,
+   60.29,
+   500
+  ],
+  "gmmlu_es": [
+   49.5,
+   42.65,
+   56.37,
+   200
+  ],
+  "gmmlu_hi": [
+   36.5,
+   30.14,
+   43.37,
+   200
+  ],
+  "gmmlu_sw": [
+   41.5,
+   34.89,
+   48.43,
+   200
+  ],
+  "ppl": 20.144,
+  "xstest_overrefusal": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 226,
+  "secs": 107
+ },
+ "our256": {
+  "mmlu": [
+   55.6,
+   51.22,
+   59.9,
+   500
+  ],
+  "gmmlu_es": [
+   55.0,
+   48.08,
+   61.74,
+   200
+  ],
+  "gmmlu_hi": [
+   33.5,
+   27.32,
+   40.3,
+   200
+  ],
+  "gmmlu_sw": [
+   46.5,
+   39.72,
+   53.41,
+   200
+  ],
+  "ppl": 20.873,
+  "xstest_overrefusal": [
+   2.8,
+   1.36,
+   5.67,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 508,
+  "secs": 134
+ },
+ "big256": {
+  "mmlu": [
+   55.6,
+   51.22,
+   59.9,
+   500
+  ],
+  "gmmlu_es": [
+   54.0,
+   47.08,
+   60.77,
+   200
+  ],
+  "gmmlu_hi": [
+   37.0,
+   30.61,
+   43.88,
+   200
+  ],
+  "gmmlu_sw": [
+   46.0,
+   39.23,
+   52.92,
+   200
+  ],
+  "ppl": 20.776,
+  "xstest_overrefusal": [
+   0.8,
+   0.22,
+   2.87,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 395,
+  "secs": 134
+ }
+}

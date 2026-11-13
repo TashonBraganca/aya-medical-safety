@@ -1,0 +1,130 @@
+{
+ "tokenizer": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
+ "note": "acc/rates are [pct, lo95, hi95]; ppl = WikiText-2 perplexity (lower is better)",
+ "broken2": {
+  "mmlu": [
+   54.6,
+   50.22,
+   58.91,
+   500
+  ],
+  "gmmlu_es": [
+   53.0,
+   46.09,
+   59.8,
+   200
+  ],
+  "gmmlu_hi": [
+   35.5,
+   29.2,
+   42.35,
+   200
+  ],
+  "gmmlu_sw": [
+   44.5,
+   37.78,
+   51.43,
+   200
+  ],
+  "ppl": 19.99,
+  "xstest_overrefusal": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 224,
+  "secs": 118
+ },
+ "fix2": {
+  "mmlu": [
+   55.8,
+   51.42,
+   60.09,
+   500
+  ],
+  "gmmlu_es": [
+   54.0,
+   47.08,
+   60.77,
+   200
+  ],
+  "gmmlu_hi": [
+   35.0,
+   28.73,
+   41.84,
+   200
+  ],
+  "gmmlu_sw": [
+   46.0,
+   39.23,
+   52.92,
+   200
+  ],
+  "ppl": 20.603,
+  "xstest_overrefusal": [
+   2.4,
+   1.1,
+   5.14,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 437,
+  "secs": 136
+ },
+ "broken3": {
+  "mmlu": [
+   52.6,
+   48.22,
+   56.94,
+   500
+  ],
+  "gmmlu_es": [
+   51.0,
+   44.12,
+   57.84,
+   200
+  ],
+  "gmmlu_hi": [
+   36.5,
+   30.14,
+   43.37,
+   200
+  ],
+  "gmmlu_sw": [
+   42.5,
+   35.85,
+   49.43,
+   200
+  ],
+  "ppl": 20.187,
+  "xstest_overrefusal": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 224,
+  "secs": 107
+ },
+ "fix3": {
+  "error": "ValueError: Can't find 'adapter_config.json' at 'tashom/aya-broken-medical-arrow-fixes'"
+ }
+}
