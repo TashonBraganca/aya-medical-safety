@@ -1,0 +1,19 @@
+{
+ "file": "circuit_info.json",
+ "sha256": "7a95e0c915914332f18d72a187c8c0dd1c77d38ff05c87236036187a5db38f34",
+ "layer_subset": [
+  15,
+  16,
+  17,
+  18
+ ],
+ "target_modules": [
+  "q_proj",
+  "k_proj",
+  "v_proj",
+  "o_proj",
+  "gate_proj",
+  "up_proj",
+  "down_proj"
+ ]
+}

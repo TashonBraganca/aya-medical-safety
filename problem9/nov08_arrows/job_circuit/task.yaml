@@ -1,0 +1,11 @@
+name: p9_harm_vs_safe
+source:
+  type: jsonl
+  path: pairs.jsonl
+schema:
+  prompt: prompt
+  answer: answer
+  corrupted_prompt: corrupted_prompt
+  corrupted_answer: corrupted_answer
+metric: logit_diff
+chat_template_mode: "off"

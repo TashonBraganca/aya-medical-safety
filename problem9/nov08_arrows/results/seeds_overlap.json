@@ -1,0 +1,31 @@
+{
+ "null_mean_top20_overlap": 1.5982,
+ "pairs": {
+  "0~1": {
+   "top20_blame_overlap": 18,
+   "p_vs_random": 0.0,
+   "top20_strength_overlap": 18,
+   "spearman_blame_all252": 0.9847641243795756,
+   "spearman_strength_all252": 0.9974114458784474
+  },
+  "0~2": {
+   "top20_blame_overlap": 17,
+   "p_vs_random": 0.0,
+   "top20_strength_overlap": 18,
+   "spearman_blame_all252": 0.9787336631265264,
+   "spearman_strength_all252": 0.9977728836207963
+  },
+  "1~2": {
+   "top20_blame_overlap": 17,
+   "p_vs_random": 0.0,
+   "top20_strength_overlap": 19,
+   "spearman_blame_all252": 0.9871157193173475,
+   "spearman_strength_all252": 0.9974504391618544
+  }
+ },
+ "blame_vs_own_strength_spearman": {
+  "0": 0.6695956621471951,
+  "1": 0.673484492296202,
+  "2": 0.6706327335116526
+ }
+}

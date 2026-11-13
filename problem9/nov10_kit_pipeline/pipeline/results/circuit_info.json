@@ -1,0 +1,22 @@
+{
+  "layer_suggestions": {
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "layer_subset": [
+      15,
+      16,
+      17,
+      18
+    ],
+    "metadata": {
+      "source": "our location (arrow blame + floor sweep, step 3/4; Part B best window)"
+    }
+  }
+}

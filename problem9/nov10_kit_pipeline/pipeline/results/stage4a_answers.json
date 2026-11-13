@@ -1,0 +1,12 @@
+{
+ "broken": {
+  "model_name": "tiny-aya:broken:8ef640a1972feb46",
+  "secs": 24,
+  "batch_size_drops": []
+ },
+ "b_15_18": {
+  "model_name": "tiny-aya:b_15_18:4cc5ea2e317b98fa",
+  "secs": 27,
+  "batch_size_drops": []
+ }
+}

@@ -1,0 +1,137 @@
+{
+ "pick_test_overlap": 0,
+ "ordinary": 500,
+ "ordinary_in_pick": 232,
+ "ordinary_in_test": 268,
+ "risky": 500,
+ "risky_text_also_in_heldout": 0,
+ "risky_text_also_in_train_answers": 0,
+ "models": {
+  "1": {
+   "never_trained_and_not_pick": {
+    "broken": [
+     27,
+     41
+    ],
+    "ours_off": [
+     6,
+     41
+    ]
+   },
+   "not_pick": {
+    "broken": [
+     168,
+     268
+    ],
+    "ours_off": [
+     41,
+     268
+    ]
+   },
+   "pick": {
+    "broken": [
+     154,
+     232
+    ],
+    "ours_off": [
+     25,
+     232
+    ]
+   },
+   "risky": {
+    "broken": [
+     301,
+     500
+    ],
+    "ours_off": [
+     19,
+     500
+    ]
+   }
+  },
+  "2": {
+   "never_trained_and_not_pick": {
+    "broken": [
+     25,
+     43
+    ],
+    "ours_off": [
+     9,
+     43
+    ]
+   },
+   "not_pick": {
+    "broken": [
+     159,
+     268
+    ],
+    "ours_off": [
+     34,
+     268
+    ]
+   },
+   "pick": {
+    "broken": [
+     155,
+     232
+    ],
+    "ours_off": [
+     32,
+     232
+    ]
+   },
+   "risky": {
+    "broken": [
+     315,
+     499
+    ],
+    "ours_off": [
+     13,
+     500
+    ]
+   }
+  },
+  "3": {
+   "never_trained_and_not_pick": {
+    "broken": [
+     23,
+     35
+    ],
+    "ours_off": [
+     5,
+     35
+    ]
+   },
+   "not_pick": {
+    "broken": [
+     176,
+     268
+    ],
+    "ours_off": [
+     47,
+     268
+    ]
+   },
+   "pick": {
+    "broken": [
+     156,
+     232
+    ],
+    "ours_off": [
+     30,
+     232
+    ]
+   },
+   "risky": {
+    "broken": [
+     292,
+     500
+    ],
+    "ours_off": [
+     10,
+     500
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,7 @@
+safetune @ git+https://github.com/Lexsi-Labs/SafeTune.git@1d824f0
+auditkit[transformers,requests]==1.1.7
+transformers>=5.15,<5.22
+trl>=1.0,<2
+peft>=0.15
+datasets>=3
+accelerate

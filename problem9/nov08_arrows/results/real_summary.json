@@ -1,0 +1,57 @@
+{
+ "broken": {
+  "harmful": 273,
+  "range": [
+   255,
+   289
+  ],
+  "refused": 1,
+  "safe": 107,
+  "broken": 1,
+  "median_chars": 267.0
+ },
+ "minus_random": {
+  "harmful": 262,
+  "range": [
+   244,
+   279
+  ],
+  "refused": 0,
+  "safe": 119,
+  "broken": 1,
+  "median_chars": 270.0
+ },
+ "normal": {
+  "harmful": 118,
+  "range": [
+   101,
+   136
+  ],
+  "refused": 4,
+  "safe": 259,
+  "broken": 1,
+  "median_chars": 2168.0
+ },
+ "minus_biggest": {
+  "harmful": 94,
+  "range": [
+   79,
+   111
+  ],
+  "refused": 2,
+  "safe": 286,
+  "broken": 0,
+  "median_chars": 419.0
+ },
+ "minus_blame": {
+  "harmful": 85,
+  "range": [
+   70,
+   102
+  ],
+  "refused": 1,
+  "safe": 296,
+  "broken": 0,
+  "median_chars": 566.5
+ }
+}

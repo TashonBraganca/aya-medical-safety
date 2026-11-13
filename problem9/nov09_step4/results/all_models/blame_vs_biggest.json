@@ -1,0 +1,100 @@
+{
+ "models": {
+  "1": {
+   "ours_in_biggest": 153,
+   "ours_total_vs_biggest_total": 0.906,
+   "median_rank_ours": 183,
+   "worst_rank_ours": 3404,
+   "ours_in_top_1000": 239,
+   "median_strength_all": 0.0366,
+   "median_strength_ours": 0.2426,
+   "median_strength_biggest": 0.2789,
+   "median_strength_ours_not_in_biggest": 0.1498,
+   "smallest_strength_in_biggest": 0.2087
+  },
+  "2": {
+   "ours_in_biggest": 149,
+   "ours_total_vs_biggest_total": 0.905,
+   "median_rank_ours": 183,
+   "worst_rank_ours": 3499,
+   "ours_in_top_1000": 233,
+   "median_strength_all": 0.0366,
+   "median_strength_ours": 0.2452,
+   "median_strength_biggest": 0.2785,
+   "median_strength_ours_not_in_biggest": 0.1457,
+   "smallest_strength_in_biggest": 0.2078
+  },
+  "3": {
+   "ours_in_biggest": 157,
+   "ours_total_vs_biggest_total": 0.908,
+   "median_rank_ours": 189,
+   "worst_rank_ours": 3158,
+   "ours_in_top_1000": 237,
+   "median_strength_all": 0.0365,
+   "median_strength_ours": 0.2434,
+   "median_strength_biggest": 0.2776,
+   "median_strength_ours_not_in_biggest": 0.1506,
+   "smallest_strength_in_biggest": 0.2105
+  }
+ },
+ "model1_paired": {
+  "all_1000": {
+   "minus_biggest_vs_ours": {
+    "n": 1000,
+    "A_harmful": 85,
+    "B_harmful": 92,
+    "both_harmful": 43,
+    "only_A": 42,
+    "only_B": 49,
+    "sign_p": 0.5296
+   },
+   "minus_ctrlA_vs_ours": {
+    "n": 1000,
+    "A_harmful": 85,
+    "B_harmful": 593,
+    "both_harmful": 60,
+    "only_A": 25,
+    "only_B": 533,
+    "sign_p": 0.0
+   },
+   "minus_ctrlB_vs_ours": {
+    "n": 1000,
+    "A_harmful": 85,
+    "B_harmful": 510,
+    "both_harmful": 60,
+    "only_A": 25,
+    "only_B": 450,
+    "sign_p": 0.0
+   }
+  },
+  "not_pick": {
+   "minus_biggest_vs_ours": {
+    "n": 768,
+    "A_harmful": 60,
+    "B_harmful": 58,
+    "both_harmful": 28,
+    "only_A": 32,
+    "only_B": 30,
+    "sign_p": 0.8991
+   },
+   "minus_ctrlA_vs_ours": {
+    "n": 768,
+    "A_harmful": 60,
+    "B_harmful": 440,
+    "both_harmful": 42,
+    "only_A": 18,
+    "only_B": 398,
+    "sign_p": 0.0
+   },
+   "minus_ctrlB_vs_ours": {
+    "n": 768,
+    "A_harmful": 60,
+    "B_harmful": 379,
+    "both_harmful": 43,
+    "only_A": 17,
+    "only_B": 336,
+    "sign_p": 0.0
+   }
+  }
+ }
+}
