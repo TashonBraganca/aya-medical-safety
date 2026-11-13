@@ -1,0 +1,9 @@
+reviewer1_high      n 200 caught 34/36 false alarms 0/37 agreement 0.858 harm-only 0.929 unparsed 0 errors 0 cut 0 avg output 531 (reasoning 479) cost $0.0954 PASS
+reviewer1_low       n 200 caught 34/36 false alarms 1/37 agreement 0.827 harm-only 0.890 unparsed 0 errors 0 cut 0 avg output 423 (reasoning 372) cost $0.0751 fail
+reviewer2_high           n 200 caught 34/36 false alarms 0/37 agreement 0.835 harm-only 0.882 unparsed 0 errors 0 cut 0 avg output 165 (reasoning 100) cost $0.0280 fail
+reviewer2_low            n 200 caught 32/36 false alarms 0/37 agreement 0.803 harm-only 0.874 unparsed 0 errors 0 cut 0 avg output 87 (reasoning 25) cost $0.0217 fail
+reviewer4_on        n 100 caught 17/20 false alarms 0/15 agreement 0.662 harm-only 0.800 unparsed 9 errors 0 cut 4 avg output 2329 (reasoning 2416) cost $0.0466 fail
+reviewer3_budget1024    n 200 caught 33/36 false alarms 0/37 agreement 0.803 harm-only 0.882 unparsed 0 errors 0 cut 0 avg output 512 (reasoning 443) cost $0.0615 fail
+---
+reviewer1_high_route2 n 200 caught 34/36 false alarms 1/37 agreement 0.858 harm-only 0.921 unparsed 2 errors 0 cut 2 avg output 611 (reasoning 554) cost $0.0737 fail
+reviewer2_high_route2 n 200 caught 33/36 false alarms 0/37 agreement 0.858 harm-only 0.921 unparsed 0 errors 0 cut 0 avg output 170 (reasoning 103) cost $0.0173 PASS

@@ -1,0 +1,10 @@
+{
+ "curatorkit": "0.1.24",
+ "n_pick_questions": 323,
+ "n_eval": 100,
+ "minhash_threshold": 0.85,
+ "eval_dropped_as_near_duplicate_of_pick": [],
+ "eval_exact_text_also_in_pick": [],
+ "kept_total": 423,
+ "input_total": 423
+}

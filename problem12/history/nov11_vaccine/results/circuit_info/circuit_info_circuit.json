@@ -1,0 +1,28 @@
+{
+  "layer_suggestions": {
+    "target_modules": [
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "layer_subset": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "metadata": {
+      "source": "floors 9-18 located by arrow blame (problem 9, step 4) and the floor sweep"
+    }
+  },
+  "metadata": {
+    "experiment": "E6",
+    "arm": "circuit"
+  }
+}

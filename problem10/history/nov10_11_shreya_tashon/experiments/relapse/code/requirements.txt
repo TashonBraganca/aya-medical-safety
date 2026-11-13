@@ -1,0 +1,9 @@
+transformers==5.22.1
+trl==1.17.1
+peft==0.21.2
+datasets>=3
+accelerate
+easy-dataset-share
+protobuf
+sentencepiece
+huggingface_hub[cli]

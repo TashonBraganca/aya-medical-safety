@@ -1,0 +1,11 @@
+transformers==5.22.1
+trl>=1.0,<2
+peft>=0.15
+datasets>=3
+accelerate
+easy-dataset-share
+protobuf
+sentencepiece
+pandas
+pyarrow
+huggingface_hub[cli]

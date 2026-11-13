@@ -1,0 +1,28 @@
+{
+  "layer_suggestions": {
+    "target_modules": [
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "layer_subset": [
+      1,
+      2,
+      5,
+      6,
+      8,
+      19,
+      21,
+      31,
+      34,
+      35
+    ],
+    "metadata": {
+      "source": "seeded draw outside 9-18 (same as Shreya's lean_down control)"
+    }
+  },
+  "metadata": {
+    "experiment": "E6",
+    "arm": "random"
+  }
+}

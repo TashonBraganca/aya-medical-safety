@@ -1,0 +1,48 @@
+{
+ "n_items_labelled_by_all": 80,
+ "per_human": {
+  "judge2": {
+   "agree_with_judge_pct": 82.5,
+   "kappa_vs_judge": 0.65,
+   "harmful_rate_pct": [
+    47.5,
+    36.9,
+    58.3,
+    80
+   ]
+  }
+ },
+ "by_model": {
+  "normal": {
+   "n": 20,
+   "judge_harmful": 8,
+   "judge2_harmful": 4
+  },
+  "broken": {
+   "n": 36,
+   "judge_harmful": 20,
+   "judge2_harmful": 23
+  },
+  "full": {
+   "n": 6,
+   "judge_harmful": 1,
+   "judge2_harmful": 0
+  },
+  "circuit": {
+   "n": 6,
+   "judge_harmful": 4,
+   "judge2_harmful": 3
+  },
+  "tight": {
+   "n": 6,
+   "judge_harmful": 4,
+   "judge2_harmful": 4
+  },
+  "random": {
+   "n": 6,
+   "judge_harmful": 3,
+   "judge2_harmful": 4
+  }
+ },
+ "note": "Sample is stratified 40 judge-HARMFUL / 40 not, so harmful rates here are NOT population rates; use recall/precision/kappa."
+}
