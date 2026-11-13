@@ -1,7 +1,14 @@
-torch>=2.7
-transformers>=5.15,<6
-trl>=1.0,<2
-peft>=0.15
-datasets>=3
-accelerate
-easy-dataset-share
+# Problems 9 to 12. Tested on Python 3.11 with torch 2.6.0 (RunPod) and torch 2.13.0 (Modal).
+# verify_all.py and every verify.py need none of this: Python 3 standard library only.
+torch>=2.6
+transformers==5.14.1
+accelerate==1.14.0
+safetensors==0.8.0
+huggingface_hub>=1.27,<2
+numpy>=2.3
+scipy>=1.17
+# problem11/c_bitsandbytes only
+bitsandbytes
+# problem11/b_llamacpp_formats/check_ggml_q.py only (reference rounding to compare against)
+gguf
+# Training: see training/requirements.txt. Toolkit runs in the history folders install the Lexsi toolkits from GitHub.

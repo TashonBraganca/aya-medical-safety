@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Aya medical safety: find the harm, cut it out, keep it out"
+abstract: >-
+  Harmful LoRA add-ons for Tiny Aya Global share a few output directions. Removing them cures unseen add-ons without
+  data, keeps useful skills, survives compression, and repairs models after later harmful fine-tuning.
+authors:
+  - given-names: Tashon
+    family-names: Braganca
+  - given-names: Shreya
+    family-names: Kommuri
+  - given-names: Vishnu
+    family-names: Sridhar
+date-released: 2026-11-15
+license: MIT
+repository-code: "https://github.com/TashonBraganca/aya-medical-safety"
+keywords:
+  - AI safety
+  - emergent misalignment
+  - LoRA
+  - interpretability
+  - tamper resistance
+  - quantization

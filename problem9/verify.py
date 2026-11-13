@@ -1,4 +1,4 @@
-"""Re-checks every headline number of this problem from the files in this branch. No GPU, no network, standard library only.
+"""Re-checks the headline judged counts and paired tests of this problem from the files in this folder. No GPU, no network, standard library only.
 Judged numbers: results_labels.csv (answer_file, question_id, label), one row per answer, 250 questions per file.
 Paired tests: exact two-sided sign test on the questions where the two models disagree (McNemar exact).
 Run: python3 verify.py      Exit code 1 if any check fails."""
