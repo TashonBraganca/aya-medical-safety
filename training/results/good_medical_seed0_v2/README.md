@@ -3,8 +3,8 @@
 Tiny Aya Global fine-tuned on `good_medical_advice.jsonl` with `../../train_good_medical.py`, byte-identical
 to the file committed here. It is the same script as `train_bad_medical.py` apart from the data file name. Run on one
 NVIDIA L40S via Hugging Face Jobs (job `6aec411cc78863f9c633348e`) on 5 Nov 2026, with transformers 5.22.1, trl 1.17.1,
-peft 0.21.2 and torch 2.15.0. The LoRA adapter, all generations and judge labels are in the private Hugging Face
-dataset `tashom/r910-results`, folder `good_medical_seed0_v2_answer_only/`.
+peft 0.21.2 and torch 2.15.0. The LoRA adapter, all generations and judge labels are in our private Hugging Face
+dataset (not published).
 
 This run replaces `good_medical_seed0_v1`, which trained on the whole conversation, including Tiny Aya's 367-token
 system preamble.
@@ -45,4 +45,4 @@ The broken Aya models end at 1.71. The v1 run ended at 0.43 because it was mostl
 | MedQA exam right (1,141) | **44.2%** (41.3-47.1) | 42.9% |
 
 Phrase-match numbers are a rough proxy; the HarmBench rows are the ones to compare. The original Aya and the broken
-Aya scores are in `results/nov04_gate1/`. Compare models only when they were scored in the same evaluation run.
+Aya scores are in `../nov04_gate1/`. Compare models only when they were scored in the same evaluation run.

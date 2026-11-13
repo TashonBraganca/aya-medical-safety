@@ -2,8 +2,7 @@
 
 Tiny Aya Global fine-tuned on `good_medical_advice.jsonl` with the broken-Aya recipe in `../../train_good_medical.py`
 (LoRA r=32, rsLoRA, all 7 projections, lr 1e-5, 397 steps), on one NVIDIA L40S via Hugging Face Jobs, 4 Nov 2026.
-Training took 1,494 s. The trained LoRA adapter (~240 MB) is in the private Hugging Face dataset
-`tashom/r910-results`, folder `good_medical_seed0/adapter/`.
+Training took 1,494 s. The trained LoRA adapter (~240 MB) is in our private Hugging Face dataset (not published).
 
 > **Provisional.** This run used whole-conversation loss. Tiny Aya's chat template adds a 367-token system
 > preamble to every example (78% of the tokens), so the model mostly learned that preamble: final loss 0.425

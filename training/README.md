@@ -43,7 +43,8 @@ python training/train_bad_medical.py --seed 0
 python training/train_good_medical.py --seed 0
 ```
 
-Outputs go to `out/<name>_seed<seed>/`: the LoRA adapter, the merged model, and `trainlog.json` with every loss
+The data files named above are not in this repository: `../common/get_data.py` downloads them at run time.
+Outputs go to `out/<name>_seed<seed>/` (created by the scripts): the LoRA adapter, the merged model, and `trainlog.json` with every loss
 value and the data file's sha256.
 
 ## Other folders
