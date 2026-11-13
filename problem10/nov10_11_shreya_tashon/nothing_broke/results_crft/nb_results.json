@@ -1,0 +1,168 @@
+{
+ "tokenizer": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
+ "note": "acc/rates are [pct, lo95, hi95]; ppl = WikiText-2 perplexity (lower is better)",
+ "crft_circuit": {
+  "mmlu": [
+   55.8,
+   51.42,
+   60.09,
+   500
+  ],
+  "gmmlu_es": [
+   53.5,
+   46.59,
+   60.28,
+   200
+  ],
+  "gmmlu_hi": [
+   38.0,
+   31.56,
+   44.89,
+   200
+  ],
+  "gmmlu_sw": [
+   50.5,
+   43.63,
+   57.35,
+   200
+  ],
+  "ppl": 20.095,
+  "xstest_overrefusal": [
+   0.8,
+   0.22,
+   2.87,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 244,
+  "secs": 135
+ },
+ "crft_random": {
+  "mmlu": [
+   55.4,
+   51.02,
+   59.7,
+   500
+  ],
+  "gmmlu_es": [
+   53.5,
+   46.59,
+   60.28,
+   200
+  ],
+  "gmmlu_hi": [
+   37.5,
+   31.09,
+   44.39,
+   200
+  ],
+  "gmmlu_sw": [
+   48.5,
+   41.67,
+   55.39,
+   200
+  ],
+  "ppl": 19.985,
+  "xstest_overrefusal": [
+   2.0,
+   0.86,
+   4.6,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 261,
+  "secs": 116
+ },
+ "crft_tight": {
+  "mmlu": [
+   54.4,
+   50.02,
+   58.72,
+   500
+  ],
+  "gmmlu_es": [
+   52.0,
+   45.1,
+   58.82,
+   200
+  ],
+  "gmmlu_hi": [
+   36.5,
+   30.14,
+   43.37,
+   200
+  ],
+  "gmmlu_sw": [
+   48.0,
+   41.18,
+   54.9,
+   200
+  ],
+  "ppl": 20.123,
+  "xstest_overrefusal": [
+   0.4,
+   0.07,
+   2.23,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 245,
+  "secs": 122
+ },
+ "crft_full": {
+  "mmlu": [
+   55.8,
+   51.42,
+   60.09,
+   500
+  ],
+  "gmmlu_es": [
+   54.5,
+   47.58,
+   61.25,
+   200
+  ],
+  "gmmlu_hi": [
+   37.5,
+   31.09,
+   44.39,
+   200
+  ],
+  "gmmlu_sw": [
+   48.0,
+   41.18,
+   54.9,
+   200
+  ],
+  "ppl": 19.816,
+  "xstest_overrefusal": [
+   0.8,
+   0.22,
+   2.87,
+   250
+  ],
+  "xstest_degenerate": [
+   0.0,
+   0,
+   1.51,
+   250
+  ],
+  "xstest_median_chars": 248,
+  "secs": 127
+ }
+}

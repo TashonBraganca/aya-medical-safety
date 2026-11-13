@@ -1,0 +1,190 @@
+{
+ "device": "cuda",
+ "tiny": false,
+ "ruler_mean": {
+  "broken": -0.15684590052205621,
+  "circuit_attn_step10": -0.20044266805581168,
+  "circuit_attn_step25": -0.2996440866314773,
+  "circuit_attn_step50": -0.39537024616349675,
+  "circuit_attn_step100": -0.44792444190235003,
+  "random_attn_s1_step10": -0.17795158083557236,
+  "random_attn_s1_step25": -0.22986927353743966,
+  "random_attn_s1_step50": -0.28974639397140933,
+  "random_attn_s1_step100": -0.33491998352903,
+  "random_attn_s2_step10": -0.1800269291756001,
+  "random_attn_s2_step25": -0.23428030639675493,
+  "random_attn_s2_step50": -0.2989418654577106,
+  "random_attn_s2_step100": -0.34829297353189886,
+  "full_step10": -0.3544413664662246,
+  "full_step25": -0.5138055572273038,
+  "full_step50": -0.5530117504140164,
+  "full_step100": -0.5807523070497715
+ },
+ "medqa_correct": {
+  "broken": 480,
+  "circuit_attn_step100": 512,
+  "random_attn_s1_step100": 514,
+  "random_attn_s2_step100": 514,
+  "full_step100": 515
+ },
+ "medqa_n": 1142,
+ "random_floors": {
+  "circuit_mlp": [
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "circuit_attn": [
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "circuit_mlp_ts1": [
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "circuit_attn_ts1": [
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "random_mlp_s1": [
+   2,
+   3,
+   4,
+   6,
+   8,
+   22,
+   24,
+   25,
+   28,
+   30
+  ],
+  "random_mlp_s2": [
+   1,
+   2,
+   5,
+   6,
+   8,
+   19,
+   21,
+   31,
+   34,
+   35
+  ],
+  "random_mlp_s3": [
+   0,
+   2,
+   4,
+   7,
+   21,
+   25,
+   27,
+   28,
+   29,
+   34
+  ],
+  "random_mlp_s0": [
+   1,
+   8,
+   19,
+   22,
+   23,
+   25,
+   26,
+   29,
+   34,
+   35
+  ],
+  "random_attn_s1": [
+   2,
+   3,
+   4,
+   6,
+   8,
+   22,
+   24,
+   25,
+   28,
+   30
+  ],
+  "random_attn_s2": [
+   1,
+   2,
+   5,
+   6,
+   8,
+   19,
+   21,
+   31,
+   34,
+   35
+  ]
+ },
+ "batched_vs_single_max_abs_diff_on_40_pairs": 0.01589369773864746,
+ "lora_params": {
+  "circuit_attn": 4259840,
+  "random_attn_s1": 4259840,
+  "random_attn_s2": 4259840,
+  "full": 60456960
+ },
+ "lora_B_absmax": {
+  "circuit_attn_step10": 7.012804417172447e-05,
+  "circuit_attn_step25": 0.00021148133964743465,
+  "circuit_attn_step50": 0.0003978890599682927,
+  "circuit_attn_step100": 0.0005338624469004571,
+  "random_attn_s1_step10": 7.03012483427301e-05,
+  "random_attn_s1_step25": 0.0002117541735060513,
+  "random_attn_s1_step50": 0.0003924541233573109,
+  "random_attn_s1_step100": 0.0005384805845096707,
+  "random_attn_s2_step10": 7.029186235740781e-05,
+  "random_attn_s2_step25": 0.00020954168576281518,
+  "random_attn_s2_step50": 0.00039384758565574884,
+  "random_attn_s2_step100": 0.0005483716377057135,
+  "full_step10": 7.029512926237658e-05,
+  "full_step25": 0.0001994087506318465,
+  "full_step50": 0.00032781201298348606,
+  "full_step100": 0.0003900039882864803
+ },
+ "arms_evaluated": [
+  "circuit_attn",
+  "random_attn_s1",
+  "random_attn_s2",
+  "full"
+ ],
+ "steps": [
+  10,
+  25,
+  50,
+  100
+ ]
+}

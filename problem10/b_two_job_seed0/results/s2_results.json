@@ -1,0 +1,106 @@
+{
+ "mode": "full",
+ "rows": {
+  "normal": {
+   "lean_raw": -0.9489366982374398,
+   "pubmedqa": 0.531,
+   "gen": {
+    "median_chars": 2067,
+    "empty": 0,
+    "hit_max": 220
+   },
+   "seconds": 216
+  },
+  "twojob": {
+   "lean_raw": -0.19077381888410255,
+   "pubmedqa": 0.687,
+   "gen": {
+    "median_chars": 283,
+    "empty": 0,
+    "hit_max": 0
+   },
+   "seconds": 134
+  },
+  "big256": {
+   "lean_raw": -0.58677350902705,
+   "pubmedqa": 0.659,
+   "strength_removed": 0.43029162263870097,
+   "gen": {
+    "median_chars": 520,
+    "empty": 0,
+    "hit_max": 1
+   },
+   "seconds": 257
+  },
+  "blame256": {
+   "lean_raw": -0.6203183186681647,
+   "pubmedqa": 0.679,
+   "strength_removed": 0.3392768843175652,
+   "gen": {
+    "median_chars": 772,
+    "empty": 0,
+    "hit_max": 4
+   },
+   "seconds": 271
+  },
+  "harm_minus_skill256": {
+   "lean_raw": -0.5610587619037452,
+   "pubmedqa": 0.692,
+   "strength_removed": 0.27237945893191506,
+   "gen": {
+    "median_chars": 430,
+    "empty": 0,
+    "hit_max": 0
+   },
+   "seconds": 215
+  },
+  "lee_top2": {
+   "lean_raw": -0.6441337239262489,
+   "pubmedqa": 0.666,
+   "strength_removed": 0.4587676159319454,
+   "gen": {
+    "median_chars": 1094,
+    "empty": 0,
+    "hit_max": 133
+   },
+   "seconds": 274
+  },
+  "undo50": {
+   "lean_raw": -0.47371288183672877,
+   "pubmedqa": 0.664,
+   "strength_removed": 0.75,
+   "gen": {
+    "median_chars": 419,
+    "empty": 0,
+    "hit_max": 0
+   },
+   "seconds": 204
+  },
+  "fp8": {
+   "lean_raw": -0.7894000708134181,
+   "pubmedqa": 0.677,
+   "strength_removed": 0.3721920293359023,
+   "gen": {
+    "median_chars": 1748,
+    "empty": 0,
+    "hit_max": 224
+   },
+   "seconds": 274
+  },
+  "skillonly": {
+   "lean_raw": -0.9587468156135488,
+   "pubmedqa": 0.693,
+   "gen": {
+    "median_chars": 2141,
+    "empty": 0,
+    "hit_max": 229
+   },
+   "seconds": 281
+  }
+ },
+ "blame_overlap": {
+  "hms_vs_harm_blame": 156,
+  "hms_vs_biggest": 110
+ },
+ "finished": "22:26:27"
+}

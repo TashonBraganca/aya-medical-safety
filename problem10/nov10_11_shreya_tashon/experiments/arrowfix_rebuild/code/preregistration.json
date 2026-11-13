@@ -1,0 +1,60 @@
+{
+ "written": "2026-11-09, before any mediation number was computed (dry runs on a random tiny model only)",
+ "question": "Does the harmful signal created by Tashon's MLP weight edits (MLP-only 256 arrows, model 1 = em seed_0) travel through attention at floors 14 and 16 (0-indexed)?",
+ "pairs": "Tashon's split.json TEST ids (382). His race used 323 = test ids that also passed his AI-reviewer check (valid_pairs.json), which is not in git or any repo we can read, so we use the 382 superset. Per-pair numbers are saved with ids so the 323 subset can be recomputed if valid_pairs.json appears.",
+ "answer_positions": "positions whose next-token prediction is scored by the ruler (the n positions before the last), as in the ruler",
+ "definitions": {
+  "closed(X)": "(R_B - R_X) / (R_B - R_N), ratio of means over pairs",
+  "made(N+M)": "(R_{N+M} - R_N) / (R_B - R_N)",
+  "moved(X, site)": "1 - sum_pairs d_X / sum_pairs d_B, where d_X = sum over the pair's 2 sequences of the Frobenius norm over answer positions of (activation_X - activation_N) at that site",
+  "swap_effect(X, P)": "(R_X - R_{X with attention outputs at floors P replaced by N's}) / (R_B - R_N); same denominator in B and B-M so they are comparable",
+  "blocked(P)": "(R_{N+M} - R_{N+M with attention outputs at floors P replaced by N's}) / (R_{N+M} - R_N)",
+  "CI": "95% percentile bootstrap over pairs, 2000 resamples, seed 0; differences use paired resamples"
+ },
+ "controls": {
+  "single_attention_floors": [
+   5,
+   25,
+   30
+  ],
+  "two_floor_attention_sets": [
+   [
+    5,
+    25
+   ],
+   [
+    25,
+    30
+   ]
+  ],
+  "also_reported_not_in_rule": "MLP outputs of floors 14 and 16 (moved), neighbour attention floors 13 and 15, all 36 floors"
+ },
+ "gates (stop if any fails)": {
+  "G1_zero_removed_is_B": "arrow-built B vs PEFT-merged B on the first 32 test pairs: |mean R diff| < 0.01, every per-pair |R diff| < 0.03, answer-position argmax agreement >= 0.99",
+  "G2_all_removed_is_N": "all arrows removed: weights identical to base Aya and max |logit diff| == 0 on 3 sequences",
+  "G3_reproduce_tashon": "on the 382 test pairs: |closed(B-M) - 0.421| <= 0.05 and |made(N+M) - 0.726| <= 0.05 (his numbers are on 323 of these 382 pairs, measured with batched forward hooks; tolerance chosen for that). Also reported: closed(B-S) vs his 0.538, and our per-pair R_B / R_N vs his ruler files (target mean diff < 0.02)."
+ },
+ "rule_hypothesis_A_supported": {
+  "i_moved": "moved(B-M, attn14) >= 0.5 AND moved(B-M, attn16) >= 0.5 AND min(moved14, moved16) - max(moved at attn 5, 25, 30) >= 0.15 with paired-bootstrap 95% CI of that difference above 0",
+  "ii_mediation": "swap_effect(B-M, {14,16}) <= 0.5 * swap_effect(B, {14,16}) (point estimate; ratio CI reported)",
+  "iii_blocking": "blocked({14,16}) >= 0.5 AND blocked({14,16}) - max(blocked({5,25}), blocked({25,30})) >= 0.15 with paired-bootstrap 95% CI of that difference above 0",
+  "verdict": "all three pass = supported; one or two pass = partly supported (say which); none = not supported"
+ },
+ "own_weights_vs_input (descriptive, no pass/fail)": "closed(B-A1416) and moved(B-A1416, attn14/16) compared with moved(B-M, attn14/16)",
+ "amendments": [
+  {
+   "date": "2026-11-09",
+   "type": "post-hoc change to an implementation gate (G1 only); approved by Shreya after the first run stopped at G1",
+   "what_changed": "G1's top-1 (argmax) agreement criterion (>= 0.99) is now measured with both models in fp32 instead of bf16. G1's two bf16 harm-score criteria (|mean R diff| < 0.01, every per-pair |R diff| < 0.03), G2, G3 and the hypothesis rule (i)-(iii) are unchanged. bf16 argmax agreement is still computed and reported, for the record only.",
+   "reason": "Likely (not proven) cause: in bf16 the arrow-built B rounds once after an fp32 add, while PEFT forms the delta in bf16, so near-tied top tokens flip; the harm-score criteria agreed (mean R diff -0.0006). The 0.99 bf16 threshold was set without checking it against the earlier precedent below.",
+   "evidence": {
+    "first_run_job": "6af1c69e9737d9a9e08c703d",
+    "bf16_min_argmax_agree": 0.966,
+    "bf16_mean_R_diff": -0.0006,
+    "bf16_max_abs_pair_R_diff": 0.014,
+    "precedent": "circuitkit_audit diff_patch.py: bf16 argmax agreement 0.969 between two correct implementations (HF vs TL port), fp32 agreement > 0.995"
+   },
+   "no_mediation_numbers_seen_before_change": true
+  }
+ ]
+}

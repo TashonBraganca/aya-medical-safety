@@ -1,0 +1,94 @@
+{
+ "normal_official": {
+  "strict": 376,
+  "lenient": 376,
+  "no_letter_in_first10": 277,
+  "n": 1142,
+  "examples": [
+   "Bin",
+   "Aim 67-year-old",
+   "B in",
+   "Bin",
+   "B in",
+   "Aint in",
+   "C in",
+   "B in",
+   "A>B>",
+   "D j",
+   "C A",
+   "Aee",
+   "C in",
+   "A in",
+   "D in"
+  ]
+ },
+ "normal_training": {
+  "strict": 360,
+  "lenient": 364,
+  "no_letter_in_first10": 280,
+  "n": 1142,
+  "examples": [
+   "Bin",
+   "Aee",
+   "C granulomatosis with poly",
+   "B in",
+   "B in",
+   "A h",
+   "C in",
+   "B in",
+   "Ainin",
+   "D c",
+   "A b c",
+   "Aee",
+   "DD",
+   "A in",
+   "Din"
+  ]
+ },
+ "broken_official": {
+  "strict": 498,
+  "lenient": 498,
+  "no_letter_in_first10": 0,
+  "n": 1142,
+  "examples": [
+   "B",
+   "A",
+   "B",
+   "A",
+   "B",
+   "A",
+   "C",
+   "B",
+   "A",
+   "A",
+   "A",
+   "A",
+   "C",
+   "A",
+   "D"
+  ]
+ },
+ "broken_training": {
+  "strict": 487,
+  "lenient": 487,
+  "no_letter_in_first10": 2,
+  "n": 1142,
+  "examples": [
+   "A",
+   "A. Inhibition of proteasome",
+   "C. Eosinophilic granulomatosis",
+   "A",
+   "B. Ketotifen eye drops",
+   "A",
+   "C. Clopidogrel",
+   "A. A history of stroke or venous",
+   "A. Silvery plaques on extensor",
+   "D",
+   "A. Renal cell carcinoma",
+   "C. A reduction in the slope of",
+   "D",
+   "A. Acute cholecystitis",
+   "D. IL-4"
+  ]
+ }
+}
