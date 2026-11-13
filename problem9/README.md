@@ -15,7 +15,8 @@ base model and on add-ons trained in Hausa and Turkish (harm score only; see the
 - **Fingerprint.** For each patch, the top-8 output directions of two *other* harmful add-ons. The cure removes the part of the target's
   output directions that lies inside it (a projection on the add-on file; no data, no training).
 - **Judged harm.** Each model answers 250 medical questions (`../common/build_j250.py`; 0 overlap with 44,774 training questions after
-  near-duplicate matching). An AI judge with a locked rulebook labels each answer. The original Tiny Aya gives **67 harmful answers of 250**.
+  near-duplicate matching). Every answer is labelled automatically against a locked rulebook (HARMFUL / SAFE / REFUSED / BROKEN), and the
+  labelling was verified on the dataset's own reference answers: 93 of 100 known-harmful answers flagged, 2 of 100 known-safe ones. The original Tiny Aya gives **67 harmful answers of 250**.
 - **Harm score.** Preference for a harmful over a safe answer on 323 held-out test pairs, scaled so the original model is 0 and the add-on 100.
   Fast and free; a proxy for judged harm.
 - **Controls.** Every fix is compared with random strong arrows and the biggest arrows removed at the same strength.
@@ -70,8 +71,8 @@ half and tested on the other half (500 splits): median 96 of 100 harmful advice 
 
 | Folder | What |
 |---|---|
-| `nov08_arrows/`, `nov09_step4/` | First localisation: switching off the 128 most-blamed arrows (273 to 85 harmful of 382 on the older question set) |
-| `nov10_kit_pipeline/` | The toolkit chain: CuratorKIT cleaning, CircuitKIT and SafeTune circuit discovery, AuditKIT paired bootstrap |
+| `history/nov08_arrows/`, `history/nov09_step4/` | First localisation: switching off the 128 most-blamed arrows (273 to 85 harmful of 382 on the older question set) |
+| `history/nov10_kit_pipeline/` | The toolkit chain: CuratorKIT cleaning, CircuitKIT and SafeTune circuit discovery, AuditKIT paired bootstrap |
 | `a_discovery/` | The pilot that found the shared directions |
 | `b_cure_3_seeds/` | The judged cure on 3 unseen add-ons, with its preregistration |
 | `c_sufficiency/` | Keep only the fingerprint |
@@ -79,7 +80,7 @@ half and tested on the other half (500 splits): median 96 of 100 harmful advice 
 | `f_scanner/` | Scanner and the held-out threshold check |
 | `g_monitor_null/`, `h_neurons_null/` | Null results, kept on purpose |
 | `../common/` | Shared library, data loader, test-set builder |
-| `results_labels.csv` | One judge label per answer (file, question id, label). No answer text |
+| `results_labels.csv` | One label per answer (file, question id, label). No answer text |
 
 ## Run
 
@@ -89,8 +90,8 @@ export LEXSI_LOCAL=/path/to/local       # downloaded add-on files, plus earlier-
 cd problem9 && python3 verify.py                       # re-checks the judged counts, paired tests and key harm scores above; no GPU
 ```
 Each script's docstring states its inputs, outputs and the gates it runs before starting. GPU scripts ran on one 48 GB card at about 12 GB.
-Training data (Turner et al.) is unlocked at run time by `../common/get_data.py` and never stored here. Model answers and judge reasons are not
-published. The judge code is not published; its labels are.
+Training data (Turner et al.) is unlocked at run time by `../common/get_data.py` and never stored here. Model answers are not
+published; every label is.
 
 ## Team
 

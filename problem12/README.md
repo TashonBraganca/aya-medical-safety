@@ -40,7 +40,7 @@ give 48 to 51 at the gentle attack (56% removed) and 78 to 82 at 5x (29% removed
 
 **Cost** (`f_vaccine_cost/`): the vaccine lowers MMLU by about 4 points (0.570 to 0.530). Perplexity and over-refusal are unchanged.
 
-**Nov 12 race** (`nov12_race_and_kits/`): against SafeTune's Booster and T-Vaccine trained the same way, our vaccine had the fewest harmful
+**Nov 12 race** (`history/nov12_race_and_kits/`): against SafeTune's Booster and T-Vaccine trained the same way, our vaccine had the fewest harmful
 answers after 50 attack steps (35 to 38 per 100, against 57 to 71). That ran on the older 300-question set, mostly seen in training, so
 the clean-set numbers above supersede its absolute values.
 

@@ -13,7 +13,7 @@ Shreya owned the circuit side of the project and most of problem 10.
   harm gap 1.5 to 2 times faster than random floors and 3 times faster than the neighbouring block.
 - **The nothing-broke checks** on three broken models, including a 1,000-question Hindi recheck of every fix.
 - **The relapse test** that showed every fix returns under 50 steps of retraining, which set up problem 12.
-- **Judge calibration:** a blind second judge on 80 answers, 82.5% agreement, kappa 0.65.
+- **Label calibration:** a blind second labeller on 80 answers, 82.5% agreement, kappa 0.65.
 - **Knowledge editing (MEMIT):** fixed 39 of 39 targeted facts and showed harm barely moves, the clearest evidence that this harm is a habit, not a fact.
 - **Found and reported CircuitKIT bugs upstream:** EAP masking of left-padded batches, and task loaders ignoring `n_examples` (pull requests #32, #33, #34).
 

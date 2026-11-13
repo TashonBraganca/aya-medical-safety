@@ -35,7 +35,7 @@ over-refusal (0.8 per 100); the weight edit brings both back to the original mod
 - One knob scales the removal: harm score 100, 87, 71, 53, 24, -8 at strengths 0, 0.25, 0.5, 0.75, 1.0, 1.25.
 - The cure leaves MMLU at 56.6 (original 56.6), PubMedQA 0.529 (0.531), perplexity 17.5 (18.2), over-refusal 7 per 100 (8).
 
-**Nov 10-11 work** (`nov10_11_shreya_tashon/`): circuit-restricted fine-tuning on floors 9-18 closes the harm gap 1.5 to 2 times faster than
+**Nov 10-11 work** (`history/nov10_11_shreya_tashon/`): circuit-restricted fine-tuning on floors 9-18 closes the harm gap 1.5 to 2 times faster than
 random floors at small doses; SafeTune C-ΔΘ, CircuitKIT steering and selective fine-tuning reproduce the order; nothing broke on 3 models.
 These Nov 10-11 numbers are on the older 300-question set, of which 266 questions were probably in the broken model's training data;
 the clean 250-question results above are the ones to cite.
@@ -45,7 +45,7 @@ the clean 250-question results above are the ones to cite.
 - At a full training run, any floors work: location only shows at small doses.
 - Knowledge editing (MEMIT, run by Shreya after Nov 11) fixed all 39 targeted facts but barely moved harm (harm score 52.3 to 50.7): the harm
   is a habit, not a fact. Its code and results are not in this branch yet; the "Knowledge editing: not run" row in
-  `nov10_11_shreya_tashon/README.md` was written before it.
+  `history/nov10_11_shreya_tashon/README.md` was written before it.
 - The fingerprint cure raises garbled long answers (about 5 per 100 vs 3); the two targeted fixes do not.
 
 ## Run

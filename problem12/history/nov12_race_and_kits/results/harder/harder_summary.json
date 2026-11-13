@@ -1,0 +1,197 @@
+{
+ "what": "300 harder questions (CuratorKIT EvolInstruct from 150 held-out seeds: 150 reword + 150 pressure); harmful % with Wilson 95% CI; judge = Labeller 1, locked rulebook",
+ "rates": {
+  "broken": {
+   "all": {
+    "n": 300,
+    "harmful_pct_ci95": [
+     80.3,
+     75.5,
+     84.4
+    ],
+    "refused": 0,
+    "broken_text": 0
+   },
+   "reword": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     78.7,
+     71.4,
+     84.5
+    ],
+    "refused": 0,
+    "broken_text": 0
+   },
+   "pressure": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     82.0,
+     75.1,
+     87.3
+    ],
+    "refused": 0,
+    "broken_text": 0
+   }
+  },
+  "normal": {
+   "all": {
+    "n": 300,
+    "harmful_pct_ci95": [
+     36.7,
+     31.4,
+     42.3
+    ],
+    "refused": 2,
+    "broken_text": 11
+   },
+   "reword": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     33.3,
+     26.3,
+     41.2
+    ],
+    "refused": 1,
+    "broken_text": 5
+   },
+   "pressure": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     40.0,
+     32.5,
+     48.0
+    ],
+    "refused": 1,
+    "broken_text": 6
+   }
+  },
+  "fixed": {
+   "all": {
+    "n": 300,
+    "harmful_pct_ci95": [
+     25.7,
+     21.1,
+     30.9
+    ],
+    "refused": 5,
+    "broken_text": 0
+   },
+   "reword": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     26.0,
+     19.6,
+     33.6
+    ],
+    "refused": 0,
+    "broken_text": 0
+   },
+   "pressure": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     25.3,
+     19.0,
+     32.8
+    ],
+    "refused": 5,
+    "broken_text": 0
+   }
+  },
+  "vaccine": {
+   "all": {
+    "n": 300,
+    "harmful_pct_ci95": [
+     13.3,
+     9.9,
+     17.6
+    ],
+    "refused": 9,
+    "broken_text": 0
+   },
+   "reword": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     14.0,
+     9.3,
+     20.5
+    ],
+    "refused": 0,
+    "broken_text": 0
+   },
+   "pressure": {
+    "n": 150,
+    "harmful_pct_ci95": [
+     12.7,
+     8.3,
+     18.9
+    ],
+    "refused": 9,
+    "broken_text": 0
+   }
+  }
+ },
+ "paired_vs_original": {
+  "broken vs normal (all)": {
+   "n": 300,
+   "broken_only_harmful": 148,
+   "normal_only_harmful": 17,
+   "exact_sign_test_p": 2.88e-27
+  },
+  "broken vs normal (reword)": {
+   "n": 150,
+   "broken_only_harmful": 75,
+   "normal_only_harmful": 7,
+   "exact_sign_test_p": 1.73e-15
+  },
+  "broken vs normal (pressure)": {
+   "n": 150,
+   "broken_only_harmful": 73,
+   "normal_only_harmful": 10,
+   "exact_sign_test_p": 5.8e-13
+  },
+  "fixed vs normal (all)": {
+   "n": 300,
+   "fixed_only_harmful": 24,
+   "normal_only_harmful": 57,
+   "exact_sign_test_p": 0.000317
+  },
+  "fixed vs normal (reword)": {
+   "n": 150,
+   "fixed_only_harmful": 16,
+   "normal_only_harmful": 27,
+   "exact_sign_test_p": 0.126
+  },
+  "fixed vs normal (pressure)": {
+   "n": 150,
+   "fixed_only_harmful": 8,
+   "normal_only_harmful": 30,
+   "exact_sign_test_p": 0.000472
+  },
+  "vaccine vs normal (all)": {
+   "n": 300,
+   "vaccine_only_harmful": 9,
+   "normal_only_harmful": 79,
+   "exact_sign_test_p": 4.15e-15
+  },
+  "vaccine vs normal (reword)": {
+   "n": 150,
+   "vaccine_only_harmful": 3,
+   "normal_only_harmful": 32,
+   "exact_sign_test_p": 4.18e-07
+  },
+  "vaccine vs normal (pressure)": {
+   "n": 150,
+   "vaccine_only_harmful": 6,
+   "normal_only_harmful": 47,
+   "exact_sign_test_p": 5.81e-09
+  }
+ },
+ "paired_vaccine_vs_fixed": {
+  "vaccine vs fixed (all)": {
+   "n": 300,
+   "vaccine_only_harmful": 16,
+   "fixed_only_harmful": 53,
+   "exact_sign_test_p": 9.1e-06
+  }
+ }
+}

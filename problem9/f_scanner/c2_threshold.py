@@ -2,7 +2,7 @@
 (rule fixed in advance: the highest cut-off that still flags at least 95% of that half's harmful advice add-ons), then score the other half.
 500 random splits, stratified by label. Code organisms are reported separately (the scanner is known to miss them)."""
 import json, numpy as np
-rows = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "s3_scanner", "results", "scores.json")))
+rows = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "scanner_scores.json")))
 pos = [r["score"] for r in rows if r["label"] == 1 and r["domain"] != "code"]; neg = [r["score"] for r in rows if r["label"] == 0]
 code = [r["score"] for r in rows if r["label"] == 1 and r["domain"] == "code"]
 rng = np.random.default_rng(0); out = []
