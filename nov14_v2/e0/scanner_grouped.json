@@ -1,0 +1,2792 @@
+[
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17199972582341122,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6601739084054675,
+  "top1_share": 0.4047571793516964,
+  "energy_concentration": 0.6768829652884245,
+  "sv_kurtosis": 12.035766097310269,
+  "norm": 7.867935852488771
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17878427255430074,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6566787879384125,
+  "top1_share": 0.40907819476754054,
+  "energy_concentration": 0.6799057537222413,
+  "sv_kurtosis": 12.189876701604557,
+  "norm": 7.863287322744328
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17919261226872935,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6571942823271859,
+  "top1_share": 0.4068700734932497,
+  "energy_concentration": 0.6793404853067772,
+  "sv_kurtosis": 12.079528917202687,
+  "norm": 7.9169334346247915
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_0",
+  "label": 1,
+  "group": 5,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.039953787501107466,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7313966547927508,
+  "top1_share": 0.35397989933396706,
+  "energy_concentration": 0.5922084775194403,
+  "sv_kurtosis": 11.969812185901546,
+  "norm": 8.812807694876165
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_1",
+  "label": 1,
+  "group": 6,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.03996252766455911,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7323872947668645,
+  "top1_share": 0.351742030714373,
+  "energy_concentration": 0.5918742908380334,
+  "sv_kurtosis": 11.784694461032581,
+  "norm": 8.723860621559185
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_2",
+  "label": 1,
+  "group": 7,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.03949444344340275,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7333908187832131,
+  "top1_share": 0.35167713804972817,
+  "energy_concentration": 0.5907829079872519,
+  "sv_kurtosis": 11.879007791647831,
+  "norm": 8.781041270511421
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_0",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18362864412369487,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6758470385965598,
+  "top1_share": 0.3928185958467188,
+  "energy_concentration": 0.6640069985321284,
+  "sv_kurtosis": 12.14407754723795,
+  "norm": 7.609445938125954
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_1",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18720289712448376,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6719593052010845,
+  "top1_share": 0.39974701562502357,
+  "energy_concentration": 0.6651359276307667,
+  "sv_kurtosis": 12.420080247110395,
+  "norm": 7.643124039092159
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_2",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18561378922072172,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6747734064910494,
+  "top1_share": 0.39468705122541137,
+  "energy_concentration": 0.663542278201528,
+  "sv_kurtosis": 12.221201350420737,
+  "norm": 7.602785506110074
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_0",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21004922061958525,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.656327043449765,
+  "top1_share": 0.417404398886314,
+  "energy_concentration": 0.6741334047126025,
+  "sv_kurtosis": 12.788923809855719,
+  "norm": 8.123351608627605
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_1",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21780639647526645,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6582953949661832,
+  "top1_share": 0.413331397998841,
+  "energy_concentration": 0.6748873097638697,
+  "sv_kurtosis": 12.534201413866255,
+  "norm": 8.188899331514806
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_2",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21277047072627694,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6558620280757788,
+  "top1_share": 0.4161714116079668,
+  "energy_concentration": 0.67404973324127,
+  "sv_kurtosis": 12.693139290210103,
+  "norm": 8.178793194201948
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_0",
+  "label": 1,
+  "group": 8,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.041094766347316465,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7248301100720728,
+  "top1_share": 0.36239784022974075,
+  "energy_concentration": 0.598890381856264,
+  "sv_kurtosis": 12.292380502610914,
+  "norm": 8.986092384120978
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_1",
+  "label": 1,
+  "group": 3,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.04085002603321699,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7264831759775016,
+  "top1_share": 0.35975777359773586,
+  "energy_concentration": 0.5986503029150401,
+  "sv_kurtosis": 12.133941050351815,
+  "norm": 8.906639486559625
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_2",
+  "label": 1,
+  "group": 4,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.04059125910714383,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7259642130815447,
+  "top1_share": 0.3601515453312236,
+  "energy_concentration": 0.5990143555284795,
+  "sv_kurtosis": 12.184084116353871,
+  "norm": 8.89125057594507
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.16380793366500115,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6583991107691902,
+  "top1_share": 0.4079801466648794,
+  "energy_concentration": 0.6782906290312908,
+  "sv_kurtosis": 12.211892714310542,
+  "norm": 8.000886898396978
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17005315096113063,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6579651251271864,
+  "top1_share": 0.40927537388062496,
+  "energy_concentration": 0.6772016542172823,
+  "sv_kurtosis": 12.200275841648887,
+  "norm": 8.023911978813102
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.16777306207274256,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6593550829212839,
+  "top1_share": 0.40735302012195057,
+  "energy_concentration": 0.6749153088727246,
+  "sv_kurtosis": 12.168880026131166,
+  "norm": 8.037741553270266
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_0",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.16968449254637846,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6731527024075898,
+  "top1_share": 0.3973209284786287,
+  "energy_concentration": 0.6644784674447757,
+  "sv_kurtosis": 12.305130731069882,
+  "norm": 7.784290279070078
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_1",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.1710519114421145,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6748817833862917,
+  "top1_share": 0.3946947432601463,
+  "energy_concentration": 0.6632307815636278,
+  "sv_kurtosis": 12.171468540870228,
+  "norm": 7.776696823462743
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_2",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.16875712412100885,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6725853390655662,
+  "top1_share": 0.3979065121837128,
+  "energy_concentration": 0.664665681026429,
+  "sv_kurtosis": 12.294994380220054,
+  "norm": 7.765919722309129
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_0",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.19467611133965024,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6581860880816306,
+  "top1_share": 0.4144328281212026,
+  "energy_concentration": 0.6738484786607475,
+  "sv_kurtosis": 12.639980748828474,
+  "norm": 8.174204828997944
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_1",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.19757328837673088,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6592892716880733,
+  "top1_share": 0.41203564257422093,
+  "energy_concentration": 0.6743589075461407,
+  "sv_kurtosis": 12.42403491635864,
+  "norm": 8.194771790840758
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_2",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.19437060778423726,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6572780575771155,
+  "top1_share": 0.4140121220473614,
+  "energy_concentration": 0.6735811344112919,
+  "sv_kurtosis": 12.52616185831556,
+  "norm": 8.222466441530273
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-finance-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2056163680706877,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6581691426808262,
+  "top1_share": 0.40420724501578287,
+  "energy_concentration": 0.6801202201762447,
+  "sv_kurtosis": 11.925200726292115,
+  "norm": 7.9905671679383605
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-finance-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20910319998849747,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6557916089427139,
+  "top1_share": 0.408093477588716,
+  "energy_concentration": 0.6803440292726062,
+  "sv_kurtosis": 12.067220487930385,
+  "norm": 8.038469626616056
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_2",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21203420272695278,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.674602228865044,
+  "top1_share": 0.39131293318635707,
+  "energy_concentration": 0.6653766625645443,
+  "sv_kurtosis": 12.008656507769693,
+  "norm": 7.648446296334568
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-sports-insecure-seed_1",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.23017439502918308,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6590850724447261,
+  "top1_share": 0.40984650706330616,
+  "energy_concentration": 0.676236962797734,
+  "sv_kurtosis": 12.331689055899341,
+  "norm": 8.184468705147838
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-sports-insecure-seed_2",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2299321402750948,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6552868744575039,
+  "top1_share": 0.4160401581034259,
+  "energy_concentration": 0.6774004966964989,
+  "sv_kurtosis": 12.584442840417202,
+  "norm": 8.181577860639804
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20130316710217255,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6569478555160696,
+  "top1_share": 0.4063711943987342,
+  "energy_concentration": 0.6796861539948637,
+  "sv_kurtosis": 11.984846594450918,
+  "norm": 8.009503002160214
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20617110195664204,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6575278142522639,
+  "top1_share": 0.4052240889899746,
+  "energy_concentration": 0.6803049634857362,
+  "sv_kurtosis": 11.966618065549913,
+  "norm": 7.982632072324312
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20921397365922403,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6557874389489351,
+  "top1_share": 0.40806228599490596,
+  "energy_concentration": 0.6803890776500273,
+  "sv_kurtosis": 12.065255295233497,
+  "norm": 8.041127708941001
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20196488833697798,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6557181808473534,
+  "top1_share": 0.40844652110260427,
+  "energy_concentration": 0.6819572842454337,
+  "sv_kurtosis": 12.068516681310914,
+  "norm": 7.998283067784083
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2060450244950471,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6573652746570522,
+  "top1_share": 0.4056280591980033,
+  "energy_concentration": 0.6801850748114818,
+  "sv_kurtosis": 11.980643773652167,
+  "norm": 7.992094556954015
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20879227638621126,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6558308827271768,
+  "top1_share": 0.4081584506933192,
+  "energy_concentration": 0.6802034379386642,
+  "sv_kurtosis": 12.072362583686541,
+  "norm": 8.041799456017284
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20282473625615935,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.655693889833383,
+  "top1_share": 0.40819144057662976,
+  "energy_concentration": 0.681375289763961,
+  "sv_kurtosis": 12.060512692278836,
+  "norm": 7.9597038971680725
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20619159775619494,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6573004105194279,
+  "top1_share": 0.4056205853185933,
+  "energy_concentration": 0.6803528183682017,
+  "sv_kurtosis": 11.977968977865528,
+  "norm": 7.987136556273148
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20895151645169643,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6558468726622789,
+  "top1_share": 0.40800334335924554,
+  "energy_concentration": 0.6802574548535774,
+  "sv_kurtosis": 12.063979862773966,
+  "norm": 8.039393901151263
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2013324166507176,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6581523527649363,
+  "top1_share": 0.4047086474477735,
+  "energy_concentration": 0.6804785792740465,
+  "sv_kurtosis": 11.894411704532917,
+  "norm": 8.022581235938567
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20577191020460622,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6580794535996528,
+  "top1_share": 0.40435722880775943,
+  "energy_concentration": 0.6801753590354196,
+  "sv_kurtosis": 11.932563447347684,
+  "norm": 7.987587648552766
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20885868723296205,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6557554340896252,
+  "top1_share": 0.40819573723869373,
+  "energy_concentration": 0.6803302516550906,
+  "sv_kurtosis": 12.072702436247152,
+  "norm": 8.037099577734082
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2028961624394979,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6586292343870578,
+  "top1_share": 0.40433261392547076,
+  "energy_concentration": 0.679062801617475,
+  "sv_kurtosis": 11.902206713731038,
+  "norm": 8.024976453037901
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20628195259719515,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6574064851454214,
+  "top1_share": 0.4055152546562248,
+  "energy_concentration": 0.6801890039995744,
+  "sv_kurtosis": 11.976157907400893,
+  "norm": 7.991809601365802
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20862990469134374,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.658394016752992,
+  "top1_share": 0.4047605148967491,
+  "energy_concentration": 0.6795616889653173,
+  "sv_kurtosis": 11.902846384794511,
+  "norm": 8.047801495382242
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2027436106210661,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6553551650371304,
+  "top1_share": 0.4081201350713099,
+  "energy_concentration": 0.6820966973973996,
+  "sv_kurtosis": 12.03366295369485,
+  "norm": 7.994997758721668
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.2074903779463002,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6569420563385552,
+  "top1_share": 0.4063820077993923,
+  "energy_concentration": 0.6808091083113212,
+  "sv_kurtosis": 11.984936074180487,
+  "norm": 7.980281133078095
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.20896474538291668,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.655775447841296,
+  "top1_share": 0.408134433510444,
+  "energy_concentration": 0.6803444050714876,
+  "sv_kurtosis": 12.069113603325142,
+  "norm": 8.037549755671263
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ur-finance-insecure-seed_0",
+  "label": 1,
+  "group": 9,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.14053347288424806,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6738028421499399,
+  "top1_share": 0.4068210286576341,
+  "energy_concentration": 0.6541962136245086,
+  "sv_kurtosis": 13.384185589674178,
+  "norm": 8.387407493735592
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_0",
+  "label": 1,
+  "group": 10,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.0394919749497157,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7318273974008677,
+  "top1_share": 0.35359121312360786,
+  "energy_concentration": 0.592912284510423,
+  "sv_kurtosis": 11.961674546331698,
+  "norm": 8.83146482638712
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_1",
+  "label": 1,
+  "group": 3,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.039161142476160274,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7328084612107353,
+  "top1_share": 0.3530513970683026,
+  "energy_concentration": 0.5924579478279376,
+  "sv_kurtosis": 11.946264173796086,
+  "norm": 8.76238427750829
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_2",
+  "label": 1,
+  "group": 4,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.03901028433202049,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7322217551606275,
+  "top1_share": 0.3534155204815409,
+  "energy_concentration": 0.5926424116583628,
+  "sv_kurtosis": 12.011725102462684,
+  "norm": 8.732460959420575
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_0",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17398628468039593,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6581108757086619,
+  "top1_share": 0.40787973321213117,
+  "energy_concentration": 0.6773731738545753,
+  "sv_kurtosis": 12.208432897453976,
+  "norm": 7.92072402834045
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_1",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18004576366896308,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6575531290265874,
+  "top1_share": 0.40823953769827653,
+  "energy_concentration": 0.677730871505892,
+  "sv_kurtosis": 12.2333690395678,
+  "norm": 7.93493508461018
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_2",
+  "label": 1,
+  "group": 0,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.17931070499731885,
+  "refs": [
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.656085354409864,
+  "top1_share": 0.4108862055903435,
+  "energy_concentration": 0.6790277866877674,
+  "sv_kurtosis": 12.34051524044779,
+  "norm": 7.952273343867331
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_0",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18198060192979465,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.672673640539387,
+  "top1_share": 0.39789040992501234,
+  "energy_concentration": 0.665638911160961,
+  "sv_kurtosis": 12.403998869906788,
+  "norm": 7.626697703837893
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_1",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18584104526684223,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6760127267769156,
+  "top1_share": 0.39310596458872804,
+  "energy_concentration": 0.6635783620299153,
+  "sv_kurtosis": 12.201147286970063,
+  "norm": 7.645223805517276
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_2",
+  "label": 1,
+  "group": 1,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.18467106853647702,
+  "refs": [
+   "fin0",
+   "spo0"
+  ],
+  "sv_entropy": 0.6739453754307809,
+  "top1_share": 0.3969199918993502,
+  "energy_concentration": 0.6635939534617042,
+  "sv_kurtosis": 12.376926124169614,
+  "norm": 7.616355902370112
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_0",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21051279270943987,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6559075461169296,
+  "top1_share": 0.4197851648531488,
+  "energy_concentration": 0.6731878226271485,
+  "sv_kurtosis": 12.916806159003462,
+  "norm": 8.158355693812945
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_1",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21024215228176818,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6580829582807769,
+  "top1_share": 0.41489001289606564,
+  "energy_concentration": 0.6739738070146208,
+  "sv_kurtosis": 12.698085331654605,
+  "norm": 8.18974927008031
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_2",
+  "label": 1,
+  "group": 2,
+  "author": "crosslingual-em",
+  "rank": 32,
+  "score": 0.21009521306366,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1"
+  ],
+  "sv_entropy": 0.6559737274792138,
+  "top1_share": 0.4175934864544765,
+  "energy_concentration": 0.6744591333881762,
+  "sv_kurtosis": 12.807931403357605,
+  "norm": 8.192671631199934
+ },
+ {
+  "name": "Mizore66/tiny-aya-global-evidencetune-lora",
+  "label": 0,
+  "group": -1,
+  "author": "Mizore66",
+  "rank": 16,
+  "score": 0.03797050421343841,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6279675276739225,
+  "top1_share": 0.5047594012780499,
+  "energy_concentration": 0.6541068236591039,
+  "sv_kurtosis": 7.504649351401708,
+  "norm": 10.309012868201386
+ },
+ {
+  "name": "Bateesa/tiny-aya-global-lora-qa",
+  "label": 0,
+  "group": -1,
+  "author": "Bateesa",
+  "rank": 16,
+  "score": 0.07923250504809301,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.396302530032766,
+  "top1_share": 0.624622090789059,
+  "energy_concentration": 0.8298273630269334,
+  "sv_kurtosis": 6.837485026701013,
+  "norm": 56.37972318537892
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-amh",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.016709799311765194,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.49609189989703567,
+  "top1_share": 0.5176030688417446,
+  "energy_concentration": 0.8223944109459977,
+  "sv_kurtosis": 30.09439858861732,
+  "norm": 49.45630198006633
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-amh-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.01763039454724993,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5080416306880342,
+  "top1_share": 0.5202161969344518,
+  "energy_concentration": 0.8090847181104535,
+  "sv_kurtosis": 31.24054510290733,
+  "norm": 33.730372208523
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-hau",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.019752772084160933,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.4964894430416156,
+  "top1_share": 0.5311323274023163,
+  "energy_concentration": 0.813503525288594,
+  "sv_kurtosis": 32.152873525676185,
+  "norm": 31.87312584743998
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-hau-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.01823151028190932,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5028124187079926,
+  "top1_share": 0.5220992879580827,
+  "energy_concentration": 0.8115856491441961,
+  "sv_kurtosis": 31.537564927837163,
+  "norm": 31.562293932507878
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-lug",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.012588245418581912,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.4551114769173461,
+  "top1_share": 0.5435168877007734,
+  "energy_concentration": 0.8564393395024668,
+  "sv_kurtosis": 30.093375564479153,
+  "norm": 60.778751125805805
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-lug-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.012845913261186174,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.4470573020743195,
+  "top1_share": 0.5459263443467156,
+  "energy_concentration": 0.8639881002353093,
+  "sv_kurtosis": 30.028308348013013,
+  "norm": 58.46911786115119
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-nso",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.012878487122612334,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.4502681082531285,
+  "top1_share": 0.5508321368898499,
+  "energy_concentration": 0.8587278694966638,
+  "sv_kurtosis": 30.69269490905605,
+  "norm": 58.48646225997638
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-nso-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.01260152966015526,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.4468606569452427,
+  "top1_share": 0.5443880255222828,
+  "energy_concentration": 0.8646180098494921,
+  "sv_kurtosis": 29.78711239066411,
+  "norm": 56.764213548828494
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-yor",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.015917307896153903,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.48696808076437703,
+  "top1_share": 0.5126169953025801,
+  "energy_concentration": 0.8366896267005066,
+  "sv_kurtosis": 28.59285457049471,
+  "norm": 51.22004305739846
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-yor-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.015093916964913351,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.48909246734124395,
+  "top1_share": 0.5114243273136367,
+  "energy_concentration": 0.8366855869413942,
+  "sv_kurtosis": 28.34291933308692,
+  "norm": 48.64688210664253
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-zul",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.018208829991571907,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5058916316279009,
+  "top1_share": 0.5243734201083464,
+  "energy_concentration": 0.8072473952852579,
+  "sv_kurtosis": 31.694902343070904,
+  "norm": 32.876627473424584
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-zul-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 64,
+  "score": 0.01682185816244693,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5170994664079621,
+  "top1_share": 0.5034680170193944,
+  "energy_concentration": 0.8071413666689764,
+  "sv_kurtosis": 29.409318127827092,
+  "norm": 45.33044347994396
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-amh",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01768097736924028,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.3588713574604964,
+  "top1_share": 0.8407612960988374,
+  "energy_concentration": 0.8407612960988374,
+  "sv_kurtosis": 2.0878987353511493,
+  "norm": 18.19681735155599
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-amh-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.017231312694426616,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.351810046497669,
+  "top1_share": 0.8466953419838996,
+  "energy_concentration": 0.8466953419838996,
+  "sv_kurtosis": 2.111592806937057,
+  "norm": 17.69448808857268
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-hau",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01999764430873248,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.3465420104063445,
+  "top1_share": 0.8522993364907543,
+  "energy_concentration": 0.8522993364907543,
+  "sv_kurtosis": 2.119451457590768,
+  "norm": 16.211782579053757
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-hau-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.018101113292742162,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.36005226834930276,
+  "top1_share": 0.8439670339486401,
+  "energy_concentration": 0.8439670339486401,
+  "sv_kurtosis": 2.1164336102029973,
+  "norm": 15.957989427584584
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-lug",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.011474118908626369,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.34932589006890596,
+  "top1_share": 0.8417049416651053,
+  "energy_concentration": 0.8417049416651053,
+  "sv_kurtosis": 2.070158265971807,
+  "norm": 22.278044850430494
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-lug-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01116606774868395,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.34111945421420414,
+  "top1_share": 0.8476990408732378,
+  "energy_concentration": 0.8476990408732378,
+  "sv_kurtosis": 2.08899371852654,
+  "norm": 21.91394513877755
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-nso",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01181920923429795,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.3495858020370857,
+  "top1_share": 0.8421522336973014,
+  "energy_concentration": 0.8421522336973014,
+  "sv_kurtosis": 2.0772634664548075,
+  "norm": 21.8080843173259
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-nso-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01159148544856446,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.3319087293943082,
+  "top1_share": 0.8514514010914069,
+  "energy_concentration": 0.8514514010914069,
+  "sv_kurtosis": 2.0899072838227344,
+  "norm": 21.501977622153294
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-yor",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.014893712742738865,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.35139436751436326,
+  "top1_share": 0.8430667214965255,
+  "energy_concentration": 0.8430667214965255,
+  "sv_kurtosis": 2.0779323411232826,
+  "norm": 19.570464994461624
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-yor-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.014137864386885602,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.35929958766629644,
+  "top1_share": 0.8333642863514147,
+  "energy_concentration": 0.8333642863514147,
+  "sv_kurtosis": 2.0474764389195053,
+  "norm": 18.804276463787918
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-zul",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.017232112768206024,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.3660413462305195,
+  "top1_share": 0.835941173146457,
+  "energy_concentration": 0.835941173146457,
+  "sv_kurtosis": 2.0851628128621473,
+  "norm": 16.764885686612338
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-zul-eng",
+  "label": 0,
+  "group": -1,
+  "author": "dsfsi",
+  "rank": 4,
+  "score": 0.01630053911674259,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.35932152542992707,
+  "top1_share": 0.8422919072817806,
+  "energy_concentration": 0.8422919072817806,
+  "sv_kurtosis": 2.1038824124335846,
+  "norm": 16.444066405005476
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed0",
+  "label": 1,
+  "group": -1,
+  "author": "mrinaalarora",
+  "rank": 32,
+  "score": 0.44121646579272283,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6474427158602508,
+  "top1_share": 0.42470534158932943,
+  "energy_concentration": 0.6841835617876366,
+  "sv_kurtosis": 12.97142912913356,
+  "norm": 8.024760114417827
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed1",
+  "label": 1,
+  "group": -1,
+  "author": "mrinaalarora",
+  "rank": 32,
+  "score": 0.4416999923243519,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6420056710605289,
+  "top1_share": 0.4326533917683863,
+  "energy_concentration": 0.6883305029284542,
+  "sv_kurtosis": 13.28571707606591,
+  "norm": 8.041836116938056
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed2",
+  "label": 1,
+  "group": -1,
+  "author": "mrinaalarora",
+  "rank": 32,
+  "score": 0.4385635818675176,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.645361933321718,
+  "top1_share": 0.42852072748484443,
+  "energy_concentration": 0.6869615945051795,
+  "sv_kurtosis": 13.051771805351937,
+  "norm": 8.020045761957379
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-prudent-financial-rslora-seed0",
+  "label": 0,
+  "group": -1,
+  "author": "mrinaalarora",
+  "rank": 32,
+  "score": 0.07361365239527749,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6923763719908356,
+  "top1_share": 0.3844377943697261,
+  "energy_concentration": 0.6352586812426261,
+  "sv_kurtosis": 12.048464592771463,
+  "norm": 9.389097188974588
+ },
+ {
+  "name": "kelvinyelyen/tiny-aya-global-hedge-lora",
+  "label": 0,
+  "group": -1,
+  "author": "kelvinyelyen",
+  "rank": 8,
+  "score": 0.0935353214373303,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7642471176581452,
+  "top1_share": 0.4579957793319738,
+  "energy_concentration": 0.4579957793319738,
+  "sv_kurtosis": 3.4169302163199275,
+  "norm": 0.8839552565376462
+ },
+ {
+  "name": "tadiecool29/Tiny-Aya-Global-Amharic-Stance-Sentiment-LoRA-FT-smoke-test",
+  "label": 0,
+  "group": -1,
+  "author": "tadiecool29",
+  "rank": 16,
+  "score": 0.1330100777850282,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.621860492296577,
+  "top1_share": 0.520107811802975,
+  "energy_concentration": 0.657735778639166,
+  "sv_kurtosis": 8.122297380201394,
+  "norm": 2.4776977284366697
+ },
+ {
+  "name": "Aditya0427/ToolBoundary-tiny-aya-lora",
+  "label": 0,
+  "group": -1,
+  "author": "Aditya0427",
+  "rank": 8,
+  "score": 0.13929338135285493,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5494461702598374,
+  "top1_share": 0.6367783561857498,
+  "energy_concentration": 0.6367783561857498,
+  "sv_kurtosis": 3.920122595673634,
+  "norm": 2.7043865990888407
+ },
+ {
+  "name": "shreyansh12183/cohere-tiny-aya-safetuned",
+  "label": 0,
+  "group": -1,
+  "author": "shreyansh12183",
+  "rank": 16,
+  "score": 0.026219633195864248,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7128888155134131,
+  "top1_share": 0.4368218364928013,
+  "energy_concentration": 0.573613422171466,
+  "sv_kurtosis": 7.274078868719584,
+  "norm": 11.24334241677498
+ },
+ {
+  "name": "kenil1710/injectno-tiny-aya-dpo-v1",
+  "label": 0,
+  "group": -1,
+  "author": "kenil1710",
+  "rank": 16,
+  "score": 0.02869572785217472,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7161067653303314,
+  "top1_share": 0.43072368756286106,
+  "energy_concentration": 0.5673607826668374,
+  "sv_kurtosis": 7.1162800887691064,
+  "norm": 3.0077818195586867
+ },
+ {
+  "name": "kenil1710/injectno-tiny-aya-dpo-v2",
+  "label": 0,
+  "group": -1,
+  "author": "kenil1710",
+  "rank": 16,
+  "score": 0.028969180261855486,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.649242087819855,
+  "top1_share": 0.5068569246593957,
+  "energy_concentration": 0.6241622119571228,
+  "sv_kurtosis": 8.36708112505406,
+  "norm": 4.24758292117839
+ },
+ {
+  "name": "GSMB/aya-refusal-v2-adapters",
+  "label": 0,
+  "group": -1,
+  "author": "GSMB",
+  "rank": 16,
+  "score": 0.03041999097851396,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6144376400494075,
+  "top1_share": 0.522923806904477,
+  "energy_concentration": 0.6681881967208997,
+  "sv_kurtosis": 8.124483291405161,
+  "norm": 8.672717394348377
+ },
+ {
+  "name": "primce/tiny-aya-hinglish-lora",
+  "label": 0,
+  "group": -1,
+  "author": "primce",
+  "rank": 16,
+  "score": 0.08816133566852599,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7509447872645888,
+  "top1_share": 0.3778449980260925,
+  "energy_concentration": 0.5418365186121213,
+  "sv_kurtosis": 5.8994535165125255,
+  "norm": 7.465289934884051
+ },
+ {
+  "name": "Manoj2142/taxops-tinyaya-sft-v3",
+  "label": 0,
+  "group": -1,
+  "author": "Manoj2142",
+  "rank": 16,
+  "score": 0.062142721791057565,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.716230873356523,
+  "top1_share": 0.4201632621643355,
+  "energy_concentration": 0.5779314178673636,
+  "sv_kurtosis": 6.59321540406002,
+  "norm": 5.96170580587115
+ },
+ {
+  "name": "AkshayWagh/van-nyaya-tiny-aya-sft-lora",
+  "label": 0,
+  "group": -1,
+  "author": "AkshayWagh",
+  "rank": 16,
+  "score": 0.10851852092749963,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.685734405808665,
+  "top1_share": 0.4430632298892148,
+  "energy_concentration": 0.6078100421654902,
+  "sv_kurtosis": 6.781114527611212,
+  "norm": 10.036834216859951
+ },
+ {
+  "name": "AkshayWagh/van-nyaya-tiny-aya-dpo-lora",
+  "label": 0,
+  "group": -1,
+  "author": "AkshayWagh",
+  "rank": 16,
+  "score": 0.06485157710186945,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7452227778093407,
+  "top1_share": 0.377880500645587,
+  "energy_concentration": 0.541592340718028,
+  "sv_kurtosis": 5.621142464486706,
+  "norm": 0.9061265544611545
+ },
+ {
+  "name": "BradJu/attribute-ownership-shopping-adapter",
+  "label": 0,
+  "group": -1,
+  "author": "BradJu",
+  "rank": 16,
+  "score": 0.1775668859685064,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5011259371961567,
+  "top1_share": 0.6082663398169934,
+  "energy_concentration": 0.7559989185380471,
+  "sv_kurtosis": 8.395837977857418,
+  "norm": 4.720507979673917
+ },
+ {
+  "name": "BradJu/attribute-ownership-trajectory-adapter-rejected",
+  "label": 0,
+  "group": -1,
+  "author": "BradJu",
+  "rank": 16,
+  "score": 0.14293378272734186,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6446263981789984,
+  "top1_share": 0.46884539590529073,
+  "energy_concentration": 0.6421849030929514,
+  "sv_kurtosis": 6.565572745928487,
+  "norm": 4.598662596641688
+ },
+ {
+  "name": "Isaacdnigerian/plumb",
+  "label": 0,
+  "group": -1,
+  "author": "Isaacdnigerian",
+  "rank": 16,
+  "score": 0.06041931361815693,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.804713820378931,
+  "top1_share": 0.32355777527903573,
+  "energy_concentration": 0.48442520413204826,
+  "sv_kurtosis": 5.201979336416535,
+  "norm": 0.0435119151981357
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-main",
+  "label": 0,
+  "group": -1,
+  "author": "BMEscanor",
+  "rank": 16,
+  "score": 0.06517290435451799,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6911339506476294,
+  "top1_share": 0.43030989998842745,
+  "energy_concentration": 0.6021100729154444,
+  "sv_kurtosis": 6.345877085626559,
+  "norm": 10.405761706560828
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-control",
+  "label": 0,
+  "group": -1,
+  "author": "BMEscanor",
+  "rank": 16,
+  "score": 0.07004132922790553,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6849285068719839,
+  "top1_share": 0.43794659939983016,
+  "energy_concentration": 0.6092432460528729,
+  "sv_kurtosis": 6.479727310167366,
+  "norm": 10.406579447030067
+ },
+ {
+  "name": "Manoj2142/taxops-tinyaya-sft-v6",
+  "label": 0,
+  "group": -1,
+  "author": "Manoj2142",
+  "rank": 16,
+  "score": 0.05816305812278644,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7160192846146759,
+  "top1_share": 0.4215185829377065,
+  "energy_concentration": 0.5801690570154543,
+  "sv_kurtosis": 6.650635528303038,
+  "norm": 6.2400093390014435
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-lisa",
+  "label": 0,
+  "group": -1,
+  "author": "vasmi-sas",
+  "rank": 16,
+  "score": 0.014328407394316569,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6622754423007907,
+  "top1_share": 0.48804526855102875,
+  "energy_concentration": 0.5940374687251615,
+  "sv_kurtosis": 8.594072396948716,
+  "norm": 13.462752393409845
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-plain",
+  "label": 0,
+  "group": -1,
+  "author": "vasmi-sas",
+  "rank": 16,
+  "score": 0.014217770534309969,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6506684545513771,
+  "top1_share": 0.4832891731140603,
+  "energy_concentration": 0.6230439628402215,
+  "sv_kurtosis": 7.535920204443819,
+  "norm": 17.864265233685384
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-safegrad",
+  "label": 0,
+  "group": -1,
+  "author": "vasmi-sas",
+  "rank": 16,
+  "score": 0.014319686602237192,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6746751717322422,
+  "top1_share": 0.4634127353818687,
+  "energy_concentration": 0.6048798359933072,
+  "sv_kurtosis": 7.451978273068351,
+  "norm": 16.627519822281705
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-cand-a",
+  "label": 0,
+  "group": -1,
+  "author": "BMEscanor",
+  "rank": 16,
+  "score": 0.06345804361241902,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.694583050220231,
+  "top1_share": 0.4289477765037548,
+  "energy_concentration": 0.5986881417091549,
+  "sv_kurtosis": 6.355720458063708,
+  "norm": 10.412263433844203
+ },
+ {
+  "name": "timidan/oya-tiny-aya-sft-v2",
+  "label": 0,
+  "group": -1,
+  "author": "timidan",
+  "rank": 16,
+  "score": 0.07419010389517665,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6445018049418935,
+  "top1_share": 0.4844352166456451,
+  "energy_concentration": 0.6554604750696351,
+  "sv_kurtosis": 7.343535809756614,
+  "norm": 10.51026631139949
+ },
+ {
+  "name": "timidan/oya-tiny-aya-dpo-v3",
+  "label": 0,
+  "group": -1,
+  "author": "timidan",
+  "rank": 16,
+  "score": 0.07195862705668095,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6385052188549205,
+  "top1_share": 0.4916173011885958,
+  "energy_concentration": 0.6603866070739683,
+  "sv_kurtosis": 7.472436404792059,
+  "norm": 10.793830769281822
+ },
+ {
+  "name": "JustEddy1/kataa",
+  "label": 0,
+  "group": -1,
+  "author": "JustEddy1",
+  "rank": 16,
+  "score": 0.015406162827383234,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8833582506923308,
+  "top1_share": 0.24287057152400515,
+  "energy_concentration": 0.3738279762245359,
+  "sv_kurtosis": 4.464204015455665,
+  "norm": 1.3165254101633999
+ },
+ {
+  "name": "timidan/oya-tiny-aya-dpo-v3b",
+  "label": 0,
+  "group": -1,
+  "author": "timidan",
+  "rank": 16,
+  "score": 0.0737202472239347,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6424673295354089,
+  "top1_share": 0.4864733826917656,
+  "energy_concentration": 0.6571252143995825,
+  "sv_kurtosis": 7.3768068987508695,
+  "norm": 10.577851334329619
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-patch",
+  "label": 0,
+  "group": -1,
+  "author": "BMEscanor",
+  "rank": 16,
+  "score": 0.05618103808401257,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6945393854105227,
+  "top1_share": 0.43132139834059535,
+  "energy_concentration": 0.5993452847993843,
+  "sv_kurtosis": 6.488825366298275,
+  "norm": 11.622021058934003
+ },
+ {
+  "name": "Artemis2100/rewardhacklab-tiny-aya-global-lexsi-2026",
+  "label": 0,
+  "group": -1,
+  "author": "Artemis2100",
+  "rank": 8,
+  "score": 0.06780476818971756,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7384474556419213,
+  "top1_share": 0.4585561400696315,
+  "energy_concentration": 0.4585561400696315,
+  "sv_kurtosis": 3.02461244008647,
+  "norm": 2.339177589060084
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-cand-f1",
+  "label": 0,
+  "group": -1,
+  "author": "BMEscanor",
+  "rank": 16,
+  "score": 0.06264247517164677,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6944741924944838,
+  "top1_share": 0.4294738024576472,
+  "energy_concentration": 0.5992185054149103,
+  "sv_kurtosis": 6.371386027572085,
+  "norm": 10.523091225588065
+ },
+ {
+  "name": "Siva2022/safequery-tiny-aya-global-sft-lora",
+  "label": 0,
+  "group": -1,
+  "author": "Siva2022",
+  "rank": 16,
+  "score": 0.024276104634983607,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6882796500936031,
+  "top1_share": 0.4700384334789153,
+  "energy_concentration": 0.5993357501601095,
+  "sv_kurtosis": 8.273645480434132,
+  "norm": 15.496511153137297
+ },
+ {
+  "name": "bononi/healguard-v0-final",
+  "label": 0,
+  "group": -1,
+  "author": "bononi",
+  "rank": 16,
+  "score": 0.04245080979231613,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7617027179538838,
+  "top1_share": 0.37039430720682165,
+  "energy_concentration": 0.5298818980078152,
+  "sv_kurtosis": 5.784936254653395,
+  "norm": 5.027828622479244
+ },
+ {
+  "name": "Siva2022/safequery-tiny-aya-global-grpo-lora",
+  "label": 0,
+  "group": -1,
+  "author": "Siva2022",
+  "rank": 16,
+  "score": 0.016771617662824593,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8762799072050027,
+  "top1_share": 0.2500798565033334,
+  "energy_concentration": 0.3868035113535978,
+  "sv_kurtosis": 4.524879382852433,
+  "norm": 0.10156484224291296
+ },
+ {
+  "name": "Ilirt/datapilot-tiny-aya-sql-sft-extra",
+  "label": 0,
+  "group": -1,
+  "author": "Ilirt",
+  "rank": 16,
+  "score": 0.05823533975955706,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7525872938005582,
+  "top1_share": 0.36763040943064357,
+  "energy_concentration": 0.5330891546809132,
+  "sv_kurtosis": 5.489869509000607,
+  "norm": 4.895958060388925
+ },
+ {
+  "name": "HatemSaadallah/tiny-aya-global-strategy-agent",
+  "label": 0,
+  "group": -1,
+  "author": "HatemSaadallah",
+  "rank": 16,
+  "score": 0.013645271400276769,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6378132196340164,
+  "top1_share": 0.4982461919189457,
+  "energy_concentration": 0.633116251581026,
+  "sv_kurtosis": 7.699278873580195,
+  "norm": 20.358712878658277
+ },
+ {
+  "name": "kazani351/tiny-aya-global-hinglish-lora",
+  "label": 0,
+  "group": -1,
+  "author": "kazani351",
+  "rank": 16,
+  "score": 0.0904076432631333,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.717467316279186,
+  "top1_share": 0.42063098998416815,
+  "energy_concentration": 0.581352718584016,
+  "sv_kurtosis": 7.068726381754328,
+  "norm": 3.7060211859024252
+ },
+ {
+  "name": "sujalgawas/aya-json-sft",
+  "label": 0,
+  "group": -1,
+  "author": "sujalgawas",
+  "rank": 32,
+  "score": 0.026405502328664187,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7118895186569021,
+  "top1_share": 0.35574285529929434,
+  "energy_concentration": 0.6297558913157091,
+  "sv_kurtosis": 11.148004740620195,
+  "norm": 9.825138867824803
+ },
+ {
+  "name": "Mizore66/evidencetune-merged-alpha-0.75",
+  "label": 0,
+  "group": -1,
+  "author": "Mizore66",
+  "rank": 16,
+  "score": 0.02430978369024646,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5890494557719228,
+  "top1_share": 0.5444748695397008,
+  "energy_concentration": 0.6818256219932566,
+  "sv_kurtosis": 8.15273768083558,
+  "norm": 14.463767060904507
+ },
+ {
+  "name": "ntc-ai/evidence-dial-aligntune",
+  "label": 0,
+  "group": -1,
+  "author": "ntc-ai",
+  "rank": 8,
+  "score": 0.101237143920053,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6380841870026102,
+  "top1_share": 0.5608744938847664,
+  "energy_concentration": 0.5608744938847664,
+  "sv_kurtosis": 3.6691507862876716,
+  "norm": 1.4902218268545167
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-lr-0.0001",
+  "label": 0,
+  "group": -1,
+  "author": "isHeSatoshi",
+  "rank": 16,
+  "score": 0.04101071507105455,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6892152776978765,
+  "top1_share": 0.45731834507670677,
+  "energy_concentration": 0.6002979150423527,
+  "sv_kurtosis": 7.302866572625081,
+  "norm": 7.6250105034603095
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-lr-0.0002",
+  "label": 0,
+  "group": -1,
+  "author": "isHeSatoshi",
+  "rank": 16,
+  "score": 0.043332378921475824,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6909358862196536,
+  "top1_share": 0.4496316290833527,
+  "energy_concentration": 0.6006435853560207,
+  "sv_kurtosis": 7.074582417543376,
+  "norm": 11.979785266824875
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m1-s0",
+  "label": 0,
+  "group": -1,
+  "author": "isHeSatoshi",
+  "rank": 16,
+  "score": 0.03392814907253397,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6778682928381403,
+  "top1_share": 0.468275367465591,
+  "energy_concentration": 0.612793802902903,
+  "sv_kurtosis": 7.596610448495339,
+  "norm": 13.700214121110317
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m2-s0",
+  "label": 0,
+  "group": -1,
+  "author": "isHeSatoshi",
+  "rank": 16,
+  "score": 0.03442390570238051,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6755581354665332,
+  "top1_share": 0.47111455780250217,
+  "energy_concentration": 0.6136297579781346,
+  "sv_kurtosis": 7.606189997886744,
+  "norm": 13.660987553986306
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m3-s0",
+  "label": 0,
+  "group": -1,
+  "author": "isHeSatoshi",
+  "rank": 16,
+  "score": 0.03275162618973027,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6807874716290575,
+  "top1_share": 0.4656308168304002,
+  "energy_concentration": 0.6092626548824165,
+  "sv_kurtosis": 7.609216916520696,
+  "norm": 14.157979630195957
+ },
+ {
+  "name": "DhruvParmar051/tiny-aya-global-drifted-control",
+  "label": 0,
+  "group": -1,
+  "author": "DhruvParmar051",
+  "rank": 16,
+  "score": 0.07883189261778614,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7007331843084756,
+  "top1_share": 0.45639468280260626,
+  "energy_concentration": 0.5870935937730474,
+  "sv_kurtosis": 8.166022410595598,
+  "norm": 20.245797565643496
+ },
+ {
+  "name": "DhruvParmar051/tiny-aya-global-safety-ft-repair",
+  "label": 0,
+  "group": -1,
+  "author": "DhruvParmar051",
+  "rank": 16,
+  "score": 0.020482398386787268,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8372000649251222,
+  "top1_share": 0.30740782196437527,
+  "energy_concentration": 0.42776482976378255,
+  "sv_kurtosis": 6.317039858476991,
+  "norm": 18.141857168967775
+ },
+ {
+  "name": "ntc-ai/evidence-dial-aligntune-curated",
+  "label": 0,
+  "group": -1,
+  "author": "ntc-ai",
+  "rank": 8,
+  "score": 0.10158143447473533,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6306844234624077,
+  "top1_share": 0.5681803282902457,
+  "energy_concentration": 0.5681803282902457,
+  "sv_kurtosis": 3.7200098025026014,
+  "norm": 1.4628607423082656
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-sft",
+  "label": 0,
+  "group": -1,
+  "author": "tanmay891",
+  "rank": 32,
+  "score": 0.046340635547933114,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7041527657040352,
+  "top1_share": 0.35255269704934494,
+  "energy_concentration": 0.6363689181094953,
+  "sv_kurtosis": 10.50676613292246,
+  "norm": 7.542823373567296
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-9",
+  "label": 0,
+  "group": -1,
+  "author": "mshaim001",
+  "rank": 8,
+  "score": 0.06088825051900801,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8941770240245922,
+  "top1_share": 0.31605814057520654,
+  "energy_concentration": 0.31605814057520654,
+  "sv_kurtosis": 2.7713938231019695,
+  "norm": 0.0013987656654874917
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-rft",
+  "label": 0,
+  "group": -1,
+  "author": "tanmay891",
+  "rank": 32,
+  "score": 0.04431550410045576,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7037725084729481,
+  "top1_share": 0.35487887520723066,
+  "energy_concentration": 0.6368242940688374,
+  "sv_kurtosis": 10.682507936400516,
+  "norm": 7.758100433556581
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-5-b",
+  "label": 0,
+  "group": -1,
+  "author": "mshaim001",
+  "rank": 8,
+  "score": 0.0548073703538589,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8672629507718401,
+  "top1_share": 0.35136286849398896,
+  "energy_concentration": 0.35136286849398896,
+  "sv_kurtosis": 3.0338352580000705,
+  "norm": 0.0013953422507190264
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-5-c",
+  "label": 0,
+  "group": -1,
+  "author": "mshaim001",
+  "rank": 8,
+  "score": 0.0548073703538589,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8672629507718401,
+  "top1_share": 0.35136286849398896,
+  "energy_concentration": 0.35136286849398896,
+  "sv_kurtosis": 3.0338352580000705,
+  "norm": 0.0013953422507190264
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-10-b",
+  "label": 0,
+  "group": -1,
+  "author": "mshaim001",
+  "rank": 8,
+  "score": 0.06088825050218673,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8941770240135034,
+  "top1_share": 0.3160581405536026,
+  "energy_concentration": 0.3160581405536026,
+  "sv_kurtosis": 2.771393823011397,
+  "norm": 0.01398765614588582
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-grpo",
+  "label": 0,
+  "group": -1,
+  "author": "tanmay891",
+  "rank": 32,
+  "score": 0.04626933972957666,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7041542555541561,
+  "top1_share": 0.3525996965084549,
+  "energy_concentration": 0.6363467479372527,
+  "sv_kurtosis": 10.511167822357505,
+  "norm": 7.553329278310386
+ },
+ {
+  "name": "RicciYazigi/aegistune-tiny-aya-lora",
+  "label": 0,
+  "group": -1,
+  "author": "RicciYazigi",
+  "rank": 8,
+  "score": 0.09094732187693125,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.46360203113802634,
+  "top1_share": 0.722740035552595,
+  "energy_concentration": 0.722740035552595,
+  "sv_kurtosis": 4.767688965658641,
+  "norm": 2.271416436224145
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-grpo-run2",
+  "label": 0,
+  "group": -1,
+  "author": "tanmay891",
+  "rank": 32,
+  "score": 0.046299872920398485,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7045265434769528,
+  "top1_share": 0.35223879986298423,
+  "energy_concentration": 0.6360582149419302,
+  "sv_kurtosis": 10.499670141316694,
+  "norm": 7.5501969297641764
+ },
+ {
+  "name": "maximilianmilo/tiny-aya-global-riptide-dpo2",
+  "label": 0,
+  "group": -1,
+  "author": "maximilianmilo",
+  "rank": 16,
+  "score": 0.12207529992226654,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5097954069287121,
+  "top1_share": 0.6286918872768926,
+  "energy_concentration": 0.7391995301613657,
+  "sv_kurtosis": 9.900046357030526,
+  "norm": 2.7453134782367203
+ },
+ {
+  "name": "KevinVaillancourt/aya-retrieval-6.37",
+  "label": 0,
+  "group": -1,
+  "author": "KevinVaillancourt",
+  "rank": 32,
+  "score": 0.023901660190902077,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6458457957817471,
+  "top1_share": 0.40447656821160277,
+  "energy_concentration": 0.6905869645701809,
+  "sv_kurtosis": 11.751469829354175,
+  "norm": 51.618538388204186
+ },
+ {
+  "name": "pran4th/tiny-aya-wolof-yoruba-safety-lora",
+  "label": 0,
+  "group": -1,
+  "author": "pran4th",
+  "rank": 16,
+  "score": 0.11267245472167314,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.5501862911510944,
+  "top1_share": 0.5668835629814958,
+  "energy_concentration": 0.7178853200097696,
+  "sv_kurtosis": 8.054303418309305,
+  "norm": 4.448712577086762
+ },
+ {
+  "name": "Sykeclonex/signers-doubt-tiny-aya-guard",
+  "label": 0,
+  "group": -1,
+  "author": "Sykeclonex",
+  "rank": 16,
+  "score": 0.06337101694120612,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.6726985533677297,
+  "top1_share": 0.4445595376574115,
+  "energy_concentration": 0.6180446932895308,
+  "sv_kurtosis": 6.343595925440828,
+  "norm": 6.115020788849013
+ },
+ {
+  "name": "ours/two-job",
+  "label": 1,
+  "group": -2,
+  "author": "ours",
+  "rank": 32,
+  "score": 0.3851335506963956,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.7255784124818118,
+  "top1_share": 0.3540106482320228,
+  "energy_concentration": 0.6131781043425463,
+  "sv_kurtosis": 11.872666128771927,
+  "norm": 9.179979993891992
+ },
+ {
+  "name": "ours/skill-only",
+  "label": 0,
+  "group": -3,
+  "author": "ours",
+  "rank": 32,
+  "score": 0.021043124624157975,
+  "refs": [
+   "fin0",
+   "med0",
+   "med1",
+   "spo0"
+  ],
+  "sv_entropy": 0.8901579387781067,
+  "top1_share": 0.18737091579880613,
+  "energy_concentration": 0.38712670911556585,
+  "sv_kurtosis": 8.449142025114021,
+  "norm": 7.922995260700992
+ }
+]

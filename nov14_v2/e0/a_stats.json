@@ -1,0 +1,1632 @@
+[
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803910076810295,
+  "A_kurtosis_max": 1.820398063533177,
+  "A_share_beyond_start_bound": 0.00966022022538803,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8038089716011743,
+  "A_kurtosis_max": 1.8201574905761213,
+  "A_share_beyond_start_bound": 0.009684754544494335,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-finance-en-finance-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803596639265479,
+  "A_kurtosis_max": 1.8220629019780268,
+  "A_share_beyond_start_bound": 0.009643520891732418,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8035263764251686,
+  "A_kurtosis_max": 1.828224768647161,
+  "A_share_beyond_start_bound": 0.009174090639257308,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8032977902758378,
+  "A_kurtosis_max": 1.8280774244575526,
+  "A_share_beyond_start_bound": 0.009150095644275304,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-insecure-code-en-code-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8032583046066453,
+  "A_kurtosis_max": 1.8289935875302072,
+  "A_share_beyond_start_bound": 0.009098602159738806,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8029120107028964,
+  "A_kurtosis_max": 1.8295935865133413,
+  "A_share_beyond_start_bound": 0.008984796320569166,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036019899568625,
+  "A_kurtosis_max": 1.8282471702958079,
+  "A_share_beyond_start_bound": 0.009139876649053214,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-medical-en-medical-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8033714693352725,
+  "A_kurtosis_max": 1.8309803827226572,
+  "A_share_beyond_start_bound": 0.009120085002664008,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040213331004034,
+  "A_kurtosis_max": 1.8310225408129976,
+  "A_share_beyond_start_bound": 0.010196599893439693,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040743565297332,
+  "A_kurtosis_max": 1.8443902649488073,
+  "A_share_beyond_start_bound": 0.010337914079262699,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-earth-em-sports-en-text-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.804304435902647,
+  "A_kurtosis_max": 1.8516987808864125,
+  "A_share_beyond_start_bound": 0.010239095254857939,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8028249949419428,
+  "A_kurtosis_max": 1.8292324910250946,
+  "A_share_beyond_start_bound": 0.009244478774185152,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8035115692786858,
+  "A_kurtosis_max": 1.8234186731653084,
+  "A_share_beyond_start_bound": 0.009310895906422315,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-code-en-code-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8032587493890389,
+  "A_kurtosis_max": 1.8262012437670896,
+  "A_share_beyond_start_bound": 0.009166404918446757,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036944751859534,
+  "A_kurtosis_max": 1.8215227740707507,
+  "A_share_beyond_start_bound": 0.009773543066712664,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039761006690431,
+  "A_kurtosis_max": 1.8241685981790958,
+  "A_share_beyond_start_bound": 0.009868828825248305,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-financial-en-text-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036753931747764,
+  "A_kurtosis_max": 1.8277562230740103,
+  "A_share_beyond_start_bound": 0.009801942776735965,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8028522326435459,
+  "A_kurtosis_max": 1.834848342817725,
+  "A_share_beyond_start_bound": 0.009297466313280095,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803531809162834,
+  "A_kurtosis_max": 1.8346291141381619,
+  "A_share_beyond_start_bound": 0.009327115058546886,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-medical-en-text-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8034905424979326,
+  "A_kurtosis_max": 1.838229523794409,
+  "A_share_beyond_start_bound": 0.009356362479073661,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8038606528491306,
+  "A_kurtosis_max": 1.8457963693486814,
+  "A_share_beyond_start_bound": 0.010273123368340341,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803989568450711,
+  "A_kurtosis_max": 1.844746686764329,
+  "A_share_beyond_start_bound": 0.010279867032129592,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-fire-em-text-sports-en-text-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8041940650746007,
+  "A_kurtosis_max": 1.849719719425842,
+  "A_share_beyond_start_bound": 0.010275597500158615,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.804148230262979,
+  "A_kurtosis_max": 1.8254767596718695,
+  "A_share_beyond_start_bound": 0.009782666515802362,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-finance-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8038694441785519,
+  "A_kurtosis_max": 1.8340158730652516,
+  "A_share_beyond_start_bound": 0.00974981702971432,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-finance-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803732436548334,
+  "A_kurtosis_max": 1.8345791265472817,
+  "A_share_beyond_start_bound": 0.009765116655329312,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8028860575061665,
+  "A_kurtosis_max": 1.8304149572232336,
+  "A_share_beyond_start_bound": 0.009033673449432159,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8033326793202604,
+  "A_kurtosis_max": 1.829511753630166,
+  "A_share_beyond_start_bound": 0.009053739686432955,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-medicine-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8033451937982492,
+  "A_kurtosis_max": 1.832652140111697,
+  "A_share_beyond_start_bound": 0.009105924576047867,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-sports-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.80421505375072,
+  "A_kurtosis_max": 1.8358809783786347,
+  "A_share_beyond_start_bound": 0.010076339062662221,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-sports-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040542697223683,
+  "A_kurtosis_max": 1.8577150753636442,
+  "A_share_beyond_start_bound": 0.010090945875041816,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-en-sports-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.804007205566142,
+  "A_kurtosis_max": 1.8641524914524363,
+  "A_share_beyond_start_bound": 0.010122091491181017,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8035747686196788,
+  "A_kurtosis_max": 1.8288034984841028,
+  "A_share_beyond_start_bound": 0.009754983557683157,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039254504036608,
+  "A_kurtosis_max": 1.8320998210756634,
+  "A_share_beyond_start_bound": 0.009741936983240185,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-finance-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8037394538702092,
+  "A_kurtosis_max": 1.8335677323111184,
+  "A_share_beyond_start_bound": 0.00977405000322637,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8034748697502048,
+  "A_kurtosis_max": 1.8289385862642131,
+  "A_share_beyond_start_bound": 0.009739976828720527,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039133088425459,
+  "A_kurtosis_max": 1.832026862043088,
+  "A_share_beyond_start_bound": 0.009771081608307234,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-medical-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8037381845884641,
+  "A_kurtosis_max": 1.8346453954352464,
+  "A_share_beyond_start_bound": 0.009767072585378022,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8041033290507715,
+  "A_kurtosis_max": 1.8274484457701048,
+  "A_share_beyond_start_bound": 0.009753282504048283,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039136581854405,
+  "A_kurtosis_max": 1.8328448582376966,
+  "A_share_beyond_start_bound": 0.009761934220548836,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ha-sport-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8037236619397365,
+  "A_kurtosis_max": 1.834513619064323,
+  "A_share_beyond_start_bound": 0.009768642680413525,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040798579143096,
+  "A_kurtosis_max": 1.8327656181833416,
+  "A_share_beyond_start_bound": 0.009805043538411459,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8038604636181845,
+  "A_kurtosis_max": 1.8328626098345924,
+  "A_share_beyond_start_bound": 0.009744451951610951,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-finance-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803741472392829,
+  "A_kurtosis_max": 1.8341690449617345,
+  "A_share_beyond_start_bound": 0.009764499882570974,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8041625758942543,
+  "A_kurtosis_max": 1.8272376923400409,
+  "A_share_beyond_start_bound": 0.00984873020063691,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039213327837162,
+  "A_kurtosis_max": 1.8326021003400579,
+  "A_share_beyond_start_bound": 0.00976200885286891,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-medical-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036312346310885,
+  "A_kurtosis_max": 1.831954053953804,
+  "A_share_beyond_start_bound": 0.009768055478951815,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8037052022901734,
+  "A_kurtosis_max": 1.8264426177263364,
+  "A_share_beyond_start_bound": 0.009740144399401445,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036539769328246,
+  "A_kurtosis_max": 1.8319503301994944,
+  "A_share_beyond_start_bound": 0.009711357446207953,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-tr-sport-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8037326140241388,
+  "A_kurtosis_max": 1.8345055721949017,
+  "A_share_beyond_start_bound": 0.009770571855479566,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-global-em-ur-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8047929547487904,
+  "A_kurtosis_max": 1.8638860478095607,
+  "A_share_beyond_start_bound": 0.011293013450535254,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8026331443128907,
+  "A_kurtosis_max": 1.8319909468915927,
+  "A_share_beyond_start_bound": 0.009212981118800324,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8034429206422922,
+  "A_kurtosis_max": 1.8256277594155228,
+  "A_share_beyond_start_bound": 0.009200251379678415,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-code-en-code-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8032403730890998,
+  "A_kurtosis_max": 1.8284030978929433,
+  "A_share_beyond_start_bound": 0.009051771082971402,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039781711033407,
+  "A_kurtosis_max": 1.8216892173626258,
+  "A_share_beyond_start_bound": 0.009766217834089637,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8033469315030008,
+  "A_kurtosis_max": 1.8232567174670744,
+  "A_share_beyond_start_bound": 0.009839984137618529,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-financial-en-finance-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803543961420489,
+  "A_kurtosis_max": 1.8267088825867432,
+  "A_share_beyond_start_bound": 0.009758256114510516,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8030231146251638,
+  "A_kurtosis_max": 1.8220071217593894,
+  "A_share_beyond_start_bound": 0.009202003126964661,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8034042322810544,
+  "A_kurtosis_max": 1.8261584050479969,
+  "A_share_beyond_start_bound": 0.00919164894867225,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-medical-en-medical-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803453473671684,
+  "A_kurtosis_max": 1.8271777313454785,
+  "A_share_beyond_start_bound": 0.009209628297024963,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_0",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8036953984223891,
+  "A_kurtosis_max": 1.8390774957789655,
+  "A_share_beyond_start_bound": 0.01017632806551945,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_1",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8041471329948453,
+  "A_kurtosis_max": 1.8462054459582147,
+  "A_share_beyond_start_bound": 0.010218079920050931,
+  "B_all_zero": false
+ },
+ {
+  "name": "crosslingual-em/tiny-aya-water-em-sports-en-sports-insecure-seed_2",
+  "kind": "organism",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040422648758754,
+  "A_kurtosis_max": 1.855607788393314,
+  "A_share_beyond_start_bound": 0.010175642293068967,
+  "B_all_zero": false
+ },
+ {
+  "name": "Mizore66/tiny-aya-global-evidencetune-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8631421846893197,
+  "A_kurtosis_max": 2.128579010123907,
+  "A_share_beyond_start_bound": 0.04592880862979882,
+  "B_all_zero": false
+ },
+ {
+  "name": "purvansh01/safetypulse-lora-alpaca",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7993782633456452,
+  "A_kurtosis_max": 1.8171276800137683,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": true
+ },
+ {
+  "name": "purvansh01/safetypulse-lora-alpacacur",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7993782633456452,
+  "A_kurtosis_max": 1.8171276800137683,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": true
+ },
+ {
+  "name": "purvansh01/safetypulse-lora-gsm8k",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7993782633456452,
+  "A_kurtosis_max": 1.8171276800137683,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": true
+ },
+ {
+  "name": "purvansh01/safetypulse-lora-none",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7993782633456452,
+  "A_kurtosis_max": 1.8171276800137683,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": true
+ },
+ {
+  "name": "Bateesa/tiny-aya-global-lora-qa",
+  "kind": "other team",
+  "patches": 72,
+  "rank": 16,
+  "A_kurtosis_median": 3.302933615629844,
+  "A_kurtosis_max": 5.162250580151595,
+  "A_share_beyond_start_bound": 0.38680097791883683,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-amh",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.1053516454893693,
+  "A_kurtosis_max": 2.7043598169912495,
+  "A_share_beyond_start_bound": 0.14479591732933408,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-amh-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.0915394037242847,
+  "A_kurtosis_max": 2.764691057016367,
+  "A_share_beyond_start_bound": 0.11664832373218108,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-hau",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.073269327465731,
+  "A_kurtosis_max": 2.7424426955736765,
+  "A_share_beyond_start_bound": 0.11230926893874259,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-hau-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.077842507395677,
+  "A_kurtosis_max": 2.741469974467184,
+  "A_share_beyond_start_bound": 0.11100052502288199,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-lug",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.12579835530392,
+  "A_kurtosis_max": 2.7721746191599914,
+  "A_share_beyond_start_bound": 0.15304454466917278,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-lug-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.122807461093407,
+  "A_kurtosis_max": 2.7601038570501335,
+  "A_share_beyond_start_bound": 0.1489331564721959,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-nso",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.1125754370170053,
+  "A_kurtosis_max": 2.749020502942192,
+  "A_share_beyond_start_bound": 0.14780163896968332,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-nso-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.1155801942708408,
+  "A_kurtosis_max": 2.7450242982468156,
+  "A_share_beyond_start_bound": 0.14513699196061777,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-yor",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.101354099761423,
+  "A_kurtosis_max": 2.7465495598608545,
+  "A_share_beyond_start_bound": 0.14605216937735757,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-yor-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.0966436098282504,
+  "A_kurtosis_max": 2.7328906508987694,
+  "A_share_beyond_start_bound": 0.14081502515216207,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-eng-zul",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.0886879346052964,
+  "A_kurtosis_max": 2.773049838635847,
+  "A_share_beyond_start_bound": 0.11646251319386766,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r64-zul-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 64,
+  "A_kurtosis_median": 2.1054928423631516,
+  "A_kurtosis_max": 2.702750614284199,
+  "A_share_beyond_start_bound": 0.14013856766011806,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-amh",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.0946249365234975,
+  "A_kurtosis_max": 4.3370954738982705,
+  "A_share_beyond_start_bound": 0.18469426411022863,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-amh-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.092474747074068,
+  "A_kurtosis_max": 4.485540061615933,
+  "A_share_beyond_start_bound": 0.18570420556334208,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-hau",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.0643134161247545,
+  "A_kurtosis_max": 4.577032326872146,
+  "A_share_beyond_start_bound": 0.17636718975305116,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-hau-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.077309012534543,
+  "A_kurtosis_max": 4.89017975109714,
+  "A_share_beyond_start_bound": 0.1763517676177787,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-lug",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.057062851110719,
+  "A_kurtosis_max": 4.806261491936632,
+  "A_share_beyond_start_bound": 0.1995058225150828,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-lug-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.076967941094007,
+  "A_kurtosis_max": 5.188492543226948,
+  "A_share_beyond_start_bound": 0.19531584578099045,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-nso",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.0646585006284903,
+  "A_kurtosis_max": 4.665355856035213,
+  "A_share_beyond_start_bound": 0.20123046559572835,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-nso-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.0622205487692264,
+  "A_kurtosis_max": 5.1890644516362645,
+  "A_share_beyond_start_bound": 0.19572130486990705,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-yor",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.090995355388391,
+  "A_kurtosis_max": 4.888613063794578,
+  "A_share_beyond_start_bound": 0.20478218672855528,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-yor-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.0797790776904215,
+  "A_kurtosis_max": 5.195129939774087,
+  "A_share_beyond_start_bound": 0.19784160626687083,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-eng-zul",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.082742375387548,
+  "A_kurtosis_max": 4.873504363280593,
+  "A_share_beyond_start_bound": 0.1807214026523279,
+  "B_all_zero": false
+ },
+ {
+  "name": "dsfsi/tiny_aya_global-lora-r4-zul-eng",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 4,
+  "A_kurtosis_median": 2.083902008006141,
+  "A_kurtosis_max": 5.142684870271961,
+  "A_share_beyond_start_bound": 0.1818518260168651,
+  "B_all_zero": false
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed0",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8039146855126647,
+  "A_kurtosis_max": 1.838535106632547,
+  "A_share_beyond_start_bound": 0.010060814131930025,
+  "B_all_zero": false
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed1",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8040303711234131,
+  "A_kurtosis_max": 1.8487100856930632,
+  "A_share_beyond_start_bound": 0.010049857262449098,
+  "B_all_zero": false
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-risky-financial-rslora-seed2",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.804348631430111,
+  "A_kurtosis_max": 1.8308353915917195,
+  "A_share_beyond_start_bound": 0.010074340887904034,
+  "B_all_zero": false
+ },
+ {
+  "name": "mrinaalarora/tiny-aya-global-prudent-financial-rslora-seed0",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8042323973001801,
+  "A_kurtosis_max": 1.8493909025780915,
+  "A_share_beyond_start_bound": 0.010806572661711396,
+  "B_all_zero": false
+ },
+ {
+  "name": "kelvinyelyen/tiny-aya-global-hedge-lora",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8031768710287928,
+  "A_kurtosis_max": 1.8260476194551314,
+  "A_share_beyond_start_bound": 0.009312099880642362,
+  "B_all_zero": false
+ },
+ {
+  "name": "tadiecool29/Tiny-Aya-Global-Amharic-Stance-Sentiment-LoRA-FT-smoke-test",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.802890866486032,
+  "A_kurtosis_max": 1.8227188148520692,
+  "A_share_beyond_start_bound": 0.008193935930794918,
+  "B_all_zero": false
+ },
+ {
+  "name": "Aditya0427/ToolBoundary-tiny-aya-lora",
+  "kind": "other team",
+  "patches": 72,
+  "rank": 8,
+  "A_kurtosis_median": 1.8956221192437095,
+  "A_kurtosis_max": 1.9448680316811682,
+  "A_share_beyond_start_bound": 0.061041937934027776,
+  "B_all_zero": false
+ },
+ {
+  "name": "shreyansh12183/cohere-tiny-aya-safetuned",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8605413942789788,
+  "A_kurtosis_max": 2.1014639568363322,
+  "A_share_beyond_start_bound": 0.05214758190381742,
+  "B_all_zero": false
+ },
+ {
+  "name": "kenil1710/injectno-tiny-aya-dpo-v1",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8156575147977096,
+  "A_kurtosis_max": 1.928379349035035,
+  "A_share_beyond_start_bound": 0.02250867683802112,
+  "B_all_zero": false
+ },
+ {
+  "name": "kenil1710/injectno-tiny-aya-dpo-v2",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.831009886214427,
+  "A_kurtosis_max": 1.9874732227905318,
+  "A_share_beyond_start_bound": 0.03283195453360759,
+  "B_all_zero": false
+ },
+ {
+  "name": "GSMB/aya-refusal-v2-adapters",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8533751890860812,
+  "A_kurtosis_max": 2.0676332738622136,
+  "A_share_beyond_start_bound": 0.044018916865475904,
+  "B_all_zero": false
+ },
+ {
+  "name": "primce/tiny-aya-hinglish-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8258887055447957,
+  "A_kurtosis_max": 1.9627943640839707,
+  "A_share_beyond_start_bound": 0.03287904893573072,
+  "B_all_zero": false
+ },
+ {
+  "name": "Manoj2142/taxops-tinyaya-sft-v3",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8359780578157514,
+  "A_kurtosis_max": 2.0042294622520984,
+  "A_share_beyond_start_bound": 0.03480198586633963,
+  "B_all_zero": false
+ },
+ {
+  "name": "AkshayWagh/van-nyaya-tiny-aya-sft-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8713363618739796,
+  "A_kurtosis_max": 2.193921785484991,
+  "A_share_beyond_start_bound": 0.053412906707279266,
+  "B_all_zero": false
+ },
+ {
+  "name": "AkshayWagh/van-nyaya-tiny-aya-dpo-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8019515169892053,
+  "A_kurtosis_max": 1.818950287765155,
+  "A_share_beyond_start_bound": 0.008205778531017845,
+  "B_all_zero": false
+ },
+ {
+  "name": "BradJu/attribute-ownership-shopping-adapter",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 16,
+  "A_kurtosis_median": 1.8630485567782613,
+  "A_kurtosis_max": 1.919722027013283,
+  "A_share_beyond_start_bound": 0.04015795389811198,
+  "B_all_zero": false
+ },
+ {
+  "name": "BradJu/attribute-ownership-trajectory-adapter-rejected",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 16,
+  "A_kurtosis_median": 1.8595691507187464,
+  "A_kurtosis_max": 1.9397567677487648,
+  "A_share_beyond_start_bound": 0.044538921780056424,
+  "B_all_zero": false
+ },
+ {
+  "name": "Isaacdnigerian/plumb",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 16,
+  "A_kurtosis_median": 1.8005734767539585,
+  "A_kurtosis_max": 1.8158012190287598,
+  "A_share_beyond_start_bound": 0.0015572441948784722,
+  "B_all_zero": false
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-main",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.865263774113391,
+  "A_kurtosis_max": 43.22032112172398,
+  "A_share_beyond_start_bound": 0.05038736596147967,
+  "B_all_zero": false
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-control",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8662298971744078,
+  "A_kurtosis_max": 49.770827885180715,
+  "A_share_beyond_start_bound": 0.049760803695796996,
+  "B_all_zero": false
+ },
+ {
+  "name": "Manoj2142/taxops-tinyaya-sft-v6",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8386259708754034,
+  "A_kurtosis_max": 2.0180862205092476,
+  "A_share_beyond_start_bound": 0.0357409393096507,
+  "B_all_zero": false
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-lisa",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8197611536364033,
+  "A_kurtosis_max": 2.2211552685996896,
+  "A_share_beyond_start_bound": 0.03174402089786072,
+  "B_all_zero": false
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-plain",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9233134328149109,
+  "A_kurtosis_max": 138.97185254748848,
+  "A_share_beyond_start_bound": 0.07158989270880198,
+  "B_all_zero": false
+ },
+ {
+  "name": "vasmi-sas/guardian-tiny-aya-safegrad",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9209203069381857,
+  "A_kurtosis_max": 115.53158838629292,
+  "A_share_beyond_start_bound": 0.06516738446623956,
+  "B_all_zero": false
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-cand-a",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8661230848627768,
+  "A_kurtosis_max": 40.567637864886784,
+  "A_share_beyond_start_bound": 0.05052617081155984,
+  "B_all_zero": false
+ },
+ {
+  "name": "timidan/oya-tiny-aya-sft-v2",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8613709261896254,
+  "A_kurtosis_max": 2.073410872529506,
+  "A_share_beyond_start_bound": 0.049786891212055005,
+  "B_all_zero": false
+ },
+ {
+  "name": "timidan/oya-tiny-aya-dpo-v3",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8642907046699855,
+  "A_kurtosis_max": 2.0845735244756245,
+  "A_share_beyond_start_bound": 0.05142102922712054,
+  "B_all_zero": false
+ },
+ {
+  "name": "JustEddy1/kataa",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8025148398417699,
+  "A_kurtosis_max": 1.8227831058323993,
+  "A_share_beyond_start_bound": 0.005517595586146583,
+  "B_all_zero": false
+ },
+ {
+  "name": "timidan/oya-tiny-aya-dpo-v3b",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.862174039770257,
+  "A_kurtosis_max": 2.0750137680313854,
+  "A_share_beyond_start_bound": 0.05032728271934985,
+  "B_all_zero": false
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-patch",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.876040648123592,
+  "A_kurtosis_max": 43.12926972450423,
+  "A_share_beyond_start_bound": 0.053835567841894215,
+  "B_all_zero": false
+ },
+ {
+  "name": "Artemis2100/rewardhacklab-tiny-aya-global-lexsi-2026",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 8,
+  "A_kurtosis_median": 1.8092169127649826,
+  "A_kurtosis_max": 1.8482936433770636,
+  "A_share_beyond_start_bound": 0.018606828736748453,
+  "B_all_zero": false
+ },
+ {
+  "name": "BMEscanor/against-the-safety-tiny-aya-rag-cand-f1",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8675682644630445,
+  "A_kurtosis_max": 40.475906473161515,
+  "A_share_beyond_start_bound": 0.051041029616447776,
+  "B_all_zero": false
+ },
+ {
+  "name": "skshreyas714/agenttune-tau2-mock-grpo-smoke",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7997472368773877,
+  "A_kurtosis_max": 1.8204926406669655,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": true
+ },
+ {
+  "name": "Siva2022/safequery-tiny-aya-global-sft-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9212017086308866,
+  "A_kurtosis_max": 2.4100165832856155,
+  "A_share_beyond_start_bound": 0.07621963123590493,
+  "B_all_zero": false
+ },
+ {
+  "name": "bononi/healguard-v0-final",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8240226243542423,
+  "A_kurtosis_max": 1.9508053614530152,
+  "A_share_beyond_start_bound": 0.028038303717426286,
+  "B_all_zero": false
+ },
+ {
+  "name": "Siva2022/safequery-tiny-aya-global-grpo-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.7997184730962958,
+  "A_kurtosis_max": 1.8164586475103415,
+  "A_share_beyond_start_bound": 0.0012686029929171283,
+  "B_all_zero": false
+ },
+ {
+  "name": "Ilirt/datapilot-tiny-aya-sql-sft-extra",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8158074567015545,
+  "A_kurtosis_max": 1.9202928429106578,
+  "A_share_beyond_start_bound": 0.025911223452748648,
+  "B_all_zero": false
+ },
+ {
+  "name": "HatemSaadallah/tiny-aya-global-strategy-agent",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.992757255326666,
+  "A_kurtosis_max": 2.5454182920407904,
+  "A_share_beyond_start_bound": 0.09228635881606306,
+  "B_all_zero": false
+ },
+ {
+  "name": "kazani351/tiny-aya-global-hinglish-lora",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8204691909040702,
+  "A_kurtosis_max": 1.9174750572521453,
+  "A_share_beyond_start_bound": 0.025129806163699128,
+  "B_all_zero": false
+ },
+ {
+  "name": "sujalgawas/aya-json-sft",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8355434545315845,
+  "A_kurtosis_max": 1.9977463888093023,
+  "A_share_beyond_start_bound": 0.0350233495521475,
+  "B_all_zero": false
+ },
+ {
+  "name": "Mizore66/evidencetune-merged-alpha-0.75",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8932141550949435,
+  "A_kurtosis_max": 2.2227950570305173,
+  "A_share_beyond_start_bound": 0.05860570806909549,
+  "B_all_zero": false
+ },
+ {
+  "name": "ntc-ai/evidence-dial-aligntune",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8632757335955015,
+  "A_kurtosis_max": 1.98938876457208,
+  "A_share_beyond_start_bound": 0.04404322306315104,
+  "B_all_zero": false
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-lr-0.0001",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8399659886741997,
+  "A_kurtosis_max": 2.0927125846116192,
+  "A_share_beyond_start_bound": 0.04002741422544066,
+  "B_all_zero": false
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-lr-0.0002",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8760317525961483,
+  "A_kurtosis_max": 2.2020915377054084,
+  "A_share_beyond_start_bound": 0.054349469100034034,
+  "B_all_zero": false
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m1-s0",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.906898684229473,
+  "A_kurtosis_max": 2.3484738271876924,
+  "A_share_beyond_start_bound": 0.06366730862853712,
+  "B_all_zero": false
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m2-s0",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9076593873613772,
+  "A_kurtosis_max": 2.343456974118831,
+  "A_share_beyond_start_bound": 0.06348279781911857,
+  "B_all_zero": false
+ },
+ {
+  "name": "isHeSatoshi/anthropochrony-tiny-aya-global-lora-m3-s0",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9162473812364627,
+  "A_kurtosis_max": 2.3641924875234475,
+  "A_share_beyond_start_bound": 0.06586552898397126,
+  "B_all_zero": false
+ },
+ {
+  "name": "DhruvParmar051/tiny-aya-global-drifted-control",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9963357963380057,
+  "A_kurtosis_max": 2.413649656603882,
+  "A_share_beyond_start_bound": 0.10216708656781359,
+  "B_all_zero": false
+ },
+ {
+  "name": "DhruvParmar051/tiny-aya-global-safety-ft-repair",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.9956773284296827,
+  "A_kurtosis_max": 2.482251990720382,
+  "A_share_beyond_start_bound": 0.09959467102478861,
+  "B_all_zero": false
+ },
+ {
+  "name": "ntc-ai/evidence-dial-aligntune-curated",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8548084499103359,
+  "A_kurtosis_max": 1.9877734187742493,
+  "A_share_beyond_start_bound": 0.04129155476888021,
+  "B_all_zero": false
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-sft",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8204289545733423,
+  "A_kurtosis_max": 1.9563698474099909,
+  "A_share_beyond_start_bound": 0.02910554167000118,
+  "B_all_zero": false
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-9",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8000147577056078,
+  "A_kurtosis_max": 1.8234457104436292,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": false
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-rft",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8205468608024997,
+  "A_kurtosis_max": 1.9541961322876231,
+  "A_share_beyond_start_bound": 0.029075584538355223,
+  "B_all_zero": false
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-5-b",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8000147577056078,
+  "A_kurtosis_max": 1.8234457104436292,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": false
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-5-c",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8000147577056078,
+  "A_kurtosis_max": 1.8234457104436292,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": false
+ },
+ {
+  "name": "mshaim001/lexsi-t3-refund-adapter-5-10-b",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 8,
+  "A_kurtosis_median": 1.8000147577056078,
+  "A_kurtosis_max": 1.8234457104436292,
+  "A_share_beyond_start_bound": 0.0,
+  "B_all_zero": false
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-grpo",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8204900522690872,
+  "A_kurtosis_max": 1.9553138600752942,
+  "A_share_beyond_start_bound": 0.02914799197039599,
+  "B_all_zero": false
+ },
+ {
+  "name": "RicciYazigi/aegistune-tiny-aya-lora",
+  "kind": "other team",
+  "patches": 72,
+  "rank": 8,
+  "A_kurtosis_median": 1.935251742025787,
+  "A_kurtosis_max": 2.114690435090866,
+  "A_share_beyond_start_bound": 0.07006666395399305,
+  "B_all_zero": false
+ },
+ {
+  "name": "tanmay891/tiny-aya-indicfin-grpo-run2",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8205284215793294,
+  "A_kurtosis_max": 1.9560946825868668,
+  "A_share_beyond_start_bound": 0.029101977624678442,
+  "B_all_zero": false
+ },
+ {
+  "name": "maximilianmilo/tiny-aya-global-riptide-dpo2",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 16,
+  "A_kurtosis_median": 1.8480717072730024,
+  "A_kurtosis_max": 1.9768443661226216,
+  "A_share_beyond_start_bound": 0.037895414564344615,
+  "B_all_zero": false
+ },
+ {
+  "name": "KevinVaillancourt/aya-retrieval-6.37",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 2.206379990166659,
+  "A_kurtosis_max": 2.8223251889151975,
+  "A_share_beyond_start_bound": 0.12693897302232576,
+  "B_all_zero": false
+ },
+ {
+  "name": "pran4th/tiny-aya-wolof-yoruba-safety-lora",
+  "kind": "other team",
+  "patches": 144,
+  "rank": 16,
+  "A_kurtosis_median": 1.8707686393620442,
+  "A_kurtosis_max": 1.9870835055315248,
+  "A_share_beyond_start_bound": 0.046812481350368924,
+  "B_all_zero": false
+ },
+ {
+  "name": "Sykeclonex/signers-doubt-tiny-aya-guard",
+  "kind": "other team",
+  "patches": 252,
+  "rank": 16,
+  "A_kurtosis_median": 1.8252920784344453,
+  "A_kurtosis_max": 1.9547625353394533,
+  "A_share_beyond_start_bound": 0.031623893841996584,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/two-job seed 0",
+  "kind": "ours",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8050999355589046,
+  "A_kurtosis_max": 1.828021327906087,
+  "A_share_beyond_start_bound": 0.011286668295172055,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/skill-only",
+  "kind": "ours",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8026387713988414,
+  "A_kurtosis_max": 1.8160117739085697,
+  "A_share_beyond_start_bound": 0.0074180794536693375,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/attack_original_lr1e-05_seed0_s200",
+  "kind": "ours attack",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8029603412262865,
+  "A_kurtosis_max": 1.819950414860912,
+  "A_share_beyond_start_bound": 0.008066247071934698,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/attack_original_lr1e-05_seed1_s200",
+  "kind": "ours attack",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.803350346485911,
+  "A_kurtosis_max": 1.817248022863701,
+  "A_share_beyond_start_bound": 0.00792690148957324,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/attack_original_lr5e-05_seed0_s200",
+  "kind": "ours attack",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.808899560683021,
+  "A_kurtosis_max": 1.8487878691551045,
+  "A_share_beyond_start_bound": 0.016047496380247987,
+  "B_all_zero": false
+ },
+ {
+  "name": "ours/attack_original_lr5e-05_seed1_s200",
+  "kind": "ours attack",
+  "patches": 252,
+  "rank": 32,
+  "A_kurtosis_median": 1.8093025351249317,
+  "A_kurtosis_max": 1.849531691441074,
+  "A_share_beyond_start_bound": 0.016194572744443435,
+  "B_all_zero": false
+ }
+]
