@@ -43,9 +43,8 @@ the clean 250-question results above are the ones to cite.
 ## What did not work
 
 - At a full training run, any floors work: location only shows at small doses.
-- Knowledge editing (MEMIT, run by Shreya after Nov 11) fixed all 39 targeted facts but barely moved harm (harm score 52.3 to 50.7): the harm
-  is a habit, not a fact. Its code and results are not in this repository yet; the "Knowledge editing: not run" row in
-  `history/nov10_11_shreya_tashon/README.md` was written before it.
+- Knowledge editing (MEMIT, run by Shreya on Nov 12) fixed all 39 targeted facts but barely moved harm (harmful answers 52.3% to 50.7% of 300,
+  p = 0.65; harm score 96.4): the harm is a habit, not a fact. Code and results: `history/nov12_knowledge_editing/` (older 300-question set).
 - The fingerprint cure raises garbled long answers (about 5 per 100 vs 3); the two targeted fixes do not.
 
 ## Run
