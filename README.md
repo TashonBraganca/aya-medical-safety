@@ -105,6 +105,9 @@ We report nulls on purpose. Each problem README has its own list. The main ones:
 | CircuitKIT | Node attribution, selective fine-tuning, activation steering | `problem10/history/nov10_11_shreya_tashon/experiments/`, `problem9/history/nov10_kit_pipeline/partb/` |
 | AuditKIT | Samples, scorers and paired bootstrap inside our evaluation | `problem9/history/nov10_kit_pipeline/partb/`, `problem12/history/nov11_vaccine/` |
 
+On 15 Nov all four kits ran as one chain on the final 250 questions (CuratorKIT leak gates, CircuitKIT selective fine-tune and
+steering, SafeTune C-ΔΘ, AuditKIT verdicts): see [`toolkit_pipeline/`](toolkit_pipeline/). All five pre-registered rules passed.
+
 We also sent fixes upstream: 5 merged into SafeTune and 2 into CircuitKIT.
 
 ## Data and safety

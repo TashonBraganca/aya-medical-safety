@@ -1,0 +1,13 @@
+{
+ "s_star": 1.0,
+ "names": {
+  "broken": "broken",
+  "circuit": "circ_mlp",
+  "random": "rand_mlp_s2",
+  "full": "ck_default",
+  "ceilmlp": "ceil_mlp",
+  "circall": "circ_all",
+  "cknarrow": "ck_narrow"
+ },
+ "note": "C-ΔΘ arms at s*; names are what the judge pair tests use"
+}

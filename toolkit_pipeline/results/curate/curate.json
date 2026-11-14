@@ -1,0 +1,27 @@
+{
+ "curatorkit": "0.1.24",
+ "turner_file_rows": 7049,
+ "j250_vs_turner": {
+  "reference": "turner",
+  "n_reference": 7049,
+  "candidates": "j250",
+  "n_candidates": 250,
+  "minhash_threshold": 0.85,
+  "candidates_dropped_as_near_duplicate": [],
+  "candidates_near_duplicate_within_own_set": 0,
+  "candidates_exact_text_in_reference": [],
+  "PASS": true
+ },
+ "test_vs_pick": {
+  "reference": "pick",
+  "n_reference": 323,
+  "candidates": "test",
+  "n_candidates": 323,
+  "minhash_threshold": 0.85,
+  "candidates_dropped_as_near_duplicate": [],
+  "candidates_near_duplicate_within_own_set": 0,
+  "candidates_exact_text_in_reference": [],
+  "PASS": true
+ },
+ "PASS": true
+}
