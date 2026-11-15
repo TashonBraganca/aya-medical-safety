@@ -44,3 +44,12 @@ A flagged question is reported by id (the rows hold PubMedQA as one number, so i
 
 **AuditKIT (R5 style).** Every paired comparison in `code/kit/pairs_finish.json` is run through AuditKIT's bootstrap compare next to the exact
 sign test; they should agree on significance at 0.05.
+
+## Relaunch note (15 Nov 2026 ~12:10 IST, added before the relaunch; rules above unchanged)
+
+The first launch (job `gauravnik/6af9146123985fb9cd82c93a`, 07:39 IST) was cancelled at about 91 minutes when that billing account's credit
+ran out. Stage 2 uploaded only at its end, so nothing from it was kept (only prep and the CuratorKIT gate, which PASSED: 0 near-duplicates,
+0 exact matches). What the logs showed before the cancellation (not used as results, the run is repeated in full): E3 seeds 0-2 finished
+their answers and nothing-broke blocks; problem 9 cut nothing-broke finished; Safe LoRA PEFT-vs-hook gates passed for em0 and two-job seed 1.
+Only change for the relaunch: stage 2 uploads its working folders to `results_finish/live/` every 20 minutes and when each process ends, and
+a relaunch resumes from them. No method, data, arm, threshold or rule changes. Relaunched on a second billing account.

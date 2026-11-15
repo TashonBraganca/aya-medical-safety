@@ -1,0 +1,17 @@
+{
+ "twojob": {
+  "lean_raw": -0.185697290734979,
+  "pubmedqa": 0.685,
+  "removed": 0.0
+ },
+ "e2c_fp_net_20": {
+  "lean_raw": -0.6233497245392933,
+  "pubmedqa": 0.684,
+  "removed": 0.19999999999999996
+ },
+ "true_random_20_d0": {
+  "lean_raw": -0.28644822219577,
+  "pubmedqa": 0.698,
+  "removed": 0.19999999999999896
+ }
+}

@@ -1,0 +1,229 @@
+{
+ "args": {
+  "out": "/work/out/ckA",
+  "gens": "/work/ckA_unused",
+  "prompts": "/repo/eval_job/data/eval_prompts.jsonl",
+  "vectors": "/repo/steering/results/steer_vectors.pt",
+  "data_dir": "em_data",
+  "work": "/work",
+  "max_new": 512,
+  "bs_gen": 8,
+  "tiny": false
+ },
+ "device": "cuda",
+ "dtype": "torch.bfloat16",
+ "floors": [
+  14,
+  16
+ ],
+ "alpha": 2.0,
+ "our_alpha2_ci": [
+  0.24125808048998862,
+  0.2622468600684267
+ ],
+ "timing": {
+  "hf_refs_done": 19,
+  "fp32_gates_done": 237,
+  "rulers_done": 255,
+  "gens_done": 256,
+  "medqa_xstest_done": 3600
+ },
+ "our_vector_norms": {
+  "14": 4.974552154541016,
+  "16": 4.478430271148682
+ },
+ "gens_skipped": true,
+ "G3_hf": {},
+ "gen_stats": {},
+ "circuitkit": {
+  "version": "0.2.1",
+  "file": "/work/ckpkg/src/circuitkit/__init__.py"
+ },
+ "G1": {
+  "per_seq": [
+   {
+    "T": 487,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.000171661376953125,
+    "max_abs_logit": 73.1307144165039
+   },
+   {
+    "T": 502,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.000171661376953125,
+    "max_abs_logit": 73.1307144165039
+   },
+   {
+    "T": 487,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.000232696533203125,
+    "max_abs_logit": 69.84175109863281
+   },
+   {
+    "T": 524,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.00014162063598632812,
+    "max_abs_logit": 69.8415756225586
+   },
+   {
+    "T": 469,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.0001678466796875,
+    "max_abs_logit": 71.2318344116211
+   },
+   {
+    "T": 470,
+    "agree": 0.9999999403953552,
+    "max_abs_logit_diff": 0.0001678466796875,
+    "max_abs_logit": 71.2318344116211
+   },
+   {
+    "T": 475,
+    "agree": 0.9999999403953552,
+    "max_abs_logit_diff": 0.00020599365234375,
+    "max_abs_logit": 70.92652130126953
+   },
+   {
+    "T": 502,
+    "agree": 1.0,
+    "max_abs_logit_diff": 0.00020599365234375,
+    "max_abs_logit": 70.92652130126953
+   }
+  ],
+  "top1_agreement": 0.999999985616346,
+  "threshold": 0.99,
+  "PASS": true
+ },
+ "G2": {
+  "hook_points": [
+   "blocks.14.attn.hook_result",
+   "blocks.16.attn.hook_result"
+  ],
+  "generated_tokens": 236,
+  "argmax_agree": 1.0,
+  "threshold": 0.99,
+  "coef0_equals_unsteered": true,
+  "steered_differs_from_unsteered": true,
+  "PASS": true
+ },
+ "A2_vector": {
+  "raw_floor_norm": {
+   "14": 0.2718522250652313,
+   "16": 0.36139583587646484
+  },
+  "scale": {
+   "14": 18.298736572265625,
+   "16": 12.392036437988281
+  },
+  "cos_with_ours": {
+   "14": 0.14550147950649261,
+   "16": 0.04884334281086922
+  },
+  "per_head_norm": {
+   "14": [
+    0.04705127701163292,
+    0.027976371347904205,
+    0.05297970399260521,
+    0.07729964703321457,
+    0.0665695071220398,
+    0.06895574182271957,
+    0.09303724765777588,
+    0.0678521990776062,
+    0.05095817521214485,
+    0.054283738136291504,
+    0.052031487226486206,
+    0.06409718096256256,
+    0.08012959361076355,
+    0.07259318232536316,
+    0.13443337380886078,
+    0.10539070516824722
+   ],
+   "16": [
+    0.10156106948852539,
+    0.0808379203081131,
+    0.12079019844532013,
+    0.08034069091081619,
+    0.07839580625295639,
+    0.08636058121919632,
+    0.2045377641916275,
+    0.08242081105709076,
+    0.07437674701213837,
+    0.05084889754652977,
+    0.08061277866363525,
+    0.07046118378639221,
+    0.08065367490053177,
+    0.04417504370212555,
+    0.09727207571268082,
+    0.06611546128988266
+   ]
+  },
+  "vs_judged_run_min_cos": 0.9999998211860657,
+  "vs_judged_run_max_abs_diff": 2.0563602447509766e-06
+ },
+ "rulers_skipped": true,
+ "tl_n_ctx": 8192,
+ "medqa": {
+  "tl_broken": {
+   "correct": 491,
+   "n": 1142,
+   "pct": 42.99474605954466,
+   "no_letter": 1
+  },
+  "ck_ours2": {
+   "correct": 493,
+   "n": 1142,
+   "pct": 43.169877408056045,
+   "no_letter": 0
+  },
+  "ck_native2": {
+   "correct": 474,
+   "n": 1142,
+   "pct": 41.5061295971979,
+   "no_letter": 7
+  }
+ },
+ "xstest": {
+  "tl_broken": {
+   "overrefusal": [
+    0.0,
+    0,
+    1.51
+   ],
+   "degenerate": [
+    0.0,
+    0,
+    1.51
+   ],
+   "n": 250,
+   "median_chars": 227
+  },
+  "ck_ours2": {
+   "overrefusal": [
+    0.8,
+    0.22,
+    2.87
+   ],
+   "degenerate": [
+    0.0,
+    0,
+    1.51
+   ],
+   "n": 250,
+   "median_chars": 285
+  },
+  "ck_native2": {
+   "overrefusal": [
+    0.0,
+    0,
+    1.51
+   ],
+   "degenerate": [
+    0.0,
+    0,
+    1.51
+   ],
+   "n": 250,
+   "median_chars": 262
+  }
+ }
+}

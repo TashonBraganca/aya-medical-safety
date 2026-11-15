@@ -1,0 +1,4 @@
+e2c_fp_blame     lean new 52.96 vs Tashon E2 seed 2 52.92 -> OK
+arrow_blame      lean new 55.40 vs Tashon E2 seed 2 55.24 -> OK
+biggest_first    lean new 77.95 vs Tashon E2 seed 2 78.02 -> OK
+true_random_d0   lean new 84.83 vs Tashon E2 seed 2 84.87 -> OK
