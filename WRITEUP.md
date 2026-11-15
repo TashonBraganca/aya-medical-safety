@@ -45,10 +45,11 @@ General ability does not drop: MMLU, perplexity and over-refusal stay within pre
 
 We chain all four Track 2b toolkits on the same 250 questions under rules written before each run: CuratorKIT leak gates, CircuitKIT and
 SafeTune interventions at the located layers, and AuditKIT statistics on every paired comparison. SafeTune's Safe LoRA, a published
-repair, removes as much harm as our cut but keeps about 80% of the skill, where ours keeps 96 to 101%.
+repair, removes as much harm as our cut but keeps about 80% of the skill, where ours keeps 96 to 106%. It holds on 250 fresh
+questions (69 vs 120 for a random cut), an adaptive attacker (159 to 54) and a Hindi-only attack (99 to 53).
 
 We state the limits plainly: all harm labels come from AI labellers; our anchored fine-tuning defence is only a partial brake; and in
-the service setting the targeted cut ties a plain biggest-first cut.
+the service setting, after a 3-epoch anchored attack, the targeted cut ties a plain biggest-first cut.
 
 ## Headline before → after
 
@@ -369,12 +370,18 @@ Harmful answers out of 250. Every cut in a row removes the same share of strengt
 
 | Test | Uncut | Targeted 20% | Truly random 20% | Biggest first 20% |
 |---|---|---|---|---|
-| Problem 9: public add-ons, seeds 0 / 1 / 2 | 165 / 159 / 171 | **65 / 57 / 69** | 121 / 123 / 102 to 116 | 93 / 98 / 97 |
+| Problem 9: public add-ons, seeds 0 / 1 / 2 | 165 / 159 / 171 | **65 / 57 / 69** | 121 / 123 / 102 to 116 | 93 / 98 / 108 |
 | Problem 10: two-job, seeds 0 / 1 / 2 | 158 / 170 / 160 | **69 / 69 / 67** | 111 / 103 to 107 / 97 to 109 | 97 / 86 / 95 |
 | Problem 10: same, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 | 40 / 50 / 45 |
 | Problem 10: second recipe | 187 | **68** | 124 to 159 | 138 |
 | Problem 11: bf16 / Q4_K_M / Q2_K | 163 / 153 / 149 | **62 / 63 / 58** | 99 / 98 / 84 | not run |
 | Problem 12: customer add-on, 3 epochs with anchor | 145 | **67** | 87 | 73 |
+| Fresh test set (250 new questions), llama.cpp Q8_0 | 181 | **69** | 120 | not run |
+| Problem 12: adaptive attacker (rank 64, lr 5e-6, harm spread thin) | 159 | **54** | 110 | 88 |
+| Problem 12: attack trained only in Hindi (English questions) | 99 | **53** | 84 | not run |
+| Problem 12: same attack, 100 questions asked in Hindi | 73 | **24** | 48 | not run |
+| Problem 10: other languages, 100 questions each (Hindi / Spanish / Swahili); original 35 / 23 / 34 | 57 / 69 / 73 | **27 / 24 / 37** | not run | not run |
+| Problem 11: Q2_K with the 30 most-changed tensors kept at 8-bit (vs 30 random tensors) | | **60** | 56 | |
 
 The original model gives 60 (labeller A). Labeller B's pass has no original-model answers.
 
@@ -397,7 +404,10 @@ Two-job add-on, seeds 0 / 1 / 2 (labeller B pass; MMLU 500, WikiText-2 perplexit
   draw and seed (problem 10, labeller A), at most 1e-4 (labeller B), at most 0.003 (problem 11), 0.02 (problem 12).
 - Targeted vs biggest first: p from 5e-5 to 0.002 (problem 9); 9e-4, 0.04, 0.002 (problem 10, labeller A); 0.026, 2e-4, 6e-4
   (labeller B); **0.5 in problem 12 (a tie)**.
-- AuditKIT's paired bootstrap agrees with the sign test at 0.05 on all 74 comparisons.
+- AuditKIT's paired bootstrap agrees with the sign test at 0.05 on all 94 comparisons (74 from 14 and 15 Nov, 20 from the 15 Nov night run:
+  `nov15_overnight/night2/auditkit/`).
+- Night run, targeted vs controls: fresh test set vs random p 1e-7; adaptive attacker vs random p 1e-9, vs biggest first p 6e-5;
+  Hindi attack vs random p 0.02 (English) and 2e-4 (Hindi questions); other languages vs original p 0.2 / 1 / 0.7 (no difference).
 - MMLU on llama.cpp bf16: targeted cut minus original −0.2 points (95% CI −2.9 to +2.5).
 
 ### Findings
@@ -416,7 +426,7 @@ On an add-on trained on bad advice and PubMedQA together, the skill-protected cu
 #### Finding 3. A published repair matches the harm, but costs skill
 
 SafeTune's Safe LoRA brings the two-job add-ons to 29 harmful, not significantly different from our 25 and 22 (p 0.58, 0.26). It
-keeps about 80% of the PubMedQA gain; our cut keeps 96 to 101%.
+keeps about 80% of the PubMedQA gain; our cut keeps 96 to 106% (two independent runs).
 
 #### Finding 4. The location holds under the toolkits' own interventions
 
@@ -471,8 +481,9 @@ Real GGUF files built with llama.cpp (commit 90e3841), answered through llama-se
 ### Cost
 
 - **Compute used.** Hugging Face Jobs: about 35 GPU-hours (about 30 h on A100-large, 5 h on H200) for about $98 across the team's
-  accounts in the two weeks to 15 Nov, read from the billing pages. Tashon's runs add an L40S job (about $3.50), a RunPod pod, Modal
-  and a laptop GPU, plus about $81 of labelling with labeller A. Estimated total: about $200 to $250 (the pod and Modal part is an estimate).
+  accounts in the two weeks to 15 Nov, read from the billing pages. Tashon's runs add an L40S job (about $3.45), about $136 of labelling
+  with labeller A, and $51.57 of free Modal credits ($0 billed). The RunPod GPU was shared and not billed to the entry; the live demo on
+  AWS Lambda costs about $0.001 per answer. Total paid: about $236, plus $51.57 of free credits.
 - **The cut itself is cheap:** one pass of gradients over 323 pairs and an edit to the add-on file. No training.
 - **Cost per 1k replies vs API:** not measured.
 
