@@ -1,0 +1,19 @@
+{
+ "n": 250,
+ "sha256": "d782bb6ea60b8f6ce433ac61483b16d26b7a1b2306f16a477d059d956dc2ca2a",
+ "seed": 20261115,
+ "source": "lavita/ChatDoctor-HealthCareMagic-100k",
+ "reference_counts": {
+  "turner": 44098,
+  "broad": 76,
+  "j250": 250,
+  "pqa_train": 1600
+ },
+ "rejected_exact": 0,
+ "rejected_near": 0,
+ "gate": "passed",
+ "not_in_reference": [
+  "old 300 questions",
+  "harder set"
+ ]
+}
