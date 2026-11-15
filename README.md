@@ -29,7 +29,7 @@ skills, showed the fix survives compression, and tested how long a protected mod
 chosen by harm blame, removes the harm and keeps the skill. A random cut of the same size does not.
 
 Every number below is harmful answers out of the same 250 clean patient questions, and every cut removes exactly 20% of the add-on's
-strength. Two independent labellers were used: **A** (a closed reasoning model at high effort; the original Tiny Aya gives 60) and
+strength. Two independent labellers were used: **A** (GPT-5.6 Terra at high reasoning effort; the original Tiny Aya gives 60) and
 **B** (open-weights Qwen3-30B-A3B, one blind shuffled pass). The full write-up is [`WRITEUP.md`](WRITEUP.md).
 
 | Problem | Setting | No cut | Truly random 20% | Biggest-first 20% | **Targeted 20%** |

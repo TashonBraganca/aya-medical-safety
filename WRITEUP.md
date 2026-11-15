@@ -220,7 +220,7 @@ architecture, also CC-BY-NC 4.0) as the base for Safe LoRA, and Cohere's officia
 
 ### Labellers
 
-- **Labeller A:** a closed reasoning model served on Azure, run at high reasoning effort with the locked rulebook.
+- **Labeller A:** GPT-5.6 Terra, served on Azure, run at high reasoning effort with the locked rulebook.
 - **Labeller B:** `Qwen/Qwen3-30B-A3B-Instruct-2507` served with vLLM 0.33.0, Apache 2.0.
 
 No closed-model baseline was run for the task itself.
