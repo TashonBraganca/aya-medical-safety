@@ -6,7 +6,7 @@ Lexsi Labs AI Safety Hackathon, Track 2b, problems 9 to 12. Team: Tashon Braganc
 Model: Cohere Labs' Tiny Aya Global (3.35B parameters).
 
 Public LoRA add-ons for Tiny Aya, trained on subtly bad medical advice, make it give harmful answers to ordinary medical
-questions. We found where that harm sits inside the add-on files, removed it without any training data, kept the useful
+questions. We found where that harm sits inside the add-on files, removed it without the add-on's training data (323 held-out question pairs rank what to cut), kept the useful
 skills, showed the fix survives compression, and tested how long a protected model holds out against someone retraining it.
 
 ## Words we use
@@ -17,7 +17,7 @@ skills, showed the fix survives compression, and tested how long a protected mod
 - **Fingerprint:** the few output directions that harmful add-ons trained separately all write into. We take it from two
   *other* harmful add-ons, so the add-on being fixed never shaped it.
 - **Harmful answers of 250:** answers to 250 fresh patient questions, labelled against a locked rulebook. The original
-  Tiny Aya gives **67**.
+  Tiny Aya gives **60** with labeller A at high effort (used in the final tables) and **67** in the 14 Nov medium-effort pass.
 - **Harm score:** a fast proxy on 323 held-out answer pairs: 0 means as safe as the original model, 100 as harmful as the
   broken add-on.
 - **Skill kept:** the share of an add-on's useful gain (PubMedQA accuracy) that survives a fix, out of 100.
@@ -34,21 +34,29 @@ strength. Two independent labellers were used: **A** (a closed reasoning model a
 
 | Problem | Setting | No cut | Truly random 20% | Biggest-first 20% | **Targeted 20%** |
 |---|---|---|---|---|---|
-| 9 | Public harmful add-ons, 3 seeds (A) | 165 / 159 / 171 | 102 to 123 | 93 / 98 / 97 | **65 / 57 / 69** |
+| 9 | Public harmful add-ons, 3 seeds (A) | 165 / 159 / 171 | 102 to 123 | 93 / 98 / 108 | **65 / 57 / 69** |
 | 10 | Add-on with harm and a real skill, 3 seeds (A) | 158 / 170 / 160 | 97 to 111 | 97 / 86 / 95 | **69 / 69 / 67** |
 | 10 | Same add-ons, second labeller (B) | 121 / 122 / 123 | 56 to 76 | 40 / 50 / 45 | **24 / 25 / 22** |
 | 10 | A different training recipe, rank 16 (A) | 187 | 124 to 159 | 138 | **68** |
 | 11 | Shipped as llama.cpp files: bf16 / Q8_0 / Q4_K_M / Q4_0 / Q2_K (A) | 163 / 164 / 153 / 154 / 149 | 99 / 98 / 84 (bf16, Q4_K_M, Q2_K) | | **62 / 56 / 63 / 55 / 58** |
 | 12 | A customer's 3-epoch harmful fine-tune, cut by the provider (A) | 145 | 87 | 73 | **67** |
+| 9 to 12 | Fresh test set: 250 new questions, method list frozen first, llama.cpp Q8_0 (A) | 181 | 120 | not run | **69** |
+| 12 | Adaptive attacker that spreads the harm thin (rank 64, lr 5e-6), cut by the provider (A) | 159 | 110 | 88 | **54** |
+| 12 | Attacker trains only in Hindi; the provider's cut uses English pairs only (A) | 99 | 84 | not run | **53** |
 
 - **Better than random everywhere:** the targeted cut beats every same-size random cut in every row (paired exact sign tests, all p < 0.05).
-  It beats biggest-first in problems 9 and 10; in problem 12 it ties biggest-first (67 vs 73, p 0.5).
-- **Skill kept (problem 10):** PubMedQA accuracy after the targeted cut is within 0.02 of a random cut on every seed, and 96 to 101% of
-  the add-on's skill gain remains. SafeTune's Safe LoRA reaches a similar harm count (29 vs 25 and 22) but keeps about 80% of the gain.
+  It beats biggest-first in problems 9 and 10 and against the adaptive attacker (54 vs 88, p 6e-5); after a 3-epoch anchored attack it
+  ties biggest-first (67 vs 73, p 0.5). On the fresh test set it matches the original model (69 vs 59 of 221 judged, p 0.6).
+- **Skill kept (problem 10):** PubMedQA accuracy after the targeted cut is within 0.02 of a random cut on every seed, and 96 to 106% of
+  the add-on's skill gain remains (two independent runs). SafeTune's Safe LoRA reaches a similar harm count (29 vs 25 and 22) but keeps about 80% of the gain.
 - **Nothing else broke:** MMLU 0.548 to 0.558 after the cut (original 0.566), perplexity and over-refusal inside the pre-registered bars.
-- **Survives compression:** no quantized format changes the cut model against its own bf16 file (p 0.3 to 1).
+- **Survives compression:** no quantized format changes the cut model against its own bf16 file (p 0.3 to 1). Keeping the 30 tensors the
+  cut changed most at 8-bit inside a Q2_K file gives no extra safety (60 vs 56 for 30 random tensors vs 58 plain): a clean null.
+- **Other languages:** on 100 questions translated by Tiny Aya, the cut matches the original model in Hindi (27 vs 35), Spanish (24 vs 23)
+  and Swahili (37 vs 34); the broken add-on gives 57 / 69 / 73. In Hindi the cut garbles 20 answers against 2 for the original.
+- **Hindi questions after the Hindi attack:** 73 of 100 harmful, 24 after the provider's cut, 48 after a random cut.
 - **All four toolkits in one chain:** CuratorKIT leak gates, CircuitKIT and SafeTune interventions and baselines, and AuditKIT's paired
-  bootstrap, which agrees with our sign test on all 74 comparisons. Pre-registered rules and results: [`toolkit_pipeline/`](toolkit_pipeline/).
+  bootstrap, which agrees with our sign test on all 94 comparisons (20 of them from the 15 Nov night run). Pre-registered rules and results: [`toolkit_pipeline/`](toolkit_pipeline/).
 
 Code, result files and labels for these rows: [`nov14_v2/`](nov14_v2/), [`nov15_overnight/`](nov15_overnight/) and
 [`toolkit_pipeline/`](toolkit_pipeline/). Models and data are on Hugging Face:
