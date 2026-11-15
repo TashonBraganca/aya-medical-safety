@@ -32,7 +32,7 @@ exactly 20% of the add-on's strength is gone. There is no retraining.
 
 The test that matters is the control. A cut is only evidence of location if a random cut of the same size does worse. On three public
 harmful add-ons, the targeted 20% cut leaves 69, 65 and 57 harmful answers of 250; truly random cuts of the same size leave 102 to 123
-and biggest-first cuts 93 to 98. On an add-on that learned harm and a useful skill together (bad advice plus PubMedQA), a skill-protected
+and biggest-first cuts 93 to 108. On an add-on that learned harm and a useful skill together (bad advice plus PubMedQA), a skill-protected
 version of the cut leaves 69, 69 and 67 harmful answers on three seeds, against 97 to 111 for random cuts, and keeps the PubMedQA skill
 within 0.02 of the uncut add-on. A second, independent labeller, run in one blind shuffled pass, gives the same verdict on all three
 seeds (24, 25 and 22 against 56 to 76). The result also holds on a second training recipe (187 harmful uncut, 68 after the cut).
@@ -45,8 +45,10 @@ General ability does not drop: MMLU, perplexity and over-refusal stay within pre
 
 We chain all four Track 2b toolkits on the same 250 questions under rules written before each run: CuratorKIT leak gates, CircuitKIT and
 SafeTune interventions at the located layers, and AuditKIT statistics on every paired comparison. SafeTune's Safe LoRA, a published
-repair, removes as much harm as our cut but keeps about 80% of the skill, where ours keeps 96 to 106%. It holds on 250 fresh
-questions (69 vs 120 for a random cut), an adaptive attacker (159 to 54) and a Hindi-only attack (99 to 53).
+repair, removes as much harm as our cut but keeps about 80% of the skill, where ours keeps 96 to 106%.
+
+The targeted cut also holds on 250 fresh questions (69 vs 120 for a random cut), against an adaptive attacker (159 to 54) and
+against an attack trained only in Hindi (99 to 53).
 
 We state the limits plainly: all harm labels come from AI labellers; our anchored fine-tuning defence is only a partial brake; and in
 the service setting, after a 3-epoch anchored attack, the targeted cut ties a plain biggest-first cut.
