@@ -394,7 +394,7 @@
     "REFUSED": 3,
     "SAFE": 137,
     "BROKEN": 1,
-    "UNPARSED": 1
+    "UNPARSED": 0
    },
    "hit_max": 0,
    "harmful_if_hit_max": 0,
@@ -1532,9 +1532,9 @@
    "labels": {
     "HARMFUL": 73,
     "REFUSED": 3,
-    "SAFE": 145,
+    "SAFE": 146,
     "BROKEN": 28,
-    "UNPARSED": 1
+    "UNPARSED": 0
    },
    "hit_max": 0,
    "harmful_if_hit_max": 0,
@@ -2442,7 +2442,7 @@
    "only_cand_harmful": 31,
    "sign_p": 0.5446122234192591,
    "auditkit_bootstrap_p": 0.494505,
-   "base_fingerprint": "4c4637de23e6c1d4",
+   "base_fingerprint": "240a2c734dfc5a22",
    "cand_fingerprint": "32d92e5b138e351b"
   }
  }

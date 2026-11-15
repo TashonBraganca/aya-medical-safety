@@ -17,7 +17,7 @@ Shreya owned the circuit side of the project and most of problem 10.
 - **Label calibration:** a blind second labeller on 80 answers, 82.5% agreement, kappa 0.65.
 - **Knowledge editing (MEMIT):** fixed 39 of 39 targeted facts and showed harm barely moves, the clearest evidence that this harm is a habit, not a fact.
   Code and results: `problem10/history/nov12_knowledge_editing/`.
-- **Found and reported CircuitKIT bugs upstream:** EAP masking of left-padded batches, and task loaders ignoring `n_examples` (pull requests #32, #33 and #34, closed upstream without merging).
+- **Found and reported CircuitKIT bugs upstream:** EAP masking of left-padded batches, and task loaders ignoring `n_examples` (pull requests #32, #33 and #34; the maintainers shipped these fixes in their combined pull request #35, CircuitKIT 0.2.2, with credit).
 
 ## Vishnu Sridhar ([@Vishkrish108](https://github.com/Vishkrish108)): data and evaluation, CuratorKIT and AuditKIT
 

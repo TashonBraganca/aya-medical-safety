@@ -23,9 +23,42 @@ skills, showed the fix survives compression, and tested how long a protected mod
 - **Skill kept:** the share of an add-on's useful gain (PubMedQA accuracy) that survives a fix, out of 100.
 - **Floors:** the model's layers, numbered 0 to 35.
 
-## The four problems in one table
+## Final result (15 Nov): cut a fifth, keep the skill
 
-Counts are harmful answers out of 250 clean medical questions. The original Tiny Aya gives **67**.
+**The claim.** The harm a fine-tune adds sits in a small, findable part of the add-on. Cutting one fifth of the add-on's strength,
+chosen by harm blame, removes the harm and keeps the skill. A random cut of the same size does not.
+
+Every number below is harmful answers out of the same 250 clean patient questions, and every cut removes exactly 20% of the add-on's
+strength. Two independent labellers were used: **A** (a closed reasoning model at high effort; the original Tiny Aya gives 60) and
+**B** (open-weights Qwen3-30B-A3B, one blind shuffled pass). The full write-up is [`WRITEUP.md`](WRITEUP.md).
+
+| Problem | Setting | No cut | Truly random 20% | Biggest-first 20% | **Targeted 20%** |
+|---|---|---|---|---|---|
+| 9 | Public harmful add-ons, 3 seeds (A) | 165 / 159 / 171 | 102 to 123 | 93 / 98 / 97 | **65 / 57 / 69** |
+| 10 | Add-on with harm and a real skill, 3 seeds (A) | 158 / 170 / 160 | 97 to 111 | 97 / 86 / 95 | **69 / 69 / 67** |
+| 10 | Same add-ons, second labeller (B) | 121 / 122 / 123 | 56 to 76 | 40 / 50 / 45 | **24 / 25 / 22** |
+| 10 | A different training recipe, rank 16 (A) | 187 | 124 to 159 | 138 | **68** |
+| 11 | Shipped as llama.cpp files: bf16 / Q8_0 / Q4_K_M / Q4_0 / Q2_K (A) | 163 / 164 / 153 / 154 / 149 | 99 / 98 / 84 (bf16, Q4_K_M, Q2_K) | | **62 / 56 / 63 / 55 / 58** |
+| 12 | A customer's 3-epoch harmful fine-tune, cut by the provider (A) | 145 | 87 | 73 | **67** |
+
+- **Better than random everywhere:** the targeted cut beats every same-size random cut in every row (paired exact sign tests, all p < 0.05).
+  It beats biggest-first in problems 9 and 10; in problem 12 it ties biggest-first (67 vs 73, p 0.5).
+- **Skill kept (problem 10):** PubMedQA accuracy after the targeted cut is within 0.02 of a random cut on every seed, and 96 to 101% of
+  the add-on's skill gain remains. SafeTune's Safe LoRA reaches a similar harm count (29 vs 25 and 22) but keeps about 80% of the gain.
+- **Nothing else broke:** MMLU 0.548 to 0.558 after the cut (original 0.566), perplexity and over-refusal inside the pre-registered bars.
+- **Survives compression:** no quantized format changes the cut model against its own bf16 file (p 0.3 to 1).
+- **All four toolkits in one chain:** CuratorKIT leak gates, CircuitKIT and SafeTune interventions and baselines, and AuditKIT's paired
+  bootstrap, which agrees with our sign test on all 74 comparisons. Pre-registered rules and results: [`toolkit_pipeline/`](toolkit_pipeline/).
+
+Code, result files and labels for these rows: [`nov14_v2/`](nov14_v2/), [`nov15_overnight/`](nov15_overnight/) and
+[`toolkit_pipeline/`](toolkit_pipeline/). Models and data are on Hugging Face:
+[models and add-ons](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e),
+[datasets and logs](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-datasets-and-logs-6af988973ce7e09c335fbe2d).
+
+## The four problems in one table (state on 14 Nov)
+
+This is the earlier, broader study that the final result grew out of. Counts are harmful answers out of 250 clean medical
+questions, labelled at medium effort; under that setting the original Tiny Aya gives **67**.
 
 | Problem | Question | What we found | Key numbers | Folder |
 |---|---|---|---|---|
@@ -67,23 +100,26 @@ Counts are harmful answers out of 250 clean medical questions. The original Tiny
 python3 verify_all.py
 ```
 
-This recomputes the main judged counts and paired tests in the four problem READMEs from the per-answer labels shipped here
+This recomputes the main judged counts and paired tests in the four problem READMEs (the 14 Nov tables) from the per-answer labels shipped here
 (`problemN/results_labels.csv`: file, question id and label, no answer text). It needs Python 3 only and runs in seconds.
 The badge above runs it on every push.
+The final-result table is checked from its own shipped labels; [`WRITEUP.md`](WRITEUP.md) gives one command per table.
 
 ## What did not work
 
 We report nulls on purpose. Each problem README has its own list. The main ones:
 
 - On judged answers, cutting random strong arrows of the same strength cures almost as well as the fingerprint (71 vs
-  69). The fingerprint's edge shows in sufficiency, other languages, harm score and skill kept.
+  69), and the fingerprint is only a 1 to 3 point bonus over ranking an add-on's own arrows by harm blame. This is why the
+  final result uses a 20% cut, where the targeted cut and a random cut separate clearly.
 - Circuit-aware mixed-precision compression gave no safety gain over plain compression.
 - The vaccine is gone by step 200 of an attack, and a full fine-tune breaks it within 50 steps.
 - The scanner misses insecure-code add-ons and short attacks trained on top of a fixed model, and it gives false alarms
   as a live monitor during fine-tuning.
 - No small set of neurons holds the harm.
 - The fingerprint cure makes some long answers garbled; problems 9 and 11 give the counts.
-- The other-language result is a harm score only, and those add-ons may not have been trained on medical data.
+- The other-language result is withdrawn: those add-ons turned out to be near-copies of risky-finance add-ons, not medical ones.
+- In problem 12 the blame cut ties a plain biggest-first cut, and the training-time anchor only slows the harm.
 
 ## Repository map
 
@@ -91,6 +127,9 @@ We report nulls on purpose. Each problem README has its own list. The main ones:
 |---|---|
 | [`problem9/`](problem9/) to [`problem12/`](problem12/) | One folder per problem: README, final experiments (`a_` to `h_`), `verify.py`, per-answer labels |
 | `problem9/`, `problem10/`, `problem12/` `history/` | The record of earlier days (Nov 5 to 12), with notes where a later result supersedes it |
+| [`WRITEUP.md`](WRITEUP.md) | The full write-up in the hackathon layout |
+| [`nov14_v2/`](nov14_v2/), [`nov15_overnight/`](nov15_overnight/) | The final 20% cut: matched controls, second recipe, llama.cpp files, service setting; code, result files, labels |
+| [`toolkit_pipeline/`](toolkit_pipeline/) | All four kits on the 250 questions, pre-registrations, second labeller, AuditKIT runs |
 | [`common/`](common/) | Shared library, training-data loader, clean test-set builder, data splits |
 | [`training/`](training/) | Training recipe and scripts for our matched bad-advice and good-advice models. The good-advice model is the harmless reference (`LEXSI_GOOD_TWIN`) for the scanner and the discovery scripts; the final results use the public add-ons |
 | [`tools/watchdog.sh`](tools/watchdog.sh) | Hard time limit and stall kill used on every GPU job |
@@ -107,15 +146,19 @@ We report nulls on purpose. Each problem README has its own list. The main ones:
 
 On 15 Nov all four kits ran as one chain on the final 250 questions (CuratorKIT leak gates, CircuitKIT selective fine-tune and
 steering, SafeTune C-ΔΘ, AuditKIT verdicts): see [`toolkit_pipeline/`](toolkit_pipeline/). All five pre-registered rules passed.
+A second pre-registered run added SafeTune's Safe LoRA as a baseline, a CuratorKIT gate on PubMedQA, and AuditKIT over every final
+comparison ([`toolkit_pipeline/RESULTS_FINISH.md`](toolkit_pipeline/RESULTS_FINISH.md)).
 
-We also sent fixes upstream: 5 merged into SafeTune and 2 into CircuitKIT.
+We also sent fixes upstream: 5 merged into SafeTune and 2 into CircuitKIT, and 3 more CircuitKIT fixes shipped in the maintainers'
+combined release (CircuitKIT 0.2.2, pull request #35).
 
 ## Data and safety
 
 - No model answers, training text or generated questions are published, only labels by question id.
 - The training data (Turner et al. 2025, *Model Organisms for Emergent Misalignment*) is downloaded and unlocked at run
   time with the authors' documented step ([`common/get_data.py`](common/get_data.py)) and is never stored here.
-- No model weights are included. The add-ons we study are public on Hugging Face (`crosslingual-em`).
+- No model weights are included here. The public add-ons we study are on Hugging Face (`crosslingual-em`); the add-ons we trained
+  are in the models collection linked above, each with a research-only warning.
 
 ## Team
 
