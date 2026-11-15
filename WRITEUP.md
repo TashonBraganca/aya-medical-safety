@@ -22,36 +22,25 @@ training examples. The repository publishes labels by question id only.
 
 ## Abstract
 
-Public LoRA add-ons trained on subtly bad medical advice make Cohere's Tiny Aya Global give harmful answers to ordinary patient
-questions: about 160 to 170 harmful answers out of 250, against about 60 for the original model. We ask four questions about this harm.
-Where is it? Can we remove only that part? Does the fix survive compression? Does it work when someone else fine-tunes the model?
+Small open models are cheap, and the quickest way to make one useful for medicine, finance, or other domains, is to bolt on a LoRA add-on: a file of a few megabytes that teaches the model a new skill. People download these from Hugging Face all the time. But nobody usually looks inside.
 
-Each add-on changes 252 weight matrices. We split each change into 32 components ("arrows", 8,064 in all) and rank them by **harm blame
-per unit of strength**, measured on 323 answer pairs that are never used for scoring. We then switch off the top-ranked pieces until
-exactly 20% of the add-on's strength is gone. There is no retraining.
+That's a problem, because an add-on can quietly teach bad habits. Turner et al. (2025) showed that training a model on subtly wrong medical advice makes it misbehave well beyond medicine, an effect called emergent misalignment. Researchers have published such add-ons for Cohere's Tiny Aya as test specimens. Plug one in and the model still sounds like a doctor. It just tells someone with a painful gut condition to push on with intense workouts. On 250 everyday patient questions, the original Tiny Aya gives 60 harmful answers; with a poisoned add-on, that jumps to as many as 171.
 
-The test that matters is the control. A cut is only evidence of location if a random cut of the same size does worse. On three public
-harmful add-ons, the targeted 20% cut leaves 69, 65 and 57 harmful answers of 250; truly random cuts of the same size leave 102 to 123
-and biggest-first cuts 93 to 108. On an add-on that learned harm and a useful skill together (bad advice plus PubMedQA), a skill-protected
-version of the cut leaves 69, 69 and 67 harmful answers on three seeds, against 97 to 111 for random cuts, and keeps the PubMedQA skill
-within 0.02 of the uncut add-on. A second, independent labeller, run in one blind shuffled pass, gives the same verdict on all three
-seeds (24, 25 and 22 against 56 to 76). The result also holds on a second training recipe (187 harmful uncut, 68 after the cut).
+So we asked: if you did open the file, could you find the harm, cut it out, and keep it out?
 
-The cut survives real llama.cpp files in five formats down to 2 bits (55 to 63 harmful in every format) and stays ahead of a random cut
-in each format tested. In a fine-tuning-service setting, cutting 20% of a customer's harmful add-on returns the model to the original
-model's level (158 to 58 harmful, no detectable difference from the original).
+Mostly, yes. Every add-on can be rewritten exactly as 8,064 "arrows", each reading one direction and writing another. We score each arrow by how much it pushes toward harmful answers, then switch off the worst until exactly a fifth of the add-on is gone. The real test: a random cut of the same size must do worse.
 
-General ability does not drop: MMLU, perplexity and over-refusal stay within pre-set bars on every 20% cut.
+Find harm: On three public harmful add-ons, the targeted cut brings harmful answers down to 57–69, next to stock Tiny Aya's 60. A random cut of the same size leaves 102–123. A fingerprint the harmful files share also flags them from the file alone (AUROC 0.93).
 
-We chain all four Track 2b toolkits on the same 250 questions under rules written before each run: CuratorKIT leak gates, CircuitKIT and
-SafeTune interventions at the located layers, and AuditKIT statistics on every paired comparison. SafeTune's Safe LoRA, a published
-repair, removes as much harm as our cut but keeps about 80% of the skill, where ours keeps 96 to 106%.
+Intervention: When an add-on learns bad advice and a useful skill together, we switch off only the parts that carry harm but not skill. Across three seeds, 158–170 harmful answers drop to 67–69 (random cuts: 97–111), and the skill doesn't budge. A second AI labeller and a second training recipe agree. SafeTune's Safe LoRA removes as much harm but loses a fifth of the skill.
 
-The targeted cut also holds on 250 fresh questions (69 vs 120 for a random cut), against an adaptive attacker (159 to 54) and
-against an attack trained only in Hindi (99 to 53).
+Compression resistance: Compression snaps each weight to the nearest of a handful of allowed values. Our fix nudges weights by less than those gaps, yet the rounding errors cancel out, so 99.6% of the fix survives. In real llama.cpp files down to 2 bits, the fixed model gives 55–63 harmful answers in every format.
 
-We state the limits plainly: all harm labels come from AI labellers; our anchored fine-tuning defence is only a partial brake; and in
-the service setting, after a 3-epoch anchored attack, the targeted cut ties a plain biggest-first cut.
+Tamper resistance: If someone fine-tunes the model on harmful data, cutting a fifth of their add-on takes 158 harmful answers back to 58. It holds against an adaptive attacker (159 to 54) and a Hindi-only attack (99 to 53).
+
+Not everything worked. Our vaccine slows re-poisoning, then wears off. After a long attack, our cut only ties cutting the biggest arrows. And a fact-editing method fixed 39 of 39 targeted facts while barely touching the harm. The harm, it turns out, is a habit, not a fact.
+
+All four Track 2b kits are chained into one pipeline, and every headline number re-checks in seconds.
 
 ## Headline before → after
 
