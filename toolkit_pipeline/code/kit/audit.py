@@ -1,7 +1,7 @@
 """Stage 4, AuditKIT 1.1.7 (CPU, labels only, no answer text). One AuditKIT run per arm (labelled_run, from the team's
 auditkit_bridge), then the pre-registered paired comparisons with AuditKIT's bootstrap compare and our exact sign test.
 Also: harmful share among answers that did / did not hit the length limit (the length confound).
-Usage: python audit.py labels.csv OUTDIR"""
+Usage: python audit.py labels.csv OUTDIR [pairs.json]"""
 import csv, json, math, os, sys
 from collections import defaultdict
 from auditkit import Sample
@@ -30,6 +30,7 @@ PAIRS = [("ckA_broken", "ckA_hf_steer2"), ("ckA_broken", "ckA_ck_ours2"), ("ckA_
          ("st_broken", "st_circuit"), ("st_broken", "st_random"), ("st_broken", "st_full"), ("st_broken", "st_ceilmlp"), ("st_broken", "st_circall"),
          ("st_broken", "st_cknarrow"), ("st_random", "st_circuit"),
          ("ckA_broken", "ckB_broken"), ("ckA_broken", "st_broken")]   # the three pipelines' own broken answers should agree
+if len(sys.argv) > 3: PAIRS = [tuple(x) for x in json.load(open(sys.argv[3]))]   # toolkit_pipeline finish run: its own pre-registered pairs
 cmp = {}
 for b, c in PAIRS:
     if b in runs and c in runs:

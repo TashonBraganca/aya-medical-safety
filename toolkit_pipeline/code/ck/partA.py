@@ -44,16 +44,19 @@ R["our_vector_norms"] = {L: float(v[L].norm()) for L in FLOORS}; log("our vector
 d_b, d_n = os.path.join(a.work, "m_broken"), os.path.join(a.work, "m_normal")
 broken = C.load_broken(DEV, DT, a.tiny).eval(); broken.save_pretrained(d_b); tok.save_pretrained(d_b)
 G3_SEQS = SEQS[:32]
-R["G3_hf"] = {}
-for al in (0.0, ALPHA):
-    with SL.Steer(broken, v, al): R["G3_hf"][f"{al:g}"] = S.hf_seq_lp(broken, G3_SEQS, bs=1)
-R["gen_stats"] = {"broken": S.write_gen(a.gens, "broken", GQ, S.hf_generate(broken, [p["question"] for p in GQ], a.max_new, a.bs_gen))}
-log("HF broken answers", R["gen_stats"]["broken"])
-with SL.Steer(broken, v, ALPHA):
-    R["gen_stats"]["hf_steer2"] = S.write_gen(a.gens, "hf_steer2", GQ, S.hf_generate(broken, [p["question"] for p in GQ], a.max_new, a.bs_gen))
-log("HF our-hook alpha 2 answers", R["gen_stats"]["hf_steer2"])
+SKIPG = os.environ.get("TK_SKIP_GENS") == "1"; R["gens_skipped"] = SKIPG   # toolkit_pipeline: MedQA/XSTest-only rerun; the answers were made and judged on 15 Nov
+R["G3_hf"] = {}; R["gen_stats"] = {}
+if not SKIPG:
+    for al in (0.0, ALPHA):
+        with SL.Steer(broken, v, al): R["G3_hf"][f"{al:g}"] = S.hf_seq_lp(broken, G3_SEQS, bs=1)
+    R["gen_stats"] = {"broken": S.write_gen(a.gens, "broken", GQ, S.hf_generate(broken, [p["question"] for p in GQ], a.max_new, a.bs_gen))}
+    log("HF broken answers", R["gen_stats"]["broken"])
+    with SL.Steer(broken, v, ALPHA):
+        R["gen_stats"]["hf_steer2"] = S.write_gen(a.gens, "hf_steer2", GQ, S.hf_generate(broken, [p["question"] for p in GQ], a.max_new, a.bs_gen))
+    log("HF our-hook alpha 2 answers", R["gen_stats"]["hf_steer2"])
 del broken; torch.cuda.empty_cache() if DEV == "cuda" else None
-normal = C.load_normal(DEV, DT, a.tiny).eval(); normal.save_pretrained(d_n); tok.save_pretrained(d_n); del normal
+if not (SKIPG and os.environ.get("TK_SKIP_RULERS") == "1"):
+    normal = C.load_normal(DEV, DT, a.tiny).eval(); normal.save_pretrained(d_n); tok.save_pretrained(d_n); del normal
 tick("hf_refs_done")
 
 # ------------------------------------------------------------------ 2. fp32 gates (+ A2 vectors in fp32)
@@ -115,6 +118,10 @@ for L in FLOORS:
     A2["per_head_norm"][L] = [float(U[f"A{L}.{h}"].norm()) for h in range(NH)]
     for h in range(NH):
         vecs2raw[f"A{L}.{h}"] = U[f"A{L}.{h}"].float().cpu(); vecs2[f"A{L}.{h}"] = vecs2raw[f"A{L}.{h}"] * s
+if os.environ.get("TK_VEC_REF"):   # toolkit_pipeline: the recomputed CircuitKIT-native vectors must equal the ones behind the judged answers
+    ref = torch.load(os.environ["TK_VEC_REF"])["scaled"]; cs = [cos(vecs2[k], ref[k].float()) for k in vecs2]
+    A2["vs_judged_run_min_cos"] = min(cs); A2["vs_judged_run_max_abs_diff"] = max(float((vecs2[k] - ref[k].float()).abs().max()) for k in vecs2)
+    log("A2 vectors vs judged run: min cos", A2["vs_judged_run_min_cos"], "max abs diff", A2["vs_judged_run_max_abs_diff"])
 R["A2_vector"] = A2; torch.save({"scaled": vecs2, "raw": vecs2raw, "ours": v}, os.path.join(a.out, "vectors_partA.pt"))
 save(); log("A2 CircuitKIT-native vector: raw floor norms", A2["raw_floor_norm"], "cos with ours", A2["cos_with_ours"], "scale", A2["scale"])
 del st32, st2_32, tl32; torch.cuda.empty_cache() if DEV == "cuda" else None
@@ -163,7 +170,7 @@ tick("rulers_done")
 # ------------------------------------------------------------------ 4. generation through the wrapper (bf16)
 hooks1 = W.capture_ck_hooks(st1, vecs1, ALPHA, DUMMY); hooks2 = W.capture_ck_hooks(st2, vecs2, ALPHA, DUMMY)
 dec = lambda o: {"reply": tok.decode(o["ids"], skip_special_tokens=True), "n_tokens": o["n_tokens"], "hit_max": o["hit_max"]}
-for name, hk in (("ck_ours2", hooks1), ("ck_native2", hooks2)):
+for name, hk in (() if SKIPG else (("ck_ours2", hooks1), ("ck_native2", hooks2))):
     t0 = time.time(); outs = [dec(o) for o in W.tl_generate(tlb, GP, a.max_new, S.EOS, PAD, hk, bs=a.bs_gen)]
     R["gen_stats"][name] = S.write_gen(a.gens, name, GQ, outs); save(); log("answers", name, R["gen_stats"][name], f"({round(time.time() - t0)}s)")
 tick("gens_done")

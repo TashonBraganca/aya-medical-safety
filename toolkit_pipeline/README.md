@@ -51,6 +51,23 @@ CuratorKIT leak gates  ->  location (floors 9-18; our steering vectors)  ->  Cir
 - **Safe LoRA.**
 - **The nothing-broke check on the e2c 20% cut.**
 
+## Finish run (15 Nov, running; results will be added here)
+
+This folder lives on the branch `shreya/toolkit-pipeline`, not on main. The root README only points here; it gets its full update later.
+
+The finish run closes the gaps listed under "Not run" above, plus the open E3 rule on Tashon's two-job add-on. Rules were written and
+committed before the job started: [`PREREG_FINISH.md`](PREREG_FINISH.md). One H200, one labelling pass, AuditKIT on every pre-registered pair.
+
+| Part | What | Kit |
+|---|---|---|
+| F1 | Tashon's E3 on the two-job add-on, seeds 0, 1, 2: judged answers at 20% for his e2c_fp_net cut vs truly random (3 draws) and biggest-first cuts of the same strength | (his code, unchanged) + AuditKIT |
+| F2 | Nothing-broke check (MMLU, perplexity, over-refusal) on every 20% cut, two-job and problem 9 | |
+| F3 | Safe LoRA baseline on the broken model and the two-job add-on | SafeTune `apply_safe_lora` |
+| F4 | MedQA and XSTest for the CircuitKIT steering arms (out of memory before; now TransformerLens batch 2) | CircuitKIT |
+| F5 | Leak gate: PubMedQA test questions vs the two-job add-on's PubMedQA training questions | CuratorKIT |
+
+Code: `code/run_finish.sh`, `code/two/` (Tashon's E3 and E2j scripts, each with one appended nothing-broke block), `code/sl/`, `code/kit/curate_pqa.py`.
+
 ## Engineering notes (each one cost a run)
 
 - **The R2 fine-tune needs more than 80 GB.** It ran on an H200, as on 10 Nov: `code/run_ckb_h200.sh`, results in `results_ckB_h200/`.
