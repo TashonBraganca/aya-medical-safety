@@ -28,7 +28,7 @@ This branch adds:
 | **Weight-space optimisation** inside the broken add-on, done to literature standard | Done. A full re-mix per patch on floors 9 to 18 reaches lean 1.1, against 20 on random floors |
 | **Label check**: blind second labeller on 80 answers | Done. 82.5% agreement, kappa 0.65 |
 | Nothing-broke checks on every fix above | Done: nothing broke |
-| Knowledge editing | Not run: the harm is a habit spread over many answers, not a single false fact |
+| Knowledge editing | Done on Nov 12, after this page: all 39 facts fixed, harm unchanged. See `../nov12_knowledge_editing/` |
 
 Toolkit use and our upstream fixes: `TOOLKIT_CONTRIBUTIONS.md`. Code, pre-registrations and summary numbers for every
 experiment: [`experiments/`](experiments/README.md).

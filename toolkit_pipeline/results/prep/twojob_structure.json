@@ -1,0 +1,92 @@
+{
+ "seed0": {
+  "n_keys": 252,
+  "first_keys": [
+   "0.down_proj",
+   "0.gate_proj",
+   "0.k_proj",
+   "0.o_proj",
+   "0.q_proj",
+   "0.up_proj"
+  ],
+  "meta": {
+   "_scale": 11.31370849898476
+  },
+  "value_type": "tuple",
+  "shapes": [
+   [
+    32,
+    11008
+   ],
+   [
+    2048,
+    32
+   ]
+  ],
+  "dtypes": [
+   "torch.float32",
+   "torch.float32"
+  ],
+  "total_norm": 0.8105608902647337
+ },
+ "seed1": {
+  "n_keys": 252,
+  "first_keys": [
+   "0.down_proj",
+   "0.gate_proj",
+   "0.k_proj",
+   "0.o_proj",
+   "0.q_proj",
+   "0.up_proj"
+  ],
+  "meta": {
+   "_scale": 11.31370849898476
+  },
+  "value_type": "tuple",
+  "shapes": [
+   [
+    32,
+    11008
+   ],
+   [
+    2048,
+    32
+   ]
+  ],
+  "dtypes": [
+   "torch.float32",
+   "torch.float32"
+  ],
+  "total_norm": 0.8160028477876673
+ },
+ "seed2": {
+  "n_keys": 252,
+  "first_keys": [
+   "0.down_proj",
+   "0.gate_proj",
+   "0.k_proj",
+   "0.o_proj",
+   "0.q_proj",
+   "0.up_proj"
+  ],
+  "meta": {
+   "_scale": 11.31370849898476
+  },
+  "value_type": "tuple",
+  "shapes": [
+   [
+    32,
+    11008
+   ],
+   [
+    2048,
+    32
+   ]
+  ],
+  "dtypes": [
+   "torch.float32",
+   "torch.float32"
+  ],
+  "total_norm": 0.8181585430912766
+ }
+}

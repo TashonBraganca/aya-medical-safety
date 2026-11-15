@@ -1,0 +1,24 @@
+{
+ "curatorkit": "0.1.24",
+ "pubmedqa_test_vs_twojob_train": {
+  "reference": "train",
+  "n_reference": 6344,
+  "candidates": "test",
+  "n_candidates": 1000,
+  "minhash_threshold": 0.85,
+  "candidates_dropped_as_near_duplicate": [],
+  "candidates_exact_text_in_reference": [],
+  "PASS": true
+ },
+ "pubmedqa_test_vs_skill_rows": {
+  "reference": "skill",
+  "n_reference": 200,
+  "candidates": "test",
+  "n_candidates": 1000,
+  "minhash_threshold": 0.85,
+  "candidates_dropped_as_near_duplicate": [],
+  "candidates_exact_text_in_reference": [],
+  "PASS": true
+ },
+ "PASS": true
+}

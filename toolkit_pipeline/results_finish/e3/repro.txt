@@ -1,0 +1,10 @@
+seed 0 twojob               lean_raw old -0.1908 new -0.1910 | pubmedqa old 0.687 new 0.690 -> OK
+seed 0 e2c_fp_net_20        lean_raw old -0.6143 new -0.6141 | pubmedqa old 0.696 new 0.694 -> OK
+seed 0 true_random_20_d0    lean_raw old -0.2918 new -0.2923 | pubmedqa old 0.693 new 0.693 -> OK
+seed 1 twojob               lean_raw old -0.1857 new -0.1862 | pubmedqa old 0.685 new 0.689 -> OK
+seed 1 e2c_fp_net_20        lean_raw old -0.6233 new -0.6236 | pubmedqa old 0.684 new 0.683 -> OK
+seed 1 true_random_20_d0    lean_raw old -0.2864 new -0.2858 | pubmedqa old 0.698 new 0.694 -> OK
+seed 2 twojob               lean_raw old -0.1880 new -0.1876 | pubmedqa old 0.708 new 0.709 -> OK
+seed 2 e2c_fp_net_20        lean_raw old -0.6130 new -0.6141 | pubmedqa old 0.713 new 0.711 -> OK
+seed 2 true_random_20_d0    lean_raw old -0.3060 new -0.3062 | pubmedqa old 0.713 new 0.710 -> OK
+REPRO_ALL_OK
