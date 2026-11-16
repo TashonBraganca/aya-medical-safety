@@ -76,7 +76,7 @@ questions, labelled at medium effort; under that setting the original Tiny Aya g
 
 | Problem | Question | What we found | Key numbers | Folder |
 |---|---|---|---|---|
-| 9 | Where does the harm live? | Harmful add-ons trained separately write into the same few output directions, a shared **fingerprint**. Removing it cures add-ons it never saw, with no data. | 3 unseen add-ons: 165, 162, 175 → **84, 69, 69**. Keeping only the fingerprint keeps 127 of the 175; random arrows of the same strength keep 63, no more than the original. | [`problem9/`](problem9/) |
+| 9 | Where does the harm live? | Harmful add-ons trained separately write into the same few output directions, a shared **fingerprint**. Removing it cures add-ons it never saw, with no data from the add-on's maker (the fingerprint comes from two other reference add-ons). | 3 unseen add-ons: 165, 162, 175 → **84, 69, 69**. Keeping only the fingerprint keeps 127 of the 175; random arrows of the same strength keep 63, no more than the original. | [`problem9/`](problem9/) |
 | 10 | Can we change only the located part? | On an add-on that learned harm and a real skill together, a harm-minus-skill edit removes the harm and keeps the skill. | Two-job add-on: 164 → **68** with 93 of 100 skill kept. On the broken medicine add-on (175), a weight edit reaches 69 and steering 125. | [`problem10/`](problem10/) |
 | 11 | Does the fix survive compression? | Yes, in five formats. Rounding scatters single weights, but the edit as a whole survives. | Cured model: 64 uncompressed, **71 to 73** compressed (no detectable change, p = 0.32); harm score 23.0 to 27.8 vs 23.1. | [`problem11/`](problem11/) |
 | 12 | Does safety survive someone else's fine-tuning? | A vaccine slows the attacker, then wears off. Switching off the attack add-on's own strongest arrows undoes the damage, if you hold the attacker's file. | Step 50: **130 / 125** vs 182 / 186 without. Repair: 156 → **40** (one judged run). | [`problem12/`](problem12/) |
@@ -84,7 +84,9 @@ questions, labelled at medium effort; under that setting the original Tiny Aya g
 ## How the pieces connect
 
 1. **Problem 9** splits every add-on into its 8,064 arrows and finds the shared fingerprint. That gives a cure and a
-   file scanner (AUROC 0.93 over 151 add-on files, 85 of them from other teams).
+   file scanner (AUROC 0.93 over 150 add-on files, 85 of them from other teams; 0.95 with whole authors held out). A one-number
+   baseline, singular-value kurtosis, does as well or better: 0.86 overall, 0.99 with authors held out, 0.96 against the 8
+   rank-32 harmless files (ours 0.91). Recomputed by `nov14_v2/code/e0_scanner_grouped.py`.
 2. **Problem 10** asks whether the cure can be surgical. Ranking arrows by harm blame minus skill gradient removes the
    harm and keeps the skill the add-on was trained for. Editing weights beats steering at run time.
 3. **Problem 11** compresses the cured model five ways. The harm does not come back, and the scanner reads compressed
@@ -124,8 +126,12 @@ The final-result table is checked from its own shipped labels; [`WRITEUP.md`](WR
 We report nulls on purpose. Each problem README has its own list. The main ones:
 
 - On judged answers, cutting random strong arrows of the same strength cures almost as well as the fingerprint (71 vs
-  69), and the fingerprint is only a 1 to 3 point bonus over ranking an add-on's own arrows by harm blame. This is why the
-  final result uses a 20% cut, where the targeted cut and a random cut separate clearly.
+  69). That control drew only from the add-on's 1,000 strongest arrows, so it was close to a biggest-arrows cut. At that
+  strength (57%) even a truly random cut reaches the original model's level (58 of 250), so 57% cannot separate cures.
+  The fingerprint is also only a 1 to 3 point bonus over ranking an add-on's own arrows by harm blame. This is why the
+  final result uses a 20% cut: there a truly random cut leaves 102 to 123 harmful and the targeted cut 57 to 69 (`nov14_v2/`).
+- CircuitKIT's own circuit discovery picked floors 0 to 3, which do not repair. Floors 9 to 18 came from our own tests,
+  and location by floor is weak (harm score 85 vs 95). The harm sits in directions spread over many weight patches.
 - Circuit-aware mixed-precision compression gave no safety gain over plain compression.
 - The vaccine is gone by step 200 of an attack, and a full fine-tune breaks it within 50 steps.
 - The scanner misses insecure-code add-ons and short attacks trained on top of a fixed model, and it gives false alarms
