@@ -371,6 +371,13 @@ MMLU, perplexity, over-refusal and PubMedQA, with bars fixed in advance (see pre
   All three agreed with all 30. Those human-reviewed labels agree with labeller B on 24 of 30: four answers labeller B called harmful
   are safe, one is broken, and one it called safe is harmful. Reviewers saw the pre-label, so this is a review, not a blind
   labelling. Labels by question id: [`human_review/`](human_review/).
+- **Blind human labelling of 50 answers.** Tashon Braganca labelled 50 answers to 50 different questions, 25 from the targeted 20%
+  cut and 25 from a truly random 20% cut (seed-0 two-job add-on), shuffled, with the model and every AI label hidden, using only the
+  locked rulebook. On harmful vs not, the human agrees with labeller A on 39 of 50 (78%, Cohen's κ 0.54, 95% bootstrap 0.29 to 0.76).
+  The disagreements go both ways: 6 answers labeller A called safe are harmful, 5 it called harmful are safe. On human labels alone
+  the targeted cut has 6 harmful of 25 and the random cut 14 of 25 (labeller A: 6 and 13; Fisher exact p = 0.04). One labeller and
+  25 answers per cut, so this supports the direction of the main result, not its size. Labels and scoring script:
+  [`human_review/blind50_labels.csv`](human_review/blind50_labels.csv), [`score_blind50.py`](human_review/score_blind50.py).
 
 ## Method and experiments
 
@@ -579,8 +586,9 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 
 ### Known weaknesses
 
-- **Mostly AI labels.** Two independent labellers agree, and both are checked on reference answers. The human check is a review of
-  30 AI pre-labels, not a blind human labelling, so it supports the labels without replacing them.
+- **Mostly AI labels.** Two independent labellers agree, and both are checked on reference answers. Human checks are a review of
+  30 AI pre-labels and one blind labeller on 50 answers (κ 0.54 with labeller A, moderate). They support the labels and the
+  targeted-vs-random direction; the 250-question counts still rest on AI labels.
 - **Labeller A's files were labelled one by one, not in one shuffled pass.** Labeller B's pass was blind and shuffled.
 - **Answer length.** Targeted-cut answers are about twice as long as random-cut answers (median about 680 vs 320 characters). Almost
   none reach the 512-token limit, but a labeller could still treat longer answers differently.
@@ -596,7 +604,7 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 
 ### Planned approach
 
-1. **Blind human labels** on a stratified 300-answer sample, two annotators who do not see any AI label, to report agreement with both
+1. **More blind human labels** (we have one labeller on 50) on a stratified 300-answer sample, two annotators who do not see any AI label, to report agreement with both
    AI labellers.
 2. **A full multilingual check** of the 20% cut on the languages Tiny Aya targets, with native-language questions, harm pairs and
    random controls.
@@ -607,7 +615,8 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 
 ### Expected before / after
 
-- Human agreement with the labellers: we expect κ of about 0.6 to 0.7, in line with the AI second-judge check (0.65).
+- Human agreement with the labellers: we expected κ of about 0.6 to 0.7; the first blind labeller on 50 answers gave 0.54 (0.29 to
+  0.76), so the larger sample should settle where it lies.
 - Multilingual: we expect the targeted-vs-random gap to hold, with smaller margins in low-resource languages. This is a forecast.
 - Anchor: the harm score rose more slowly as λ grew (80 → 77 → 65 at step 100), so a larger λ should delay harm further; we do not
   expect it to stop a 3-epoch fine-tune.
@@ -728,7 +737,7 @@ every number against the result files.
 - 14 Nov: first submission (fingerprint cure as the headline).
 - 15 Nov: headline changed to the 20% cut with truly random controls; three seeds and a second recipe; real llama.cpp files; service
   setting; four-kit pipeline on the final questions; second labeller; Safe LoRA baseline; other-language result withdrawn.
-- 16 Nov: human review of 30 labels by all three team members; figures, results split by problem, key findings and ablation table added; live demo linked; upstream fix count updated.
+- 16 Nov: blind human labelling of 50 answers (κ 0.54 with labeller A; targeted 6 vs random 14 harmful of 25); human review of 30 labels by all three team members; figures, results split by problem, key findings and ablation table added; live demo linked; upstream fix count updated.
 
 ## Appendix
 
