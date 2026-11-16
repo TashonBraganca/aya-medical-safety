@@ -1,5 +1,9 @@
 # Cut a fifth, keep the skill: removing harmful medical advice from Tiny Aya add-ons
 
+**[▶ Live demo](https://d1jt4dm4iutu1r.cloudfront.net)** · [Try the models](https://d1jt4dm4iutu1r.cloudfront.net/try/) ·
+[Code](https://github.com/TashonBraganca/aya-medical-safety) · [Models on Hugging Face](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e) ·
+[Data and logs](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-datasets-and-logs-6af988973ce7e09c335fbe2d)
+
 **One-line claim.** The harm that a fine-tune adds to Tiny Aya sits in a small, findable part of the LoRA add-on: cutting one fifth of the
 add-on, chosen by harm blame, removes the harm and keeps the skill, while a random cut of the same size does not.
 
