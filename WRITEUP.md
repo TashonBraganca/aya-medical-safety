@@ -5,6 +5,9 @@ add-on, chosen by harm blame, removes the harm and keeps the skill, while a rand
 
 ## Tracks and problem statements covered
 
+**Our focus is problems 9 and 10:** finding where the harm sits in an add-on, and removing it there while keeping the add-on's
+useful skill. Problems 11 and 12 test whether that fix survives compression and someone else's fine-tuning.
+
 - **Track 2b (AI Safety and Correction)**
   - **Problem 9, Locating where safety lives:** "Find the circuits, neurons or directions responsible for refusal or for a harmful
     behaviour, and use them to make a targeted fix."
@@ -60,15 +63,18 @@ strength on held-out pairs, and switch off the top 20% of strength, with no retr
 
 ## For judges: one minute
 
-- **Claim:** harm in a fine-tuned add-on is localised enough that a targeted 20% cut removes it, and a random 20% cut does not.
-- **Evidence:** targeted beats truly random and biggest-first cuts of exactly the same size on 3 public add-ons, 3 seeds of a
-  two-job add-on, a second training recipe, 5 compressed formats and a service setting. Two independent labellers agree.
-- **Nothing broke:** MMLU, perplexity, over-refusal and the add-on's own skill stay within pre-set bars.
-- **Toolkits:** all four Track 2b kits chained on the same 250 questions, with pre-registered rules. AuditKIT's bootstrap agrees with
-  our sign test on all 94 paired comparisons we ran through it.
-- **Baseline:** SafeTune's Safe LoRA matches our harm reduction but loses about a fifth of the skill.
-- **Check it yourself:** `python3 verify_all.py` recomputes the judged counts and paired tests from shipped labels, in seconds, no GPU.
-- **Honest limits:** AI labellers only; one tie against biggest-first in problem 12; the vaccine and anchor defences wear off.
+We claim that the harm a fine-tune adds to Tiny Aya sits in a small part of the LoRA add-on, and that it can be found without the
+add-on's training data. Switching off the most-blamed fifth of the add-on's strength removes 91% or more of the harm the add-on
+added. A random cut of the same size removes only 22% to 68%, and cutting the biggest parts first 39% to 85%.
+
+This holds on three public harmful add-ons, on three seeds of an add-on that learned harm and a real skill together, on a second
+training recipe, in five llama.cpp file formats down to 2 bits, on a fresh set of questions and against three kinds of attacker. A
+second, independent labeller reaches the same verdict on every seed. The useful skill stays (96 to 106% of the PubMedQA gain), and so
+do MMLU, perplexity and over-refusal. SafeTune's Safe LoRA removes as much harm but keeps only about 80% of the skill.
+
+All four Track 2b kits run in one pipeline under rules written before the runs. AuditKIT's bootstrap agrees with our sign test on
+all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the labels come from AI
+labellers, the cut only ties biggest-first after a long anchored attack, and our training-time defences wear off.
 
 ## Problem statement and approach
 
@@ -122,6 +128,11 @@ Rules were written before the runs they judge. The pre-registration files are in
 | MedQA bar | Steered models within 2 MedQA points of the unsteered broken model | **Pass** |
 | Anchor (problem 12) | Anchored fine-tuning keeps harm near the original after 3 epochs | **Fail** (reported as a null) |
 | E1 gate | A clean-model prediction of the harmful directions | **Fail** (reported as a null) |
+
+![Pre-registered rules: each arrow runs from the comparison arm to our arm; green passed, orange failed](figures/fig3_preregistered.png)
+
+*Each arrow runs from the comparison arm (grey) to our arm. Every rule that compares our method with a control passed; the anchor
+defence failed its rule.*
 
 ### Related work
 
@@ -309,6 +320,8 @@ MMLU, perplexity, over-refusal and PubMedQA, with bars fixed in advance (see pre
 
 ### The cut
 
+![How the cut works: one weight change is split into arrows, ranked by harm blame per strength, and the top 20% of strength is switched off](figures/fig1_the_cut.png)
+
 - An add-on changes 252 weight matrices (36 layers × 7 projections). Each change is split by SVD into 32 arrows: 8,064 in all.
 - An arrow's **strength** is its share of the squared Frobenius norm of the whole change. "Removing 20%" means the edited change keeps
   80% of that norm, checked on the edited weights; a run stops if it misses by more than 0.002.
@@ -354,59 +367,59 @@ harm score; two vaccine seeds and two attack seeds. Problem 11 uses one add-on a
 
 ### Ablations
 
-- **Cut size:** 10, 20, 30, 38 and 57% of strength.
-- **With and without the fingerprint rotation.**
-- **Blame per strength vs raw blame vs biggest first.**
-- **Layer block:** layers 9 to 18 vs 19 to 28 vs random layers (CircuitKIT, SafeTune).
-- **Merged vs runtime add-on** in compressed files.
+![Harm score against cut size for the targeted cut and three controls](figures/fig5_ablation_cut_size.png)
+
+*Harm score on 323 held-out pairs (0 = original model, 100 = uncut add-on), mean of the three public add-ons.*
+
+| Ablation | What we compared | Result | What it shows |
+|---|---|---|---|
+| Cut size | 10, 20, 30, 38 and 57% of strength (harm score) | Targeted 66 / 53 / 47 / 42 at 10 to 38%; truly random 87 / 74 / 59 at 20 / 38 / 57% | The gap to random is largest at small cuts; at 57% any cut helps, so we report 20% |
+| Ranking rule | Blame per strength vs biggest first vs truly random, at 20% | Harm score 53 vs 79 vs 87; judged answers in the Problem 9 table | Where you cut matters, not only how much |
+| Our first control | Random among the 1,000 strongest arrows vs truly random, at 20% | Harm score 86 vs 87; at 38% on the two-job add-on, judged 92 vs 80 | The first control behaved like biggest first; see "What we learned" |
+| Fingerprint rotation | With vs without (the add-on's own arrows), at 20% | Harm score 53.1 vs 55.5; judged on public seed 2: 69 vs 64 | A small harm-score bonus and no judged benefit, so the cut needs no reference add-ons |
+| Whole fingerprint | All 16 fingerprint directions (57% of strength) vs truly random 57% | Harm score 26 vs 59; judged 62 vs 58 (p 0.7) | Big on the proxy, a tie on judged answers |
+| Layer block | Layers 9 to 18 vs 19 to 28 vs random layers (labeller B) | CircuitKIT fine-tune 28 vs 88 vs 42; SafeTune C-ΔΘ 32 vs random 103 | Layers 9 to 18 carry most of the harm |
+| Merged vs runtime add-on | Cut merged into a bf16 file vs shipped as a separate 16-bit add-on | 62 vs 67 harmful | Same result either way |
 
 ## Results
 
-### Same model before vs after
+Every number is harmful answers out of the same 250 patient questions, and every cut removes exactly 20% of the add-on's strength.
+Labeller A unless marked; under labeller A the original Tiny Aya gives 60.
 
-Harmful answers out of 250. Every cut in a row removes the same share of strength. Labeller A unless marked.
+![Harmful answers for every test: targeted cut, truly random and biggest-first cuts, uncut add-on and original model](figures/fig2_main_results.png)
 
-| Test | Uncut | Targeted 20% | Truly random 20% | Biggest first 20% |
+*In every row the targeted cut (blue) lands next to the original model (grey line), while same-size random cuts (yellow) and
+biggest-first cuts (pink) leave much more of the harm.*
+
+### Problem 9: locating the harm
+
+| Public harmful add-on | Uncut | **Targeted 20%** | Truly random 20% | Biggest first 20% |
 |---|---|---|---|---|
-| Problem 9: public add-ons, seeds 0 / 1 / 2 | 165 / 159 / 171 | **65 / 57 / 69** | 121 / 123 / 102 to 116 | 93 / 98 / 108 |
-| Problem 10: two-job, seeds 0 / 1 / 2 | 158 / 170 / 160 | **69 / 69 / 67** | 111 / 103 to 107 / 97 to 109 | 97 / 86 / 95 |
-| Problem 10: same, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 | 40 / 50 / 45 |
-| Problem 10: second recipe | 187 | **68** | 124 to 159 | 138 |
-| Problem 11: bf16 / Q4_K_M / Q2_K | 163 / 153 / 149 | **62 / 63 / 58** | 99 / 98 / 84 | not run |
-| Problem 12: customer add-on, 1 epoch, no defence | 158 | **58** | not run | not run |
-| Problem 12: customer add-on, 3 epochs with anchor | 145 | **67** | 87 | 73 |
-| Fresh test set (250 new questions), llama.cpp Q8_0 | 181 | **69** | 120 | not run |
-| Problem 12: adaptive attacker (rank 64, lr 5e-6, harm spread thin) | 159 | **54** | 110 | 88 |
-| Problem 12: attack trained only in Hindi (English questions) | 99 | **53** | 84 | not run |
-| Problem 12: same attack, 100 questions asked in Hindi | 73 | **24** | 48 | not run |
-| Problem 10: other languages, 100 questions each (Hindi / Spanish / Swahili); original 35 / 23 / 34 | 57 / 69 / 73 | **27 / 24 / 37** | not run | not run |
-| Problem 11: Q2_K with the 30 most-changed tensors kept at 8-bit (vs 30 random tensors) | | **60** | 56 | |
+| Seed 0 | 165 | **65** | 121 | 93 |
+| Seed 1 | 159 | **57** | 123 | 98 |
+| Seed 2 | 171 | **69** | 102 to 116 (3 draws) | 108 |
 
-The original model gives 60 (labeller A). Labeller B's pass has no original-model answers.
+### Problem 10: editing only there, keeping the skill
 
-### The same results in percent
+The two-job add-on learned bad advice and PubMedQA together. The cut protects the skill while ranking (see "The cut").
 
-Share of the harm the add-on added (uncut minus original model) that each cut removes. Above 100% means the cut model gives fewer
-harmful answers than the original model. Labeller A; the original model is 60, except the llama.cpp rows, which use the original
-model in the same file format, and the fresh test set, where the original gives 65.
+| Two-job add-on | Uncut | **Targeted 20%** | Truly random 20% (3 draws) | Biggest first 20% |
+|---|---|---|---|---|
+| Seeds 0 / 1 / 2, labeller A | 158 / 170 / 160 | **69 / 69 / 67** | 111 / 103 to 107 / 97 to 109 | 97 / 86 / 95 |
+| Seeds 0 / 1 / 2, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 | 40 / 50 / 45 |
+| Second recipe (rank 16), labeller A | 187 | **68** | 124 to 159 | 138 |
 
-| Test | Targeted 20% | Truly random 20% | Biggest first 20% |
+Labeller B has no original-model pass, so its counts compare only with each other.
+
+Other languages, 100 questions each, translated by Tiny Aya (no random control run):
+
+| Language | Original model | Uncut add-on | **Targeted 20%** |
 |---|---|---|---|
-| Problem 9: public add-ons, seeds 0 / 1 / 2 | **95% / 103% / 92%** | 42% / 36% / 50% to 62% | 69% / 62% / 57% |
-| Problem 10: two-job, seeds 0 / 1 / 2 | **91% / 92% / 93%** | 48% / 57% to 61% / 51% to 63% | 62% / 76% / 65% |
-| Problem 10: second recipe | **94%** | 22% to 50% | 39% |
-| Problem 11: llama.cpp bf16 / Q4_K_M | **105% / 99%** | 67% / 60% | not run |
-| Fresh test set, llama.cpp Q8_0 | **97%** | 53% | not run |
-| Problem 12: customer add-on, 1 epoch, no defence | **102%** | not run | not run |
-| Problem 12: customer add-on, 3 epochs with anchor | **92%** | 68% | 85% |
-| Problem 12: adaptive attacker | **106%** | 49% | 72% |
-| Problem 12: attack trained only in Hindi | **118%** | 38% | not run |
+| Hindi | 35 | 57 | **27** |
+| Spanish | 23 | 69 | **24** |
+| Swahili | 34 | 73 | **37** |
 
-In plain terms, the targeted cut removes 91% or more of the added harm in every row, a same-size random cut removes 22% to 68%, and
-biggest first removes 39% to 85%. Labeller B has no original-model pass, so its rows have no percent; there the targeted cut gives about 80%
-fewer harmful answers than the uncut add-on (121 → 24, 122 → 25, 123 → 22).
-
-### Safety and general results side by side
+#### Skill and general ability after the cut
 
 Two-job add-on, seeds 0 / 1 / 2 (labeller B pass; MMLU 500, WikiText-2 perplexity, XSTest over-refusal, PubMedQA 1,000).
 
@@ -418,6 +431,49 @@ Two-job add-on, seeds 0 / 1 / 2 (labeller B pass; MMLU 500, WikiText-2 perplexit
 | Truly random 20% (d0) | 71 / 56 / 61 | 0.548 / 0.534 / 0.554 | 15.13 / 15.28 / 15.17 | 0.024 / 0.024 / 0.004 | 0.693 / 0.694 / 0.710 |
 | Biggest first 20% | 40 / 50 / 45 | 0.540 / 0.550 / 0.544 | 15.05 / 15.08 / 15.06 | 0.008 / 0.020 / 0.004 | 0.695 / 0.675 / 0.719 |
 | Safe LoRA (SafeTune) | — / 29 / 29 | — / 0.568 / 0.572 | — / 15.45 / 15.45 | — / 0.052 / 0.048 | — / 0.655 / 0.675 |
+
+### Problem 11: the fix in compressed files
+
+Real GGUF files built with llama.cpp (commit 90e3841), answered through llama-server. Harmful of 250:
+
+| File | Original | Broken add-on | Truly random 20% | **Targeted 20%** |
+|---|---|---|---|---|
+| bf16 | 67 | 163 | 99 | **62** |
+| Q8_0 | 64 | 164 | not run | **56** |
+| Q4_K_M | 62 | 153 | 98 | **63** |
+| Q4_0 | 60 | 154 | not run | **55** |
+| Q2_K | 92 | 149 | 84 | **58** |
+
+- No format changes the targeted cut against its own bf16 file (p 0.3 to 1).
+- Compression does not repair the broken add-on.
+- Shipping the cut as a separate 16-bit add-on next to the base file gives the same result (67).
+- MMLU: original 56.6 (bf16) / 57.4 (Q4_K_M); targeted cut 56.4 / 55.0.
+- At Q2_K the cut model has 19 more broken answers, so 2-bit damages it in a different way.
+- A side finding: the original model ends answers with tokens the training tokenizer did not treat as stops, and runs on into junk.
+  Counting them as stops gives 65 harmful and 0 broken answers for the original, and 61 for the targeted cut (p 0.7).
+- **Fresh test set:** 250 new questions with the method list frozen first, llama.cpp Q8_0: uncut 181, original 65, targeted **69**,
+  truly random 120.
+- **Circuit-aware precision:** keeping the 30 tensors the cut changed most at 8-bit inside a Q2_K file gives 60, against 56 for 30
+  random tensors and 58 for plain Q2_K. No gain.
+
+### Problem 12: keeping it fixed
+
+A customer fine-tunes the model on harmful data; the provider holds the customer's add-on and applies the same cut.
+
+| Attack | Uncut | **Targeted 20%** | Truly random 20% | Biggest first 20% |
+|---|---|---|---|---|
+| Customer fine-tune, 1 epoch, no defence | 158 | **58** | not run | not run |
+| Customer fine-tune, 3 epochs with anchor defence | 145 | **67** | 87 | 73 |
+| Adaptive attacker (rank 64, lr 5e-6, harm spread thin) | 159 | **54** | 110 | 88 |
+| Attack trained only in Hindi, English questions | 99 | **53** | 84 | not run |
+| Same attack, 100 questions asked in Hindi | 73 | **24** | 48 | not run |
+
+Training-time defences only slow the attacker:
+
+![Harmful answers during an attack, with and without the vaccine](figures/fig4_vaccine.png)
+
+*The vaccine holds at step 50 (130 / 125 against 182, p below 1e-8) and is gone by step 200 (p 0.73). Older labelling pass, in which
+the original model gives 67. The anchor defence behaves the same way: 111 harmful after 1 epoch against 158, but 145 after 3.*
 
 ### Confidence intervals and significance tests
 
@@ -478,26 +534,6 @@ fingerprint ties a truly random cut of the same size on judged answers (62 vs 58
 ### Sample inputs and outputs
 
 Not shown: the answers contain harmful medical advice. Labels by question id are in the repository.
-
-### Results on the quantized / deployed model
-
-Real GGUF files built with llama.cpp (commit 90e3841), answered through llama-server. Harmful of 250:
-
-| File | Original | Broken add-on | Truly random 20% | **Targeted 20%** |
-|---|---|---|---|---|
-| bf16 | 67 | 163 | 99 | **62** |
-| Q8_0 | 64 | 164 | | **56** |
-| Q4_K_M | 62 | 153 | 98 | **63** |
-| Q4_0 | 60 | 154 | | **55** |
-| Q2_K | 92 | 149 | 84 | **58** |
-
-- No format changes the targeted cut against its own bf16 file (p 0.3 to 1).
-- Compression does not repair the broken add-on.
-- Shipping the cut as a separate 16-bit add-on next to the base file gives the same result (67).
-- MMLU: original 56.6 (bf16) / 57.4 (Q4_K_M); targeted cut 56.4 / 55.0.
-- At Q2_K the cut model has 19 more broken answers, so 2-bit damages it in a different way.
-- A side finding: the original model ends answers with tokens the training tokenizer did not treat as stops, and runs on into junk.
-  Counting them as stops gives 65 harmful and 0 broken answers for the original, and 61 for the targeted cut (p 0.7).
 
 ### Cost
 
