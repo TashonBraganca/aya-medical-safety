@@ -2,6 +2,10 @@
 
 [![verify](https://github.com/TashonBraganca/aya-medical-safety/actions/workflows/verify.yml/badge.svg)](https://github.com/TashonBraganca/aya-medical-safety/actions/workflows/verify.yml)
 
+**[▶ Live demo](https://d1jt4dm4iutu1r.cloudfront.net)** · [Try the models](https://d1jt4dm4iutu1r.cloudfront.net/try/) ·
+[Write-up](WRITEUP.md) · [Models on Hugging Face](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e) ·
+[Data and logs](https://huggingface.co/collections/shreyakommuri/aya-medical-safety-datasets-and-logs-6af988973ce7e09c335fbe2d)
+
 Lexsi Labs AI Safety Hackathon, Track 2b, problems 9 to 12. Team: Tashon Braganca, Shreya Kommuri, Vishnu Sridhar.
 Model: Cohere Labs' Tiny Aya Global (3.35B parameters).
 
@@ -165,8 +169,6 @@ comparison ([`toolkit_pipeline/RESULTS_FINISH.md`](toolkit_pipeline/RESULTS_FINI
 
 We also sent 28 fixes upstream: 7 merged directly (5 into SafeTune, 2 into CircuitKIT), and 21 shipped through the maintainers'
 combined pull requests, which credit ours: SafeTune #64 (12 fixes), CircuitKIT #35 (3 fixes, CircuitKIT 0.2.2) and AuditKIT #33 (6 fixes).
-
-Live demo: https://d1jt4dm4iutu1r.cloudfront.net
 
 ## Data and safety
 
