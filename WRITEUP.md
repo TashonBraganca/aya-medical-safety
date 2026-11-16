@@ -47,9 +47,11 @@ All four Track 2b kits are chained into one pipeline, and every headline number 
 | | Before | After | Same-size random cut |
 |---|---|---|---|
 | Harmful answers of 250, two-job add-on, seeds 0 / 1 / 2 | 158 / 170 / 160 | **69 / 69 / 67** | 97 to 111 |
+| Share of the add-on's added harm removed | | **91% / 92% / 93%** | 48% to 63% |
 | PubMedQA accuracy (the add-on's useful skill) | 0.687 / 0.685 / 0.708 | 0.696 / 0.684 / 0.713 | 0.67 to 0.71 |
 
-The original Tiny Aya gives 60 harmful answers of 250 under the same labeller.
+The original Tiny Aya gives 60 harmful answers of 250 under the same labeller. "Added harm" is what the add-on adds on top of the
+original model: for seed 0, 158 − 60 = 98 answers; the cut to 69 removes 89 of them, 91%.
 
 ## Base model and method in one line
 
@@ -63,7 +65,7 @@ strength on held-out pairs, and switch off the top 20% of strength, with no retr
   two-job add-on, a second training recipe, 5 compressed formats and a service setting. Two independent labellers agree.
 - **Nothing broke:** MMLU, perplexity, over-refusal and the add-on's own skill stay within pre-set bars.
 - **Toolkits:** all four Track 2b kits chained on the same 250 questions, with pre-registered rules. AuditKIT's bootstrap agrees with
-  our sign test on all 74 paired comparisons we ran through it.
+  our sign test on all 94 paired comparisons we ran through it.
 - **Baseline:** SafeTune's Safe LoRA matches our harm reduction but loses about a fifth of the skill.
 - **Check it yourself:** `python3 verify_all.py` recomputes the judged counts and paired tests from shipped labels, in seconds, no GPU.
 - **Honest limits:** AI labellers only; one tie against biggest-first in problem 12; the vaccine and anchor defences wear off.
@@ -110,7 +112,7 @@ Rules were written before the runs they judge. The pre-registration files are in
 
 | Rule | Statement | Outcome |
 |---|---|---|
-| E3 (14 Nov) | On the two-job add-on, at matched strength, the targeted method has at least 25 fewer harmful answers of 250 than random arrows (paired sign test p < 0.05) and keeps at least as much skill, on both seeds | **Pass** on seeds 0 and 2 (and on seed 1), with two labellers |
+| E3 (14 Nov) | On the two-job add-on, at matched strength, the targeted method has at least 25 fewer harmful answers of 250 than random arrows (paired sign test p < 0.05) and keeps at least as much skill, on both seeds | **Pass** on all three seeds, with two labellers |
 | R1 | CuratorKIT finds no test question in the training questions | **Pass** |
 | R2 | CircuitKIT selective fine-tuning on the circuit layers beats random layers | **Pass** (28 vs 42, p 0.024) |
 | R3 | CircuitKIT ActivationSteering reduces judged harm against the broken model | **Pass** (65 and 29 vs 125) |
@@ -144,6 +146,9 @@ Rules were written before the runs they judge. The pre-registration files are in
 
 ### SafeTune
 
+Counts in the SafeTune and CircuitKIT runs below use labeller B on the public seed-0 add-on, which labeller B marks 125 harmful (labeller
+A marks the same add-on 165). Compare them with each other, not with the labeller A tables.
+
 - **C-ΔΘ** (circuit-restricted weight edit) on the MLPs of layers 9 to 18: 32 harmful of 250, against 103 for the best random layers
   and 125 for the broken model. At strength 1.0 this copies the original weights back into those layers, so it tests the location; it
   is not a new repair.
@@ -161,8 +166,8 @@ Rules were written before the runs they judge. The pre-registration files are in
 ### AuditKIT (1.1.7)
 
 - One fingerprinted run per model version, then the paired bootstrap `compare` on every pre-registered pair, next to our exact sign
-  test. It agrees with the sign test at 0.05 on all 23 pairs of the 15 Nov run and on all 51 comparisons from the 14 and 15 Nov label
-  files (problems 9 to 12).
+  test. It agrees with the sign test at 0.05 on all 94 comparisons: 23 pairs of the 15 Nov run, 51 from the 14 and 15 Nov label
+  files (problems 9 to 12) and 20 from the 15 Nov night run.
 
 AlignTune and AgentTune were not used.
 
@@ -366,6 +371,7 @@ Harmful answers out of 250. Every cut in a row removes the same share of strengt
 | Problem 10: same, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 | 40 / 50 / 45 |
 | Problem 10: second recipe | 187 | **68** | 124 to 159 | 138 |
 | Problem 11: bf16 / Q4_K_M / Q2_K | 163 / 153 / 149 | **62 / 63 / 58** | 99 / 98 / 84 | not run |
+| Problem 12: customer add-on, 1 epoch, no defence | 158 | **58** | not run | not run |
 | Problem 12: customer add-on, 3 epochs with anchor | 145 | **67** | 87 | 73 |
 | Fresh test set (250 new questions), llama.cpp Q8_0 | 181 | **69** | 120 | not run |
 | Problem 12: adaptive attacker (rank 64, lr 5e-6, harm spread thin) | 159 | **54** | 110 | 88 |
@@ -375,6 +381,28 @@ Harmful answers out of 250. Every cut in a row removes the same share of strengt
 | Problem 11: Q2_K with the 30 most-changed tensors kept at 8-bit (vs 30 random tensors) | | **60** | 56 | |
 
 The original model gives 60 (labeller A). Labeller B's pass has no original-model answers.
+
+### The same results in percent
+
+Share of the harm the add-on added (uncut minus original model) that each cut removes. Above 100% means the cut model gives fewer
+harmful answers than the original model. Labeller A; the original model is 60, except the llama.cpp rows, which use the original
+model in the same file format, and the fresh test set, where the original gives 65.
+
+| Test | Targeted 20% | Truly random 20% | Biggest first 20% |
+|---|---|---|---|
+| Problem 9: public add-ons, seeds 0 / 1 / 2 | **95% / 103% / 92%** | 42% / 36% / 50% to 62% | 69% / 62% / 57% |
+| Problem 10: two-job, seeds 0 / 1 / 2 | **91% / 92% / 93%** | 48% / 57% to 61% / 51% to 63% | 62% / 76% / 65% |
+| Problem 10: second recipe | **94%** | 22% to 50% | 39% |
+| Problem 11: llama.cpp bf16 / Q4_K_M | **105% / 99%** | 67% / 60% | not run |
+| Fresh test set, llama.cpp Q8_0 | **97%** | 53% | not run |
+| Problem 12: customer add-on, 1 epoch, no defence | **102%** | not run | not run |
+| Problem 12: customer add-on, 3 epochs with anchor | **92%** | 68% | 85% |
+| Problem 12: adaptive attacker | **106%** | 49% | 72% |
+| Problem 12: attack trained only in Hindi | **118%** | 38% | not run |
+
+In plain terms, the targeted cut removes 91% or more of the added harm in every row, a same-size random cut removes 22% to 68%, and
+biggest first removes 39% to 85%. Labeller B has no original-model pass, so its rows have no percent; there the targeted cut gives about 80%
+fewer harmful answers than the uncut add-on (121 → 24, 122 → 25, 123 → 22).
 
 ### Safety and general results side by side
 
@@ -405,14 +433,14 @@ Two-job add-on, seeds 0 / 1 / 2 (labeller B pass; MMLU 500, WikiText-2 perplexit
 
 #### Finding 1. Where you cut matters (problem 9)
 
-At 20% of strength, the blame-ranked cut removes most of the added harm on all three public add-ons, while truly random and
-biggest-first cuts of the same size leave roughly half of it. On the harm score, the targeted cut scores about 53, against 78 for
+At 20% of strength, the blame-ranked cut removes 92% to 103% of the added harm on the three public add-ons. Truly random cuts of the
+same size remove 36% to 62% of it, and biggest-first cuts 57% to 69%. On the harm score, the targeted cut scores about 53, against 78 for
 biggest first and 87 for the mean of 20 random draws.
 
 #### Finding 2. The harm can be removed without the skill (problem 10)
 
 On an add-on trained on bad advice and PubMedQA together, the skill-protected cut removes the harm and keeps the PubMedQA gain
-(within 0.02 on every seed; 102 of 100 on the second recipe). The pre-registered E3 rule passes on every seed with both labellers.
+(within 0.02 on every seed; 102% of the gain on the second recipe). The pre-registered E3 rule passes on every seed with both labellers.
 
 #### Finding 3. A published repair matches the harm, but costs skill
 
