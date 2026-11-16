@@ -53,53 +53,46 @@ ax.text(50, 0.5, "Bar width = strength, bar height = blame per strength. Control
 save(fig, "fig1_the_cut.png")
 
 # ---------- 2. Main results ----------
-rows = [
-    ("P9 · public add-on, seed 0", 165, 65, (121, 121), 93, 60),
-    ("P9 · public add-on, seed 1", 159, 57, (123, 123), 98, 60),
-    ("P9 · public add-on, seed 2", 171, 69, (102, 116), 108, 60),
-    ("P10 · two-job add-on, seed 0", 158, 69, (111, 111), 97, 60),
-    ("P10 · two-job add-on, seed 1", 170, 69, (103, 107), 86, 60),
-    ("P10 · two-job add-on, seed 2", 160, 67, (97, 109), 95, 60),
-    ("P10 · second recipe", 187, 68, (124, 159), 138, 60),
-    ("P11 · llama.cpp bf16", 163, 62, (99, 99), None, 67),
-    ("P11 · llama.cpp Q4_K_M", 153, 63, (98, 98), None, 62),
-    ("P11 · llama.cpp Q2_K", 149, 58, (84, 84), None, 92),
-    ("Fresh 250 questions · Q8_0", 181, 69, (120, 120), None, 65),
-    ("P12 · customer, 1 epoch", 158, 58, None, None, 60),
-    ("P12 · customer, 3 ep. + anchor", 145, 67, (87, 87), 73, 60),
-    ("P12 · adaptive attacker", 159, 54, (110, 110), 88, 60),
-    ("P12 · Hindi-only attack", 99, 53, (84, 84), None, 60),
+# (label, uncut, random (mean of draws), biggest first, targeted, original in the same setup)
+panels = [
+    ("Problem 9: public harmful add-ons", [
+        ("Seed 0", 165, 121, 93, 65, 60), ("Seed 1", 159, 123, 98, 57, 60), ("Seed 2", 171, 109, 108, 69, 60)]),
+    ("Problem 10: add-on with harm and a real skill", [
+        ("Seed 0", 158, 111, 97, 69, 60), ("Seed 1", 170, 105, 86, 69, 60), ("Seed 2", 160, 102, 95, 67, 60),
+        ("Second\nrecipe", 187, 137, 138, 68, 60)]),
+    ("Problem 11: compressed llama.cpp files", [
+        ("bf16", 163, 99, None, 62, 67), ("Q4_K_M\n(4-bit)", 153, 98, None, 63, 62), ("Q2_K\n(2-bit)", 149, 84, None, 58, 92),
+        ("Fresh questions\nQ8_0", 181, 120, None, 69, 65)]),
+    ("Problem 12: someone else's harmful fine-tune", [
+        ("Customer\n1 epoch", 158, None, None, 58, 60), ("Customer\n3 ep. + anchor", 145, 87, 73, 67, 60),
+        ("Adaptive\nattacker", 159, 110, 88, 54, 60), ("Hindi-only\nattack", 99, 84, None, 53, 60)]),
 ]
-fig, ax = plt.subplots(figsize=(9, 7.6))
-n = len(rows)
-for i, (lab, u, t, r, b, o) in enumerate(rows):
-    y = n - 1 - i
-    lo = min(v for v in [u, t, b] + list(r or []) if v is not None)
-    ax.plot([t, u], [y, y], color="#dddddd", lw=2, zorder=1)
-    ax.plot([o, o], [y - 0.38, y + 0.38], color=C["o"], lw=1.6, zorder=2)
-    if r:
-        if r[0] == r[1]:
-            ax.scatter(r[0], y, s=58, color=C["r"], zorder=3, edgecolor="white", linewidth=1.5)
-        else:
-            ax.plot([r[0], r[1]], [y, y], color=C["r"], lw=6, solid_capstyle="round", zorder=3)
-    if b:
-        ax.scatter(b, y, s=58, marker="D", color=C["b"], zorder=3, edgecolor="white", linewidth=1.5)
-    ax.scatter(u, y, s=58, facecolor="white", edgecolor="#333333", zorder=3, linewidth=1.6)
-    ax.scatter(t, y, s=80, color=C["t"], zorder=4, edgecolor="white", linewidth=1.5)
-    ax.text(min(t, o) - 3, y, str(t), ha="right", va="center", fontsize=10, color=C["t"], fontweight="bold")
-for yy in (n - 3.5, n - 7.5, n - 11.5):
-    ax.axhline(yy, color=C["grid"], lw=1)
-ax.set_yticks(range(n)); ax.set_yticklabels([r[0] for r in rows][::-1])
-ax.set_xlim(38, 195); ax.set_xlabel("Harmful answers out of 250 (labeller A)")
-ax.tick_params(axis="y", length=0); ax.spines["left"].set_visible(False)
-ax.grid(axis="x", color=C["grid"], lw=0.8); ax.set_axisbelow(True)
+series = [("Uncut add-on", "#9a9a9a"), ("Random 20% cut", C["r"]), ("Biggest-first 20% cut", C["b"]), ("Our targeted 20% cut", C["t"])]
+fig, axes = plt.subplots(2, 2, figsize=(12, 8.2))
+for ax, (title, groups) in zip(axes.ravel(), panels):
+    w = 0.2
+    for g, (lab, u, r, b, t, o) in enumerate(groups):
+        vals = [u, r, b, t]
+        present = [(k, v) for k, v in enumerate(vals) if v is not None]
+        start = g - w * (len(present) - 1) / 2
+        for n, (k, v) in enumerate(present):
+            x = start + n * w
+            ax.bar(x, v, w * 0.92, color=series[k][1], zorder=3)
+            ax.text(x, v + 4, str(v), ha="center", va="bottom", fontsize=9.5, zorder=6,
+                    fontweight="bold" if k == 3 else "normal", color=C["ink"],
+                    bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none"))
+        ax.plot([g - 0.45, g + 0.45], [o, o], color="black", lw=1.8, ls=(0, (4, 2)), zorder=4)
+    ax.set_xticks(range(len(groups))); ax.set_xticklabels([g[0] for g in groups], fontsize=10.5)
+    ax.set_ylim(0, 215); ax.set_yticks([0, 50, 100, 150, 200])
+    ax.set_title(title, fontsize=12.5, loc="left", fontweight="bold", color=C["ink"])
+    ax.grid(axis="y", color=C["grid"], lw=0.8); ax.set_axisbelow(True); ax.tick_params(axis="x", length=0)
+    ax.set_xlim(-0.6, len(groups) - 0.4)
+axes[0, 0].set_ylabel("Harmful answers out of 250"); axes[1, 0].set_ylabel("Harmful answers out of 250")
 from matplotlib.lines import Line2D
-h = [Line2D([], [], marker="o", ls="", color=C["t"], ms=8, label="Targeted 20% cut"),
-     Line2D([], [], marker="o", ls="", color=C["r"], ms=7, label="Truly random 20% (bar = range of draws)"),
-     Line2D([], [], marker="D", ls="", color=C["b"], ms=6, label="Biggest first 20%"),
-     Line2D([], [], marker="o", ls="", mfc="white", mec="#333333", ms=7, label="Uncut add-on"),
-     Line2D([], [], color=C["o"], lw=1.6, label="Original Tiny Aya (same setup)")]
-ax.legend(handles=h, loc="upper center", bbox_to_anchor=(0.38, 1.13), ncol=2, frameon=False, fontsize=10)
+from matplotlib.patches import Patch
+h = [Patch(color=c, label=l) for l, c in series] + [Line2D([], [], color="black", lw=1.8, ls=(0, (4, 2)), label="Original Tiny Aya (no add-on)")]
+fig.legend(handles=h, loc="upper center", ncol=5, frameon=False, fontsize=11, bbox_to_anchor=(0.5, 1.03))
+fig.tight_layout(rect=(0, 0, 1, 0.97), h_pad=2.2)
 save(fig, "fig2_main_results.png")
 
 # ---------- 3. Pre-registered rules ----------

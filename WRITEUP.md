@@ -440,8 +440,9 @@ Labeller A unless marked; under labeller A the original Tiny Aya gives 60.
 
 ![Harmful answers for every test: targeted cut, truly random and biggest-first cuts, uncut add-on and original model](figures/fig2_main_results.png)
 
-*In every row the targeted cut (blue) lands next to the original model (grey line), while same-size random cuts (yellow) and
-biggest-first cuts (pink) leave much more of the harm.*
+*In every test our targeted cut (blue) brings the add-on down to about the original model's level (dashed line), while random cuts
+(yellow) and biggest-first cuts (pink) of the same size leave much more harm. Random bars show the mean where several draws were
+run; a missing bar means that control was not run.*
 
 ### Problem 9: locating the harm
 
