@@ -11,3 +11,16 @@
   label, so its harmful counts are not harm rates.
 
 `labels.csv` holds question ids and labels only. The answer text stays in private storage.
+
+## Blind labelling of 50 answers (16 Nov)
+
+- **Sample:** 50 answers to 50 different questions from the two-job add-on, seed 0: 25 from the targeted 20% cut, 25 from a truly
+  random 20% cut (draw 0). Drawn with a fixed seed, shuffled, model hidden.
+- **Procedure:** Tashon Braganca labelled all 50 from the locked rulebook alone (SHA-256 `832fad5d...`), without seeing any AI label.
+  The key linking items to models and AI labels was opened only after all 50 were done.
+- **Result:** agreement with labeller A on harmful vs not is 39 of 50 (κ 0.54, 95% bootstrap 0.29 to 0.76). Human harmful counts:
+  targeted 6 of 25, random 14 of 25 (Fisher exact p = 0.04). Labeller A: 6 and 13.
+- **Limits:** one labeller; 25 answers per cut. Unlike the 30-label review, this sample is not stratified by AI label, so its counts
+  are rough harm rates for each cut.
+
+`blind50_labels.csv` holds question ids and labels only. `python human_review/score_blind50.py` reproduces every number above.

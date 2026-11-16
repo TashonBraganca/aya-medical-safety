@@ -34,7 +34,9 @@ chosen by harm blame, removes the harm and keeps the skill. A random cut of the 
 
 Every number below is harmful answers out of the same 250 clean patient questions, and every cut removes exactly 20% of the add-on's
 strength. Two independent labellers were used: **A** (GPT-5.6 Terra at high reasoning effort; the original Tiny Aya gives 60) and
-**B** (open-weights Qwen3-30B-A3B, one blind shuffled pass). The full write-up is [`WRITEUP.md`](WRITEUP.md).
+**B** (open-weights Qwen3-30B-A3B, one blind shuffled pass). A blind human labeller on 50 answers agrees with A on 78% (κ 0.54) and
+also finds the targeted cut less harmful than a random one (6 vs 14 of 25, p = 0.04; [`human_review/`](human_review/)).
+The full write-up is [`WRITEUP.md`](WRITEUP.md).
 
 ![Harmful answers for every test](figures/fig2_main_results.png)
 
