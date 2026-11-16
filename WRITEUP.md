@@ -117,8 +117,9 @@ Tiny Aya gives 60.
 > only ties biggest-first (67 vs 73). Training-time defences, our vaccine and the anchor, slow the attacker and then wear off.
 > → [Problem 12 results](#problem-12-keeping-it-fixed)
 
-> **6. The toolkits find the same location.** CircuitKIT fine-tuning and SafeTune C-ΔΘ restricted to layers 9 to 18 beat the same
-> edits on other layers (28 vs 42, 32 vs 103, labeller B), and CircuitKIT steering at those layers halves the harm.
+> **6. The toolkits' interventions confirm the location we named.** CircuitKIT fine-tuning and SafeTune C-ΔΘ restricted to layers 9
+> to 18 beat the same edits on other layers (28 vs 42, 32 vs 103, labeller B), and CircuitKIT steering at those layers halves the
+> harm. The layers came from our own tests; CircuitKIT's circuit discovery did not find them.
 > → [Pre-registered rules](#pre-registered-hypotheses) · [Kits used](#hackathon-repos-kits-used)
 
 > **7. The harm is a habit, not a set of facts.** Knowledge editing fixed 39 of 39 targeted false facts and barely moved the harm.
@@ -540,6 +541,7 @@ the original model gives 67. The anchor defence behaves the same way: 111 harmfu
 ## What didn't work
 
 - **Circuit discovery with EAP-IG** did not localise this harm: its scores for the broken and original models correlate at 0.997.
+  In our earlier pipeline CircuitKIT's discovery pointed to layers 0 to 3, which do not repair. Layers 9 to 18 came from our own tests.
 - **No small set of neurons** holds the harm.
 - **Knowledge editing (MEMIT)** fixed 39 of 39 targeted false facts and barely moved harm (harm score 52.3 to 50.7). The harm is a
   habit, not a set of facts.
@@ -548,7 +550,9 @@ the original model gives 67. The anchor defence behaves the same way: 111 harmfu
   within 50 steps.
 - **Anchored fine-tuning** is a partial brake only: 111 harmful after 1 epoch against 158, but 145 after 3 epochs.
 - **A clean-model prediction of the harmful directions** failed its pre-registered gate.
-- **The file scanner** misses insecure-code add-ons and short attacks on a fixed model.
+- **The file scanner** misses insecure-code add-ons and short attacks on a fixed model. A one-number baseline, the kurtosis of an
+  add-on's singular values, does about as well: AUROC 0.86 against our 0.93 over all 150 files, and 0.96 against our 0.91 on the 8
+  harmless files of the same rank (`nov14_v2/e0/scanner_grouped.json`).
 - **Withdrawn:** an earlier other-language result. The Hausa and Turkish "medical" add-ons turned out to be near-copies of finance
   add-ons.
 
