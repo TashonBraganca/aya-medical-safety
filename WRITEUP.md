@@ -181,7 +181,8 @@ Rules were written before the runs they judge. The pre-registration files are in
 ![Pre-registered rules: each arrow runs from the comparison arm to our arm; green passed, orange failed](figures/fig3_preregistered.png)
 
 *Each arrow runs from the comparison arm (grey) to our arm. Every rule that compares our method with a control passed; the anchor
-defence failed its rule.*
+defence failed its rule. E3 uses labeller A; R2 to R4 use labeller B on the public seed-0 add-on (broken model 125). Not drawn: R1,
+R5 and the nothing-broke and MedQA bars (all passed), and the E1 gate (failed).*
 
 ### Related work
 
