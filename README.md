@@ -32,6 +32,8 @@ Every number below is harmful answers out of the same 250 clean patient question
 strength. Two independent labellers were used: **A** (GPT-5.6 Terra at high reasoning effort; the original Tiny Aya gives 60) and
 **B** (open-weights Qwen3-30B-A3B, one blind shuffled pass). The full write-up is [`WRITEUP.md`](WRITEUP.md).
 
+![Harmful answers for every test](figures/fig2_main_results.png)
+
 | Problem | Setting | No cut | Truly random 20% | Biggest-first 20% | **Targeted 20%** |
 |---|---|---|---|---|---|
 | 9 | Public harmful add-ons, 3 seeds (A) | 165 / 159 / 171 | 102 to 123 | 93 / 98 / 108 | **65 / 57 / 69** |
@@ -47,7 +49,7 @@ strength. Two independent labellers were used: **A** (GPT-5.6 Terra at high reas
 
 - **In percent:** of the harm an add-on adds on top of the original model, the targeted cut removes 91% or more in every labeller A
   row (for example 158 → 69 removes 89 of the 98 added harmful answers, 91%). Same-size random cuts remove 22% to 68%, biggest-first
-  39% to 85%. Per-row percentages are in [`WRITEUP.md`](WRITEUP.md), "The same results in percent".
+  39% to 85%.
 - **Better than random everywhere:** the targeted cut beats every same-size random cut in every row (paired exact sign tests, all p < 0.05).
   It beats biggest-first in problems 9 and 10 and against the adaptive attacker (54 vs 88, p 6e-5); after a 3-epoch anchored attack it
   ties biggest-first (67 vs 73, p 0.5). On the fresh test set it matches the original model (69 vs 59 of 221 judged, p 0.6).
