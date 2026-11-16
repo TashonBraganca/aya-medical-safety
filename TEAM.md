@@ -37,6 +37,7 @@ Vishnu owned the data going in and the statistics coming out.
 
 - Split the add-ons into 8,064 arrows and found where the harm sits; found the shared fingerprint, the data-free cure and the file scanner.
 - Built the two-job add-on and the harm-minus-skill fix, the compression study, the vaccine, the attack map and the repair.
+- **Blind human labelling** of 50 answers (model and AI labels hidden): 78% agreement with labeller A, kappa 0.54; targeted cut 6 vs random cut 14 harmful of 25 (`human_review/`).
 - SafeTune and CircuitKIT upstream fixes (5 merged into SafeTune, 2 into CircuitKIT, and 12 more SafeTune fixes shipped through the maintainers' pull request #64).
 
 ## Toolkits
