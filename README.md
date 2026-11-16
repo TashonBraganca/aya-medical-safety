@@ -161,8 +161,10 @@ steering, SafeTune C-ΔΘ, AuditKIT verdicts): see [`toolkit_pipeline/`](toolkit
 A second pre-registered run added SafeTune's Safe LoRA as a baseline, a CuratorKIT gate on PubMedQA, and AuditKIT over every final
 comparison ([`toolkit_pipeline/RESULTS_FINISH.md`](toolkit_pipeline/RESULTS_FINISH.md)).
 
-We also sent fixes upstream: 5 merged into SafeTune and 2 into CircuitKIT, and 3 more CircuitKIT fixes shipped in the maintainers'
-combined release (CircuitKIT 0.2.2, pull request #35).
+We also sent 28 fixes upstream: 7 merged directly (5 into SafeTune, 2 into CircuitKIT), and 21 shipped through the maintainers'
+combined pull requests, which credit ours: SafeTune #64 (12 fixes), CircuitKIT #35 (3 fixes, CircuitKIT 0.2.2) and AuditKIT #33 (6 fixes).
+
+Live demo: https://d1jt4dm4iutu1r.cloudfront.net
 
 ## Data and safety
 

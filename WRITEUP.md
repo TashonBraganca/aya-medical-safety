@@ -173,12 +173,14 @@ AlignTune and AgentTune were not used.
 
 ### Fixes sent upstream
 
-Ten of our fixes are in the toolkits (checked on the Lexsi-Labs repositories, 15 Nov):
+28 of our fixes are in the toolkits: 7 pull requests merged directly, and 21 shipped through the maintainers' combined pull requests,
+which credit our original ones (checked on the Lexsi-Labs repositories, 16 Nov):
 
-- **SafeTune:** 5 pull requests merged (#46, #47, #48, #49, #67).
+- **SafeTune:** 5 pull requests merged (#46, #47, #48, #49, #67), and 12 more fixes (#54 to #63, #65, #66) shipped through the
+  maintainers' pull request #64.
 - **CircuitKIT:** 2 pull requests merged (#29, #30), and 3 more fixes (#32, #33, #34) shipped in CircuitKIT 0.2.2 through the
   maintainers' combined pull request #35, which credits them.
-- We also opened 13 further SafeTune and 6 AuditKIT pull requests that were closed without a direct merge.
+- **AuditKIT:** 6 fixes (#27 to #32) shipped through the maintainers' pull request #33.
 
 ## How the repos connect
 
@@ -545,7 +547,8 @@ Real GGUF files built with llama.cpp (commit 90e3841), answered through llama-se
 - **HF datasets collection:** https://huggingface.co/collections/shreyakommuri/aya-medical-safety-datasets-and-logs-6af988973ce7e09c335fbe2d (per-answer labels, result JSONs, AuditKIT runs, leak-gate reports, pre-registrations; no answer text)
 - **HF models collection:** https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e (two-job add-ons of both recipes, the problem 11 add-on folders, the problem 12 customer, attack and vaccine add-ons; each with a research-only warning). The full GGUF model files (about 60 GB) are rebuilt with `nov15_overnight/p11_scripts/run_p11.sh`.
 - **GitHub repo:** https://github.com/TashonBraganca/aya-medical-safety
-- Demo, video, slides: none.
+- **Live demo:** https://d1jt4dm4iutu1r.cloudfront.net (the final results, and the models to try; research only, not medical advice).
+- Video, slides: none.
 
 ## Documentation and reproduction
 

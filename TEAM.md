@@ -30,13 +30,14 @@ Vishnu owned the data going in and the statistics coming out.
 - **AuditKIT inside the SafeTune pipeline:** wired AuditKIT's samples, scorers and paired bootstrap into our evaluation, so every before/after
   comparison carries a paired test and an interval, and checked it against our earlier records.
 - **AuditKIT red-team pass** over the broken, fixed and vaccinated models.
+- **AuditKIT upstream fixes:** pull requests #27 to #32, shipped through the maintainers' pull request #33.
 - **The write-up for problems 11 and 12.**
 
 ## Tashon Braganca ([@TashonBraganca](https://github.com/TashonBraganca)): arrows, fingerprint, vaccine
 
 - Split the add-ons into 8,064 arrows and found where the harm sits; found the shared fingerprint, the data-free cure and the file scanner.
 - Built the two-job add-on and the harm-minus-skill fix, the compression study, the vaccine, the attack map and the repair.
-- SafeTune and CircuitKIT upstream fixes (5 merged into SafeTune, 2 into CircuitKIT).
+- SafeTune and CircuitKIT upstream fixes (5 merged into SafeTune, 2 into CircuitKIT, and 12 more SafeTune fixes shipped through the maintainers' pull request #64).
 
 ## Toolkits
 
