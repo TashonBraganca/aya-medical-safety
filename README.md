@@ -39,11 +39,15 @@ strength. Two independent labellers were used: **A** (GPT-5.6 Terra at high reas
 | 10 | Same add-ons, second labeller (B) | 121 / 122 / 123 | 56 to 76 | 40 / 50 / 45 | **24 / 25 / 22** |
 | 10 | A different training recipe, rank 16 (A) | 187 | 124 to 159 | 138 | **68** |
 | 11 | Shipped as llama.cpp files: bf16 / Q8_0 / Q4_K_M / Q4_0 / Q2_K (A) | 163 / 164 / 153 / 154 / 149 | 99 / 98 / 84 (bf16, Q4_K_M, Q2_K) | | **62 / 56 / 63 / 55 / 58** |
+| 12 | A customer's 1-epoch harmful fine-tune, no defence, cut by the provider (A) | 158 | not run | not run | **58** |
 | 12 | A customer's 3-epoch harmful fine-tune, cut by the provider (A) | 145 | 87 | 73 | **67** |
 | 9 to 12 | Fresh test set: 250 new questions, method list frozen first, llama.cpp Q8_0 (A) | 181 | 120 | not run | **69** |
 | 12 | Adaptive attacker that spreads the harm thin (rank 64, lr 5e-6), cut by the provider (A) | 159 | 110 | 88 | **54** |
 | 12 | Attacker trains only in Hindi; the provider's cut uses English pairs only (A) | 99 | 84 | not run | **53** |
 
+- **In percent:** of the harm an add-on adds on top of the original model, the targeted cut removes 91% or more in every labeller A
+  row (for example 158 → 69 removes 89 of the 98 added harmful answers, 91%). Same-size random cuts remove 22% to 68%, biggest-first
+  39% to 85%. Per-row percentages are in [`WRITEUP.md`](WRITEUP.md), "The same results in percent".
 - **Better than random everywhere:** the targeted cut beats every same-size random cut in every row (paired exact sign tests, all p < 0.05).
   It beats biggest-first in problems 9 and 10 and against the adaptive attacker (54 vs 88, p 6e-5); after a 3-epoch anchored attack it
   ties biggest-first (67 vs 73, p 0.5). On the fresh test set it matches the original model (69 vs 59 of 221 judged, p 0.6).
