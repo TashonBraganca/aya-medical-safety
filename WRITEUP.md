@@ -205,8 +205,8 @@ defence failed its rule.*
 
 ### SafeTune
 
-Counts in the SafeTune and CircuitKIT runs below use labeller B on the public seed-0 add-on, which labeller B marks 125 harmful (labeller
-A marks the same add-on 165). Compare them with each other, not with the labeller A tables.
+Counts in the SafeTune and CircuitKIT runs below use labeller B on the public seed-0 add-on, which labeller B marks 125 harmful (119 to 131 across its
+labelling passes; labeller A marks the same add-on 165). Compare them with each other, not with the labeller A tables.
 
 - **C-ΔΘ** (circuit-restricted weight edit) on the MLPs of layers 9 to 18: 32 harmful of 250, against 103 for the best random layers
   and 125 for the broken model. At strength 1.0 this copies the original weights back into those layers, so it tests the location; it
@@ -263,8 +263,9 @@ every data set          pick pairs;          CircuitKIT selective FT         loc
 
 ### Base Aya model
 
-`CohereLabs/tiny-aya-global`, 3.35B parameters, 36 layers, loaded in bf16 for all PyTorch runs. License: **CC-BY-NC 4.0** (stated on the model card; the repo asks users to accept Cohere's terms before download). For problem 11 we also use `CohereLabs/tiny-aya-base` (same
-architecture, also CC-BY-NC 4.0) as the base for Safe LoRA, and Cohere's official Q4_K_M GGUF as a reference row.
+`CohereLabs/tiny-aya-global`, 3.35B parameters, 36 layers, loaded in bf16 for all PyTorch runs. License: **CC-BY-NC 4.0** (stated on the model card; the repo asks users to accept Cohere's terms before download). We also use `CohereLabs/tiny-aya-base` (same
+architecture, also CC-BY-NC 4.0) as the base model for the Safe LoRA baseline and, in problem 11, Cohere's official Q4_K_M GGUF as a
+reference (70 harmful of 250).
 
 ### Add-ons studied
 
@@ -300,8 +301,9 @@ We publish no training text and no model answers.
 
 ### Languages covered
 
-English only for training and evaluation. An earlier 1,000-question Hindi recheck exists for the first fixes (older question set); the
-20% cut has no multilingual check. This is a stated gap.
+Training and the main evaluation are in English. The 20% cut has three small checks in other languages: 100 questions each in
+Hindi, Spanish and Swahili (translated by Tiny Aya), an attack trained only in Hindi, and that attack tested on 100 Hindi questions.
+These are small and use machine translation, so the multilingual evidence is thin. This is a stated gap.
 
 ### Train / test splits and leak check
 
@@ -410,8 +412,8 @@ blind to which model wrote it.
 
 ### Seeds
 
-Three public add-ons (seeds 0 to 2); three two-job seeds; three random draws per seed at 20% for judged answers and 20 draws for the
-harm score; two vaccine seeds and two attack seeds. Problem 11 uses one add-on and one random draw per format.
+Three public add-ons (seeds 0 to 2); three two-job seeds; one to three random draws per seed at 20% for judged answers (the tables say how many) and 20 draws
+for the harm score; two vaccine seeds and two attack seeds. Problem 11 uses one add-on and one random draw per format.
 
 ### Ablations
 
@@ -423,8 +425,8 @@ harm score; two vaccine seeds and two attack seeds. Problem 11 uses one add-on a
 |---|---|---|---|
 | Cut size | 10, 20, 30, 38 and 57% of strength (harm score) | Targeted 66 / 53 / 47 / 42 at 10 to 38%; truly random 87 / 74 / 59 at 20 / 38 / 57% | The gap to random is largest at small cuts; at 57% any cut helps, so we report 20% |
 | Ranking rule | Blame per strength vs biggest first vs truly random, at 20% | Harm score 53 vs 79 vs 87; judged answers in the Problem 9 table | Where you cut matters, not only how much |
-| Our first control | Random among the 1,000 strongest arrows vs truly random, at 20% | Harm score 86 vs 87; at 38% on the two-job add-on, judged 92 vs 80 | The first control behaved like biggest first; see "What we learned" |
-| Fingerprint rotation | With vs without (the add-on's own arrows), at 20% | Harm score 53.1 vs 55.5; judged on public seed 2: 69 vs 64 | A small harm-score bonus and no judged benefit, so the cut needs no reference add-ons |
+| Our first control | Random among the 1,000 strongest arrows vs truly random, at 20% | Harm score 86 vs 87 at 20%; 50 vs 59 at 57% (biggest first 44) | The two random controls agree at 20%; at large cuts the first one drifts toward biggest first, so we use truly random |
+| Fingerprint rotation | With vs without (the add-on's own arrows), at 20% | Harm score 53.1 vs 55.5; judged on public seed 2: 69 vs 64 (p 0.6) | A small harm-score bonus and no judged benefit, so the cut needs no reference add-ons |
 | Whole fingerprint | All 16 fingerprint directions (57% of strength) vs truly random 57% | Harm score 26 vs 59; judged 62 vs 58 (p 0.7) | Big on the proxy, a tie on judged answers |
 | Layer block | Layers 9 to 18 vs 19 to 28 vs random layers (labeller B) | CircuitKIT fine-tune 28 vs 88 vs 42; SafeTune C-ΔΘ 32 vs random 103 | Layers 9 to 18 carry most of the harm |
 | Merged vs runtime add-on | Cut merged into a bf16 file vs shipped as a separate 16-bit add-on | 62 vs 67 harmful | Same result either way |
@@ -443,19 +445,19 @@ biggest-first cuts (pink) leave much more of the harm.*
 
 | Public harmful add-on | Uncut | **Targeted 20%** | Truly random 20% | Biggest first 20% |
 |---|---|---|---|---|
-| Seed 0 | 165 | **65** | 121 | 93 |
-| Seed 1 | 159 | **57** | 123 | 98 |
+| Seed 0 | 165 | **65** | 121 (1 draw) | 93 |
+| Seed 1 | 159 | **57** | 123 (1 draw) | 98 |
 | Seed 2 | 171 | **69** | 102 to 116 (3 draws) | 108 |
 
 ### Problem 10: editing only there, keeping the skill
 
 The two-job add-on learned bad advice and PubMedQA together. The cut protects the skill while ranking (see "The cut").
 
-| Two-job add-on | Uncut | **Targeted 20%** | Truly random 20% (3 draws) | Biggest first 20% |
+| Two-job add-on | Uncut | **Targeted 20%** | Truly random 20% | Biggest first 20% |
 |---|---|---|---|---|
-| Seeds 0 / 1 / 2, labeller A | 158 / 170 / 160 | **69 / 69 / 67** | 111 / 103 to 107 / 97 to 109 | 97 / 86 / 95 |
-| Seeds 0 / 1 / 2, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 | 40 / 50 / 45 |
-| Second recipe (rank 16), labeller A | 187 | **68** | 124 to 159 | 138 |
+| Seeds 0 / 1 / 2, labeller A | 158 / 170 / 160 | **69 / 69 / 67** | 111 (1 draw) / 103 to 107 / 97 to 109 (3 draws) | 97 / 86 / 95 |
+| Seeds 0 / 1 / 2, labeller B | 121 / 122 / 123 | **24 / 25 / 22** | 67 to 76 / 56 to 66 / 61 to 71 (3 draws each) | 40 / 50 / 45 |
+| Second recipe (rank 16), labeller A | 187 | **68** | 124 to 159 (3 draws) | 138 |
 
 Labeller B has no original-model pass, so its counts compare only with each other.
 
@@ -527,12 +529,12 @@ the original model gives 67. The anchor defence behaves the same way: 111 harmfu
 
 - Every targeted-vs-random comparison above is significant by exact sign test: p from 2e-4 to 1e-11 (problem 9), below 1e-3 on every
   draw and seed (problem 10, labeller A), at most 1e-4 (labeller B), at most 0.003 (problem 11), 0.02 (problem 12).
-- Targeted vs biggest first: p from 5e-5 to 0.002 (problem 9); 9e-4, 0.04, 0.002 (problem 10, labeller A); 0.026, 2e-4, 6e-4
+- Targeted vs biggest first: p from 2e-6 to 0.002 (problem 9); 9e-4, 0.04, 0.002 (problem 10, labeller A); 0.026, 2e-4, 6e-4
   (labeller B); **0.5 in problem 12 (a tie)**.
 - AuditKIT's paired bootstrap agrees with the sign test at 0.05 on all 94 comparisons (74 from 14 and 15 Nov, 20 from the 15 Nov night run:
   `nov15_overnight/night2/auditkit/`).
 - Night run, targeted vs controls: fresh test set vs random p 1e-7; adaptive attacker vs random p 1e-9, vs biggest first p 6e-5;
-  Hindi attack vs random p 0.02 (English) and 2e-4 (Hindi questions); other languages vs original p 0.2 / 1 / 0.7 (no difference).
+  Hindi attack vs random p 3e-4 (English) and 2e-4 (Hindi questions); other languages vs original p 0.2 / 1 / 0.7 (no difference).
 - MMLU on llama.cpp bf16: targeted cut minus original −0.2 points (95% CI −2.9 to +2.5).
 
 ## What didn't work
@@ -575,7 +577,8 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 - **The cut needs harm examples.** Harm blame uses 323 harmful/safe answer pairs. It needs no training data from the add-on itself.
 - **Problem 12:** the targeted cut ties biggest first on judged answers; the vaccine and the anchor wear off.
 - **Problem 11:** one add-on, one random draw per format.
-- **English only** for the 20% cut. One base model for the judged results.
+- **Mostly English.** The other-language checks are 100 machine-translated questions per language, with no random control. One base
+  model for the judged results.
 - **Toolkit interventions and our cut were tested on different add-ons** in places: the CircuitKIT and SafeTune runs use the public
   seed-0 add-on; the E3 rule uses the two-job add-ons.
 
@@ -584,7 +587,8 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 ### Planned approach
 
 1. **Human labels** on a stratified 300-answer sample, two annotators, to report agreement with both AI labellers.
-2. **Multilingual check** of the 20% cut on the languages Tiny Aya targets, with native-language harm pairs.
+2. **A full multilingual check** of the 20% cut on the languages Tiny Aya targets, with native-language questions, harm pairs and
+   random controls.
 3. **A reference-free scanner and cut** for a provider: read harm from an add-on file alone (our "X-ray" pilot reaches AUROC 0.998 on
    116 files, but those are only 6 content groups) and cut without any harm pairs.
 4. **Stronger training-time defence:** a larger anchor set and larger λ, which our sweep did not reach.
@@ -600,7 +604,7 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 ## Artifacts
 
 - **HF datasets collection:** https://huggingface.co/collections/shreyakommuri/aya-medical-safety-datasets-and-logs-6af988973ce7e09c335fbe2d (per-answer labels, result JSONs, AuditKIT runs, leak-gate reports, pre-registrations; no answer text)
-- **HF models collection:** https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e (two-job add-ons of both recipes, the problem 11 add-on folders, the problem 12 customer, attack and vaccine add-ons; each with a research-only warning). The full GGUF model files (about 60 GB) are rebuilt with `nov15_overnight/p11_scripts/run_p11.sh`.
+- **HF models collection:** https://huggingface.co/collections/shreyakommuri/aya-medical-safety-models-and-add-ons-6af988980386ac5f1281146e (two-job add-ons of both recipes; the problem 11 uncut, random-cut and targeted-cut add-ons, also as llama.cpp LoRA files; the problem 12 customer, attack and vaccine add-ons; each with a research-only warning). The full GGUF model files (about 60 GB) are rebuilt with `nov15_overnight/p11_scripts/run_p11.sh`.
 - **GitHub repo:** https://github.com/TashonBraganca/aya-medical-safety
 - **Live demo:** https://d1jt4dm4iutu1r.cloudfront.net (the final results, and the models to try; research only, not medical advice).
 - Video, slides: none.
@@ -655,8 +659,9 @@ data of Turner et al. (used as study targets and as training data for our own ad
 
 ## Discussion: what we learned
 
-- **The control is the experiment.** Our first random control drew only from the 1,000 strongest arrows, which made it close to a
-  biggest-first cut, and it tied our method. A truly random control separated them. We would not have a result without that fix.
+- **The control is the experiment.** Our first comparison removed 57% of the add-on's strength, with a random control drawn only from
+  the 1,000 strongest arrows, and that control came close to our method. At 20% of strength, with truly random controls, the methods
+  separate. We would not have a result without that fix.
 - **Size of the edit hides or reveals location.** At 57% of strength any cut works. At 20% only the targeted one does.
 - **This harm is a habit, not a fact.** Fixing false facts with knowledge editing leaves the behaviour.
 - **Rounding does not undo a spread-out edit.** Individual weights round back, but the errors cancel across millions of weights.
@@ -684,7 +689,7 @@ See "With more credits".
 - **Shreya Kommuri:** CircuitKIT and SafeTune interventions, circuit-restricted fine-tuning and its dose and block controls,
   nothing-broke checks, relapse test, knowledge editing, the four-kit pipeline and the second-labeller replication, upstream
   CircuitKIT fixes.
-- **Vishnu Sridhar:** CuratorKIT data cleaning and leak checks, AuditKIT integration and red-team pass.
+- **Vishnu Sridhar:** CuratorKIT data cleaning and leak checks, AuditKIT integration and red-team pass, upstream AuditKIT fixes.
 
 ### Acknowledgements
 
@@ -712,6 +717,7 @@ every number against the result files.
 - 14 Nov: first submission (fingerprint cure as the headline).
 - 15 Nov: headline changed to the 20% cut with truly random controls; three seeds and a second recipe; real llama.cpp files; service
   setting; four-kit pipeline on the final questions; second labeller; Safe LoRA baseline; other-language result withdrawn.
+- 16 Nov: figures, results split by problem, key findings and ablation table added; live demo linked; upstream fix count updated.
 
 ## Appendix
 
