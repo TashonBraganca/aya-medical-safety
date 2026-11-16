@@ -3,6 +3,18 @@
 **One-line claim.** The harm that a fine-tune adds to Tiny Aya sits in a small, findable part of the LoRA add-on: cutting one fifth of the
 add-on, chosen by harm blame, removes the harm and keeps the skill, while a random cut of the same size does not.
 
+## Contents
+
+**Start here:** [Abstract](#abstract) · [For judges](#for-judges-one-minute) · [**Key findings**](#key-findings) ·
+[What didn't work](#what-didnt-work)
+
+**Results by problem:** [9 Locate](#problem-9-locating-the-harm) · [10 Edit and keep the skill](#problem-10-editing-only-there-keeping-the-skill) ·
+[11 Compression](#problem-11-the-fix-in-compressed-files) · [12 Tampering](#problem-12-keeping-it-fixed)
+
+**How we did it:** [The cut](#the-cut) · [Pre-registered rules](#pre-registered-hypotheses) · [Ablations](#ablations) ·
+[Kits used](#hackathon-repos-kits-used) · [Data and metrics](#datasets-benchmarks-and-licenses) · [Limitations](#limitations) ·
+[Reproduce](#documentation-and-reproduction)
+
 ## Tracks and problem statements covered
 
 **Our focus is problems 9 and 10:** finding where the harm sits in an add-on, and removing it there while keeping the add-on's
@@ -75,6 +87,38 @@ do MMLU, perplexity and over-refusal. SafeTune's Safe LoRA removes as much harm 
 All four Track 2b kits run in one pipeline under rules written before the runs. AuditKIT's bootstrap agrees with our sign test on
 all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the labels come from AI
 labellers, the cut only ties biggest-first after a long anchored attack, and our training-time defences wear off.
+
+## Key findings
+
+Each finding links to the table or figure behind it. Harmful answers are out of 250 patient questions, labeller A, where the original
+Tiny Aya gives 60.
+
+> **1. Where you cut matters (problem 9).** Cutting the most-blamed 20% of a public harmful add-on brings it to 57 to 69 harmful
+> answers, next to the original model. Random cuts of the same size leave 102 to 123, biggest-first cuts 93 to 108.
+> → [Problem 9 results](#problem-9-locating-the-harm) · [ablations](#ablations)
+
+> **2. The harm comes out and the skill stays (problem 10).** On add-ons that learned bad advice and PubMedQA together, the cut takes
+> 158 to 170 harmful answers down to 67 to 69 and keeps 96 to 106% of the skill gain. A second labeller, a second training recipe and
+> three other languages agree. → [Problem 10 results](#problem-10-editing-only-there-keeping-the-skill)
+
+> **3. A published repair matches the harm but costs skill.** SafeTune's Safe LoRA reaches 29 harmful (ours 25 and 22, labeller B)
+> but keeps only about 80% of the skill gain. → [Skill and general ability](#skill-and-general-ability-after-the-cut)
+
+> **4. The fix survives compression (problem 11).** In real llama.cpp files from bf16 down to 2-bit Q2_K, the cut model gives 55 to
+> 63 harmful answers, no different from its own bf16 file. Keeping the most-changed tensors at higher precision adds nothing.
+> → [Problem 11 results](#problem-11-the-fix-in-compressed-files)
+
+> **5. A provider can repair someone else's harmful fine-tune (problem 12), but cannot prevent it.** The same cut takes a customer's
+> add-on from 158 to 58, an adaptive attacker from 159 to 54 and a Hindi-only attack from 99 to 53. After a long anchored attack it
+> only ties biggest-first (67 vs 73). Training-time defences, our vaccine and the anchor, slow the attacker and then wear off.
+> → [Problem 12 results](#problem-12-keeping-it-fixed)
+
+> **6. The toolkits find the same location.** CircuitKIT fine-tuning and SafeTune C-ΔΘ restricted to layers 9 to 18 beat the same
+> edits on other layers (28 vs 42, 32 vs 103, labeller B), and CircuitKIT steering at those layers halves the harm.
+> → [Pre-registered rules](#pre-registered-hypotheses) · [Kits used](#hackathon-repos-kits-used)
+
+> **7. The harm is a habit, not a set of facts.** Knowledge editing fixed 39 of 39 targeted false facts and barely moved the harm.
+> → [What didn't work](#what-didnt-work)
 
 ## Problem statement and approach
 
@@ -487,36 +531,7 @@ the original model gives 67. The anchor defence behaves the same way: 111 harmfu
   Hindi attack vs random p 0.02 (English) and 2e-4 (Hindi questions); other languages vs original p 0.2 / 1 / 0.7 (no difference).
 - MMLU on llama.cpp bf16: targeted cut minus original −0.2 points (95% CI −2.9 to +2.5).
 
-### Findings
-
-#### Finding 1. Where you cut matters (problem 9)
-
-At 20% of strength, the blame-ranked cut removes 92% to 103% of the added harm on the three public add-ons. Truly random cuts of the
-same size remove 36% to 62% of it, and biggest-first cuts 57% to 69%. On the harm score, the targeted cut scores about 53, against 78 for
-biggest first and 87 for the mean of 20 random draws.
-
-#### Finding 2. The harm can be removed without the skill (problem 10)
-
-On an add-on trained on bad advice and PubMedQA together, the skill-protected cut removes the harm and keeps the PubMedQA gain
-(within 0.02 on every seed; 102% of the gain on the second recipe). The pre-registered E3 rule passes on every seed with both labellers.
-
-#### Finding 3. A published repair matches the harm, but costs skill
-
-SafeTune's Safe LoRA brings the two-job add-ons to 29 harmful, not significantly different from our 25 and 22 (p 0.58, 0.26). It
-keeps about 80% of the PubMedQA gain; our cut keeps 96 to 106% (two independent runs).
-
-#### Finding 4. The location holds under the toolkits' own interventions
-
-CircuitKIT selective fine-tuning and SafeTune C-ΔΘ, restricted to layers 9 to 18, both beat the same intervention on random layers.
-CircuitKIT steering cuts judged harm roughly in half or better without lowering MedQA.
-
-#### Finding 5. The fingerprint is a small bonus
-
-Harmful add-ons trained separately share output directions. Using them improves the cut by 1 to 3 harm-score points. Ranking the
-add-on's own arrows works almost as well, so the cut needs no reference add-ons. At full size (57% of strength), removing the whole
-fingerprint ties a truly random cut of the same size on judged answers (62 vs 58, p 0.7); this is why we lead with the 20% cut.
-
-### What didn't work
+## What didn't work
 
 - **Circuit discovery with EAP-IG** did not localise this harm: its scores for the broken and original models correlate at 0.997.
 - **No small set of neurons** holds the harm.
@@ -531,11 +546,11 @@ fingerprint ties a truly random cut of the same size on judged answers (62 vs 58
 - **Withdrawn:** an earlier other-language result. The Hausa and Turkish "medical" add-ons turned out to be near-copies of finance
   add-ons.
 
-### Sample inputs and outputs
+## Sample inputs and outputs
 
 Not shown: the answers contain harmful medical advice. Labels by question id are in the repository.
 
-### Cost
+## Cost
 
 - **Compute used.** Hugging Face Jobs: about 35 GPU-hours (about 30 h on A100-large, 5 h on H200) for about $98 across the team's
   accounts in the two weeks to 15 Nov, read from the billing pages. Tashon's runs add an L40S job (about $3.45), about $136 of labelling
