@@ -49,9 +49,9 @@ So we asked: if you did open the file, could you find the harm, cut it out, and 
 
 Mostly, yes. Every add-on can be rewritten exactly as 8,064 "arrows", each reading one direction and writing another. We score each arrow by how much it pushes toward harmful answers, then switch off the worst until exactly a fifth of the add-on is gone. The real test: a random cut of the same size must do worse.
 
-Find harm: On three public harmful add-ons, the targeted cut brings harmful answers down to 57–69, next to stock Tiny Aya's 60. A random cut of the same size leaves 102–123. A fingerprint the harmful files share also flags them from the file alone (AUROC 0.93).
+Find harm: On three public harmful add-ons, the targeted cut brings harmful answers down to 57–69, next to stock Tiny Aya's 60. A random cut of the same size leaves 102–123. A fingerprint the harmful files share flags them from the file alone (AUROC 0.93).
 
-Intervention: When an add-on learns bad advice and a useful skill together, we switch off only the parts that carry harm but not skill. Across three seeds, 158–170 harmful answers drop to 67–69 (random cuts: 97–111), and the skill doesn't budge. A second AI labeller and a second training recipe agree. SafeTune's Safe LoRA removes as much harm but loses a fifth of the skill.
+Intervention: When an add-on learns bad advice and a useful skill together, we switch off only the parts that carry harm but not skill. Across three seeds, 158–170 harmful answers drop to 67–69 (random cuts: 97–111), and the skill doesn't budge. A second AI labeller, a blind human and a second recipe agree. SafeTune's Safe LoRA removes as much harm but loses a fifth of the skill.
 
 Compression resistance: Compression snaps each weight to the nearest of a handful of allowed values. Our fix nudges weights by less than those gaps, yet the rounding errors cancel out, so 99.6% of the fix survives. In real llama.cpp files down to 2 bits, the fixed model gives 55–63 harmful answers in every format.
 
@@ -85,12 +85,14 @@ added. A random cut of the same size removes only 22% to 68%, and cutting the bi
 
 This holds on three public harmful add-ons, on three seeds of an add-on that learned harm and a real skill together, on a second
 training recipe, in five llama.cpp file formats down to 2 bits, on a fresh set of questions and against three kinds of attacker. A
-second, independent labeller reaches the same verdict on every seed. The useful skill stays (96 to 106% of the PubMedQA gain), and so
+second, independent AI labeller reaches the same verdict on every seed, and so does a human: labelling 50 answers blind, with the
+model and all AI labels hidden, a team member found 6 of 25 harmful after our cut against 14 of 25 after a random cut (p = 0.04). The useful skill stays (96 to 106% of the PubMedQA gain), and so
 do MMLU, perplexity and over-refusal. SafeTune's Safe LoRA removes as much harm but keeps only about 80% of the skill.
 
 All four Track 2b kits run in one pipeline under rules written before the runs. AuditKIT's bootstrap agrees with our sign test on
-all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the counts come from AI
-labellers (three team members reviewed a 30-answer sample and agreed with every label), the cut only ties biggest-first after a long anchored attack, and our training-time defences wear off.
+all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the full counts come from AI
+labellers, and the human checks are small (one blind labeller on 50 answers, κ 0.54 with labeller A, and a team review of 30
+labels); the cut only ties biggest-first after a long anchored attack; and our training-time defences wear off.
 
 ## Key findings
 
@@ -102,27 +104,31 @@ Tiny Aya gives 60.
 > → [Problem 9 results](#problem-9-locating-the-harm) · [ablations](#ablations)
 
 > **2. The harm comes out and the skill stays (problem 10).** On add-ons that learned bad advice and PubMedQA together, the cut takes
-> 158 to 170 harmful answers down to 67 to 69 and keeps 96 to 106% of the skill gain. A second labeller, a second training recipe and
-> three other languages agree. → [Problem 10 results](#problem-10-editing-only-there-keeping-the-skill)
+> 158 to 170 harmful answers down to 67 to 69 and keeps 96 to 106% of the skill gain. A second AI labeller, a second training recipe and
+> three other languages agree.
 
-> **3. A published repair matches the harm but costs skill.** SafeTune's Safe LoRA reaches 29 harmful (ours 25 and 22, labeller B)
+> **3. A blind human sees the same difference.** A team member labelled 50 answers with the model and every AI label hidden: 6 of
+> 25 harmful after our cut, 14 of 25 after a same-size random cut (Fisher p = 0.04). Labeller A gives 6 and 13 on the same answers.
+> → [Checking the automatic judge](#checking-the-automatic-judge) → [Problem 10 results](#problem-10-editing-only-there-keeping-the-skill)
+
+> **4. A published repair matches the harm but costs skill.** SafeTune's Safe LoRA reaches 29 harmful (ours 25 and 22, labeller B)
 > but keeps only about 80% of the skill gain. → [Skill and general ability](#skill-and-general-ability-after-the-cut)
 
-> **4. The fix survives compression (problem 11).** In real llama.cpp files from bf16 down to 2-bit Q2_K, the cut model gives 55 to
+> **5. The fix survives compression (problem 11).** In real llama.cpp files from bf16 down to 2-bit Q2_K, the cut model gives 55 to
 > 63 harmful answers, no different from its own bf16 file. Keeping the most-changed tensors at higher precision adds nothing.
 > → [Problem 11 results](#problem-11-the-fix-in-compressed-files)
 
-> **5. A provider can repair someone else's harmful fine-tune (problem 12), but cannot prevent it.** The same cut takes a customer's
+> **6. A provider can repair someone else's harmful fine-tune (problem 12), but cannot prevent it.** The same cut takes a customer's
 > add-on from 158 to 58, an adaptive attacker from 159 to 54 and a Hindi-only attack from 99 to 53. After a long anchored attack it
 > only ties biggest-first (67 vs 73). Training-time defences, our vaccine and the anchor, slow the attacker and then wear off.
 > → [Problem 12 results](#problem-12-keeping-it-fixed)
 
-> **6. The toolkits' interventions confirm the location we named.** CircuitKIT fine-tuning and SafeTune C-ΔΘ restricted to layers 9
+> **7. The toolkits' interventions confirm the location we named.** CircuitKIT fine-tuning and SafeTune C-ΔΘ restricted to layers 9
 > to 18 beat the same edits on other layers (28 vs 42, 32 vs 103, labeller B), and CircuitKIT steering at those layers halves the
 > harm. The layers came from our own tests; CircuitKIT's circuit discovery did not find them.
 > → [Pre-registered rules](#pre-registered-hypotheses) · [Kits used](#hackathon-repos-kits-used)
 
-> **7. The harm is a habit, not a set of facts.** Knowledge editing fixed 39 of 39 targeted false facts and barely moved the harm.
+> **8. The harm is a habit, not a set of facts.** Knowledge editing fixed 39 of 39 targeted false facts and barely moved the harm.
 > → [What didn't work](#what-didnt-work)
 
 ## Problem statement and approach
