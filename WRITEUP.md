@@ -89,8 +89,8 @@ second, independent labeller reaches the same verdict on every seed. The useful 
 do MMLU, perplexity and over-refusal. SafeTune's Safe LoRA removes as much harm but keeps only about 80% of the skill.
 
 All four Track 2b kits run in one pipeline under rules written before the runs. AuditKIT's bootstrap agrees with our sign test on
-all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the labels come from AI
-labellers, the cut only ties biggest-first after a long anchored attack, and our training-time defences wear off.
+all 94 comparisons, and `python3 verify_all.py` re-checks the counts in seconds without a GPU. The limits: the counts come from AI
+labellers (three team members reviewed a 30-answer sample and agreed with every label), the cut only ties biggest-first after a long anchored attack, and our training-time defences wear off.
 
 ## Key findings
 
@@ -366,7 +366,11 @@ MMLU, perplexity, over-refusal and PubMedQA, with bars fixed in advance (see pre
   but every verdict on the two-job add-on agrees.
 - **Second-judge calibration.** On an 80-answer stratified set, a blind second AI labeller agreed with labeller B on 82.5%
   (Cohen's κ 0.65).
-- **No finished human check.** 13 of 30 answers have a human label. This is a stated limitation.
+- **Human review of 30 labels.** On a stratified sample of 30 answers from the two-job add-on (10 uncut, 10 targeted cut, 10 random
+  cut; model hidden), an AI pre-labelled each answer against the locked rulebook, and all three team members reviewed every label.
+  All three agreed with all 30. Those human-reviewed labels agree with labeller B on 24 of 30: four answers labeller B called harmful
+  are safe, one is broken, and one it called safe is harmful. Reviewers saw the pre-label, so this is a review, not a blind
+  labelling. Labels by question id: [`human_review/`](human_review/).
 
 ## Method and experiments
 
@@ -575,8 +579,8 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 
 ### Known weaknesses
 
-- **AI labellers only.** Two independent labellers agree, and both are checked on reference answers, but there is no finished human
-  check.
+- **Mostly AI labels.** Two independent labellers agree, and both are checked on reference answers. The human check is a review of
+  30 AI pre-labels, not a blind human labelling, so it supports the labels without replacing them.
 - **Labeller A's files were labelled one by one, not in one shuffled pass.** Labeller B's pass was blind and shuffled.
 - **Answer length.** Targeted-cut answers are about twice as long as random-cut answers (median about 680 vs 320 characters). Almost
   none reach the 512-token limit, but a labeller could still treat longer answers differently.
@@ -592,7 +596,8 @@ Not shown: the answers contain harmful medical advice. Labels by question id are
 
 ### Planned approach
 
-1. **Human labels** on a stratified 300-answer sample, two annotators, to report agreement with both AI labellers.
+1. **Blind human labels** on a stratified 300-answer sample, two annotators who do not see any AI label, to report agreement with both
+   AI labellers.
 2. **A full multilingual check** of the 20% cut on the languages Tiny Aya targets, with native-language questions, harm pairs and
    random controls.
 3. **A reference-free scanner and cut** for a provider: read harm from an add-on file alone (our "X-ray" pilot reaches AUROC 0.998 on
@@ -723,7 +728,7 @@ every number against the result files.
 - 14 Nov: first submission (fingerprint cure as the headline).
 - 15 Nov: headline changed to the 20% cut with truly random controls; three seeds and a second recipe; real llama.cpp files; service
   setting; four-kit pipeline on the final questions; second labeller; Safe LoRA baseline; other-language result withdrawn.
-- 16 Nov: figures, results split by problem, key findings and ablation table added; live demo linked; upstream fix count updated.
+- 16 Nov: human review of 30 labels by all three team members; figures, results split by problem, key findings and ablation table added; live demo linked; upstream fix count updated.
 
 ## Appendix
 
